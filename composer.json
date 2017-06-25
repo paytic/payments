@@ -1,0 +1,26 @@
+{
+  "name": "bytic/payments",
+  "type": "library",
+  "license": "MIT",
+  "description": "Payments module for bytic library",
+  "keywords": [  ],
+  "homepage": "https://github.com/ByTIC/payments",
+  "authors": [
+    {
+      "name": "Gabriel Solomon",
+      "email": "hello@gabrielsolomon.ro"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ByTIC\\Payments\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.0",
+    "omnipay/common": "^2.3"
+  },
+  "require-dev": {
+    "omnipay/tests": "^2.0"
+  }
+}
