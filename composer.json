@@ -11,6 +11,12 @@
       "email": "hello@gabrielsolomon.ro"
     }
   ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/ByTIC/Common.git"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "ByTIC\\Payments\\": "src/"
@@ -20,6 +26,8 @@
     "php": "^7.0",
     "omnipay/common": "^2.3",
     "bytic/framework": "dev-develop",
+    "bytic/medialibrary": "dev-release/0.9.0",
+    "bytic/common": "dev-develop",
     "bytic/request-detective": "dev-develop",
     "bytic/omnipay-twispay": "dev-master"
   },
