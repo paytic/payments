@@ -18,7 +18,10 @@
   },
   "require": {
     "php": "^7.0",
-    "omnipay/common": "^2.3"
+    "omnipay/common": "^2.3",
+    "bytic/framework": "dev-develop",
+    "bytic/request-detective": "dev-develop",
+    "bytic/omnipay-twispay": "dev-master"
   },
   "require-dev": {
     "omnipay/tests": "^2.0"
