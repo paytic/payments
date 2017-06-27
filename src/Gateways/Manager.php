@@ -67,7 +67,7 @@ class Manager
             'Payu',
             'Mobilpay',
             'Euplatesc',
-            'Twistpay'
+            'Twispay'
         ];
     }
 

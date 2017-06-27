@@ -3,9 +3,9 @@
 namespace ByTIC\Payments\Forms\Traits;
 
 use ByTIC\Common\Forms\Traits\AbstractFormTrait;
-use ByTIC\Common\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Gateway;
 use ByTIC\Common\Payments\Models\Methods\Traits\RecordTrait as PaymentMethod;
+use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use Nip_Form_Element_Abstract as FormElementAbstract;
 use Nip_Form_Element_Select as FormSelect;
 
@@ -80,8 +80,8 @@ trait PaymentMethodFormTrait
     protected function checkPaymentGatewaysValues()
     {
         if ($this->paymentGatewaysItems == null) {
-            $this->paymentGatewaysItems = $this->getPaymentGatewaysManager()->getItems();
-            $this->paymentGatewaysNames = $this->getPaymentGatewaysManager()->getItemsName();
+            $this->paymentGatewaysItems = $this->getPaymentGatewaysManager()::getCollection();
+            $this->paymentGatewaysNames = $this->getPaymentGatewaysManager()::getCollection()->keys();
         }
     }
 
@@ -115,7 +115,7 @@ trait PaymentMethodFormTrait
      */
     protected function newPaymentGatewaysManager()
     {
-        return GatewaysManager::instance();
+        return new GatewaysManager();
     }
 
     public function processValidation()
@@ -226,7 +226,8 @@ trait PaymentMethodFormTrait
         $this->addSelect('type', translator()->translate('type'), true);
         $types = $this->getModel()->getManager()->getTypes();
         foreach ($types as $type) {
-            $this->getElement('type')->addOption($type->getName(), $type->getLabel());
+            $this->getElement('type')
+                ->addOption($type->getName(), $type->getLabel());
         }
         $this->appendPaymentGatewaysOptgroupOption();
     }
@@ -240,7 +241,8 @@ trait PaymentMethodFormTrait
             $typeInput->appendOptgroupOption(
                 $this->getPaymentGatewaysManager()->getLabel('title'),
                 $gateway->getName(),
-                $gateway->getLabel());
+                $gateway->getLabel()
+            );
         }
     }
 
