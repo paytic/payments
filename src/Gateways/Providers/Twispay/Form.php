@@ -13,7 +13,7 @@ class Form extends AbstractForm
 
     public function initElements()
     {
-        $this->addInput('siteId', 'MID');
-        $this->addInput('key', 'Key');
+        $this->addInput('siteId', 'Site ID');
+        $this->addInput('privateKey', 'Private key');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace ByTIC\Payments\Gateways;
 
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+
 /**
  * Class Payment_Gateways
  */
@@ -18,9 +20,39 @@ class Manager
     /**
      * Internal factory storage
      *
-     * @var GatewaysCollection
+     * @var GatewaysCollection|GatewayTrait[]
      */
     private static $collection;
+
+    /**
+     * @param RecordManager $modelManager
+     * @param string $callback
+     * @param null|HttpRequest $httpRequest
+     * @return bool|\Omnipay\Common\Message\ResponseInterface
+     */
+    public function detectItemFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
+    {
+        $callback = $callback ? $callback : 'completePurchase';
+        $items = self::getAll();
+
+        foreach ($items as $item) {
+            if ($httpRequest) {
+                $item->setHttpRequest($httpRequest);
+            }
+            if (method_exists($item, $callback)) {
+                /** @var AbstractRequest $request */
+                $request = $item->$callback(['modelManager' => $modelManager]);
+                if ($request) {
+                    $response = $request->send();
+                    if (is_subclass_of($response, AbstractResponse::class)) {
+                        return $response;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 
     /**
      * @return GatewaysCollection
@@ -85,5 +117,27 @@ class Manager
         }
 
         return static::$factory;
+    }
+
+    /**
+     * @param $type
+     * @param array $params
+     * @param bool $language
+     * @return string
+     */
+    public function getLabel($type, $params = [], $language = false)
+    {
+        return translator()->translate('payment-gateways.labels.' . $type, $params, $language);
+    }
+
+    /**
+     * @param $name
+     * @param array $params
+     * @param bool $language
+     * @return string
+     */
+    public function getMessage($name, $params = [], $language = false)
+    {
+        return translator()->translate('payment-gateways.messages.' . $name, $params, $language);
     }
 }
