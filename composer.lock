@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+  "hash": "9c5db3820a84a8d76e42aed9f78c9966",
     "content-hash": "2aca31314f49a09fc6b04677b8b468ab",
     "packages": [
         {
@@ -279,7 +280,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
-            "time": "2017-02-14T19:40:03+00:00"
+          "time": "2017-02-14 19:40:03"
         },
         {
             "name": "filp/whoops",
@@ -340,7 +341,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2017-06-03T18:33:07+00:00"
+          "time": "2017-06-03 18:33:07"
         },
         {
             "name": "guzzle/guzzle",
@@ -436,7 +437,7 @@
                 "web service"
             ],
             "abandoned": "guzzlehttp/guzzle",
-            "time": "2015-03-18T18:23:50+00:00"
+          "time": "2015-03-18 18:23:50"
         },
         {
             "name": "html2text/html2text",
@@ -473,7 +474,7 @@
                 "GPLv2"
             ],
             "description": "Converts HTML to formatted plain text",
-            "time": "2017-05-15T01:50:59+00:00"
+          "time": "2017-05-15 01:50:59"
         },
         {
             "name": "http-interop/http-middleware",
@@ -525,7 +526,7 @@
                 "request",
                 "response"
             ],
-            "time": "2017-01-14T15:23:42+00:00"
+          "time": "2017-01-14 15:23:42"
         },
         {
             "name": "league/container",
@@ -590,7 +591,7 @@
                 "provider",
                 "service"
             ],
-            "time": "2017-05-10T09:20:27+00:00"
+          "time": "2017-05-10 09:20:27"
         },
         {
             "name": "league/flysystem",
@@ -673,7 +674,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-04-28T10:15:08+00:00"
+          "time": "2017-04-28 10:15:08"
         },
         {
             "name": "maximebf/debugbar",
@@ -734,7 +735,7 @@
                 "debug",
                 "debugbar"
             ],
-            "time": "2017-01-05T08:46:19+00:00"
+          "time": "2017-01-05 08:46:19"
         },
         {
             "name": "monolog/monolog",
@@ -812,7 +813,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2017-06-19T01:22:40+00:00"
+          "time": "2017-06-19 01:22:40"
         },
         {
             "name": "nesbot/carbon",
@@ -865,7 +866,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-01-16T07:55:07+00:00"
+          "time": "2017-01-16 07:55:07"
         },
         {
             "name": "omnipay/common",
@@ -963,7 +964,7 @@
                 "payment",
                 "purchase"
             ],
-            "time": "2016-11-07T06:10:23+00:00"
+          "time": "2016-11-07 06:10:23"
         },
         {
             "name": "psr/container",
@@ -1012,7 +1013,7 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14T16:28:37+00:00"
+          "time": "2017-02-14 16:28:37"
         },
         {
             "name": "psr/http-message",
@@ -1062,7 +1063,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06T14:39:51+00:00"
+          "time": "2016-08-06 14:39:51"
         },
         {
             "name": "psr/log",
@@ -1109,7 +1110,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+          "time": "2016-10-10 12:19:37"
         },
         {
             "name": "sendgrid/php-http-client",
@@ -1161,20 +1162,20 @@
                 "rest",
                 "sendgrid"
             ],
-            "time": "2017-05-05T06:15:41+00:00"
+          "time": "2017-05-05 06:15:41"
         },
         {
             "name": "sendgrid/sendgrid",
-            "version": "5.5.1",
+          "version": "5.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sendgrid/sendgrid-php.git",
-                "reference": "18515828a61fb043979269da1e90c234d8eb9bf2"
+              "reference": "8f9073ecc0552cf41ba8cfff53f952160105d83e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/18515828a61fb043979269da1e90c234d8eb9bf2",
-                "reference": "18515828a61fb043979269da1e90c234d8eb9bf2",
+              "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/8f9073ecc0552cf41ba8cfff53f952160105d83e",
+              "reference": "8f9073ecc0552cf41ba8cfff53f952160105d83e",
                 "shasum": ""
             },
             "require": {
@@ -1207,7 +1208,7 @@
                 "send",
                 "sendgrid"
             ],
-            "time": "2017-05-18T16:36:05+00:00"
+          "time": "2017-06-27 03:25:11"
         },
         {
             "name": "setasign/fpdi",
@@ -1256,7 +1257,7 @@
                 "fpdi",
                 "pdf"
             ],
-            "time": "2017-05-11T14:25:49+00:00"
+          "time": "2017-05-11 14:25:49"
         },
         {
             "name": "setasign/fpdi-tcpdf",
@@ -1303,7 +1304,7 @@
                 "fpdi",
                 "pdf"
             ],
-            "time": "2015-11-30T11:09:50+00:00"
+          "time": "2015-11-30 11:09:50"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1357,7 +1358,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-05-01T15:54:03+00:00"
+          "time": "2017-05-01 15:54:03"
         },
         {
             "name": "symfony/debug",
@@ -1413,7 +1414,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01T21:01:25+00:00"
+          "time": "2017-06-01 21:01:25"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1473,7 +1474,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-02T07:47:27+00:00"
+          "time": "2017-06-02 07:47:27"
         },
         {
             "name": "symfony/filesystem",
@@ -1522,7 +1523,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-28T14:08:56+00:00"
+          "time": "2017-05-28 14:08:56"
         },
         {
             "name": "symfony/finder",
@@ -1571,7 +1572,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01T21:01:25+00:00"
+          "time": "2017-06-01 21:01:25"
         },
         {
             "name": "symfony/http-foundation",
@@ -1624,7 +1625,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-05T13:06:51+00:00"
+          "time": "2017-06-05 13:06:51"
         },
         {
             "name": "symfony/http-kernel",
@@ -1706,7 +1707,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-29T19:32:04+00:00"
+          "time": "2017-05-29 19:32:04"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1765,7 +1766,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-06-09T14:24:12+00:00"
+          "time": "2017-06-09 14:24:12"
         },
         {
             "name": "symfony/translation",
@@ -1829,7 +1830,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-12T14:13:17+00:00"
+          "time": "2017-04-12 14:13:17"
         },
         {
             "name": "symfony/var-dumper",
@@ -1892,7 +1893,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2017-02-16T22:46:52+00:00"
+          "time": "2017-02-16 22:46:52"
         },
         {
             "name": "tecnickcom/tcpdf",
@@ -1955,7 +1956,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2015-09-12T10:08:34+00:00"
+          "time": "2015-09-12 10:08:34"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2005,7 +2006,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-09-01T10:05:43+00:00"
+          "time": "2016-09-01 10:05:43"
         }
     ],
     "packages-dev": [
@@ -2052,7 +2053,7 @@
             "keywords": [
                 "test"
             ],
-            "time": "2015-05-11T14:41:42+00:00"
+          "time": "2015-05-11 14:41:42"
         },
         {
             "name": "mockery/mockery",
@@ -2117,7 +2118,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2017-02-28T12:52:32+00:00"
+          "time": "2017-02-28 12:52:32"
         },
         {
             "name": "omnipay/tests",
@@ -2174,7 +2175,7 @@
                 "payment",
                 "purchase"
             ],
-            "time": "2016-07-07T09:35:23+00:00"
+          "time": "2016-07-07 09:35:23"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2235,7 +2236,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-09-02T10:13:14+00:00"
+          "time": "2014-09-02 10:13:14"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2282,7 +2283,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2016-10-03T07:40:28+00:00"
+          "time": "2016-10-03 07:40:28"
         },
         {
             "name": "phpunit/php-text-template",
@@ -2323,7 +2324,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2015-06-21T13:50:34+00:00"
+          "time": "2015-06-21 13:50:34"
         },
         {
             "name": "phpunit/php-timer",
@@ -2372,7 +2373,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-02-26T11:10:40+00:00"
+          "time": "2017-02-26 11:10:40"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -2422,7 +2423,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2014-03-03T05:10:30+00:00"
+          "time": "2014-03-03 05:10:30"
         },
         {
             "name": "phpunit/phpunit",
@@ -2495,7 +2496,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-10-17T09:04:17+00:00"
+          "time": "2014-10-17 09:04:17"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2544,7 +2545,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2013-01-13T10:24:48+00:00"
+          "time": "2013-01-13 10:24:48"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -2619,7 +2620,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-12-04T22:32:15+00:00"
+          "time": "2014-12-04 22:32:15"
         },
         {
             "name": "symfony/yaml",
@@ -2668,7 +2669,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01T20:52:29+00:00"
+          "time": "2017-06-01 20:52:29"
         }
     ],
     "aliases": [],

@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Gateways\Providers\Twispay;
 
 use ByTIC\Omnipay\Twispay\Gateway as AbstractGateway;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 
 /**
  * Class Gateway
@@ -10,4 +11,5 @@ use ByTIC\Omnipay\Twispay\Gateway as AbstractGateway;
  */
 class Gateway extends AbstractGateway
 {
+    use GatewayTrait;
 }
