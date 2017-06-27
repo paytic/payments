@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Common\Payments\Gateways\Providers\AbstractGateway;
+namespace ByTIC\Payments\Gateways\Providers\AbstractGateway;
 
 use ByTIC\Common\Payments\Forms\Traits\PaymentMethodFormTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;

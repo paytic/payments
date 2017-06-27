@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Twispay;
+namespace ByTIC\Payments\Gateways\Providers\Euplatesc;
 
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
 
@@ -13,7 +13,7 @@ class Form extends AbstractForm
 
     public function initElements()
     {
-        $this->addInput('siteId', 'MID');
+        $this->addInput('mid', 'MID');
         $this->addInput('key', 'Key');
     }
 }
