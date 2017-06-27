@@ -2,7 +2,11 @@
 
 namespace ByTIC\Payments;
 
-class RouterServiceProvider extends AbstractSignatureServiceProvider
+/**
+ * Class PaymentsServiceProvider
+ * @package ByTIC\Payments
+ */
+class PaymentsServiceProvider extends AbstractSignatureServiceProvider
 {
 
 }
