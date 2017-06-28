@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Common\Payments\Gateways\Traits;
+namespace ByTIC\Payments\Gateways\Traits;
 
 use ByTIC\Common\Payments\Gateways\Manager;
 use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Gateway;
 
 /**
  * Class HasGatewaysTrait
- * @package ByTIC\Common\Payments\Traits
+ * @package ByTIC\Payments\Traits
  */
 trait HasGatewaysTrait
 {
@@ -85,12 +85,12 @@ trait HasGatewaysTrait
     }
 
     /**
-     * @return string
-     */
-    abstract public function getGatewayName();
-
-    /**
      * @return mixed
      */
     abstract protected function getGatewayOptions();
+
+    /**
+     * @return string
+     */
+    abstract public function getGatewayName();
 }

@@ -6,7 +6,7 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
 
 /**
  * Class Form
- * @package ByTIC\Common\Payments\Gateways\Providers\Payu
+ * @package ByTIC\Payments\Gateways\Providers\Payu
  */
 class Form extends AbstractForm
 {

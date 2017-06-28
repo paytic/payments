@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
 
-use ByTIC\Payments\Gateways\Manager;
 use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\AbstractRequest;
 use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\CompletePurchaseResponse;
 use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\PurchaseResponse;
@@ -11,14 +10,14 @@ use ByTIC\Common\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodReco
 use ByTIC\Common\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Common\Records\Record;
 use ByTIC\Common\Records\Traits\Media\Files\RecordTrait as HasFilesRecord;
+use ByTIC\Payments\Gateways\Manager;
 use Nip\Utility\Traits\NameWorksTrait;
-use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\ResponseInterface as MessageResponseInterface;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Class Gateway
- * @package ByTIC\Common\Payments\Gateways\Providers\AbstractGateway
+ * @package ByTIC\Payments\Gateways\Providers\AbstractGateway
  *
  * @method MessageResponseInterface authorize(array $options = [])
  * @method MessageResponseInterface completeAuthorize(array $options = [])

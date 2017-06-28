@@ -3,15 +3,15 @@
 namespace ByTIC\Payments\Forms\Traits;
 
 use ByTIC\Common\Forms\Traits\AbstractFormTrait;
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Gateway;
-use ByTIC\Common\Payments\Models\Methods\Traits\RecordTrait as PaymentMethod;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Gateway;
+use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethod;
 use Nip_Form_Element_Abstract as FormElementAbstract;
 use Nip_Form_Element_Select as FormSelect;
 
 /**
  * Class PaymentMethodFormTrait
- * @package ByTIC\Common\Payments\Forms\Traits
+ * @package ByTIC\Payments\Forms\Traits
  *
  * @method addInput($name, $label = false, $type = 'input', $isRequired = false)
  * @method addHidden($name, $label = false, $type = 'input', $isRequired = false)

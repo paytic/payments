@@ -8,7 +8,7 @@ use Nip_File_System;
 
 /**
  * Class Form
- * @package ByTIC\Common\Payments\Gateways\Providers\Mobilpay
+ * @package ByTIC\Payments\Gateways\Providers\Mobilpay
  */
 class Form extends AbstractForm
 {

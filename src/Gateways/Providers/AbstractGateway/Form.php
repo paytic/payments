@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Gateways\Providers\AbstractGateway;
 
-use ByTIC\Common\Payments\Forms\Traits\PaymentMethodFormTrait;
+use ByTIC\Payments\Forms\Traits\PaymentMethodFormTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Nip\Form\AbstractForm;
 use Nip\Form\Traits\MagicMethodElementsFormTrait;
@@ -11,7 +11,7 @@ use Nip_Form_Element_Select as SelectElement;
 
 /**
  * Class Form
- * @package ByTIC\Common\Payments\Gateways\Providers\AbstractGateway
+ * @package ByTIC\Payments\Gateways\Providers\AbstractGateway
  */
 abstract class Form
 {
@@ -144,7 +144,7 @@ abstract class Form
     {
         $this->addRadioGroup('sandbox', 'sandbox', true);
         /** @var SelectElement $element */
-        $element = $this->getForm()->getElement('mobilpay[sandbox]');
+        $element = $this->getForm()->getElement($this->getGateway()->getName() . '[sandbox]');
         $element->getRenderer()->setSeparator('');
         $element->addOption('yes', 'Yes');
         $element->addOption('no', 'No');
