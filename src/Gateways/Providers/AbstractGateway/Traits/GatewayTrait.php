@@ -246,4 +246,9 @@ trait GatewayTrait
     {
         return $this->createNamepacedRequest('PurchaseRequest', $parameters);
     }
+
+    /**
+     * @return boolean
+     */
+    abstract public function isActive();
 }
