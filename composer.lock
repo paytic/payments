@@ -163,12 +163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/omnipay-twispay.git",
-              "reference": "575d3ac6749593e893f006ed394e7be4e072bc18"
+              "reference": "6c71154a5049b87ada658e11eb23d18e7050295e"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/575d3ac6749593e893f006ed394e7be4e072bc18",
-              "reference": "575d3ac6749593e893f006ed394e7be4e072bc18",
+              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/6c71154a5049b87ada658e11eb23d18e7050295e",
+              "reference": "6c71154a5049b87ada658e11eb23d18e7050295e",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "payment",
                 "twispay"
             ],
-          "time": "2017-06-28 13:09:56"
+          "time": "2017-06-28 14:17:11"
         },
         {
             "name": "bytic/request-detective",
