@@ -2,8 +2,9 @@
 
 namespace ByTIC\Payments\Gateways\Traits;
 
-use ByTIC\Common\Payments\Gateways\Manager;
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Gateway;
+use ByTIC\Payments\Gateways\Manager;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Omnipay\Common\GatewayInterface;
 
 /**
  * Class HasGatewaysTrait
@@ -18,12 +19,12 @@ trait HasGatewaysTrait
     protected $gatewaysManager = null;
 
     /**
-     * @var null|Gateway
+     * @var null|GatewayTrait|GatewayInterface
      */
     protected $gateway = null;
 
     /**
-     * @return Gateway|null
+     * @return GatewayTrait|GatewayInterface|null
      */
     public function getGateway()
     {
@@ -34,7 +35,7 @@ trait HasGatewaysTrait
     }
 
     /**
-     * @param Gateway|null $gateway
+     * @param GatewayTrait|GatewayInterface|null $gateway
      */
     public function setGateway($gateway)
     {
@@ -49,11 +50,11 @@ trait HasGatewaysTrait
 
     /**
      * @param $name
-     * @return null|Gateway
+     * @return null|GatewayTrait|GatewayInterface
      */
     protected function newGateway($name)
     {
-        $gateway = $this->getGatewaysManager()->get($name);
+        $gateway = $this->getGatewaysManager()::getCollection()->offsetGet($name);
         $gatewayParams = $this->getGatewayOptions();
         $gateway->initialize($gatewayParams);
         return $gateway;
@@ -85,12 +86,12 @@ trait HasGatewaysTrait
     }
 
     /**
-     * @return mixed
-     */
-    abstract protected function getGatewayOptions();
-
-    /**
      * @return string
      */
     abstract public function getGatewayName();
+
+    /**
+     * @return mixed
+     */
+    abstract protected function getGatewayOptions();
 }

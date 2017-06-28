@@ -12,4 +12,16 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 class Gateway extends AbstractGateway
 {
     use GatewayTrait;
+
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        if (strlen($this->getSiteId()) > 2 && strlen($this->getPrivateKey()) > 10) {
+            return true;
+        }
+
+        return false;
+    }
 }

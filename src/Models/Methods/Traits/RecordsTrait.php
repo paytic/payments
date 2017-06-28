@@ -25,6 +25,6 @@ trait RecordsTrait
      */
     public function getTypeNamespace()
     {
-        return '\ByTIC\Common\Payments\Models\Methods\Types\\';
+        return '\ByTIC\Payments\Models\Methods\Types\\';
     }
 }

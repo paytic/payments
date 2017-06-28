@@ -2,8 +2,8 @@
 
 namespace ByTIC\Payments\Models\Methods\Types;
 
-use ByTIC\Common\Payments\Gateways\Traits\HasGatewaysTrait;
 use ByTIC\Common\Records\Traits\HasSerializedOptions\RecordTrait as HasOptionsRecord;
+use ByTIC\Payments\Gateways\Traits\HasGatewaysTrait;
 use Nip\Helpers\View\Messages as MessagesHelper;
 
 /**
@@ -23,10 +23,12 @@ class CreditCards extends AbstractType
     {
         if (!$this->getGateway()) {
             return MessagesHelper::error(
-                $this->getGatewaysManager()->getMessage('entry-payment.invalid'));
+                $this->getGatewaysManager()->getMessage('entry-payment.invalid')
+            );
         } elseif (!$this->getGateway()->isActive()) {
             return MessagesHelper::error(
-                $this->getGatewaysManager()->getMessage('entry-payment.inactive'));
+                $this->getGatewaysManager()->getMessage('entry-payment.inactive')
+            );
         }
         return false;
     }
