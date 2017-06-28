@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
 
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\AbstractRequest;
-use ByTIC\Common\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodRecord;
-use ByTIC\Common\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Common\Records\Record;
 use ByTIC\Common\Records\Traits\Media\Files\RecordTrait as HasFilesRecord;
 use ByTIC\Payments\Gateways\Manager;
+use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodRecord;
+use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Utility\Traits\NameWorksTrait;
+use Omnipay\Common\Message\RequestInterface;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
@@ -148,7 +148,7 @@ trait GatewayTrait
 
     /**
      * @param IsPurchasableModelTrait $record
-     * @return AbstractRequest
+     * @return RequestInterface
      */
     public function purchaseFromModel($record)
     {
@@ -165,7 +165,7 @@ trait GatewayTrait
     /**
      * @param $class
      * @param array $parameters
-     * @return AbstractRequest|null
+     * @return RequestInterface|null
      */
     protected function createNamespacedRequest($class, array $parameters)
     {

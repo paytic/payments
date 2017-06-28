@@ -2,12 +2,12 @@
 
 namespace ByTIC\Payments\Models\Methods\Traits;
 
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Gateway;
 use ByTIC\Common\Payments\Models\Methods\Files\MobilpayFile;
-use ByTIC\Common\Payments\Models\Methods\Types\AbstractType;
-use ByTIC\Common\Payments\Models\Methods\Types\CreditCards;
 use ByTIC\Common\Records\Traits\HasTypes\RecordTrait as HasTypesRecordTrait;
 use ByTIC\MediaLibrary\HasMedia\HasMediaTrait;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use ByTIC\Payments\Models\Methods\Types\AbstractType;
+use ByTIC\Payments\Models\Methods\Types\CreditCards;
 
 /**
  * Class MethodTrait
@@ -103,7 +103,7 @@ trait RecordTrait
     abstract public function getPurchasesCount();
 
     /**
-     * @return bool|Gateway|null
+     * @return bool|GatewayTrait|null
      */
     public function getGateway()
     {

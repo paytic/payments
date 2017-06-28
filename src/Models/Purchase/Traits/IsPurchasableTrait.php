@@ -22,6 +22,8 @@ trait IsPurchasableTrait
         $parameters['orderName'] = $this->getPurchaseName();
         $parameters['orderDate'] = $this->getPurchaseDate();
 
+        $parameters['description'] = $this->getPurchaseName();
+
         $parameters['returnUrl'] = $this->getConfirmURL();
         $parameters['notifyUrl'] = $this->getIpnURL();
 

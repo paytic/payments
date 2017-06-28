@@ -2,13 +2,12 @@
 
 namespace ByTIC\Payments\Models\Purchase\Traits;
 
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\PurchaseRequest;
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\RedirectResponse\RedirectTrait;
-use ByTIC\Common\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
-use ByTIC\Common\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
-use ByTIC\Common\Payments\Models\Methods\Traits\RecordTrait;
 use ByTIC\Common\Records\Records;
+use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
+use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
+use ByTIC\Payments\Models\Methods\Traits\RecordTrait;
 use Exception;
+use Omnipay\Common\Message\RequestInterface;
 
 /**
  * Class MethodTrait
@@ -30,7 +29,7 @@ trait IsPurchasableModelTrait
     }
 
     /**
-     * @return PurchaseRequest|RedirectTrait
+     * @return RequestInterface
      */
     public function getPurchaseRequest()
     {
