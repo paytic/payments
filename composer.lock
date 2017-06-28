@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-  "hash": "54a2c126c4c3e282eeac550cde8086dc",
-    "content-hash": "2aca31314f49a09fc6b04677b8b468ab",
+  "hash": "00a8400b1486423c64c509a22fd8d9e2",
+  "content-hash": "fe875aee09cb51e099395f209ba69aee",
     "packages": [
         {
             "name": "ByTIC/Common",
@@ -158,20 +158,67 @@
             "time": "2017-06-18 19:32:40"
         },
         {
+          "name": "bytic/omnipay-common",
+          "version": "dev-master",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/ByTIC/omnipay-common.git",
+            "reference": "d23ad6f0edb5abfd0f7efff88cba4c87e81f6a57"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/d23ad6f0edb5abfd0f7efff88cba4c87e81f6a57",
+            "reference": "d23ad6f0edb5abfd0f7efff88cba4c87e81f6a57",
+            "shasum": ""
+          },
+          "require": {
+            "omnipay/common": "^2.3",
+            "php": "^7.0"
+          },
+          "require-dev": {
+            "omnipay/tests": "^2.0"
+          },
+          "type": "library",
+          "autoload": {
+            "psr-4": {
+              "ByTIC\\Omnipay\\Common\\": "src/"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Gabriel Solomon",
+              "email": "hello@gabrielsolomon.ro"
+            }
+          ],
+          "description": "Common classes for drivers extending ThePhpLeague Omnipay multi-payment processing library",
+          "homepage": "https://github.com/ByTIC/omnipay-common",
+          "keywords": [
+            "omnipay",
+            "pay",
+            "payment"
+          ],
+          "time": "2017-06-28 14:58:09"
+        },
+      {
             "name": "bytic/omnipay-twispay",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/omnipay-twispay.git",
-              "reference": "6c71154a5049b87ada658e11eb23d18e7050295e"
+              "reference": "09515c9b296aac4d341650e73d5ff0fea9563442"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/6c71154a5049b87ada658e11eb23d18e7050295e",
-              "reference": "6c71154a5049b87ada658e11eb23d18e7050295e",
+              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/09515c9b296aac4d341650e73d5ff0fea9563442",
+              "reference": "09515c9b296aac4d341650e73d5ff0fea9563442",
                 "shasum": ""
             },
             "require": {
+              "bytic/omnipay-common": "dev-master",
                 "omnipay/common": "^2.3",
                 "php": "^7.0"
             },
@@ -205,7 +252,7 @@
                 "payment",
                 "twispay"
             ],
-          "time": "2017-06-28 14:17:11"
+        "time": "2017-06-28 19:17:16"
         },
         {
             "name": "bytic/request-detective",
@@ -2679,7 +2726,8 @@
         "bytic/medialibrary": 20,
         "bytic/common": 20,
         "bytic/request-detective": 20,
-        "bytic/omnipay-twispay": 20
+      "bytic/omnipay-twispay": 20,
+      "bytic/omnipay-common": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
