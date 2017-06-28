@@ -5,7 +5,6 @@ namespace ByTIC\Payments\Gateways\Providers\Mobilpay;
 use ByTIC\Common\Payments\Models\Methods\Files\MobilpayFile;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
 use Nip_File_System;
-use Nip_Form_Element_Select as SelectElement;
 
 /**
  * Class Form
@@ -20,16 +19,6 @@ class Form extends AbstractForm
     {
         $this->initElementSandbox();
         $this->addInput('signature', 'Signature', false);
-    }
-
-    protected function initElementSandbox()
-    {
-        $this->addRadioGroup('sandbox', 'sandbox', true);
-        /** @var SelectElement $element */
-        $element = $this->getForm()->getElement('mobilpay[sandbox]');
-        $element->getRenderer()->setSeparator('');
-        $element->addOption('yes', 'Yes');
-        $element->addOption('no', 'No');
     }
 
     public function getDataFromModel()

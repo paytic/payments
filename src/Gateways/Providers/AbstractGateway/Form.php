@@ -7,6 +7,7 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Nip\Form\AbstractForm;
 use Nip\Form\Traits\MagicMethodElementsFormTrait;
 use Nip_Form as NipForm;
+use Nip_Form_Element_Select as SelectElement;
 
 /**
  * Class Form
@@ -137,6 +138,16 @@ abstract class Form
     public function process()
     {
         return true;
+    }
+
+    protected function initElementSandbox()
+    {
+        $this->addRadioGroup('sandbox', 'sandbox', true);
+        /** @var SelectElement $element */
+        $element = $this->getForm()->getElement('mobilpay[sandbox]');
+        $element->getRenderer()->setSeparator('');
+        $element->addOption('yes', 'Yes');
+        $element->addOption('no', 'No');
     }
 
     /**
