@@ -48,9 +48,13 @@ trait GatewayTrait
      * @param array $parameters
      * @return RequestInterface|null
      */
-    public function completePurchase(array $parameters = [])
+    public function completePurchase(array $parameters = []): RequestInterface
     {
-        return $this->createNamespacedRequest('CompletePurchaseRequest', $parameters);
+        $return = $this->createNamespacedRequest('CompletePurchaseRequest', $parameters);
+        if ($return) {
+            return $return;
+        }
+        return parent::completePurchase($parameters);
     }
 
     /**
