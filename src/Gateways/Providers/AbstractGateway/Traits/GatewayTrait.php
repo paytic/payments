@@ -128,17 +128,6 @@ trait GatewayTrait
     }
 
     /**
-     * @return boolean
-     */
-    public function getTestMode()
-    {
-        if (!$this->parameters->has('testMode')) {
-            $this->setTestMode($this->getSandbox() == 'yes');
-        }
-        return parent::getTestMode();
-    }
-
-    /**
      * @return Manager
      */
     public function getManager()
