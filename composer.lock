@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-  "hash": "00a8400b1486423c64c509a22fd8d9e2",
-  "content-hash": "fe875aee09cb51e099395f209ba69aee",
+  "hash": "31d7617272e155cfde2ca27fe414d082",
+  "content-hash": "5577fa79a3ad5266f7f9f47832bd20ff",
     "packages": [
         {
             "name": "ByTIC/Common",
@@ -159,16 +159,16 @@
         },
         {
           "name": "bytic/omnipay-common",
-          "version": "dev-master",
+          "version": "dev-develop",
           "source": {
             "type": "git",
             "url": "https://github.com/ByTIC/omnipay-common.git",
-            "reference": "f8a0856f4c22ac307624b2c17f6bac6c8839c2cf"
+            "reference": "174c7993a3d469a3a2dcb827b5923da512693139"
           },
           "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/f8a0856f4c22ac307624b2c17f6bac6c8839c2cf",
-            "reference": "f8a0856f4c22ac307624b2c17f6bac6c8839c2cf",
+            "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/174c7993a3d469a3a2dcb827b5923da512693139",
+            "reference": "174c7993a3d469a3a2dcb827b5923da512693139",
             "shasum": ""
           },
           "require": {
@@ -201,24 +201,24 @@
             "pay",
             "payment"
           ],
-          "time": "2017-06-29 09:17:37"
+          "time": "2017-06-29 10:28:23"
         },
       {
             "name": "bytic/omnipay-twispay",
-            "version": "dev-master",
+        "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/omnipay-twispay.git",
-              "reference": "80cb6f02b3861f0e814b3053ba4033533666c088"
+              "reference": "7086bb74a8f66a62c7d43c6f7593424c28fc7d2b"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/80cb6f02b3861f0e814b3053ba4033533666c088",
-              "reference": "80cb6f02b3861f0e814b3053ba4033533666c088",
+              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/7086bb74a8f66a62c7d43c6f7593424c28fc7d2b",
+              "reference": "7086bb74a8f66a62c7d43c6f7593424c28fc7d2b",
                 "shasum": ""
             },
             "require": {
-              "bytic/omnipay-common": "dev-master",
+              "bytic/omnipay-common": "dev-develop",
                 "omnipay/common": "^2.3",
                 "php": "^7.0"
             },
@@ -252,7 +252,7 @@
                 "payment",
                 "twispay"
             ],
-        "time": "2017-06-29 09:20:06"
+        "time": "2017-06-29 10:35:56"
         },
         {
             "name": "bytic/request-detective",
@@ -2726,8 +2726,8 @@
         "bytic/medialibrary": 20,
         "bytic/common": 20,
         "bytic/request-detective": 20,
-      "bytic/omnipay-twispay": 20,
-      "bytic/omnipay-common": 20
+      "bytic/omnipay-common": 20,
+      "bytic/omnipay-twispay": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
