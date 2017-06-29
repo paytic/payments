@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 /**
  * Class Gateway
  * @package ByTIC\Payments\Gateways\Providers\AbstractGateway
+ *
+ * @property $parameters \Symfony\Component\HttpFoundation\ParameterBag
  */
 trait GatewayTrait
 {
@@ -104,6 +106,36 @@ trait GatewayTrait
     public function generateLabel()
     {
         return $this->getNamespaceParentFolder();
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function setSandbox($value)
+    {
+        $return = $this->setParameter('sandbox', $value);
+        $this->setTestMode($this->getSandbox() == 'yes');
+        return $return;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSandbox()
+    {
+        return $this->getParameter('sandbox');
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getTestMode()
+    {
+        if (!$this->parameters->has('testMode')) {
+            $this->setTestMode($this->getSandbox() == 'yes');
+        }
+        return parent::getTestMode();
     }
 
     /**
