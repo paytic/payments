@@ -55,7 +55,7 @@ trait PurchaseControllerTrait
     protected function getConfirmActionResponse()
     {
         /** @var CompletePurchaseResponse $response */
-        $response = GatewaysManager::instance()->detectItemFromHttpRequest(
+        $response = GatewaysManager::detectItemFromHttpRequest(
             $this->getModelManager(),
             'completePurchase',
             $this->getRequest()
@@ -103,7 +103,7 @@ trait PurchaseControllerTrait
     protected function getIpnActionResponse()
     {
         /** @var ServerCompletePurchaseResponse $response */
-        $response = GatewaysManager::instance()->detectItemFromHttpRequest(
+        $response = GatewaysManager::detectItemFromHttpRequest(
             $this->getModelManager(),
             'serverCompletePurchase',
             $this->getRequest()

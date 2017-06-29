@@ -42,6 +42,46 @@ trait GatewayTrait
      */
     protected $paymentMethod;
 
+    // ------------ REQUESTS ------------ //
+
+    /**
+     * @param array $parameters
+     * @return RequestInterface|null
+     */
+    public function completePurchase(array $parameters = [])
+    {
+        return $this->createNamespacedRequest('CompletePurchaseRequest', $parameters);
+    }
+
+    /**
+     * @param $class
+     * @param array $parameters
+     * @return RequestInterface|null
+     */
+    protected function createNamespacedRequest($class, array $parameters)
+    {
+        $class = $this->getNamespacePath() . '\Message\\' . $class;
+
+        if (class_exists($class)) {
+            return $this->createRequest($class, $parameters);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param IsPurchasableModelTrait $record
+     * @return RequestInterface
+     */
+    public function purchaseFromModel($record)
+    {
+        $parameters = $record->getPurchaseParameters();
+
+        return $this->purchase($parameters);
+    }
+
+    // ------------ GETTERS & SETTERS ------------ //
+
     /**
      * @return null|string
      */
@@ -168,34 +208,7 @@ trait GatewayTrait
     }
 
     /**
-     * @param IsPurchasableModelTrait $record
-     * @return RequestInterface
-     */
-    public function purchaseFromModel($record)
-    {
-        $parameters = $record->getPurchaseParameters();
-
-        return $this->purchase($parameters);
-    }
-
-    /**
      * @return boolean
      */
     abstract public function isActive();
-
-    /**
-     * @param $class
-     * @param array $parameters
-     * @return RequestInterface|null
-     */
-    protected function createNamespacedRequest($class, array $parameters)
-    {
-        $class = $this->getNamespacePath() . '\Message\\' . $class;
-
-        if (class_exists($class)) {
-            return $this->createRequest($class, $parameters);
-        }
-
-        return null;
-    }
 }

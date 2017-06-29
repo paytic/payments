@@ -3,6 +3,10 @@
 namespace ByTIC\Payments\Gateways;
 
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use HttpRequest;
+use Nip\Records\AbstractModels\RecordManager;
+use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Class Payment_Gateways
@@ -30,7 +34,7 @@ class Manager
      * @param null|HttpRequest $httpRequest
      * @return bool|\Omnipay\Common\Message\ResponseInterface
      */
-    public function detectItemFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
+    public static function detectItemFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
     {
         $callback = $callback ? $callback : 'completePurchase';
         $items = self::getAll();
