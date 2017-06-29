@@ -2,8 +2,9 @@
 
 namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
-use ByTIC\Common\Records\Record;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Nip\Records\AbstractModels\Record;
+use Nip\Records\AbstractModels\RecordManager;
 
 /**
  * Class HasModelRequest
@@ -12,6 +13,15 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
  */
 trait HasModelRequest
 {
+
+    /**
+     * @param  string $value
+     * @return mixed
+     */
+    public function setModelManager($value)
+    {
+        return $this->setParameter('modelManager', $value);
+    }
 
     /**
      * @return bool
@@ -71,6 +81,14 @@ trait HasModelRequest
     }
 
     /**
+     * @return RecordManager
+     */
+    public function getModelManager()
+    {
+        return $this->getParameter('modelManager');
+    }
+
+    /**
      * @param $model
      * @return bool
      */
@@ -117,6 +135,14 @@ trait HasModelRequest
     }
 
     /**
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    public function getHttpRequest()
+    {
+        return $this->httpRequest;
+    }
+
+    /**
      * @param $field
      * @param $value
      * @return IsPurchasableModelTrait
@@ -136,8 +162,8 @@ trait HasModelRequest
      */
     protected function setModel($model)
     {
-        $this->pushData('id', $model->id);
-        $this->pushData('model', $model);
+        $this->setParameter('id', $model->id);
+        $this->setParameter('model', $model);
         return $this;
     }
 
@@ -161,6 +187,6 @@ trait HasModelRequest
      */
     protected function getModel()
     {
-        return $this->getDataItem('model');
+        return $this->getParameter('model');
     }
 }

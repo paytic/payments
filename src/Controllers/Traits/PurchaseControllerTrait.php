@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Controllers\Traits;
 
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\CompletePurchaseResponse;
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\ServerCompletePurchaseResponse;
 use ByTIC\Common\Records\Record;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\RecordManager;
 use Nip\Request;
+use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Class PurchaseControllerTrait
@@ -50,18 +50,18 @@ trait PurchaseControllerTrait
     }
 
     /**
-     * @return CompletePurchaseResponse
+     * @return CompletePurchaseResponseTrait
      */
     protected function getConfirmActionResponse()
     {
-        /** @var CompletePurchaseResponse $response */
+        /** @var CompletePurchaseResponseTrait $response */
         $response = GatewaysManager::detectItemFromHttpRequest(
             $this->getModelManager(),
             'completePurchase',
             $this->getRequest()
         );
 
-        if (($response instanceof CompletePurchaseResponse) === false) {
+        if (($response instanceof AbstractResponse) === false) {
             $this->dispatchAccessDeniedResponse();
         }
         return $response;
@@ -80,7 +80,7 @@ trait PurchaseControllerTrait
     abstract protected function dispatchAccessDeniedResponse();
 
     /**
-     * @param CompletePurchaseResponse $response
+     * @param CompletePurchaseResponseTrait $response
      * @return void
      */
     abstract protected function confirmProcessResponse($response);

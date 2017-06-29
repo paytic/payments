@@ -163,12 +163,12 @@
           "source": {
             "type": "git",
             "url": "https://github.com/ByTIC/omnipay-common.git",
-            "reference": "174c7993a3d469a3a2dcb827b5923da512693139"
+            "reference": "8d42b83f71657832e87706e18e3fde862d5326c9"
           },
           "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/174c7993a3d469a3a2dcb827b5923da512693139",
-            "reference": "174c7993a3d469a3a2dcb827b5923da512693139",
+            "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/8d42b83f71657832e87706e18e3fde862d5326c9",
+            "reference": "8d42b83f71657832e87706e18e3fde862d5326c9",
             "shasum": ""
           },
           "require": {
@@ -201,7 +201,7 @@
             "pay",
             "payment"
           ],
-          "time": "2017-06-29 10:28:23"
+          "time": "2017-06-29 15:22:13"
         },
       {
             "name": "bytic/omnipay-twispay",
@@ -209,12 +209,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/omnipay-twispay.git",
-              "reference": "7086bb74a8f66a62c7d43c6f7593424c28fc7d2b"
+              "reference": "24d2fc1601be967d18be57d140d4ce3a2492ad92"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/7086bb74a8f66a62c7d43c6f7593424c28fc7d2b",
-              "reference": "7086bb74a8f66a62c7d43c6f7593424c28fc7d2b",
+              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/24d2fc1601be967d18be57d140d4ce3a2492ad92",
+              "reference": "24d2fc1601be967d18be57d140d4ce3a2492ad92",
                 "shasum": ""
             },
             "require": {
@@ -252,7 +252,7 @@
                 "payment",
                 "twispay"
             ],
-        "time": "2017-06-29 10:35:56"
+        "time": "2017-06-29 15:38:45"
         },
         {
             "name": "bytic/request-detective",
