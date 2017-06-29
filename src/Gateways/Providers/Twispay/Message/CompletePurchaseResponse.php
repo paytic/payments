@@ -12,4 +12,12 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePur
 class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
 {
     use CompletePurchaseResponseTrait;
+
+    /** @noinspection PhpMissingParentCallCommonInspection
+     * @return bool
+     */
+    protected function canProcessModel()
+    {
+        return true;
+    }
 }
