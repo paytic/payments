@@ -3,8 +3,11 @@
 namespace ByTIC\Payments\Controllers\Traits;
 
 use ByTIC\Common\Records\Record;
+use ByTIC\Omnipay\Common\Message\Traits\HtmlResponses\ConfirmHtmlTrait;
+use ByTIC\Omnipay\Common\Message\Traits\RedirectHtmlTrait;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\RecordManager;
 use Nip\Request;
@@ -23,6 +26,7 @@ trait PurchaseControllerTrait
     {
         $model = $this->getModelFromRequest();
         $request = $model->getPurchaseRequest();
+        /** @var RedirectHtmlTrait $response */
         $response = $request->send();
         $response->getView()->set('subtitle', $model->getPurchaseName());
         $response->getView()->set('item', $model);
@@ -50,7 +54,7 @@ trait PurchaseControllerTrait
     }
 
     /**
-     * @return CompletePurchaseResponseTrait
+     * @return CompletePurchaseResponseTrait|ConfirmHtmlTrait
      */
     protected function getConfirmActionResponse()
     {
@@ -98,25 +102,25 @@ trait PurchaseControllerTrait
     }
 
     /**
-     * @return ServerCompletePurchaseResponse
+     * @return AbstractResponse|HasModelProcessedResponse
      */
     protected function getIpnActionResponse()
     {
-        /** @var ServerCompletePurchaseResponse $response */
+        /** @var AbstractResponse|HasModelProcessedResponse $response */
         $response = GatewaysManager::detectItemFromHttpRequest(
             $this->getModelManager(),
             'serverCompletePurchase',
             $this->getRequest()
         );
 
-        if (($response instanceof ServerCompletePurchaseResponse) === false) {
+        if (($response instanceof AbstractResponse) === false) {
             $this->dispatchAccessDeniedResponse();
         }
         return $response;
     }
 
     /**
-     * @param ServerCompletePurchaseResponse $response
+     * @param AbstractResponse $response
      * @return void
      */
     abstract protected function ipnProcessResponse($response);
