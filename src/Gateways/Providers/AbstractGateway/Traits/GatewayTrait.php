@@ -50,12 +50,23 @@ trait GatewayTrait
      */
     public function completePurchase(array $parameters = []): RequestInterface
     {
-        $return = $this->createNamespacedRequest('CompletePurchaseRequest', $parameters);
+        return $this->createRequestWithInternalCheck('CompletePurchaseRequest', $parameters);
+    }
+
+    /**
+     * @param $request
+     * @param array $parameters
+     * @return null|RequestInterface
+     */
+    protected function createRequestWithInternalCheck($request, array $parameters = []): RequestInterface
+    {
+        $return = $this->createNamespacedRequest($request, $parameters);
         if ($return) {
             return $return;
         }
         /** @noinspection PhpUndefinedMethodInspection */
-        return parent::completePurchase($parameters);
+        /** @noinspection PhpUndefinedClassInspection */
+        return parent::{$request}($parameters);
     }
 
     /**
@@ -86,6 +97,15 @@ trait GatewayTrait
             return $class;
         }
         return str_replace('ByTIC\Payments', 'ByTIC\Common\Payments', $class);
+    }
+
+    /**
+     * @param array $parameters
+     * @return RequestInterface|null
+     */
+    public function serverCompletePurchase(array $parameters = []): RequestInterface
+    {
+        return $this->createRequestWithInternalCheck('ServerCompletePurchaseRequest', $parameters);
     }
 
     /**
