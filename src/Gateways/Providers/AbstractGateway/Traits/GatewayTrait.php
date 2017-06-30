@@ -54,6 +54,7 @@ trait GatewayTrait
         if ($return) {
             return $return;
         }
+        /** @noinspection PhpUndefinedMethodInspection */
         return parent::completePurchase($parameters);
     }
 
@@ -64,13 +65,27 @@ trait GatewayTrait
      */
     protected function createNamespacedRequest($class, array $parameters)
     {
-        $class = $this->getNamespacePath() . '\Message\\' . $class;
+        $class = $this->getRequestClass($class);
 
         if (class_exists($class)) {
             return $this->createRequest($class, $parameters);
         }
 
         return null;
+    }
+
+    /**
+     * @param $class
+     * @return string
+     */
+    protected function getRequestClass($class)
+    {
+        $class = $this->getNamespacePath() . '\Message\\' . $class;
+
+        if (class_exists($class)) {
+            return $class;
+        }
+        return str_replace('ByTIC\Payments', 'ByTIC\Common\Payments', $class);
     }
 
     /**
@@ -84,8 +99,6 @@ trait GatewayTrait
         return $this->purchase($parameters);
     }
 
-    // ------------ GETTERS & SETTERS ------------ //
-
     /**
      * @return null|string
      */
@@ -97,6 +110,8 @@ trait GatewayTrait
 
         return $this->name;
     }
+
+    // ------------ GETTERS & SETTERS ------------ //
 
     /**
      * @param null $name
@@ -215,4 +230,15 @@ trait GatewayTrait
      * @return boolean
      */
     abstract public function isActive();
+
+    /**
+     * @param $class
+     * @param array $parameters
+     * @return RequestInterface|null
+     * @deprecated Bad name
+     */
+    protected function createNamepacedRequest($class, array $parameters)
+    {
+        return $this->createNamespacedRequest($class, $parameters);
+    }
 }
