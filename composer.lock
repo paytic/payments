@@ -163,12 +163,12 @@
           "source": {
             "type": "git",
             "url": "https://github.com/ByTIC/omnipay-common.git",
-            "reference": "8d42b83f71657832e87706e18e3fde862d5326c9"
+            "reference": "7a541dd30ccb8b8c8f83419fded90d9f2e10a00b"
           },
           "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/8d42b83f71657832e87706e18e3fde862d5326c9",
-            "reference": "8d42b83f71657832e87706e18e3fde862d5326c9",
+            "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/7a541dd30ccb8b8c8f83419fded90d9f2e10a00b",
+            "reference": "7a541dd30ccb8b8c8f83419fded90d9f2e10a00b",
             "shasum": ""
           },
           "require": {
@@ -201,7 +201,7 @@
             "pay",
             "payment"
           ],
-          "time": "2017-06-29 15:22:13"
+          "time": "2017-06-29 18:14:45"
         },
       {
             "name": "bytic/omnipay-twispay",
@@ -209,12 +209,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/omnipay-twispay.git",
-              "reference": "24d2fc1601be967d18be57d140d4ce3a2492ad92"
+              "reference": "479196bf96a990c7e66fb32cfa8e711b0d458bd4"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/24d2fc1601be967d18be57d140d4ce3a2492ad92",
-              "reference": "24d2fc1601be967d18be57d140d4ce3a2492ad92",
+              "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/479196bf96a990c7e66fb32cfa8e711b0d458bd4",
+              "reference": "479196bf96a990c7e66fb32cfa8e711b0d458bd4",
                 "shasum": ""
             },
             "require": {
@@ -252,7 +252,7 @@
                 "payment",
                 "twispay"
             ],
-        "time": "2017-06-29 15:38:45"
+        "time": "2017-06-29 18:15:23"
         },
         {
             "name": "bytic/request-detective",
@@ -1213,16 +1213,16 @@
         },
         {
             "name": "sendgrid/sendgrid",
-          "version": "5.6.1",
+          "version": "5.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sendgrid/sendgrid-php.git",
-              "reference": "8f9073ecc0552cf41ba8cfff53f952160105d83e"
+              "reference": "bed6a418706b09188fad2755de2e1c231ba74e69"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/8f9073ecc0552cf41ba8cfff53f952160105d83e",
-              "reference": "8f9073ecc0552cf41ba8cfff53f952160105d83e",
+              "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/bed6a418706b09188fad2755de2e1c231ba74e69",
+              "reference": "bed6a418706b09188fad2755de2e1c231ba74e69",
                 "shasum": ""
             },
             "require": {
@@ -1255,7 +1255,7 @@
                 "send",
                 "sendgrid"
             ],
-          "time": "2017-06-27 03:25:11"
+          "time": "2017-06-30 04:48:44"
         },
         {
             "name": "setasign/fpdi",

@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Gateways\Providers\Euplatesc;
 
 use ByTIC\Common\Payments\Gateways\Providers\Euplatesc\Gateway as AbstractGateway;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 
 /**
  * Class Gateway
@@ -10,4 +11,5 @@ use ByTIC\Common\Payments\Gateways\Providers\Euplatesc\Gateway as AbstractGatewa
  */
 class Gateway extends AbstractGateway
 {
+    use GatewayTrait;
 }
