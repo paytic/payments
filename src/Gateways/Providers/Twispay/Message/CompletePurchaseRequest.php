@@ -20,7 +20,10 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
     public function getData()
     {
         $return = parent::getData();
-        $return['model'] = $this->getModel();
+        // Add model only if has data
+        if (count($return)) {
+            $return['model'] = $this->getModel();
+        }
         return $return;
     }
 
