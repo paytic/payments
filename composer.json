@@ -29,8 +29,8 @@
     "bytic/medialibrary": "dev-release/0.9.0",
     "bytic/common": "dev-develop",
     "bytic/request-detective": "dev-develop",
-    "bytic/omnipay-common": "dev-develop",
-    "bytic/omnipay-twispay": "dev-develop"
+    "bytic/omnipay-common": "^1.0",
+    "bytic/omnipay-twispay": "^1.0"
   },
   "require-dev": {
     "omnipay/tests": "^2.0"
