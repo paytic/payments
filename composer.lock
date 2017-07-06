@@ -4,16 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "31d7617272e155cfde2ca27fe414d082",
-    "content-hash": "5577fa79a3ad5266f7f9f47832bd20ff",
+    "content-hash": "02ede0d03bbbae6be902cd36ce5f02b9",
     "packages": [
         {
-            "name": "ByTIC/Common",
+            "name": "bytic/common",
             "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/Common.git",
-                "reference": "fb05eee4e0b96914862e28e07bfe1e7fa9c7bb45"
+                "reference": "2f88bc43b91a577647b2c95feda20ef1edae579e"
             },
             "require": {
                 "bytic/framework": "dev-develop",
@@ -43,7 +42,7 @@
                 }
             ],
             "description": "Common Classes used by Nip Framework",
-            "time": "2017-06-18 17:32:45"
+            "time": "2017-07-05 07:28:38"
         },
         {
             "name": "bytic/framework",
@@ -51,12 +50,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/framework.git",
-                "reference": "3d79fb23d5f2f1c2c45ffacb34a95bd4da4c81d6"
+                "reference": "5c97fb09f60dd43586f3dcbfc0f0c7282f8d2fc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ByTIC/framework/zipball/3d79fb23d5f2f1c2c45ffacb34a95bd4da4c81d6",
-                "reference": "3d79fb23d5f2f1c2c45ffacb34a95bd4da4c81d6",
+                "url": "https://api.github.com/repos/ByTIC/framework/zipball/5c97fb09f60dd43586f3dcbfc0f0c7282f8d2fc0",
+                "reference": "5c97fb09f60dd43586f3dcbfc0f0c7282f8d2fc0",
                 "shasum": ""
             },
             "require": {
@@ -112,7 +111,7 @@
             ],
             "description": "Php Framework",
             "homepage": "https://github.com/ByTIC/request-detective",
-            "time": "2017-06-18 16:01:05"
+            "time": "2017-07-01 16:20:53"
         },
         {
             "name": "bytic/medialibrary",
@@ -159,7 +158,7 @@
         },
         {
             "name": "bytic/omnipay-common",
-            "version": "dev-develop",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/omnipay-common.git",
@@ -201,24 +200,24 @@
                 "pay",
                 "payment"
             ],
-            "time": "2017-06-29 18:14:45"
+            "time": "2017-06-29T18:14:45+00:00"
         },
         {
             "name": "bytic/omnipay-twispay",
-            "version": "dev-develop",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/omnipay-twispay.git",
-                "reference": "a42a89cc360e1c568e71ca099ce2ad11606637ff"
+                "reference": "9b5ce4995ca21d3d1e595975aa7e53796c0cf86d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/a42a89cc360e1c568e71ca099ce2ad11606637ff",
-                "reference": "a42a89cc360e1c568e71ca099ce2ad11606637ff",
+                "url": "https://api.github.com/repos/ByTIC/omnipay-twispay/zipball/9b5ce4995ca21d3d1e595975aa7e53796c0cf86d",
+                "reference": "9b5ce4995ca21d3d1e595975aa7e53796c0cf86d",
                 "shasum": ""
             },
             "require": {
-                "bytic/omnipay-common": "dev-develop",
+                "bytic/omnipay-common": "^1.0",
                 "omnipay/common": "^2.3",
                 "php": "^7.0"
             },
@@ -252,7 +251,7 @@
                 "payment",
                 "twispay"
             ],
-            "time": "2017-06-30 15:21:42"
+            "time": "2017-07-06T09:47:49+00:00"
         },
         {
             "name": "bytic/request-detective",
@@ -327,7 +326,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
-            "time": "2017-02-14 19:40:03"
+            "time": "2017-02-14T19:40:03+00:00"
         },
         {
             "name": "filp/whoops",
@@ -388,7 +387,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2017-06-03 18:33:07"
+            "time": "2017-06-03T18:33:07+00:00"
         },
         {
             "name": "guzzle/guzzle",
@@ -484,7 +483,7 @@
                 "web service"
             ],
             "abandoned": "guzzlehttp/guzzle",
-            "time": "2015-03-18 18:23:50"
+            "time": "2015-03-18T18:23:50+00:00"
         },
         {
             "name": "html2text/html2text",
@@ -521,7 +520,7 @@
                 "GPLv2"
             ],
             "description": "Converts HTML to formatted plain text",
-            "time": "2017-05-15 01:50:59"
+            "time": "2017-05-15T01:50:59+00:00"
         },
         {
             "name": "http-interop/http-middleware",
@@ -573,7 +572,7 @@
                 "request",
                 "response"
             ],
-            "time": "2017-01-14 15:23:42"
+            "time": "2017-01-14T15:23:42+00:00"
         },
         {
             "name": "league/container",
@@ -638,7 +637,7 @@
                 "provider",
                 "service"
             ],
-            "time": "2017-05-10 09:20:27"
+            "time": "2017-05-10T09:20:27+00:00"
         },
         {
             "name": "league/flysystem",
@@ -721,7 +720,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-04-28 10:15:08"
+            "time": "2017-04-28T10:15:08+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -782,7 +781,7 @@
                 "debug",
                 "debugbar"
             ],
-            "time": "2017-01-05 08:46:19"
+            "time": "2017-01-05T08:46:19+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -860,7 +859,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2017-06-19 01:22:40"
+            "time": "2017-06-19T01:22:40+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -913,7 +912,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-01-16 07:55:07"
+            "time": "2017-01-16T07:55:07+00:00"
         },
         {
             "name": "omnipay/common",
@@ -1011,7 +1010,7 @@
                 "payment",
                 "purchase"
             ],
-            "time": "2016-11-07 06:10:23"
+            "time": "2016-11-07T06:10:23+00:00"
         },
         {
             "name": "psr/container",
@@ -1060,7 +1059,7 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14 16:28:37"
+            "time": "2017-02-14T16:28:37+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1110,7 +1109,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "psr/log",
@@ -1157,7 +1156,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "sendgrid/php-http-client",
@@ -1209,7 +1208,7 @@
                 "rest",
                 "sendgrid"
             ],
-            "time": "2017-05-05 06:15:41"
+            "time": "2017-05-05T06:15:41+00:00"
         },
         {
             "name": "sendgrid/sendgrid",
@@ -1255,7 +1254,7 @@
                 "send",
                 "sendgrid"
             ],
-            "time": "2017-06-30 04:48:44"
+            "time": "2017-06-30T04:48:44+00:00"
         },
         {
             "name": "setasign/fpdi",
@@ -1304,7 +1303,7 @@
                 "fpdi",
                 "pdf"
             ],
-            "time": "2017-05-11 14:25:49"
+            "time": "2017-05-11T14:25:49+00:00"
         },
         {
             "name": "setasign/fpdi-tcpdf",
@@ -1351,7 +1350,7 @@
                 "fpdi",
                 "pdf"
             ],
-            "time": "2015-11-30 11:09:50"
+            "time": "2015-11-30T11:09:50+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1405,20 +1404,20 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-05-01 15:54:03"
+            "time": "2017-05-01T15:54:03+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.3.2",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "e9c50482841ef696e8fa1470d950a79c8921f45d"
+                "reference": "63b85a968486d95ff9542228dc2e4247f16f9743"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/e9c50482841ef696e8fa1470d950a79c8921f45d",
-                "reference": "e9c50482841ef696e8fa1470d950a79c8921f45d",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/63b85a968486d95ff9542228dc2e4247f16f9743",
+                "reference": "63b85a968486d95ff9542228dc2e4247f16f9743",
                 "shasum": ""
             },
             "require": {
@@ -1461,11 +1460,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01 21:01:25"
+            "time": "2017-07-05T13:02:37+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.22",
+            "version": "v2.8.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -1521,20 +1520,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-02 07:47:27"
+            "time": "2017-06-02T07:47:27+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.3.2",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "c709670bf64721202ddbe4162846f250735842c0"
+                "reference": "311fa718389efbd8b627c272b9324a62437018cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/c709670bf64721202ddbe4162846f250735842c0",
-                "reference": "c709670bf64721202ddbe4162846f250735842c0",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/311fa718389efbd8b627c272b9324a62437018cc",
+                "reference": "311fa718389efbd8b627c272b9324a62437018cc",
                 "shasum": ""
             },
             "require": {
@@ -1570,11 +1569,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-28 14:08:56"
+            "time": "2017-06-24T09:29:48+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.3.2",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -1619,20 +1618,20 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01 21:01:25"
+            "time": "2017-06-01T21:01:25+00:00"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v3.3.2",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "80eb5a1f968448b77da9e8b2c0827f6e8d767846"
+                "reference": "f347a5f561b03db95ed666959db42bbbf429b7e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/80eb5a1f968448b77da9e8b2c0827f6e8d767846",
-                "reference": "80eb5a1f968448b77da9e8b2c0827f6e8d767846",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/f347a5f561b03db95ed666959db42bbbf429b7e5",
+                "reference": "f347a5f561b03db95ed666959db42bbbf429b7e5",
                 "shasum": ""
             },
             "require": {
@@ -1672,20 +1671,20 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-05 13:06:51"
+            "time": "2017-06-24T09:29:48+00:00"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v3.2.9",
+            "version": "v3.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "7dacc7b120cdfa5abfcc911b93a3e4ba2ffba0e9"
+                "reference": "c0ee63f86d6f1b2e0c2d303e19c9c4ccdef1d9b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/7dacc7b120cdfa5abfcc911b93a3e4ba2ffba0e9",
-                "reference": "7dacc7b120cdfa5abfcc911b93a3e4ba2ffba0e9",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/c0ee63f86d6f1b2e0c2d303e19c9c4ccdef1d9b5",
+                "reference": "c0ee63f86d6f1b2e0c2d303e19c9c4ccdef1d9b5",
                 "shasum": ""
             },
             "require": {
@@ -1696,7 +1695,8 @@
                 "symfony/http-foundation": "~2.8.13|~3.1.6|~3.2"
             },
             "conflict": {
-                "symfony/config": "<2.8"
+                "symfony/config": "<2.8",
+                "twig/twig": "<1.34|<2.4,>=2"
             },
             "require-dev": {
                 "symfony/browser-kit": "~2.8|~3.0",
@@ -1754,7 +1754,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-29 19:32:04"
+            "time": "2017-07-05T09:51:47+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1813,20 +1813,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-06-09 14:24:12"
+            "time": "2017-06-09T14:24:12+00:00"
         },
         {
             "name": "symfony/translation",
-            "version": "v3.2.9",
+            "version": "v3.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "f4a04d2df710f81515df576b2de06bdeee518b83"
+                "reference": "df36a48672b929bf3995eb62c58d83004b1d0d50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/f4a04d2df710f81515df576b2de06bdeee518b83",
-                "reference": "f4a04d2df710f81515df576b2de06bdeee518b83",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/df36a48672b929bf3995eb62c58d83004b1d0d50",
+                "reference": "df36a48672b929bf3995eb62c58d83004b1d0d50",
                 "shasum": ""
             },
             "require": {
@@ -1877,7 +1877,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-12 14:13:17"
+            "time": "2017-06-24T16:45:17+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -1940,7 +1940,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2017-02-16 22:46:52"
+            "time": "2017-02-16T22:46:52+00:00"
         },
         {
             "name": "tecnickcom/tcpdf",
@@ -2003,7 +2003,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2015-09-12 10:08:34"
+            "time": "2015-09-12T10:08:34+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -2053,7 +2053,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-09-01 10:05:43"
+            "time": "2016-09-01T10:05:43+00:00"
         }
     ],
     "packages-dev": [
@@ -2100,7 +2100,7 @@
             "keywords": [
                 "test"
             ],
-            "time": "2015-05-11 14:41:42"
+            "time": "2015-05-11T14:41:42+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -2165,7 +2165,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2017-02-28 12:52:32"
+            "time": "2017-02-28T12:52:32+00:00"
         },
         {
             "name": "omnipay/tests",
@@ -2222,7 +2222,7 @@
                 "payment",
                 "purchase"
             ],
-            "time": "2016-07-07 09:35:23"
+            "time": "2016-07-07T09:35:23+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2283,7 +2283,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-09-02 10:13:14"
+            "time": "2014-09-02T10:13:14+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2330,7 +2330,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2016-10-03 07:40:28"
+            "time": "2016-10-03T07:40:28+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -2371,7 +2371,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2015-06-21 13:50:34"
+            "time": "2015-06-21T13:50:34+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -2420,7 +2420,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-02-26 11:10:40"
+            "time": "2017-02-26T11:10:40+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -2470,7 +2470,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2014-03-03 05:10:30"
+            "time": "2014-03-03T05:10:30+00:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -2543,7 +2543,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-10-17 09:04:17"
+            "time": "2014-10-17T09:04:17+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2592,7 +2592,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2013-01-13 10:24:48"
+            "time": "2013-01-13T10:24:48+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -2667,11 +2667,11 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-12-04 22:32:15"
+            "time": "2014-12-04T22:32:15+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.22",
+            "version": "v2.8.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -2716,7 +2716,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01 20:52:29"
+            "time": "2017-06-01T20:52:29+00:00"
         }
     ],
     "aliases": [],
@@ -2725,9 +2725,7 @@
         "bytic/framework": 20,
         "bytic/medialibrary": 20,
         "bytic/common": 20,
-        "bytic/request-detective": 20,
-        "bytic/omnipay-common": 20,
-        "bytic/omnipay-twispay": 20
+        "bytic/request-detective": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
