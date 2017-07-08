@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "02ede0d03bbbae6be902cd36ce5f02b9",
+    "content-hash": "a09c93b47e6ba2e017774082c47e97df",
     "packages": [
         {
             "name": "bytic/common",
-            "version": "dev-develop",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/Common.git",
-                "reference": "2f88bc43b91a577647b2c95feda20ef1edae579e"
+                "reference": "d982475511331b0be1fda67283babe4cf6a89654"
             },
             "require": {
-                "bytic/framework": "dev-develop",
+                "bytic/framework": "^1.0",
                 "bytic/medialibrary": "dev-release/0.9.0",
-                "bytic/request-detective": "dev-develop",
+                "bytic/request-detective": "^1.0",
                 "omnipay/common": "~2.5",
                 "php": "^7.0",
                 "setasign/fpdi-tcpdf": "^1.6"
@@ -42,24 +42,24 @@
                 }
             ],
             "description": "Common Classes used by Nip Framework",
-            "time": "2017-07-05 07:28:38"
+            "time": "2017-07-08T09:12:19+00:00"
         },
         {
             "name": "bytic/framework",
-            "version": "dev-develop",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/framework.git",
-                "reference": "5c97fb09f60dd43586f3dcbfc0f0c7282f8d2fc0"
+                "reference": "21b45b138d96ceb41c984935d33dff4665ae86f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ByTIC/framework/zipball/5c97fb09f60dd43586f3dcbfc0f0c7282f8d2fc0",
-                "reference": "5c97fb09f60dd43586f3dcbfc0f0c7282f8d2fc0",
+                "url": "https://api.github.com/repos/ByTIC/framework/zipball/21b45b138d96ceb41c984935d33dff4665ae86f7",
+                "reference": "21b45b138d96ceb41c984935d33dff4665ae86f7",
                 "shasum": ""
             },
             "require": {
-                "bytic/request-detective": "dev-develop",
+                "bytic/request-detective": "^1.0",
                 "filp/whoops": "^2.1",
                 "html2text/html2text": "^4.0",
                 "http-interop/http-middleware": "^0.4",
@@ -111,7 +111,7 @@
             ],
             "description": "Php Framework",
             "homepage": "https://github.com/ByTIC/request-detective",
-            "time": "2017-07-01 16:20:53"
+            "time": "2017-07-08T09:00:59+00:00"
         },
         {
             "name": "bytic/medialibrary",
@@ -119,17 +119,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/MediaLibrary.git",
-                "reference": "cc1a5cb95836b7a29bc9c772c73bfaae5525876c"
+                "reference": "90d66eea72c831544bb69603c36e1db16cb542d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ByTIC/MediaLibrary/zipball/cc1a5cb95836b7a29bc9c772c73bfaae5525876c",
-                "reference": "cc1a5cb95836b7a29bc9c772c73bfaae5525876c",
+                "url": "https://api.github.com/repos/ByTIC/MediaLibrary/zipball/90d66eea72c831544bb69603c36e1db16cb542d4",
+                "reference": "90d66eea72c831544bb69603c36e1db16cb542d4",
                 "shasum": ""
             },
             "require": {
-                "bytic/framework": "dev-develop",
-                "bytic/request-detective": "dev-develop",
+                "bytic/framework": "^1.0",
                 "php": "^7.0"
             },
             "require-dev": {
@@ -154,7 +153,7 @@
                 }
             ],
             "description": "Media Library used by Nip Framework",
-            "time": "2017-06-18 19:32:40"
+            "time": "2017-07-08 09:09:03"
         },
         {
             "name": "bytic/omnipay-common",
@@ -255,16 +254,16 @@
         },
         {
             "name": "bytic/request-detective",
-            "version": "dev-develop",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/request-detective.git",
-                "reference": "c3a3664ac24ffe7fb1c5c86637944a33772516be"
+                "reference": "7c472b166ef0db63c258a3d255fd7bfea1cdd659"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ByTIC/request-detective/zipball/c3a3664ac24ffe7fb1c5c86637944a33772516be",
-                "reference": "c3a3664ac24ffe7fb1c5c86637944a33772516be",
+                "url": "https://api.github.com/repos/ByTIC/request-detective/zipball/7c472b166ef0db63c258a3d255fd7bfea1cdd659",
+                "reference": "7c472b166ef0db63c258a3d255fd7bfea1cdd659",
                 "shasum": ""
             },
             "require": {
@@ -295,7 +294,7 @@
             "keywords": [
                 "request"
             ],
-            "time": "2017-04-06 15:23:07"
+            "time": "2017-04-06T15:24:50+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -2722,10 +2721,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "bytic/framework": 20,
-        "bytic/medialibrary": 20,
-        "bytic/common": 20,
-        "bytic/request-detective": 20
+        "bytic/medialibrary": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
