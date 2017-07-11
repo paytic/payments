@@ -18,7 +18,7 @@ class Gateway extends AbstractGateway
      */
     public function isActive()
     {
-        if (strlen($this->getSiteId()) > 2 && strlen($this->getPrivateKey()) > 10) {
+        if (intval($this->getSiteId()) >= 5 && strlen($this->getPrivateKey()) > 10) {
             return true;
         }
 
