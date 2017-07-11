@@ -11,14 +11,26 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
  */
 class Gateway extends AbstractGateway
 {
-    use GatewayTrait;
+    use GatewayTrait {
+        GatewayTrait::setSandbox as abstractSetSandbox;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setSandbox($value)
+    {
+        $return = $this->abstractSetSandbox($value);
+        $this->parameters->remove('secureUrl');
+        return $return;
+    }
 
     /**
      * @return bool
      */
     public function isActive()
     {
-        if (strlen($this->getSiteId()) > 2 && strlen($this->getPrivateKey()) > 10) {
+        if (intval($this->getSiteId()) >= 5 && strlen($this->getPrivateKey()) > 10) {
             return true;
         }
 
