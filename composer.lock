@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "bytic/common",
-            "version": "1.0.1",
+          "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/Common.git",
-                "reference": "d982475511331b0be1fda67283babe4cf6a89654"
+              "reference": "e10b1047d9556eb801428109a3d39ca0422a9c96"
             },
             "require": {
                 "bytic/framework": "^1.0",
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Common Classes used by Nip Framework",
-            "time": "2017-07-08T09:12:19+00:00"
+          "time": "2017-08-01T09:02:19+00:00"
         },
         {
             "name": "bytic/framework",
