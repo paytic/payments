@@ -21,7 +21,6 @@ use Omnipay\Common\Message\AbstractResponse;
  */
 trait PurchaseControllerTrait
 {
-
     public function redirectToPayment()
     {
         $model = $this->getModelFromRequest();
@@ -74,7 +73,7 @@ trait PurchaseControllerTrait
     /**
      * @return RecordManager
      */
-    protected abstract function getModelManager();
+    abstract protected function getModelManager();
 
     /**
      * @return Request
