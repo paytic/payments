@@ -22,6 +22,11 @@
       "ByTIC\\Payments\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "ByTIC\\Payments\\Tests\\": "tests/"
+    }
+  },
   "require": {
     "php": "^7.0",
     "bytic/common": "^1.0",
@@ -29,6 +34,8 @@
     "bytic/omnipay-twispay": "^1.0"
   },
   "require-dev": {
-    "omnipay/tests": "^2.0"
+    "squizlabs/php_codesniffer": "^3.0",
+    "phpunit/phpunit": "^6.2",
+    "mockery/mockery": "^0.9"
   }
 }
