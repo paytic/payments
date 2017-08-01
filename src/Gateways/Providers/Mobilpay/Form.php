@@ -12,7 +12,6 @@ use Nip_File_System;
  */
 class Form extends AbstractForm
 {
-
     protected $files = [];
 
     public function initElements()
