@@ -8,5 +8,4 @@ namespace ByTIC\Payments;
  */
 class PaymentsServiceProvider
 {
-
 }

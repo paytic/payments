@@ -10,7 +10,6 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
  */
 class Form extends AbstractForm
 {
-
     public function initElements()
     {
         $this->addInput('merchant', 'Merchant');
