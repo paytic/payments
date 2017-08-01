@@ -8,7 +8,7 @@ use Nip\Container\ServiceProviders\Providers\AbstractSignatureServiceProvider;
  * Class PaymentsServiceProvider
  * @package ByTIC\Payments
  */
-class PaymentsServiceProvider extends AbstractSignatureServiceProvider
+class PaymentsServiceProvider
 {
 
     /**
