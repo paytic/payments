@@ -31,6 +31,7 @@
     "php": "^7.0",
     "bytic/common": "^1.0",
     "bytic/medialibrary": "^0.9",
+    "bytic/omnipay-mobilpay": "^1.0",
     "bytic/omnipay-twispay": "^1.0",
     "bytic/omnipay-librapay": "^1.0",
     "bytic/omnipay-payu": "^1.0"

@@ -3,6 +3,8 @@
 namespace ByTIC\Payments\Forms\Traits;
 
 use ByTIC\Common\Forms\Traits\AbstractFormTrait;
+use ByTIC\MediaLibrary\HasMedia\HasMediaTrait;
+use ByTIC\MediaLibrary\HasMedia\Traits\AddMediaTrait;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Gateway;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethod;
@@ -180,7 +182,7 @@ trait PaymentMethodFormTrait
     }
 
     /**
-     * @return PaymentMethod
+     * @return PaymentMethod|HasMediaTrait|AddMediaTrait
      */
     abstract public function getModel();
 
