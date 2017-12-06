@@ -124,7 +124,9 @@ abstract class Form
                 $options = [];
                 foreach ($this->elements as $name => $inputName) {
                     $element = $this->getForm()->{$inputName};
-                    $options[$name] = $element->getValue();
+                    if (!($element instanceof \Nip_Form_Element_File)) {
+                        $options[$name] = $element->getValue();
+                    }
                 }
 
                 $this->getForm()->getModel()->setOption($gName, $options);

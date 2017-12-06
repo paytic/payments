@@ -23,14 +23,15 @@ class Form extends AbstractForm
     public function getDataFromModel()
     {
         parent::getDataFromModel();
-        $files = $this->getForm()->getModel()->findFiles();
+        $files = $this->getForm()->getModel()->getMedia('files');
+
         if (is_object($files['public.cer'])) {
             $this->addInput('file', 'Certificate', true);
             $element = $this->getForm()->getElement('mobilpay[file]');
             $element->setAttrib('readonly', 'readonly');
             $element->setValue('public.cer');
 
-            $text = '<a href="' . $this->getForm()->getModel()->getDeleteFileURL(['file' => 'public.cer']) . '">
+            $text = '<a href="'.$this->getForm()->getModel()->getDeleteFileURL(['file' => 'public.cer']).'">
                 [Delete]</a>
             ';
             $decorator = $element->newDecorator('text')->setText($text);
@@ -45,7 +46,7 @@ class Form extends AbstractForm
             $element->setAttrib('readonly', 'readonly');
             $element->setValue('private.key');
 
-            $text = '<a href="' . $this->getForm()->getModel()->getDeleteFileURL(['file' => 'private.key']) . '">
+            $text = '<a href="'.$this->getForm()->getModel()->getDeleteFileURL(['file' => 'private.key']).'">
                         [Delete]
                     </a>';
             $decorator = $element->newDecorator('text')->setText($text);
@@ -114,13 +115,13 @@ class Form extends AbstractForm
         $fileData = $this->getForm()->getElement('mobilpay[file]')->getValue();
 
         if ($fileData) {
-            $this->getFileModel('public.cer')->upload($fileData);
+            $this->getForm()->getModel()->addMediaToCollection($fileData, 'files');
         }
 
         $fileData = $this->getForm()->getElement('mobilpay[private-key]')->getValue();
 
         if ($fileData) {
-            $this->getFileModel('private.key')->upload($fileData);
+            $this->getForm()->getModel()->addMediaToCollection($fileData, 'files');
         }
 
         return true;

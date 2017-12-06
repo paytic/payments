@@ -25,12 +25,14 @@ trait HasGatewaysTrait
 
     /**
      * @return GatewayTrait|GatewayInterface|null
+     * @throws \Exception
      */
     public function getGateway()
     {
         if ($this->gateway === null) {
             $this->initGateway();
         }
+
         return $this->gateway;
     }
 
@@ -42,6 +44,9 @@ trait HasGatewaysTrait
         $this->gateway = $gateway;
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function initGateway()
     {
         $gateway = $this->newGateway($this->getGatewayName());
@@ -51,12 +56,22 @@ trait HasGatewaysTrait
     /**
      * @param $name
      * @return null|GatewayTrait|GatewayInterface
+     * @throws \Exception
      */
     protected function newGateway($name)
     {
+        if (empty($name)) {
+            throw new \Exception("No name in newGateway for ".get_class($this));
+        }
+
         $gateway = $this->getGatewaysManager()::getCollection()->offsetGet($name);
+        if (!($gateway instanceof GatewayInterface)) {
+            throw new \Exception("Invalid gateway name ['.$name.'] in ".get_class($this));
+        }
+
         $gatewayParams = $this->getGatewayOptions();
         $gateway->initialize($gatewayParams);
+
         return $gateway;
     }
 
