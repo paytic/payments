@@ -121,17 +121,27 @@ abstract class Form
         if (is_array($this->elements) && count($this->elements) > 0) {
             $gName = $this->getGateway()->getName();
             if ($this->getForm()->getModel()->getOption('payment_gateway') == $gName) {
-                $options = [];
-                foreach ($this->elements as $name => $inputName) {
-                    $element = $this->getForm()->{$inputName};
-                    if (!($element instanceof \Nip_Form_Element_File)) {
-                        $options[$name] = $element->getValue();
-                    }
-                }
+                $options = $this->generateModelOptions();
 
                 $this->getForm()->getModel()->setOption($gName, $options);
             }
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function generateModelOptions()
+    {
+        $options = [];
+        foreach ($this->elements as $name => $inputName) {
+            $element = $this->getForm()->{$inputName};
+            if (!($element instanceof \Nip_Form_Element_File)) {
+                $options[$name] = $element->getValue();
+            }
+        }
+
+        return $options;
     }
 
     /**

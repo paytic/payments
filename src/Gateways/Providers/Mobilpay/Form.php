@@ -2,9 +2,8 @@
 
 namespace ByTIC\Payments\Gateways\Providers\Mobilpay;
 
-use ByTIC\Common\Payments\Models\Methods\Files\MobilpayFile;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
-use Nip_File_System;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class Form
@@ -23,41 +22,26 @@ class Form extends AbstractForm
     public function getDataFromModel()
     {
         parent::getDataFromModel();
-        $files = $this->getForm()->getModel()->getMedia('files');
+        $model = $this->getForm()->getModel();
+        $options = $model->getOption($this->getGateway()->getName());
 
-        if (is_object($files['public.cer'])) {
-            $this->addInput('file', 'Certificate', true);
-            $element = $this->getForm()->getElement('mobilpay[file]');
-            $element->setAttrib('readonly', 'readonly');
-            $element->setValue('public.cer');
+        $files = ['certificate', 'privateKey'];
+        foreach ($files as $fileType) {
+            $this->addFile($fileType.'Upload', $fileType.' File', false);
+            $this->getForm()->getDisplayGroup($this->getGateway()->getLabel())
+                ->addElement($this->getForm()->getElement('mobilpay['.$fileType.'Upload]'));
 
-            $text = '<a href="'.$this->getForm()->getModel()->getDeleteFileURL(['file' => 'public.cer']).'">
-                [Delete]</a>
-            ';
-            $decorator = $element->newDecorator('text')->setText($text);
-            $element->attachDecorator($decorator);
-        } else {
-            $this->addFile('file', 'Certificate', false);
+            $fileOptionValue = isset($options[$fileType]) ? $options[$fileType] : null;
+            if (strlen($fileOptionValue) > 5) {
+                $this->addTextarea($fileType, $fileType.' Content', true);
+                $element = $this->getForm()->getElement('mobilpay['.$fileType.']');
+                $element->setAttrib('readonly', 'readonly');
+                $element->setValue($fileOptionValue);
+
+                $this->getForm()->getDisplayGroup($this->getGateway()->getLabel())
+                    ->addElement($this->getForm()->getElement('mobilpay['.$fileType.']'));
+            }
         }
-
-        if (is_object($files['private.key'])) {
-            $this->addInput('private-key', 'Private key', true);
-            $element = $this->getForm()->getElement('mobilpay[private-key]');
-            $element->setAttrib('readonly', 'readonly');
-            $element->setValue('private.key');
-
-            $text = '<a href="'.$this->getForm()->getModel()->getDeleteFileURL(['file' => 'private.key']).'">
-                        [Delete]
-                    </a>';
-            $decorator = $element->newDecorator('text')->setText($text);
-            $element->attachDecorator($decorator);
-        } else {
-            $this->addFile('private-key', 'Private key', false);
-        }
-        $this->getForm()->getDisplayGroup($this->getGateway()->getLabel())
-            ->addElement($this->getForm()->getElement('mobilpay[file]'));
-        $this->getForm()->getDisplayGroup($this->getGateway()->getLabel())
-            ->addElement($this->getForm()->getElement('mobilpay[private-key]'));
     }
 
     /**
@@ -65,26 +49,26 @@ class Form extends AbstractForm
      */
     public function processValidation()
     {
+        parent::processValidation();
+
         if ($_FILES['mobilpay']) {
-            $publicData = $this->getForm()->getElement('mobilpay[file]')->getValue();
-            if (is_array($publicData) && $publicData['tmp_name']) {
-                $errorPublic = Nip_File_System::instance()->getUploadError(
-                    $publicData,
-                    $this->getFileModel('public.cer')->getExtensions()
-                );
-                if ($errorPublic) {
-                    $this->getForm()->getElement('mobilpay[file]')->addError($errorPublic);
-                }
-            }
+            $files = ['certificate', 'privateKey'];
+            foreach ($files as $fileType) {
+                $element = $this->getForm()->getElement('mobilpay['.$fileType.'Upload]');
 
-            $privateData = $this->getForm()->getElement('mobilpay[private-key]')->getValue();
-            if (is_array($privateData) && $privateData['tmp_name']) {
-                $errorPrivate = Nip_File_System::instance()->getUploadError(
-                    $privateData,
-                    $this->getFileModel('private.key')->getExtensions());
-
-                if ($errorPrivate) {
-                    $this->getForm()->getElement('mobilpay[private-key]')->addError($errorPrivate);
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $element->getValue();
+                if ($uploadedFile instanceof UploadedFile) {
+                    if ($uploadedFile->isValid()) {
+                        $extension = $fileType == 'certificate' ? 'cer' : 'key';
+                        if ($uploadedFile->getClientOriginalExtension() != $extension) {
+                            $element->addError(
+                                'Invalid extension ['.$extension.']['.$uploadedFile->getClientOriginalName().']'
+                            );
+                        }
+                    } else {
+                        $element->addError($uploadedFile->getErrorMessage());
+                    }
                 }
             }
         }
@@ -93,37 +77,25 @@ class Form extends AbstractForm
     }
 
     /**
-     * @param $type
-     * @return MobilpayFile
+     * @inheritdoc
      */
-    public function getFileModel($type)
+    protected function generateModelOptions()
     {
-        if (!$this->files[$type]) {
-            $model = $this->getForm()->getModel();
+        $options = parent::generateModelOptions();
 
-            return $model->getNewFile('Mobilpay');
+        $files = ['certificate', 'privateKey'];
+
+        foreach ($files as $fileType) {
+            $element = $this->getForm()->getElement('mobilpay['.$fileType.'Upload]');
+            if (!$element->isError()) {
+                /** @var UploadedFile $uploadedFile */
+                $uploadedFile = $element->getValue();
+                if ($uploadedFile instanceof UploadedFile && $uploadedFile->isValid()) {
+                    $options[$fileType] = file_get_contents($uploadedFile->getRealPath());
+                }
+            }
         }
 
-        return $this->files[$type];
-    }
-
-    /**
-     * @return bool
-     */
-    public function process()
-    {
-        $fileData = $this->getForm()->getElement('mobilpay[file]')->getValue();
-
-        if ($fileData) {
-            $this->getForm()->getModel()->addMediaToCollection($fileData, 'files');
-        }
-
-        $fileData = $this->getForm()->getElement('mobilpay[private-key]')->getValue();
-
-        if ($fileData) {
-            $this->getForm()->getModel()->addMediaToCollection($fileData, 'files');
-        }
-
-        return true;
+        return $options;
     }
 }
