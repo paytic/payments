@@ -18,9 +18,12 @@ use Omnipay\Common\Message\RequestInterface;
  * @property string $received
  * @property string $created
  *
- * @method string getConfirmURL
- * @method string getIpnURL
- * @method Records getManager
+ * @method string getConfirmURL()
+ * @method string getIpnURL()
+ * @method Records getManager()
+ * @method update()
+ * @method string getClassName()
+ * @method string getStatus()
  */
 trait IsPurchasableModelTrait
 {
@@ -66,24 +69,30 @@ trait IsPurchasableModelTrait
     {
         $params = null;
         $billing = $this->getPurchaseBillingRecord();
-        if ($billing) {
-            if (!in_array(BillingRecordTrait::class, class_uses($billing))) {
-                throw new Exception(
-                    sprintf(
-                        'Billing record in %s must use BillingRecordTrait %s',
-                        $this->getClassName(),
-                        BillingRecordTrait::class
-                    )
-                );
-            }
-            $params = [];
-            $params['firstName'] = $billing->getFirstName();
-            $params['lastName'] = $billing->getLastName();
-            $params['email'] = $billing->getEmail();
-            $params['phone'] = $billing->getPurchasePhone();
-            $params['city'] = $billing->getPurchaseCity();
-            $params['country'] = $billing->getPurchaseCountry();
+        if (!is_object($billing)) {
+            throw new Exception(
+                sprintf(
+                    'PurchaseBillingRecord is not an object in [%s]',
+                    $this->getClassName()
+                )
+            );
         }
+        if (!in_array(BillingRecordTrait::class, class_uses($billing))) {
+            throw new Exception(
+                sprintf(
+                    'Billing record in %s must use BillingRecordTrait %s',
+                    $this->getClassName(),
+                    BillingRecordTrait::class
+                )
+            );
+        }
+        $params = [];
+        $params['firstName'] = $billing->getFirstName();
+        $params['lastName'] = $billing->getLastName();
+        $params['email'] = $billing->getEmail();
+        $params['phone'] = $billing->getPurchasePhone();
+        $params['city'] = $billing->getPurchaseCity();
+        $params['country'] = $billing->getPurchaseCountry();
 
         return $params;
     }
@@ -101,6 +110,6 @@ trait IsPurchasableModelTrait
      */
     public function getConfirmStatusTitle()
     {
-        return $this->getManager()->getMessage('confirm.' . $this->getStatus()->getName());
+        return $this->getManager()->getMessage('confirm.'.$this->getStatus()->getName());
     }
 }
