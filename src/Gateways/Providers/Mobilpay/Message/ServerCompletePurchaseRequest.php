@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Providers\Mobilpay\Message;
 
 use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest as AbstractServerCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
+use ByTIC\Payments\Gateways\Providers\Mobilpay\Gateway;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
@@ -47,8 +48,10 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
      */
     protected function updateParametersFromModel($model)
     {
-        $this->setSignature($model->getPaymentMethod()->getType()->getGateway()->getParameter('signature'));
-        $this->setCertificate($model->getPaymentMethod()->getType()->getGateway()->getParameter('certificate'));
-        $this->getPrivateKey($model->getPaymentMethod()->getType()->getGateway()->getParameter('privateKey'));
+        /** @var Gateway $modelGateway */
+        $modelGateway = $model->getPaymentMethod()->getType()->getGateway();
+        $this->setSignature($modelGateway->getSignature());
+        $this->setCertificate($modelGateway->getCertificate());
+        $this->setPrivateKey($modelGateway->getPrivateKey());
     }
 }
