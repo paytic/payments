@@ -49,6 +49,7 @@ abstract class GatewayTest extends AbstractTest
         parent::setUp();
 
         $this->purchase = $this->generatePurchaseMock();
+        $this->purchase->shouldReceive('getName')->andReturn('Payment description');
         $this->setUpPurchaseManagerMock();
 
         $paymentMethod = new PaymentMethod();
