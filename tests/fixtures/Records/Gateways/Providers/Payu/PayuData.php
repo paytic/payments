@@ -33,6 +33,9 @@ class PayuData
         $httpRequest->query->set('id', '37250');
         $httpRequest->query->set('ctrl', 'a300b00eb8622c89e3f4d47fe1ca6822');
 
+        $_SERVER['HTTP_HOST'] = 'hospice.galantom.ro';
+        $_SERVER['REQUEST_URI'] = '/donations/confirm?id=37250';
+
         return $httpRequest;
     }
 

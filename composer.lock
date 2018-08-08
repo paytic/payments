@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+      "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c113c30cdef2a34e7ce31941a462d869",
+  "content-hash": "73985401a7847c99d7e7a600a31eaf23",
     "packages": [
         {
             "name": "bytic/application",
@@ -1052,16 +1052,16 @@
         },
         {
             "name": "bytic/omnipay-payu",
-            "version": "0.9.0",
+          "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bytic/omnipay-payu.git",
-                "reference": "d4a94d9015393801e0b8d4648a0800d0994665c7"
+              "reference": "0b85241291a61712a170fabf489922fb86233a76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bytic/omnipay-payu/zipball/d4a94d9015393801e0b8d4648a0800d0994665c7",
-                "reference": "d4a94d9015393801e0b8d4648a0800d0994665c7",
+              "url": "https://api.github.com/repos/bytic/omnipay-payu/zipball/0b85241291a61712a170fabf489922fb86233a76",
+              "reference": "0b85241291a61712a170fabf489922fb86233a76",
                 "shasum": ""
             },
             "require": {
@@ -1072,7 +1072,8 @@
             "require-dev": {
                 "mockery/mockery": "^0.9",
                 "phpunit/phpunit": "^6.2",
-                "squizlabs/php_codesniffer": "^3.0"
+              "squizlabs/php_codesniffer": "^3.0",
+              "vlucas/phpdotenv": "^2.3"
             },
             "type": "library",
             "autoload": {
@@ -1101,7 +1102,7 @@
                 "payment",
                 "twispay"
             ],
-            "time": "2018-05-08T17:25:24+00:00"
+          "time": "2018-05-14T20:49:24+00:00"
         },
         {
             "name": "bytic/omnipay-twispay",

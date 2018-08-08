@@ -2,9 +2,10 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\Payu;
 
-use ByTIC\Common\Payments\Gateways\Providers\Payu\Message\CompletePurchaseResponse;
-use ByTIC\Common\Payments\Gateways\Providers\Payu\Message\PurchaseResponse;
-use ByTIC\Common\Payments\Gateways\Providers\Payu\Message\ServerCompletePurchaseResponse;
+use ByTIC\Omnipay\Payu\Message\PurchaseResponse;
+use ByTIC\Payments\Gateways\Providers\Payu\Gateway;
+use ByTIC\Payments\Gateways\Providers\Payu\Message\CompletePurchaseResponse;
+use ByTIC\Payments\Gateways\Providers\Payu\Message\ServerCompletePurchaseResponse;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Payu\PayuData;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethod;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
@@ -52,13 +53,14 @@ class GatewayTest extends AbstractGatewayTest
     protected function doCompletePurchaseResponse($httpRequest)
     {
         /** @var CompletePurchaseResponse $response */
-        $response = $this->gatewayManager->detectItemFromHttpRequest(
+        $response = $this->gatewayManager::detectItemFromHttpRequest(
             $this->purchaseManager,
             'completePurchase',
             $httpRequest
         );
 
         self::assertInstanceOf(CompletePurchaseResponse::class, $response);
+
         self::assertTrue($response->isSuccessful());
         self::assertEquals($httpRequest->query->get('id'), $response->getModel()->getPrimaryKey());
 
@@ -78,7 +80,7 @@ class GatewayTest extends AbstractGatewayTest
         $httpRequest = PayuData::getIpnAuthorizedRequest();
 
         /** @var ServerCompletePurchaseResponse $response */
-        $response = $this->gatewayManager->detectItemFromHttpRequest(
+        $response = $this->gatewayManager::detectItemFromHttpRequest(
             $this->purchaseManager,
             'serverCompletePurchase',
             $httpRequest
@@ -100,10 +102,13 @@ class GatewayTest extends AbstractGatewayTest
 
         /** @var PaymentMethod $paymentMethod */
         $paymentMethod = $this->purchase->getPaymentMethod();
+        self::assertInstanceOf(PaymentMethod::class, $paymentMethod);
+
         $paymentMethod->options = trim(PayuData::getMethodOptions());
 
         $this->purchase->created = date('Y-m-d H:i:s');
 
         $this->gateway = $paymentMethod->getType()->getGateway();
+        self::assertInstanceOf(Gateway::class, $this->gateway);
     }
 }

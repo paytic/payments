@@ -2,9 +2,9 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway;
 
-use ByTIC\Common\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Gateway;
-use ByTIC\Common\Payments\Models\Methods\Types\CreditCards;
+use ByTIC\Payments\Gateways\Manager as GatewaysManager;
+use ByTIC\Payments\Models\Methods\Types\CreditCards;
 use ByTIC\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Tests\Fixtures\Records\BillingRecord;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethod;
@@ -16,7 +16,7 @@ use Mockery as m;
  * Class TraitsTest
  * @package ByTIC\Common\Tests\Unit\Payments\Providers\AbstractGateway
  */
-class GatewayTest extends AbstractTest
+abstract class GatewayTest extends AbstractTest
 {
     /**
      * @var GatewaysManager
@@ -63,7 +63,7 @@ class GatewayTest extends AbstractTest
         $this->purchase->shouldReceive('getPurchaseBillingRecord')->andReturn($billing);
 
         $this->client = new \Guzzle\Http\Client();
-        $this->gatewayManager = GatewaysManager::instance();
+        $this->gatewayManager = new GatewaysManager();
     }
 
     /**

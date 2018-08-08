@@ -30,8 +30,6 @@ trait RecordTrait
         getFileModelName as getFileModelNameAbstract;
     }
 
-//    use HasMediaTrait;
-
     /**
      * @param array $data
      * @return mixed

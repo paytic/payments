@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Tests\Fixtures\Records;
 
-use ByTIC\Common\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodTrait;
+use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodTrait;
 use Nip\Records\AbstractModels\Record;
 
 /**
