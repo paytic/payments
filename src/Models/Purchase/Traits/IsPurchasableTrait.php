@@ -24,6 +24,15 @@ trait IsPurchasableTrait
 
         $parameters['description'] = $this->getPurchaseName();
 
+        $parameters['items'] = [
+            [
+                'name' => $this->getPurchaseName(),
+                'price' => $this->getPurchaseAmount(),
+                'description' => $this->getPurchaseName(),
+                'quantity' => 1,
+            ],
+        ];
+
         $parameters['returnUrl'] = $this->getConfirmURL();
         $parameters['notifyUrl'] = $this->getIpnURL();
 

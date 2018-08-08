@@ -103,6 +103,7 @@ class Manager
             'Payu',
             'Mobilpay',
             'Euplatesc',
+            'Librapay',
             'Twispay'
         ];
     }
