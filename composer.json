@@ -32,6 +32,7 @@
     "bytic/common": "^0.9",
     "bytic/medialibrary": "^0.8",
     "bytic/omnipay-twispay": "^1.0",
+    "bytic/omnipay-librapay": "^1.0",
     "bytic/omnipay-payu": "^0.9"
   },
   "require-dev": {
