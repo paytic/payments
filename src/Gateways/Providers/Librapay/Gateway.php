@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Payu;
+namespace ByTIC\Payments\Gateways\Providers\Librapay;
 
-use ByTIC\Omnipay\Payu\Gateway as AbstractGateway;
+use ByTIC\Omnipay\Librapay\Gateway as AbstractGateway;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 
 /**
  * Class Gateway
- * @package ByTIC\Payments\Gateways\Providers\Payu
+ * @package ByTIC\Payments\Gateways\Providers\Librapay
  */
 class Gateway extends AbstractGateway
 {
@@ -18,7 +18,7 @@ class Gateway extends AbstractGateway
      */
     public function isActive()
     {
-        if (strlen($this->getMerchant()) > 5 && strlen($this->getSecretKey()) > 10) {
+        if (intval($this->getSiteId()) >= 5 && strlen($this->getPrivateKey()) > 10) {
             return true;
         }
 

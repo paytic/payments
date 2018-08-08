@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Gateways;
 
-use Nip\Collection;
+use Nip\Collections\Collection;
 
 /**
  * Class GatewaysCollection

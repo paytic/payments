@@ -32,9 +32,12 @@
     "bytic/common": "^1.0",
     "bytic/medialibrary": "^0.9",
     "bytic/omnipay-mobilpay": "^1.0",
-    "bytic/omnipay-twispay": "^1.0"
+    "bytic/omnipay-twispay": "^1.0",
+    "bytic/omnipay-librapay": "^1.0",
+    "bytic/omnipay-payu": "^1.0"
   },
   "require-dev": {
+    "vlucas/phpdotenv": "^2.4",
     "squizlabs/php_codesniffer": "^3.0",
     "phpunit/phpunit": "^6.2",
     "mockery/mockery": "^0.9"

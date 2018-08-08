@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Traits;
 
 use ByTIC\Payments\Gateways\Manager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\GatewayInterface;
 
 /**
