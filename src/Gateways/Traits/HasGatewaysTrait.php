@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Traits;
 
 use ByTIC\Payments\Gateways\Manager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\GatewayInterface;
 
 /**
@@ -54,7 +55,8 @@ trait HasGatewaysTrait
      */
     protected function newGateway($name)
     {
-        $gateway = $this->getGatewaysManager()::getCollection()->offsetGet($name);
+        /** @var AbstractGateway $gateway */
+        $gateway       = $this->getGatewaysManager()::getCollection()->offsetGet($name);
         $gatewayParams = $this->getGatewayOptions();
         $gateway->initialize($gatewayParams);
         return $gateway;
