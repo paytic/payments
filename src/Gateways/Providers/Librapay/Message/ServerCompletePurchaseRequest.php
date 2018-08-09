@@ -5,6 +5,7 @@ namespace ByTIC\Payments\Gateways\Providers\Librapay\Message;
 use ByTIC\Omnipay\Librapay\Message\ServerCompletePurchaseRequest as AbstractServerCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
 use ByTIC\Payments\Gateways\Providers\Librapay\Helper;
+use ByTIC\Payments\Gateways\Providers\Librapay\Message\Traits\CompletePurchaseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
@@ -14,6 +15,7 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseRequest
 {
     use HasModelRequest;
+    use CompletePurchaseTrait;
 
     /**
      * @inheritdoc

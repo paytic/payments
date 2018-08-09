@@ -5,7 +5,7 @@ namespace ByTIC\Payments\Gateways\Providers\Librapay\Message;
 use ByTIC\Omnipay\Librapay\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
 use ByTIC\Payments\Gateways\Providers\Librapay\Helper;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use ByTIC\Payments\Gateways\Providers\Librapay\Message\Traits\CompletePurchaseTrait;
 
 /**
  * Class PurchaseResponse
@@ -14,6 +14,7 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {
     use HasModelRequest;
+    use CompletePurchaseTrait;
 
     /**
      * @inheritdoc
@@ -51,13 +52,5 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
         }
 
         return parent::parseNotification();
-    }
-
-    /**
-     * @param IsPurchasableModelTrait $model
-     */
-    protected function updateParametersFromModel($model)
-    {
-//        $this->setApiKey($model->getPaymentMethod()->getType()->getGateway()->getParameter('apiKey'));
     }
 }
