@@ -14,17 +14,17 @@ class HelperTest extends AbstractTest
     public function testEncodeOrderId()
     {
         self::assertEquals(
-            9999999999999900089,
+            999999999999900089,
             Helper::encodeOrderId(89)
         );
 
         $testEncoded = Helper::encodeOrderId(44213);
         self::assertEquals(
-            9999999999999944213,
+            999999999999944213,
             $testEncoded
         );
         self::assertEquals(
-            19,
+            18,
             strlen($testEncoded)
         );
     }
@@ -33,7 +33,7 @@ class HelperTest extends AbstractTest
     {
         self::assertEquals(
             89,
-            Helper::decodeOrderId('9999999999999900089')
+                Helper::decodeOrderId('999999999999900089')
         );
     }
 }

@@ -16,7 +16,7 @@ class Helper
     public static function encodeOrderId($idOrder)
     {
         if ($idOrder < 100000) {
-            $idOrder = '99999999999999'.str_pad($idOrder, 5, "0", STR_PAD_LEFT);
+            $idOrder = '9999999999999'.str_pad($idOrder, 5, "0", STR_PAD_LEFT);
         }
 
         return $idOrder;
@@ -29,9 +29,8 @@ class Helper
     public static function decodeOrderId($idOrder)
     {
         $idString = (string) $idOrder;
-        if (strlen($idString) == 19) {
-            var_dump($idString);
-            $idOrder = str_replace('99999999999999', '', $idString);
+        if (strlen($idString) == 18) {
+            $idOrder = str_replace('9999999999999', '', $idString);
         }
         return $idOrder;
     }
