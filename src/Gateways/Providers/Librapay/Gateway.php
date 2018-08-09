@@ -3,9 +3,9 @@
 namespace ByTIC\Payments\Gateways\Providers\Librapay;
 
 use ByTIC\Omnipay\Librapay\Gateway as AbstractGateway;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use ByTIC\Payments\Gateways\Providers\Librapay\Message\PurchaseRequest;
 use Omnipay\Common\Message\RequestInterface;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 
 /**
  * Class Gateway
@@ -14,6 +14,7 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 class Gateway extends AbstractGateway
 {
     use GatewayTrait;
+
     /**
      * @inheritdoc
      * @return PurchaseRequest
@@ -21,14 +22,23 @@ class Gateway extends AbstractGateway
     public function purchase(array $parameters = []): RequestInterface
     {
         $parameters['endpointUrl'] = $this->getEndpointUrl();
+
         return $this->createRequestWithInternalCheck('PurchaseRequest', $parameters);
     }
+
     /**
      * @return bool
      */
     public function isActive()
     {
-        if (intval($this->getSiteId()) >= 5 && strlen($this->getPrivateKey()) > 10) {
+        if (
+            strlen($this->getMerchant()) > 5
+            && strlen($this->getTerminal()) > 5
+            && strlen($this->getKey()) > 5
+            && strlen($this->getMerchantName()) > 5
+            && strlen($this->getMerchantEmail()) > 5
+            && strlen($this->getMerchantUrl()) > 5
+        ) {
             return true;
         }
 
