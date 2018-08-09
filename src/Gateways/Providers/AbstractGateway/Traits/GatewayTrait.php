@@ -54,6 +54,17 @@ trait GatewayTrait
     }
 
     /**
+     * @param array $parameters
+     * @return RequestInterface|null
+     */
+    public function serverCompletePurchase(array $parameters = []): RequestInterface
+    {
+        return $this->createRequestWithInternalCheck('ServerCompletePurchaseRequest', $parameters);
+    }
+
+
+    // ------------ REQUESTS OVERLOADING ------------ //
+    /**
      * @param $request
      * @param array $parameters
      * @return null|RequestInterface
@@ -97,15 +108,6 @@ trait GatewayTrait
             return $class;
         }
         return str_replace('ByTIC\Payments', 'ByTIC\Common\Payments', $class);
-    }
-
-    /**
-     * @param array $parameters
-     * @return RequestInterface|null
-     */
-    public function serverCompletePurchase(array $parameters = []): RequestInterface
-    {
-        return $this->createRequestWithInternalCheck('ServerCompletePurchaseRequest', $parameters);
     }
 
     /**

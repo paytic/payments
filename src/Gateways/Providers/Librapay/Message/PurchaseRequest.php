@@ -16,8 +16,8 @@ class PurchaseRequest extends AbstractRequest
      */
     public function initialize(array $parameters = [])
     {
-        if (isset($parameters['order'])) {
-            $parameters['order'] = Helper::decodeOrderId($parameters['order']);
+        if (isset($parameters['orderId'])) {
+            $parameters['orderId'] = Helper::encodeOrderId($parameters['orderId']);
         }
 
         return parent::initialize($parameters);

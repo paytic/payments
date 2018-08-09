@@ -3,6 +3,8 @@
 namespace ByTIC\Payments\Gateways\Providers\Librapay;
 
 use ByTIC\Omnipay\Librapay\Gateway as AbstractGateway;
+use ByTIC\Payments\Gateways\Providers\Librapay\Message\PurchaseRequest;
+use Omnipay\Common\Message\RequestInterface;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 
 /**
@@ -12,7 +14,15 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 class Gateway extends AbstractGateway
 {
     use GatewayTrait;
-
+    /**
+     * @inheritdoc
+     * @return PurchaseRequest
+     */
+    public function purchase(array $parameters = []): RequestInterface
+    {
+        $parameters['endpointUrl'] = $this->getEndpointUrl();
+        return $this->createRequestWithInternalCheck('PurchaseRequest', $parameters);
+    }
     /**
      * @return bool
      */
