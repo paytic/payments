@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Providers\Payu\Message;
 
 use ByTIC\Omnipay\Payu\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
+use ByTIC\Payments\Gateways\Providers\Payu\Gateway;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
@@ -29,14 +30,36 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
     }
 
     /**
+     * @inheritdoc
+     */
+    protected function isValidNotification()
+    {
+        if ($this->hasGet('id')) {
+            if ($this->validateModel()) {
+                return parent::isValidNotification();
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModelIdFromRequest()
+    {
+        $modelId = $this->httpRequest->query->get('id');
+
+        return $modelId;
+    }
+
+    /**
      * @return bool|mixed
      */
     protected function parseNotification()
     {
-        if ($this->validateModel()) {
-            $model = $this->getModel();
-            $this->updateParametersFromModel($model);
-        }
+        $model = $this->getModel();
+        $this->updateParametersFromModel($model);
 
         return parent::parseNotification();
     }
@@ -46,6 +69,31 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
      */
     protected function updateParametersFromModel($model)
     {
-//        $this->setApiKey($model->getPaymentMethod()->getType()->getGateway()->getParameter('apiKey'));
+        /** @var Gateway $gateway */
+        $gateway = $model->getPaymentMethod()->getType()->getGateway();
+//        $this->setMerchant($gateway->getMerchant());
+        $this->setSecretKey($gateway->getSecretKey());
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function generateCtrl()
+    {
+        return $this->getModelCtrl();
+    }
+
+    /**
+     * @return string
+     */
+    public function getModelCtrl()
+    {
+        /** @var IsPurchasableModelTrait $model */
+        $model = $this->getModel();
+        /** @var Gateway $gateway */
+        $gateway = $model->getPaymentMethod()->getType()->getGateway();
+        $purchaseRequest = $gateway->purchaseFromModel($model);
+
+        return $purchaseRequest->getCtrl();
     }
 }
