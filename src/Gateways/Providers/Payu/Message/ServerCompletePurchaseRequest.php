@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Providers\Payu\Message;
 
 use ByTIC\Omnipay\Payu\Message\ServerCompletePurchaseRequest as AbstractServerCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
+use ByTIC\Payments\Gateways\Providers\Payu\Gateway;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
@@ -29,16 +30,29 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
     }
 
     /**
-     * @return bool|mixed
+     * @inheritdoc
      */
-    protected function parseNotification()
+    protected function isValidNotification()
     {
-        if ($this->validateModel()) {
-            $model = $this->getModel();
-            $this->updateParametersFromModel($model);
+        if ($this->hasPOST('REFNOEXT')) {
+            if ($this->validateModel()) {
+                $model = $this->getModel();
+                $this->updateParametersFromModel($model);
+
+                return parent::isValidNotification();
+            }
         }
 
-        return parent::parseNotification();
+        return false;
+    }
+
+    /**
+     * Returns ID if it has it
+     * @return int
+     */
+    public function getModelIdFromRequest()
+    {
+        return $this->httpRequest->request->get('REFNOEXT');
     }
 
     /**
@@ -46,6 +60,9 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
      */
     protected function updateParametersFromModel($model)
     {
-//        $this->setApiKey($model->getPaymentMethod()->getType()->getGateway()->getParameter('apiKey'));
+        /** @var Gateway $gateway */
+        $gateway = $model->getPaymentMethod()->getType()->getGateway();
+//        $this->setMerchant($gateway->getMerchant());
+        $this->setSecretKey($gateway->getSecretKey());
     }
 }
