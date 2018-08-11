@@ -16,7 +16,6 @@ use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as Abstr
  */
 class GatewayTest extends AbstractGatewayTest
 {
-
     public function testPurchaseResponse()
     {
 //        Debug::debug($this->gateway->getParameters());
