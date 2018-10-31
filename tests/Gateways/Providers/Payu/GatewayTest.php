@@ -23,6 +23,8 @@ class GatewayTest extends AbstractGatewayTest
 //        Debug::debug($this->gateway->getParameters());
 //        Debug::debug($request->getParameters());
 
+        $this->client->setDefaultOption('verify', false);
+
         /** @var PurchaseResponse $response */
         $response = $request->send();
         self::assertInstanceOf(PurchaseResponse::class, $response);
