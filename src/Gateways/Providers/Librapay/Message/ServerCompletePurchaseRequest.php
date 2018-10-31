@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Providers\Librapay\Message;
 
 use ByTIC\Omnipay\Librapay\Message\ServerCompletePurchaseRequest as AbstractServerCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
+use ByTIC\Payments\Gateways\Providers\Librapay\Gateway;
 use ByTIC\Payments\Gateways\Providers\Librapay\Helper;
 use ByTIC\Payments\Gateways\Providers\Librapay\Message\Traits\CompletePurchaseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
@@ -60,6 +61,13 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
      */
     protected function updateParametersFromModel($model)
     {
-        $this->setApiKey($model->getPaymentMethod()->getType()->getGateway()->getParameter('apiKey'));
+        /** @var Gateway $modelGateway */
+        $modelGateway = $model->getPaymentMethod()->getType()->getGateway();
+        $this->setMerchant($modelGateway->getMerchant());
+        $this->setMerchantName($modelGateway->getMerchantName());
+        $this->setMerchantEmail($modelGateway->getMerchantEmail());
+        $this->setMerchantUrl($modelGateway->getMerchantUrl());
+        $this->setTerminal($modelGateway->getTerminal());
+        $this->setKey($modelGateway->getKey());
     }
 }
