@@ -3,7 +3,7 @@
   "type": "library",
   "license": "MIT",
   "description": "Payments module for bytic library",
-  "keywords": [  ],
+  "keywords": [],
   "homepage": "https://github.com/ByTIC/payments",
   "authors": [
     {
@@ -39,8 +39,11 @@
   },
   "require-dev": {
     "vlucas/phpdotenv": "^2.4",
-    "squizlabs/php_codesniffer": "^3.0",
-    "phpunit/phpunit": "^6.2",
-    "mockery/mockery": "^0.9"
+    "bytic/facebook-pixel": "^1.0",
+    "phpunit/phpunit": "^7.5",
+    "mockery/mockery": "^1.2"
+  },
+  "suggest": {
+    "bytic/facebook-pixel": "^1.0"
   }
 }

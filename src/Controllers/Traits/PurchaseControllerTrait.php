@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Controllers\Traits;
 
 use ByTIC\Common\Records\Record;
+use ByTIC\FacebookPixel\FacebookPixel;
 use ByTIC\Omnipay\Common\Message\Traits\HtmlResponses\ConfirmHtmlTrait;
 use ByTIC\Omnipay\Common\Message\Traits\RedirectHtmlTrait;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
@@ -27,11 +28,26 @@ trait PurchaseControllerTrait
         $request = $model->getPurchaseRequest();
         /** @var RedirectHtmlTrait $response */
         $response = $request->send();
+        $this->redirectToPaymentPrepareResponse($response, $model);
+        echo $response->getRedirectResponse()->getContent();
+        die();
+    }
+
+    /**
+     * @param RedirectHtmlTrait $response
+     * @param Record|IsPurchasableModelTrait $model
+     */
+    protected function redirectToPaymentPrepareResponse($response, $model)
+    {
         $response->getView()->set('subtitle', $model->getPurchaseName());
         $response->getView()->set('item', $model);
         $response->getView()->set('response', $model);
-        echo $response->getRedirectResponse()->getContent();
-        die();
+
+        if (method_exists($this, 'getFacebookPixelToPaymentResponse')) {
+            /** @var FacebookPixel $facebookPixel */
+            $facebookPixel = $this->getFacebookPixelToPaymentResponse($model);
+            $response->getView()->append('footer_body', $facebookPixel->render());
+        }
     }
 
     /**
@@ -67,6 +83,7 @@ trait PurchaseControllerTrait
         if (($response instanceof AbstractResponse) === false) {
             $this->dispatchAccessDeniedResponse();
         }
+
         return $response;
     }
 
@@ -115,6 +132,7 @@ trait PurchaseControllerTrait
         if (($response instanceof AbstractResponse) === false) {
             $this->dispatchAccessDeniedResponse();
         }
+
         return $response;
     }
 
