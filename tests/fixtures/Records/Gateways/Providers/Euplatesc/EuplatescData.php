@@ -15,10 +15,11 @@ class EuplatescData
      */
     public static function getMethodOptions()
     {
-        $data = 'a:2:{s:15:"payment_gateway";s:9:"euplatesc";s:9:"euplatesc";' .
-            'a:2:{s:3:"mid";s:11:"' . getenv('EUPLATESC_MID') . '";' .
-            's:3:"key";s:40:"' . getenv('EUPLATESC_KEY') . '";'
-            . '}}';
+        $data = 'a:2:{s:15:"payment_gateway";s:9:"euplatesc";s:9:"euplatesc";'.
+            'a:2:{s:3:"mid";s:11:"'.getenv('EUPLATESC_MID').'";'.
+            's:3:"key";s:40:"'.getenv('EUPLATESC_KEY').'";'
+            .'}}';
+
         return $data;
     }
 
@@ -29,9 +30,45 @@ class EuplatescData
     {
         $httpRequest = new HttpRequest();
 
-        /** @noinspection LongLine */
-        $post = 'a:12:{s:6:"amount";s:5:"50.00";s:4:"curr";s:3:"RON";s:10:"invoice_id";s:5:"37250";s:5:"ep_id";s:40:"ACADA61AF7BB5F33A94F81B91E78EF6D9EEE6800";s:8:"merch_id";s:11:"44840981287";s:6:"action";s:1:"0";s:7:"message";s:8:"Approved";s:8:"approval";s:6:"160858";s:9:"timestamp";s:14:"20161023100340";s:5:"nonce";s:32:"a86fef0d181bb93aaad382476589d80e";s:7:"fp_hash";s:32:"B20CF95958C6BF5A337D3AB60D5D9987";s:4:"lang";s:2:"hu";}';
-        $httpRequest->request->add(unserialize($post));
+        $httpRequest->request->add([
+            'amount' => '10.00',
+            'curr' => 'RON',
+            'invoice_id' => '24669',
+            'ep_id' => '76B746EF9E40BEC9C8B5FB770C183B4F25E69A5C',
+            'merch_id' => '44840981287',
+            'action' => '0',
+            'message' => 'Approved',
+            'approval' => '457310',
+            'timestamp' => '20160217143252',
+            'nonce' => '30364e770f52f3480674f27ed3f8baa4',
+            'fp_hash' => 'EE0741518710927424DF7802BC82E849',
+            'lang' => 'ro',
+        ]);
+
+        return $httpRequest;
+    }
+
+    /**
+     * @return HttpRequest
+     */
+    public static function getCompletePurchaseRequestError()
+    {
+        $httpRequest = new HttpRequest();
+
+        $httpRequest->request->add([
+            'amount' => '10.00',
+            'curr' => 'RON',
+            'invoice_id' => '24677',
+            'ep_id' => 'C4A9E42575AE6A1B8CF16811BAD41BB9065D7BBC',
+            'merch_id' => '44840981287',
+            'action' => '3',
+            'message' => 'Authentication failed',
+            'approval' => '',
+            'timestamp' => '20160217154530',
+            'nonce' => '1fc0444aeb5d304be6c7010f98ff5383',
+            'fp_hash' => '0063140751D2F6235732F51E3EE74718',
+            'lang' => 'ro',
+        ]);
 
         return $httpRequest;
     }
@@ -43,9 +80,20 @@ class EuplatescData
     {
         $httpRequest = new HttpRequest();
 
-        /** @noinspection LongLine */
-        $post = 'a:12:{s:6:"amount";s:5:"50.00";s:4:"curr";s:3:"RON";s:10:"invoice_id";s:5:"37250";s:5:"ep_id";s:40:"ACADA61AF7BB5F33A94F81B91E78EF6D9EEE6800";s:8:"merch_id";s:11:"44840981287";s:6:"action";s:1:"0";s:7:"message";s:8:"Approved";s:8:"approval";s:6:"160858";s:9:"timestamp";s:14:"20161023100340";s:5:"nonce";s:32:"a5927e73d601d1e3d9cb70c0106227dc";s:7:"fp_hash";s:32:"E47F2704559D6CC63C065971679F4CD9";s:7:"backurl";s:68:"https://secure.euplatesc.ro/tdsprocess/silent/reply_confirmation.php";}';
-        $httpRequest->request->add(unserialize($post));
+        $httpRequest->request->add([
+            'amount' => '10.00',
+            'curr' => 'RON',
+            'invoice_id' => '24669',
+            'ep_id' => '76B746EF9E40BEC9C8B5FB770C183B4F25E69A5C',
+            'merch_id' => '44840981287',
+            'action' => '0',
+            'message' => 'Approved',
+            'approval' => '457310',
+            'timestamp' => '20160217143252',
+            'nonce' => '30364e770f52f3480674f27ed3f8baa4',
+            'fp_hash' => 'EE0741518710927424DF7802BC82E849',
+            'lang' => 'ro',
+        ]);
 
         return $httpRequest;
     }

@@ -2,8 +2,8 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\Euplatesc;
 
-use ByTIC\Common\Payments\Gateways\Providers\Euplatesc\Message\CompletePurchaseResponse;
-use ByTIC\Common\Payments\Gateways\Providers\Euplatesc\Message\PurchaseResponse;
+use ByTIC\Omnipay\Euplatesc\Message\CompletePurchaseResponse;
+use ByTIC\Omnipay\Euplatesc\Message\PurchaseResponse;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethod;
 
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
@@ -38,7 +38,7 @@ class GatewayTest extends AbstractGatewayTest
         $body = $gatewayResponse->getBody(true);
 
         if (strpos($body, '<META HTTP-EQUIV=') === false) {
-            $crawler = new Crawler('<body>' . $body . '</body>', $gatewayResponse->getEffectiveUrl());
+            $crawler = new Crawler('<body>'.$body.'</body>', $gatewayResponse->getEffectiveUrl());
             $form = $crawler->filter('form')->form();
 
             self::assertSame('https://secure2.euplatesc.ro/tdsprocess/tranzactd.php', $form->getUri());
@@ -65,6 +65,22 @@ class GatewayTest extends AbstractGatewayTest
         $this->checkGenericCompletePurchaseResponse('completePurchase', $httpRequest);
     }
 
+    public function testCompletePurchaseResponseError()
+    {
+        /** @var CompletePurchaseResponse $response */
+        $response = $this->gatewayManager->detectItemFromHttpRequest(
+            $this->purchaseManager,
+            'completePurchase',
+            EuplatescData::getCompletePurchaseRequestError()
+        );
+        self::assertInstanceOf(CompletePurchaseResponse::class, $response);
+        self::assertEquals(3, $response->getCode());
+        self::assertFalse($response->isSuccessful());
+        self::assertFalse($response->isPending());
+        self::assertFalse($response->isCancelled());
+        self::assertSame('error', $response->getModelResponseStatus());
+    }
+
     public function testServerCompletePurchaseAuthorizedResponse()
     {
         $httpRequest = EuplatescData::getServerCompletePurchaseRequest();
@@ -86,10 +102,10 @@ class GatewayTest extends AbstractGatewayTest
 
 //        self::assertInstanceOf(CompletePurchaseResponse::class, $response);
         self::assertEquals(0, $response->getCode());
-        self::assertEquals('2016-10-23 10:03:40', $response->getTransactionDate());
+        self::assertEquals('2016-02-17 14:32:52', $response->getTransactionDate());
         self::assertTrue($response->isSuccessful());
         self::assertEquals('active', $response->getModelResponseStatus());
-        self::assertEquals($response->getTransactionId(), $response->getModel()->getPrimaryKey());
+        self::assertEquals($response->getTransactionId(), '24669');
     }
 
     protected function setUp()

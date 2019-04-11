@@ -87,6 +87,9 @@ trait HasModelProcessedResponse
      */
     public function getTransactionDate()
     {
+        if (is_callable('parent::getTransactionDate')) {
+            return parent::getTransactionDate();
+        }
         return date('Y-m-d H:i:s');
     }
 
