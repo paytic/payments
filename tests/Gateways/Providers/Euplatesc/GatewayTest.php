@@ -28,7 +28,7 @@ class GatewayTest extends AbstractGatewayTest
 
         $data = $response->getRedirectData();
 //        Debug::debug($data);
-        self::assertCount(17, $data);
+        self::assertCount(18, $data);
         self::assertSame('44840981287', $data['merch_id']);
 
         $gatewayResponse = $this->client->post($response->getRedirectUrl(), null, $data)->send();
