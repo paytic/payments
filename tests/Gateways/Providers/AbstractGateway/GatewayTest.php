@@ -64,6 +64,14 @@ abstract class GatewayTest extends AbstractTest
         $this->purchase->shouldReceive('getPurchaseBillingRecord')->andReturn($billing);
 
         $this->client = new \Guzzle\Http\Client();
+        $this->client->setConfig(
+            [
+                'curl.CURLOPT_SSL_VERIFYHOST' => false,
+                'curl.CURLOPT_SSL_VERIFYPEER' => false
+            ]
+        );
+        $this->client->setSslVerification(false, false);
+
         $this->gatewayManager = new GatewaysManager();
     }
 
