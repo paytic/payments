@@ -33,6 +33,7 @@
     "bytic/common": "^1.0",
     "bytic/medialibrary": "^0.9",
     "bytic/omnipay-mobilpay": "^1.0",
+    "bytic/omnipay-euplatesc": "^1.0",
     "bytic/omnipay-twispay": "^1.0",
     "bytic/omnipay-librapay": "^1.0",
     "bytic/omnipay-payu": "^1.0"
@@ -40,6 +41,7 @@
   "require-dev": {
     "vlucas/phpdotenv": "^2.4",
     "bytic/facebook-pixel": "^1.0",
+    "symfony/dom-crawler": "^3.3",
     "phpunit/phpunit": "^7.5",
     "mockery/mockery": "^1.2"
   },

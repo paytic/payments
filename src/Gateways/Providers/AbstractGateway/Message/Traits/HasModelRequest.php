@@ -68,6 +68,9 @@ trait HasModelRequest
      */
     public function getModelIdFromRequest()
     {
+        if (is_callable('parent::getModelIdFromRequest')) {
+            return parent::getModelIdFromRequest();
+        }
         return false;
     }
 

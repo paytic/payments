@@ -91,6 +91,8 @@ abstract class GatewayTest extends AbstractTest
     {
         $purchaseManager = m::mock(PurchasableRecordManager::class)->makePartial();
         $purchaseManager->shouldReceive('findOne')->withArgs([37250])->andReturn($purchase);
+        $purchaseManager->shouldReceive('findOne')->withArgs([24669])->andReturn($purchase);
+        $purchaseManager->shouldReceive('findOne')->withArgs([24677])->andReturn($purchase);
 
         return $purchaseManager;
     }
