@@ -26,6 +26,14 @@ class PaymentMethod extends Record
     }
 
     /**
+     * @return string
+     */
+    protected function inflectManagerName()
+    {
+        return PaymentMethods::class;
+    }
+
+    /**
      * @return int
      */
     public function getPurchasesCount()
