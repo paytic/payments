@@ -12,6 +12,7 @@ if (file_exists(__DIR__.DIRECTORY_SEPARATOR.'.env')) {
     $dotenv->load();
 }
 
+Container::setInstance(new Container());
 Container::getInstance()->set('inflector', \Nip\Inflector\Inflector::instance());
 
 require dirname(__DIR__) . '/vendor/autoload.php';
