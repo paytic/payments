@@ -9,6 +9,10 @@ use ByTIC\Payments\Models\Methods\Types\Waiver;
 use ByTIC\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 
+/**
+ * Class RecordTraitTest
+ * @package ByTIC\Payments\Tests\Models\Methods\Traits
+ */
 class RecordTraitTest extends AbstractTest
 {
 
