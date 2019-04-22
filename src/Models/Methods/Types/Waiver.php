@@ -8,4 +8,5 @@ namespace ByTIC\Payments\Models\Methods\Types;
  */
 class Waiver extends AbstractType
 {
+    public $name = 'waiver';
 }

@@ -1,12 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Fixtures\Records;
+namespace ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods;
 
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodTrait;
 use Nip\Records\AbstractModels\Record;
 
 /**
- * Class PurchasableRecord
+ * Class PaymentMethod
+ * @package ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods
  */
 class PaymentMethod extends Record
 {
