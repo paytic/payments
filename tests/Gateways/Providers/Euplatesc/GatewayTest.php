@@ -4,7 +4,7 @@ namespace ByTIC\Payments\Tests\Gateways\Providers\Euplatesc;
 
 use ByTIC\Omnipay\Euplatesc\Message\CompletePurchaseResponse;
 use ByTIC\Omnipay\Euplatesc\Message\PurchaseResponse;
-use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethod;
+use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Euplatesc\EuplatescData;
