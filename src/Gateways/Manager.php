@@ -104,6 +104,7 @@ class Manager
             'Mobilpay',
             'Euplatesc',
             'Librapay',
+            'Romcard',
             'Twispay'
         ];
     }
