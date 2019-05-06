@@ -2,8 +2,8 @@
 
 namespace ByTIC\Payments\Tests\Fixtures\Records;
 
-use ByTIC\Common\Payments\Models\Methods\Traits\RecordTrait;
-use ByTIC\Common\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use ByTIC\Payments\Models\Methods\Traits\RecordTrait;
+use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\AbstractModels\Record;
 
 /**

@@ -22,7 +22,7 @@ class PaymentMethod extends Record
      */
     public function getFilesDirectory()
     {
-        return codecept_data_dir('PaymentGateways'.DIRECTORY_SEPARATOR);
+        return TEST_FIXTURE_PATH. '/files/';
     }
 
     /**

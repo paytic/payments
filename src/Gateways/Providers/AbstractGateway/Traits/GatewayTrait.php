@@ -22,6 +22,8 @@ trait GatewayTrait
     use NameWorksTrait;
     use MagicMessagesTrait;
     use HasFormsTrait;
+    use DetectFromHttpRequestTrait;
+
     /**
      * @var null|string
      */
@@ -74,6 +76,9 @@ trait GatewayTrait
         $return = $this->createNamespacedRequest($request, $parameters);
         if ($return) {
             return $return;
+        }
+        if (!method_exists($this, $request)) {
+            return null;
         }
         /** @noinspection PhpUndefinedMethodInspection */
         /** @noinspection PhpUndefinedClassInspection */

@@ -33,7 +33,15 @@ trait IsPurchasableModelTrait
      */
     public function getPurchaseRequest()
     {
-        return $this->getPaymentMethod()->getGateway()->purchaseFromModel($this);
+        return $this->getPaymentGateway()->purchaseFromModel($this);
+    }
+
+    /**
+     * @return bool|\ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait|null
+     */
+    public function getPaymentGateway()
+    {
+        return $this->getPaymentMethod()->getGateway();
     }
 
     /**
