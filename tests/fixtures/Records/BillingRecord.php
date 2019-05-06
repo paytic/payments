@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Tests\Fixtures\Records;
 
-use ByTIC\Common\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
+use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
 use ByTIC\Common\Records\Traits\HasSerializedOptions\RecordTrait as HasSerializedOptions;
 use Nip\Records\AbstractModels\Record;
 
