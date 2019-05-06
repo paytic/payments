@@ -36,7 +36,6 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
     public function getModelIdFromRequest()
     {
         $modelId = $this->getHttpRequestBag()->get('ORDER');
-        $modelId = Helper::decodeOrderId($modelId);
 
         return $modelId;
     }

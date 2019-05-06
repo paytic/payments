@@ -16,11 +16,13 @@ trait CompletePurchaseTrait
     protected function updateParametersFromModel($model)
     {
         /** @var Gateway $gateway */
-        $gateway = $model->getPaymentMethod()->getType()->getGateway();
-        $this->setTerminal($gateway->getTerminal());
-        $this->setKey($gateway->getKey());
-        $this->setMerchantName($gateway->getMerchantName());
-        $this->setMerchantEmail($gateway->getMerchantEmail());
-        $this->setMerchantUrl($gateway->getMerchantUrl());
+        $gateway = $model->getPaymentGateway();
+        if ($gateway) {
+            $this->setTerminal($gateway->getTerminal());
+            $this->setKey($gateway->getKey());
+            $this->setMerchantName($gateway->getMerchantName());
+            $this->setMerchantEmail($gateway->getMerchantEmail());
+            $this->setMerchantUrl($gateway->getMerchantUrl());
+        }
     }
 }
