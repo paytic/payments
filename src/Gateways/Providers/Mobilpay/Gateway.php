@@ -27,18 +27,19 @@ class Gateway extends AbstractGateway
         return false;
     }
 
-//    /**
-//     * @return bool
-//     */
-//    public function isActive()
-//    {
-//        $this->validateFilePath('certificate');
-//        $this->validateFilePath('privateKey');
-//
-//        if ($this->getSandbox() && is_file($this->getCertificate())) {
-//            return true;
-//        }
-//
-//        return false;
-//    }
+    /**
+     * @inheritDoc
+     */
+    public function setSandbox($value)
+    {
+        return $this->setTestMode($value == 'yes');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSandbox()
+    {
+        return $this->getTestMode() === true ? 'yes' : 'no';
+    }
 }
