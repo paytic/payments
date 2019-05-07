@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Gateways\Providers\Librapay\Message;
 
 use ByTIC\Omnipay\Librapay\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\CompletePurchaseRequestInterface;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
 use ByTIC\Payments\Gateways\Providers\Librapay\Helper;
 use ByTIC\Payments\Gateways\Providers\Librapay\Message\Traits\CompletePurchaseTrait;

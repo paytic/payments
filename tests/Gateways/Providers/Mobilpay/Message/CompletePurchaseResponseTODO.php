@@ -8,7 +8,7 @@ use ByTIC\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Message\CompletePurchaseResponseTestTrait;
 use Symfony\Component\HttpFoundation\Request;
 
-class CompletePurchaseResponseTest extends AbstractTest
+class CompletePurchaseResponseTODO extends AbstractTest
 {
 //    use CompletePurchaseResponseTestTrait;
 //

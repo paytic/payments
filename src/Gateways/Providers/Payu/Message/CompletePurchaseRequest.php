@@ -32,7 +32,7 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
     /**
      * @inheritdoc
      */
-    protected function isValidNotification()
+    public function isValidNotification()
     {
         if ($this->hasGet('id')) {
             if ($this->validateModel()) {

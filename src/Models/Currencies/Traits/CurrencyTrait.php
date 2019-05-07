@@ -27,7 +27,7 @@ trait CurrencyTrait
     public function moneyHTMLFormat($amount)
     {
         $integerValue = floor($amount);
-        $decimalValue = round(($amount - $integerValue)*100,0);
+        $decimalValue = round(($amount - $integerValue)*100, 0);
         $intHTML = '<span class="money-int">'.number_format($integerValue).'</span>';
 
         $decimalHTML = '<sup class="money-decimal">.'

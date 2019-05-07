@@ -32,7 +32,7 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
     /**
      * @inheritdoc
      */
-    protected function isValidNotification()
+    public function isValidNotification()
     {
         if ($this->hasPOST('REFNOEXT')) {
             if ($this->validateModel()) {

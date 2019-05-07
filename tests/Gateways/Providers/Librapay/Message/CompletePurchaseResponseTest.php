@@ -14,7 +14,6 @@ class CompletePurchaseResponseTest extends AbstractTest
 
     protected function getNewResponse()
     {
-
         $request = new CompletePurchaseRequest($this->client, new Request());
 
         return new CompletePurchaseResponse($request, []);

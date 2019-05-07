@@ -3,10 +3,10 @@
 namespace ByTIC\Payments\Gateways;
 
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
-use HttpRequest;
 use Nip\Records\AbstractModels\RecordManager;
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Message\AbstractResponse;
+use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Class Payment_Gateways
@@ -36,22 +36,33 @@ class Manager
      */
     public static function detectItemFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
     {
-        $callback = $callback ? $callback : 'completePurchase';
+        $request = self::getRequestFromHttpRequest($modelManager, $callback, $httpRequest);
+        if (!is_subclass_of($request, AbstractRequest::class)) {
+            return false;
+        }
+
+        $response = $request->send();
+        if (!is_subclass_of($response, AbstractResponse::class)) {
+            return false;
+        }
+        return $response;
+    }
+
+
+    /**
+     * @param RecordManager $modelManager
+     * @param string $callback
+     * @param null|HttpRequest $httpRequest
+     * @return bool|\Omnipay\Common\Message\ResponseInterface
+     */
+    public static function getRequestFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
+    {
         $items = self::getAll();
 
         foreach ($items as $item) {
-            if ($httpRequest) {
-                $item->setHttpRequest($httpRequest);
-            }
-            if (method_exists($item, $callback)) {
-                /** @var AbstractRequest $request */
-                $request = $item->$callback(['modelManager' => $modelManager]);
-                if ($request) {
-                    $response = $request->send();
-                    if (is_subclass_of($response, AbstractResponse::class)) {
-                        return $response;
-                    }
-                }
+            $request = $item->detectFromHttpRequestTrait($modelManager, $callback, $httpRequest);
+            if (is_subclass_of($request, AbstractRequest::class)) {
+                return $request;
             }
         }
 
