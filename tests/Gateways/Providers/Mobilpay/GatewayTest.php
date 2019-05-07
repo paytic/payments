@@ -6,7 +6,7 @@ use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Message\CompletePurchaseRe
 use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Message\PurchaseResponse;
 use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Message\ServerCompletePurchaseResponse;
 use ByTIC\Payments\Gateways\Providers\Mobilpay\Gateway;
-use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\MobilPay\MobilpayData;
+use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Mobilpay\MobilpayData;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 
 /**
