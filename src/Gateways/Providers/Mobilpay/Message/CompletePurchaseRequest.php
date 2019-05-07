@@ -2,16 +2,16 @@
 
 namespace ByTIC\Payments\Gateways\Providers\Mobilpay\Message;
 
-use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest as AbstractServerCompletePurchaseRequest;
+use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
 use ByTIC\Payments\Gateways\Providers\Mobilpay\Gateway;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
- * Class ServerCompletePurchaseRequest
+ * Class PurchaseResponse
  * @package ByTIC\Payments\Gateways\Providers\Mobilpay\Message
  */
-class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseRequest
+class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {
     use HasModelRequest;
 
@@ -22,11 +22,21 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
     {
         $return = parent::getData();
         // Add model only if has data
-        if (count($return)) {
+        if (count($return) && $this->validateModel()) {
             $return['model'] = $this->getModel();
         }
 
         return $return;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getModelIdFromRequest()
+    {
+        $modelId = $this->httpRequest->query->get('orderId');
+
+        return $modelId;
     }
 
     /**

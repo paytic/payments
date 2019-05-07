@@ -30,6 +30,45 @@ class Gateway extends AbstractGateway
     /**
      * @inheritDoc
      */
+    public function initialize(array $parameters = [])
+    {
+        if (isset($parameters['private-key'])) {
+            $parameters['privateKey'] = $parameters['private-key'];
+            unset($parameters['private-key']);
+        }
+
+        return parent::initialize($parameters);
+    }
+
+    /**
+     * @param $certificate
+     * @throws \Exception
+     */
+    public function setFile($certificate)
+    {
+        if ($certificate == 'public.cer') {
+            $certificate = $this->getFilePath('certificate');
+        }
+
+        return parent::setCertificate($certificate);
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function setPrivateKey(string $key)
+    {
+        if ($key == 'private.key') {
+            $key = $this->getFilePath('privateKey');
+        }
+
+        return parent::setPrivateKey($key);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function setSandbox($value)
     {
         return $this->setTestMode($value == 'yes');
@@ -41,5 +80,42 @@ class Gateway extends AbstractGateway
     public function getSandbox()
     {
         return $this->getTestMode() === true ? 'yes' : 'no';
+    }
+
+    /**
+     * @param $type
+     * @return bool|string
+     * @throws \Exception
+     */
+    protected function validateFilePath($type)
+    {
+        $path = $this->getParameter($type);
+        if (strpos($path, DIRECTORY_SEPARATOR) === false) {
+            $path = $this->getFilePath($type);
+        }
+
+        return $this->setParameter($type, $path);
+    }
+
+    /**
+     * @param $type
+     * @return string
+     */
+    protected function getFilePath($type)
+    {
+        $fileName = [
+            'certificate' => 'public.cer',
+            'privateKey' => 'private.key',
+        ];
+
+        return $this->getFileDirectoryPath().$fileName[$type];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getFileDirectoryPath()
+    {
+        return $this->getPaymentMethod() ? $this->getPaymentMethod()->getFilesDirectory() : null;
     }
 }
