@@ -3,7 +3,9 @@
 namespace ByTIC\Payments\Tests\Gateways\Providers\Romcard;
 
 use ByTIC\Omnipay\Romcard\Message\PurchaseResponse;
+use ByTIC\Omnipay\Romcard\Message\SaleRequest;
 use ByTIC\Payments\Gateways\Providers\Romcard\Gateway;
+use ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Romcard\RomcardData;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
@@ -35,6 +37,15 @@ class GatewayTest extends AbstractGatewayTest
 
         self::assertContains('Tranzactie Aprobata', $body);
         self::assertContains('value="Aproba" name="SEND_BUTTON"', $body);
+    }
+
+    public function testCompletePurchaseRequest()
+    {
+        /** @var CompletePurchaseRequest $request */
+        $request = $this->gateway->completePurchase([]);
+
+        self::assertInstanceOf(CompletePurchaseRequest::class, $request);
+        self::assertInstanceOf(SaleRequest::class, $request->getSaleRequest());
     }
 
     public function testIsActive()
