@@ -12,4 +12,20 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 class Gateway extends AbstractGateway
 {
     use GatewayTrait;
+
+    /**
+     * @inheritDoc
+     */
+    public function setSandbox($value)
+    {
+        return $this->setTestMode($value == 'yes');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSandbox()
+    {
+        return $this->getTestMode() === true ? 'yes' : 'no';
+    }
 }

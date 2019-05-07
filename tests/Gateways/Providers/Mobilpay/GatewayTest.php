@@ -19,7 +19,6 @@ class GatewayTest extends AbstractGatewayTest
     {
         /** @var PurchaseRequest $request */
         $request = $this->gateway->purchaseFromModel($this->purchase);
-        self::assertSame('no', $request->getSandbox());
         self::assertSame(false, $request->getTestMode());
 
         /** @var PurchaseResponse $response */
@@ -44,11 +43,9 @@ class GatewayTest extends AbstractGatewayTest
     public function testPurchaseResponseSandbox()
     {
 //        Debug::debug($this->gateway->getParameters());
-        $this->gateway->setSandbox('yes');
         $this->gateway->setTestMode(true);
         /** @var PurchaseRequest $request */
         $request = $this->gateway->purchaseFromModel($this->purchase);
-        self::assertSame('yes', $request->getSandbox());
         self::assertSame(true, $request->getTestMode());
 
         /** @var PurchaseResponse $response */
