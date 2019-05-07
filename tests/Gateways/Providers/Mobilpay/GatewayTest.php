@@ -2,10 +2,10 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\Mobilpay;
 
-use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Message\CompletePurchaseResponse;
-use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Message\PurchaseResponse;
-use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Message\ServerCompletePurchaseResponse;
-use ByTIC\Payments\Gateways\Providers\Mobilpay\Gateway;
+use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseResponse;
+use ByTIC\Omnipay\Mobilpay\Message\PurchaseResponse;
+use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
+use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Mobilpay\MobilpayData;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 
@@ -111,11 +111,7 @@ class GatewayTest extends AbstractGatewayTest
         );
 
         self::assertInstanceOf(ServerCompletePurchaseResponse::class, $response);
-
-        self::assertTrue($response->isValid());
-
-        $data = $response->getData();
-        self::assertCount(2, $data['ipn_data']);
+        self::assertInstanceOf(Card::class, $response->getMobilpayRequest());
 
         return $response;
     }
@@ -134,7 +130,7 @@ class GatewayTest extends AbstractGatewayTest
 
         $content = $response->getContent();
         $validContent = '<?xml version="1.0" encoding="utf-8"?>'."\n";
-        $validContent .= '<crc>ddd90d683660bbb7581bf5cb942a7207</crc>';
+        $validContent .= '<crc error_type="20" error_code="20">Fonduri insuficiente.</crc>';
         self::assertSame($validContent, $content);
     }
 
@@ -152,7 +148,7 @@ class GatewayTest extends AbstractGatewayTest
 
         $content = $response->getContent();
         $validContent = '<?xml version="1.0" encoding="utf-8"?>'."\n";
-        $validContent .= '<crc>bf7a163c9d2c9c3c13de601998bb02c6</crc>';
+        $validContent .= '<crc error_type="35" error_code="35"> </crc>';
         self::assertSame($validContent, $content);
     }
 
@@ -170,7 +166,7 @@ class GatewayTest extends AbstractGatewayTest
 
         $content = $response->getContent();
         $validContent = '<?xml version="1.0" encoding="utf-8"?>'."\n";
-        $validContent .= '<crc>0582f27ad4d49f7723dd8cfd91901b0e</crc>';
+        $validContent .= '<crc error_type="39" error_code="39">gwDeclined3DSecure</crc>';
         self::assertSame($validContent, $content);
     }
 
