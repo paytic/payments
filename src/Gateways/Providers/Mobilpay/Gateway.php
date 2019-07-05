@@ -23,6 +23,14 @@ class Gateway extends AbstractGateway
             unset($parameters['private-key']);
         }
 
+        if (isset($parameters['file']) && is_array($parameters['file'])) {
+            $parameters['file'] = 'public.cer';
+        }
+
+        if (isset($parameters['privateKey']) && is_array($parameters['privateKey'])) {
+            $parameters['file'] = 'private.key';
+        }
+
         return parent::initialize($parameters);
     }
 

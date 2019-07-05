@@ -10,4 +10,9 @@ use Nip\Records\AbstractModels\RecordManager;
 class PurchasableRecordManager extends RecordManager
 {
     protected $primaryKey = 'id';
+
+    public function getPaymentsUrlPK()
+    {
+        return 'id';
+    }
 }
