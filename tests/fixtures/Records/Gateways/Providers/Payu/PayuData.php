@@ -30,7 +30,7 @@ class PayuData
     public static function getConfirmAuthorizedRequest()
     {
         $httpRequest = new HttpRequest();
-        $httpRequest->query->set('id', '37250');
+        $httpRequest->query->set('hash', '1fa49a9e64b18c4c5e04d281dc6a85cb');
         $httpRequest->query->set('ctrl', 'a300b00eb8622c89e3f4d47fe1ca6822');
 
         $_SERVER['HTTP_HOST'] = 'hospice.galantom.ro';

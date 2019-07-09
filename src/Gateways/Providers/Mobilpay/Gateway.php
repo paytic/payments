@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Providers\Mobilpay;
 
 use ByTIC\Omnipay\Mobilpay\Gateway as AbstractGateway;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\OverwriteServerCompletePurchaseTrait;
 
 //use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Gateway as AbstractGateway;
 
@@ -14,6 +15,7 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 class Gateway extends AbstractGateway
 {
     use GatewayTrait;
+    use OverwriteServerCompletePurchaseTrait;
 
     /**
      * @return bool
@@ -35,6 +37,14 @@ class Gateway extends AbstractGateway
         if (isset($parameters['private-key'])) {
             $parameters['privateKey'] = $parameters['private-key'];
             unset($parameters['private-key']);
+        }
+
+        if (isset($parameters['file']) && is_array($parameters['file'])) {
+            $parameters['file'] = 'public.cer';
+        }
+
+        if (isset($parameters['privateKey']) && is_array($parameters['privateKey'])) {
+            $parameters['file'] = 'private.key';
         }
 
         return parent::initialize($parameters);

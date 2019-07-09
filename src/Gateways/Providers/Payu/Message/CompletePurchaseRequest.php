@@ -34,7 +34,7 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
      */
     public function isValidNotification()
     {
-        if ($this->hasGet('id')) {
+        if ($this->hasGet('hash') || $this->hasGet('id')) {
             if ($this->validateModel()) {
                 return parent::isValidNotification();
             }
@@ -48,9 +48,11 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
      */
     public function getModelIdFromRequest()
     {
-        $modelId = $this->httpRequest->query->get('id');
+        if ($this->httpRequest->query->has('hash')) {
+            return $this->httpRequest->query->get('hash');
+        }
 
-        return $modelId;
+        return $this->httpRequest->query->get('id');
     }
 
     /**

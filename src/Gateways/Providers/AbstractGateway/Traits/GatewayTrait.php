@@ -23,6 +23,8 @@ trait GatewayTrait
     use MagicMessagesTrait;
     use HasFormsTrait;
     use DetectFromHttpRequestTrait;
+    use OverwriteCompletePurchaseTrait;
+
 
     /**
      * @var null|string
@@ -44,76 +46,7 @@ trait GatewayTrait
      */
     protected $paymentMethod;
 
-    // ------------ REQUESTS ------------ //
 
-    /**
-     * @param array $parameters
-     * @return RequestInterface|null
-     */
-    public function completePurchase(array $parameters = []): RequestInterface
-    {
-        return $this->createRequestWithInternalCheck('CompletePurchaseRequest', $parameters);
-    }
-
-    /**
-     * @param array $parameters
-     * @return RequestInterface|null
-     */
-    public function serverCompletePurchase(array $parameters = []): RequestInterface
-    {
-        return $this->createRequestWithInternalCheck('ServerCompletePurchaseRequest', $parameters);
-    }
-
-
-    // ------------ REQUESTS OVERLOADING ------------ //
-    /**
-     * @param $request
-     * @param array $parameters
-     * @return null|RequestInterface
-     */
-    protected function createRequestWithInternalCheck($request, array $parameters = []): RequestInterface
-    {
-        $return = $this->createNamespacedRequest($request, $parameters);
-        if ($return) {
-            return $return;
-        }
-        if (!method_exists($this, $request)) {
-            return null;
-        }
-        /** @noinspection PhpUndefinedMethodInspection */
-        /** @noinspection PhpUndefinedClassInspection */
-        return parent::{$request}($parameters);
-    }
-
-    /**
-     * @param $class
-     * @param array $parameters
-     * @return RequestInterface|null
-     */
-    protected function createNamespacedRequest($class, array $parameters)
-    {
-        $class = $this->getRequestClass($class);
-
-        if (class_exists($class)) {
-            return $this->createRequest($class, $parameters);
-        }
-
-        return null;
-    }
-
-    /**
-     * @param $class
-     * @return string
-     */
-    protected function getRequestClass($class)
-    {
-        $class = $this->getNamespacePath() . '\Message\\' . $class;
-
-        if (class_exists($class)) {
-            return $class;
-        }
-        return str_replace('ByTIC\Payments', 'ByTIC\Common\Payments', $class);
-    }
 
     /**
      * @param IsPurchasableModelTrait $record
@@ -257,15 +190,4 @@ trait GatewayTrait
      * @return boolean
      */
     abstract public function isActive();
-
-    /**
-     * @param $class
-     * @param array $parameters
-     * @return RequestInterface|null
-     * @deprecated Bad name
-     */
-    protected function createNamepacedRequest($class, array $parameters)
-    {
-        return $this->createNamespacedRequest($class, $parameters);
-    }
 }

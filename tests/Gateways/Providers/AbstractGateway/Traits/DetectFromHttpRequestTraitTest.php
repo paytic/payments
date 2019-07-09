@@ -8,6 +8,10 @@ use ByTIC\Payments\Tests\Fixtures\Records\PurchasableRecord;
 use ByTIC\Payments\Tests\Fixtures\Records\PurchasableRecordManager;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
+/**
+ * Class DetectFromHttpRequestTraitTest
+ * @package ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Traits
+ */
 class DetectFromHttpRequestTraitTest extends AbstractTest
 {
 

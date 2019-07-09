@@ -2,18 +2,19 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Message;
 
+use ByTIC\Payments\Gateways\Providers\Euplatesc\Message\ServerCompletePurchaseResponse;
+
 /**
- * Trait CompletePurchaseResponseTestTrait
+ * Trait ServerCompletePurchaseResponseTrait
  * @package ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Message
  */
-trait CompletePurchaseResponseTestTrait
+trait ServerCompletePurchaseResponseTrait
 {
-    public function testHasConfirmHtmlTraitTrait()
+    public function testHasSendMethod()
     {
         $response = $this->getNewResponse();
 
-        static::assertTrue(method_exists($response, 'getViewFile'));
-        static::assertTrue(method_exists($response, 'getView'));
+        static::assertTrue(method_exists($response, 'send'));
     }
 
     abstract protected function getNewResponse();

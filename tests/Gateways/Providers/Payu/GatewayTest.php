@@ -63,7 +63,7 @@ class GatewayTest extends AbstractGatewayTest
         self::assertInstanceOf(CompletePurchaseResponse::class, $response);
 
         self::assertTrue($response->isSuccessful());
-        self::assertEquals($httpRequest->query->get('id'), $response->getModel()->getPrimaryKey());
+        self::assertEquals(37250, $response->getModel()->getPrimaryKey());
 
         return $response;
     }
@@ -109,7 +109,19 @@ class GatewayTest extends AbstractGatewayTest
 
         $this->purchase->created = date('Y-m-d H:i:s');
 
+
         $this->gateway = $paymentMethod->getType()->getGateway();
         self::assertInstanceOf(Gateway::class, $this->gateway);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function generatePurchaseManagerMock($purchase)
+    {
+        $manager = parent::generatePurchaseManagerMock($purchase);
+        $manager->shouldReceive('getPaymentsUrlPK')->andReturn('hash');
+        $manager->shouldReceive('findOneByHash')->andReturn($purchase);
+        return $manager;
     }
 }
