@@ -20,4 +20,9 @@ class ServerCompletePurchaseResponse extends AbstractServerCompletePurchaseRespo
     {
         return true;
     }
+
+    public function send()
+    {
+        echo $this->getContent();
+    }
 }
