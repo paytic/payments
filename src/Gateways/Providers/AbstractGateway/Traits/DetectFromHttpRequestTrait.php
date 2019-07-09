@@ -5,6 +5,10 @@ namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
 use Omnipay\Common\Message\AbstractRequest;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
+/**
+ * Trait DetectFromHttpRequestTrait
+ * @package ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits
+ */
 trait DetectFromHttpRequestTrait
 {
     /**

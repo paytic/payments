@@ -37,10 +37,64 @@ trait MagicMessagesTrait
         throw new BadMethodCallException("Invalid method $name");
     }
 
+    // ------------ REQUESTS OVERLOADING ------------ //
+    /**
+     * @param $request
+     * @param array $parameters
+     * @return null|RequestInterface
+     */
+    protected function createRequestWithInternalCheck($request, array $parameters = [])
+    {
+        $return = $this->createNamespacedRequest($request, $parameters);
+        if ($return) {
+            return $return;
+        }
+        if (!method_exists($this, $request)) {
+            return null;
+        }
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return parent::{$request}($parameters);
+    }
+
     /**
      * @param $class
      * @param array $parameters
-     * @return RequestInterface
+     * @return RequestInterface|null
      */
-    abstract protected function createNamespacedRequest($class, array $parameters);
+    protected function createNamespacedRequest($class, array $parameters)
+    {
+        $class = $this->getRequestClass($class);
+
+        if (class_exists($class)) {
+            return $this->createRequest($class, $parameters);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $class
+     * @param array $parameters
+     * @return RequestInterface|null
+     * @deprecated Bad name
+     */
+    protected function createNamepacedRequest($class, array $parameters)
+    {
+        return $this->createNamespacedRequest($class, $parameters);
+    }
+
+    /**
+     * @param $class
+     * @return string
+     */
+    protected function getRequestClass($class)
+    {
+        $class = $this->getNamespacePath() . '\Message\\' . $class;
+
+        if (class_exists($class)) {
+            return $class;
+        }
+        return str_replace('ByTIC\Payments', 'ByTIC\Common\Payments', $class);
+    }
 }

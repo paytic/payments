@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Providers\Mobilpay;
 
 use ByTIC\Omnipay\Mobilpay\Gateway as AbstractGateway;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\OverwriteServerCompletePurchaseTrait;
 
 /**
  * Class Gateway
@@ -12,6 +13,7 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 class Gateway extends AbstractGateway
 {
     use GatewayTrait;
+    use OverwriteServerCompletePurchaseTrait;
 
     /**
      * @inheritDoc

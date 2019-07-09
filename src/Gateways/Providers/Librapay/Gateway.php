@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Gateways\Providers\Librapay;
 
 use ByTIC\Omnipay\Librapay\Gateway as AbstractGateway;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\OverwriteServerCompletePurchaseTrait;
 use ByTIC\Payments\Gateways\Providers\Librapay\Message\PurchaseRequest;
 use Omnipay\Common\Message\RequestInterface;
 
@@ -14,6 +15,7 @@ use Omnipay\Common\Message\RequestInterface;
 class Gateway extends AbstractGateway
 {
     use GatewayTrait;
+    use OverwriteServerCompletePurchaseTrait;
 
     /**
      * @inheritdoc

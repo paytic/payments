@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway;
 
 use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Gateway;
+use Omnipay\Common\Message\AbstractRequest;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Models\Methods\Types\CreditCards;
 use ByTIC\Payments\Tests\AbstractTest;
@@ -38,6 +39,16 @@ abstract class GatewayTest extends AbstractTest
      */
     protected $purchaseManager;
 
+    public function testServerCompletePurchase()
+    {
+        if (method_exists($this->gateway, 'serverCompletePurchase')) {
+            $request = $this->gateway->serverCompletePurchase([]);
+            self::assertInstanceOf(AbstractRequest::class, $request);
+        } else {
+            $request = $this->gateway->detectFromHttpRequestTrait($this->purchaseManager, 'serverCompletePurchase');
+            self::assertSame(false, $request);
+        }
+    }
 
     protected function setUp()
     {
