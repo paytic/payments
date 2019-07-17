@@ -8,5 +8,4 @@ namespace ByTIC\Payments\Tests\Gateways\Providers\Mobilpay\FileLoader;
  */
 class FileLoader
 {
-
 }
