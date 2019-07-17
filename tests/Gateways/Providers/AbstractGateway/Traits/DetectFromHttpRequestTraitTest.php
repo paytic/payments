@@ -17,15 +17,14 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
 
     /**
      * @dataProvider dataGetRequestFromHttpRequest
+     * @param $path
+     * @param $requestClass
      */
-    public function testGetRequestFromHttpRequestRomcard($gateway, $requestClass)
+    public function testGetRequestFromHttpRequest($path, $requestClass)
     {
-        $httpRequest = HttpRequest::createFromGlobals();
-        $parameters = require TEST_FIXTURE_PATH . '/requests/' . $gateway . '/completePurchaseParams.php';
-
-        $httpRequest->query->replace(isset($parameters['GET']) ? $parameters['GET'] : []);
-        $httpRequest->request->replace(isset($parameters['POST']) ? $parameters['POST'] : []);
-
+        $httpRequest = $this->generateRequestFromFixtures(
+            TEST_FIXTURE_PATH . '/requests/' . $path
+        );
 
         $model = \Mockery::mock(PurchasableRecord::class)->makePartial();
         $model->shouldReceive('getPaymentGateway')->andReturn(null);
@@ -37,11 +36,24 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
         self::assertInstanceOf($requestClass, $request);
     }
 
+    /**
+     * @return array
+     */
     public function dataGetRequestFromHttpRequest()
     {
         return [
-            ['librapay', \ByTIC\Payments\Gateways\Providers\Librapay\Message\CompletePurchaseRequest::class],
-            ['romcard', \ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest::class]
+            [
+                '/librapay/completePurchaseParams.php',
+                \ByTIC\Payments\Gateways\Providers\Librapay\Message\CompletePurchaseRequest::class,
+            ],
+            [
+                '/librapay/completePurchaseParams2.php',
+                \ByTIC\Payments\Gateways\Providers\Librapay\Message\CompletePurchaseRequest::class,
+            ],
+            [
+                '/romcard/completePurchaseParams.php',
+                \ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest::class,
+            ],
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace ByTIC\Payments\Models\Methods\Traits;
 
 use ByTIC\Common\Payments\Models\Methods\Files\MobilpayFile;
-use ByTIC\Common\Records\Traits\HasTypes\RecordTrait as HasTypesRecordTrait;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasTypes\RecordTrait as HasTypesRecordTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use ByTIC\Payments\Models\Methods\Types\AbstractType;
 use ByTIC\Payments\Models\Methods\Types\CreditCards;
@@ -124,6 +124,18 @@ trait RecordTrait
         $gatewayName = $this->getOption('payment_gateway');
 
         return $this->getOption($gatewayName);
+    }
+
+    /**
+     * @param array $options
+     * @param null $gatewayName
+     * @return mixed
+     */
+    public function setPaymentGatewayOptions($options, $gatewayName = null)
+    {
+        $gatewayName = $gatewayName? $gatewayName : $this->getOption('payment_gateway');
+
+        return $this->setOption($gatewayName, $options);
     }
 
     /**
