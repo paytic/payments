@@ -125,6 +125,18 @@ trait RecordTrait
     }
 
     /**
+     * @param array $options
+     * @param null $gatewayName
+     * @return mixed
+     */
+    public function setPaymentGatewayOptions($options, $gatewayName = null)
+    {
+        $gatewayName = $gatewayName? $gatewayName : $this->getOption('payment_gateway');
+
+        return $this->setOption($gatewayName, $options);
+    }
+
+    /**
      * @param null $type
      * @return string
      */

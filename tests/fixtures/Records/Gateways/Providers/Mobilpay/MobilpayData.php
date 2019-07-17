@@ -19,14 +19,14 @@ class MobilpayData
         $private = gzinflate(base64_decode(getenv('MOBILPAY_PRIVATE_KEY')));
 
         $data = 'a:4:{'
-            .'s:15:"payment_gateway";s:8:"mobilpay";'
-            .'s:9:"euplatesc";a:2:{s:3:"mid";s:0:"";s:3:"key";s:0:"";}'
-            .'s:8:"mobilpay";a:4:{'
-            .'s:7:"sandbox";s:2:"no";'
-            .'s:9:"signature";s:24:"'.getenv('MOBILPAY_SIGNATURE').'";'
-            .'s:4:"file";s:'.strlen($certificate).':"'.$certificate.'";'
-            .'s:11:"private-key";s:'.strlen($private).':"'.$private.'";}'
-            .'s:4:"payu";a:2:{s:8:"merchant";s:0:"";s:9:"secretKey";s:0:"";}}';
+            . 's:15:"payment_gateway";s:8:"mobilpay";'
+            . 's:9:"euplatesc";a:2:{s:3:"mid";s:0:"";s:3:"key";s:0:"";}'
+            . 's:8:"mobilpay";a:4:{'
+            . 's:7:"sandbox";s:2:"no";'
+            . 's:9:"signature";s:24:"' . getenv('MOBILPAY_SIGNATURE') . '";'
+            . 's:4:"file";s:' . strlen($certificate) . ':"' . $certificate . '";'
+            . 's:11:"private-key";s:' . strlen($private) . ':"' . $private . '";}'
+            . 's:4:"payu";a:2:{s:8:"merchant";s:0:"";s:9:"secretKey";s:0:"";}}';
 
         return $data;
     }
@@ -131,13 +131,15 @@ class MobilpayData
      */
     public static function buildCertificates()
     {
-        $basePath = TEST_FIXTURE_PATH.DIRECTORY_SEPARATOR.'files'.DIRECTORY_SEPARATOR;
-
-        if (!file_exists($basePath.'private.key')) {
-            file_put_contents($basePath.'private.key', gzinflate(base64_decode(getenv('MOBILPAY_PRIVATE_KEY'))));
+        $basePath = TEST_FIXTURE_PATH . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR;
+        if (!is_dir($basePath)) {
+            mkdir($basePath);
         }
-        if (!file_exists($basePath.'public.cer')) {
-            file_put_contents($basePath.'public.cer', gzinflate(base64_decode(getenv('MOBILPAY_PUBLIC_CER'))));
+        if (!file_exists($basePath . 'private.key')) {
+            file_put_contents($basePath . 'private.key', gzinflate(base64_decode(getenv('MOBILPAY_PRIVATE_KEY'))));
+        }
+        if (!file_exists($basePath . 'public.cer')) {
+            file_put_contents($basePath . 'public.cer', gzinflate(base64_decode(getenv('MOBILPAY_PUBLIC_CER'))));
         }
     }
 }

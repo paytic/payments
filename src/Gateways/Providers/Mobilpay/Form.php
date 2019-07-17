@@ -11,37 +11,27 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Form extends AbstractForm
 {
-    protected $files = [];
-
     public function initElements()
     {
+        parent::initElements();
         $this->initElementSandbox();
         $this->addInput('signature', 'Signature', false);
+
+        $this->addFile('file', 'Certificate', false);
+        $this->addTextarea('certificate', 'Certificate', false);
+        $element = $this->getForm()->getElement('mobilpay[certificate]');
+        $element->setAttrib('readonly', 'readonly');
+
+        $this->addFile('private-key', 'Private key', false);
+        $this->addTextarea('privateKey', 'Private key', false);
+        $element = $this->getForm()->getElement('mobilpay[privateKey]');
+        $element->setAttrib('readonly', 'readonly');
     }
 
     public function getDataFromModel()
     {
+        $this->getForm()->getModel()->getType()->getGateway();
         parent::getDataFromModel();
-        $model = $this->getForm()->getModel();
-        $options = $model->getOption($this->getGateway()->getName());
-
-        $files = ['certificate', 'privateKey'];
-        foreach ($files as $fileType) {
-            $this->addFile($fileType.'Upload', $fileType.' File', false);
-            $this->getForm()->getDisplayGroup($this->getGateway()->getLabel())
-                ->addElement($this->getForm()->getElement('mobilpay['.$fileType.'Upload]'));
-
-            $fileOptionValue = isset($options[$fileType]) ? $options[$fileType] : null;
-            if (strlen($fileOptionValue) > 5) {
-                $this->addTextarea($fileType, $fileType.' Content', true);
-                $element = $this->getForm()->getElement('mobilpay['.$fileType.']');
-                $element->setAttrib('readonly', 'readonly');
-                $element->setValue($fileOptionValue);
-
-                $this->getForm()->getDisplayGroup($this->getGateway()->getLabel())
-                    ->addElement($this->getForm()->getElement('mobilpay['.$fileType.']'));
-            }
-        }
     }
 
     /**
@@ -85,16 +75,40 @@ class Form extends AbstractForm
 
         $files = ['certificate', 'privateKey'];
 
-        foreach ($files as $fileType) {
-            $element = $this->getForm()->getElement('mobilpay['.$fileType.'Upload]');
-            if (!$element->isError()) {
-                /** @var UploadedFile $uploadedFile */
-                $uploadedFile = $element->getValue();
-                if ($uploadedFile instanceof UploadedFile && $uploadedFile->isValid()) {
-                    $options[$fileType] = file_get_contents($uploadedFile->getRealPath());
-                }
+        return $this->files[$type];
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptionsForSaveToModel()
+    {
+        $options = parent::getOptionsForSaveToModel();
+        unset($options['file'], $options['private-key']);
+        return $options;
+    }
+
+    /**
+     * @return bool
+     */
+    public function process()
+    {
+        parent::process();
+
+        $model = $this->getForm()->getModel();
+        $options = $model->getPaymentGatewayOptions();
+
+        $files = ['file' => 'certificate', 'private-key' => 'privateKey'];
+        foreach ($files as $file => $variable) {
+            $fileData = $this->getForm()->getElement('mobilpay[' . $file . ']')->getValue();
+            if (is_array($fileData) && $fileData['tmp_name']) {
+                $content = file_get_contents($fileData["tmp_name"]);
+                $options[$variable] = $content;
             }
         }
+
+        $model->setPaymentGatewayOptions($options);
+        $model->saveRecord();
 
         return $options;
     }
