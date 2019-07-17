@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Gateways\Providers\Mobilpay;
 
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
+use ByTIC\Payments\Models\Methods\Types\CreditCards;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -30,7 +31,10 @@ class Form extends AbstractForm
 
     public function getDataFromModel()
     {
-        $this->getForm()->getModel()->getType()->getGateway();
+        $type = $this->getForm()->getModel()->getType();
+        if ($type instanceof CreditCards) {
+            $type->getGateway();
+        }
         parent::getDataFromModel();
     }
 
