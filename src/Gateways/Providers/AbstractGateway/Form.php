@@ -95,7 +95,9 @@ abstract class Form
             $options = $this->getForm()->getModel()->getOption($gName);
             foreach ($this->elements as $name => $inputName) {
                 $element = $this->getForm()->{$inputName};
-                $element->setValue($options[$name]);
+                if (isset($options[$name])) {
+                    $element->setValue($options[$name]);
+                }
             }
         }
     }
@@ -121,15 +123,23 @@ abstract class Form
         if (is_array($this->elements) && count($this->elements) > 0) {
             $gName = $this->getGateway()->getName();
             if ($this->getForm()->getModel()->getOption('payment_gateway') == $gName) {
-                $options = [];
-                foreach ($this->elements as $name => $inputName) {
-                    $element = $this->getForm()->{$inputName};
-                    $options[$name] = $element->getValue();
-                }
-
+                $options = $this->getOptionsForSaveToModel();
                 $this->getForm()->getModel()->setOption($gName, $options);
             }
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getOptionsForSaveToModel()
+    {
+        $options = [];
+        foreach ($this->elements as $name => $inputName) {
+            $element = $this->getForm()->{$inputName};
+            $options[$name] = $element->getValue();
+        }
+        return $options;
     }
 
     /**
