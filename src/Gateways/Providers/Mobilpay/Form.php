@@ -31,6 +31,7 @@ class Form extends AbstractForm
 
     public function getDataFromModel()
     {
+        $this->getForm()->getModel()->getType()->getGateway();
         parent::getDataFromModel();
     }
 
