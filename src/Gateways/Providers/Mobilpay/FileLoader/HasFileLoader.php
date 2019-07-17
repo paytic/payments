@@ -38,7 +38,7 @@ trait HasFileLoader
         }
 
         if (isset($parameters['privateKey']) && is_array($parameters['privateKey'])) {
-            $parameters['file'] = 'private.key';
+            $parameters['privateKey'] = 'private.key';
         }
     }
 
