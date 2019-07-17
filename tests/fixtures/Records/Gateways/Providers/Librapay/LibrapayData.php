@@ -20,5 +20,4 @@ class LibrapayData
 
         return $data;
     }
-
 }
