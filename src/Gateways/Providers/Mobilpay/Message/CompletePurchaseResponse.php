@@ -17,7 +17,7 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
     {
         $model = $this->getModel();
         if ($model) {
-            if (empty($model->status) OR $model->status === 'pending') {
+            if (empty($model->status) or $model->status === 'pending') {
                 return true;
             }
         }
