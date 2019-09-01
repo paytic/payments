@@ -10,6 +10,8 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 /**
  * Class PurchaseResponse
  * @package ByTIC\Payments\Gateways\Providers\Mobilpay\Message
+ *
+ * @method CompletePurchaseResponse send
  */
 class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {

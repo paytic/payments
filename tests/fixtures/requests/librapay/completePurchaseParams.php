@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'GET' => [
+        'hash' => '9999999999999'
+    ],
     'POST' => [
         'AMOUNT' => 30.00,
         'CURRENCY' => 'RON',

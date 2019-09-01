@@ -17,6 +17,7 @@ trait DetectFromHttpRequestTrait
      * @param HttpRequest $httpRequest
      *
      * @return AbstractRequest|false
+     * @throws \Exception
      */
     public function detectFromHttpRequestTrait($modelManager, $callback = null, $httpRequest = null)
     {
