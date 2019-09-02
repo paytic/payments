@@ -6,7 +6,6 @@ use ByTIC\Payments\Gateways\Manager;
 use ByTIC\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Tests\Fixtures\Records\PurchasableRecord;
 use ByTIC\Payments\Tests\Fixtures\Records\PurchasableRecordManager;
-use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Class DetectFromHttpRequestTraitTest
@@ -19,6 +18,7 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
      * @dataProvider dataGetRequestFromHttpRequest
      * @param $path
      * @param $requestClass
+     * @throws \Exception
      */
     public function testGetRequestFromHttpRequest($path, $requestClass)
     {
@@ -49,6 +49,10 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
             [
                 '/librapay/completePurchaseParams2.php',
                 \ByTIC\Payments\Gateways\Providers\Librapay\Message\CompletePurchaseRequest::class,
+            ],
+            [
+                '/mobilpay/completePurchase/basicParams.php',
+                \ByTIC\Payments\Gateways\Providers\Mobilpay\Message\CompletePurchaseRequest::class,
             ],
             [
                 '/romcard/completePurchaseParams.php',

@@ -34,7 +34,7 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
      */
     public function isValidNotification()
     {
-        if ($this->hasGet('hash') || $this->hasGet('id')) {
+        if ($this->hasGet('ctrl')) {
             if ($this->validateModel()) {
                 return parent::isValidNotification();
             }

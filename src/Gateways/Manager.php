@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments\Gateways;
 
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\DetectFromHttpRequestTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Nip\Records\AbstractModels\RecordManager;
 use Omnipay\Common\Message\AbstractRequest;
@@ -54,9 +55,11 @@ class Manager
      * @param string $callback
      * @param null|HttpRequest $httpRequest
      * @return bool|\Omnipay\Common\Message\ResponseInterface
+     * @throws \Exception
      */
     public static function getRequestFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
     {
+        /** @var DetectFromHttpRequestTrait[] $items */
         $items = self::getAll();
 
         foreach ($items as $item) {

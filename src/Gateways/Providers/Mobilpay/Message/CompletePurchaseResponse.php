@@ -13,11 +13,22 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
 {
     use CompletePurchaseResponseTrait;
 
+    public function isPending()
+    {
+        $model = $this->getModel();
+        if ($model) {
+            if (empty($model->status) or $model->status === 'pending') {
+                return true;
+            }
+        }
+        return parent::isPending();
+    }
+
     /** @noinspection PhpMissingParentCallCommonInspection
      * @return bool
      */
     protected function canProcessModel()
     {
-        return true;
+        return false;
     }
 }
