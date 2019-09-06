@@ -34,7 +34,7 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
     {
         $model = $this->getModel();
         if ($model) {
-            if (empty($model->status) or $model->status === 'canceled') {
+            if ($model->status === 'canceled') {
                 return true;
             }
         }
@@ -48,7 +48,7 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
     {
         $model = $this->getModel();
         if ($model) {
-            if (empty($model->status) or $model->status === 'active') {
+            if ($model->status === 'active') {
                 return true;
             }
         }
