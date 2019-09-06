@@ -13,6 +13,9 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
 {
     use CompletePurchaseResponseTrait;
 
+    /**
+     * @inheritDoc
+     */
     public function isPending()
     {
         $model = $this->getModel();
@@ -22,6 +25,34 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
             }
         }
         return parent::isPending();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isCancelled()
+    {
+        $model = $this->getModel();
+        if ($model) {
+            if (empty($model->status) or $model->status === 'canceled') {
+                return true;
+            }
+        }
+        return parent::isCancelled();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isSuccessful()
+    {
+        $model = $this->getModel();
+        if ($model) {
+            if (empty($model->status) or $model->status === 'active') {
+                return true;
+            }
+        }
+        return parent::isSuccessful();
     }
 
     /** @noinspection PhpMissingParentCallCommonInspection
