@@ -30,6 +30,7 @@
   },
   "require": {
     "php": "^7.0",
+    "ext-zlib": "*",
     "bytic/common": "^0.9",
     "bytic/medialibrary": "^0.8",
     "bytic/omnipay-euplatesc": "^1.0",
