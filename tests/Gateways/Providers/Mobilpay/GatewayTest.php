@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Tests\Gateways\Providers\Mobilpay;
 
 use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseResponse;
+use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
 use ByTIC\Omnipay\Mobilpay\Message\PurchaseResponse;
 use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
@@ -17,6 +18,8 @@ class GatewayTest extends AbstractGatewayTest
 {
     public function testPurchaseResponse()
     {
+        $this->purchase->id = rand(111111111, 999999999);
+
         /** @var PurchaseRequest $request */
         $request = $this->gateway->purchaseFromModel($this->purchase);
         self::assertSame(false, $request->getTestMode());
@@ -80,8 +83,10 @@ class GatewayTest extends AbstractGatewayTest
         );
 
         self::assertInstanceOf(CompletePurchaseResponse::class, $response);
-        self::assertSame($response->isSuccessful(), $response->getModel()->status == 'active');
-        self::assertEquals($httpRequest->query->get('id'), $response->getModel()->id);
+
+        $model = $response->getModel();
+        self::assertSame($response->isSuccessful(), $model->status == 'active');
+        self::assertEquals($httpRequest->query->get('id'), $model->id);
     }
 
     public function testServerCompletePurchaseConfirmedResponse()

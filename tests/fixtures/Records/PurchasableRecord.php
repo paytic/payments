@@ -11,9 +11,9 @@ use Nip\Records\AbstractModels\Record;
  */
 class PurchasableRecord extends Record
 {
-    protected $id = 37250;
-
     use IsPurchasableModelTrait;
+
+    public $id = 37250;
 
     /**
      * @return int
