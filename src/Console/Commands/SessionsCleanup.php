@@ -18,9 +18,9 @@ class SessionsCleanup
      */
     public function handle()
     {
-        /** @var PurchaseSessionsTrait $emailsManager */
-        $emailsManager = ModelLocator::get($this->modelName);
-        $result = $emailsManager->reduceOldSessions();
+        /** @var PurchaseSessionsTrait $manager */
+        $manager = app('purchase-sessions');
+        $result = $manager->reduceOldSessions();
         return $result->numRows();
     }
 }

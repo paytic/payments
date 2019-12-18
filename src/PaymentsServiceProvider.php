@@ -3,6 +3,7 @@
 namespace ByTIC\Payments;
 
 use Nip\Container\ServiceProvider\AbstractSignatureServiceProvider;
+use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class PaymentsServiceProvider
@@ -10,13 +11,23 @@ use Nip\Container\ServiceProvider\AbstractSignatureServiceProvider;
  */
 class PaymentsServiceProvider extends AbstractSignatureServiceProvider
 {
+    protected static $purchaseModel = 'purchases';
+    protected static $purchaseSessionsModel = 'purchase-sessions';
 
     /**
-     * @inheritdoc
+     * @param string $purchaseModel
      */
-    public function provides()
+    public static function setPurchaseModel(string $purchaseModel)
     {
-        // TODO: Implement provides() method.
+        self::$purchaseModel = $purchaseModel;
+    }
+
+    /**
+     * @param string $purchaseSessionsModel
+     */
+    public static function setPurchaseSessionsModel(string $purchaseSessionsModel)
+    {
+        self::$purchaseSessionsModel = $purchaseSessionsModel;
     }
 
     /**
@@ -24,6 +35,29 @@ class PaymentsServiceProvider extends AbstractSignatureServiceProvider
      */
     public function register()
     {
-        // TODO: Implement register() method.
+        $this->registerPurchases();
+        $this->registerPurchaseSessions();
+    }
+
+    protected function registerPurchases()
+    {
+        $this->getContainer()->singleton('purchases', function () {
+            return ModelLocator::get($this::$purchaseModel);
+        });
+    }
+
+    protected function registerPurchaseSessions()
+    {
+        $this->getContainer()->singleton('purchase-sessions', function () {
+            return ModelLocator::get($this::$purchaseSessionsModel);
+        });
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function provides()
+    {
+        return ['purchases', 'purchase-sessions'];
     }
 }
