@@ -45,4 +45,9 @@ class PurchasableRecord extends Record
     public function getPaymentMethod()
     {
     }
+
+    public function getName()
+    {
+        // TODO: Implement getName() method.
+    }
 }
