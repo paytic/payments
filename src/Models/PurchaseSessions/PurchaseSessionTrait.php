@@ -58,6 +58,16 @@ trait PurchaseSessionTrait
     }
 
     /**
+     * @inheritdoc
+     */
+    public function insert()
+    {
+        $this->created = date('Y-m-d H:i:s');
+
+        return parent::insert();
+    }
+
+    /**
      * @return string
      */
     protected function getPurchaseFk()

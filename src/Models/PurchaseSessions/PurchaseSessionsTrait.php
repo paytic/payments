@@ -23,6 +23,7 @@ trait PurchaseSessionsTrait
      */
     public function createFromResponse($response, $type)
     {
+        /** @var IsPurchasableModelTrait $payment */
         $payment = $response->getModel();
         $session = $this->generateFromPurchaseType($payment, $type);
         $session->populateFromResponse($response);
@@ -44,6 +45,21 @@ trait PurchaseSessionsTrait
         return $session;
     }
 
+    /**
+     * @param array $params
+     */
+    protected function injectParams(&$params = [])
+    {
+        $params['order'][] = ['created', 'desc'];
+
+        parent::injectParams($params);
+    }
+
+    /**
+     * @param IsPurchasableModelTrait $payment
+     * @param string $type
+     * @return PurchaseSessionTrait
+     */
     protected function generateFromPurchaseType($payment, $type)
     {
         $session = $this->generateFromPurchase($payment);
