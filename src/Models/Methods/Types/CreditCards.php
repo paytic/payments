@@ -50,9 +50,9 @@ class CreditCards extends AbstractType
     public function getGatewayOptions()
     {
         $name = $this->getGatewayName();
-
+        $methodOptions = $this->getItem()->getOption($name, []);
         $options['PaymentMethod'] = $this->getItem();
-        $options = $options + $this->getItem()->getOption($name);
+        $options = $options + $methodOptions;
 
         return $options;
     }
