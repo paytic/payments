@@ -72,7 +72,7 @@ trait PurchaseConfirmActionsTrait
      */
     protected function confirmProcessResponseTitle($response, $model)
     {
-        if ($model) {
+        if (!$model) {
             $response->getView()->set('title', 'Error confirming payment');
             return;
         }
