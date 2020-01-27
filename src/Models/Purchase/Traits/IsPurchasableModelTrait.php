@@ -14,6 +14,7 @@ use Omnipay\Common\Message\RequestInterface;
  * @package ByTIC\Payments\Traits
  *
  * @property int $id
+ * @property string $status
  * @property string $status_notes
  * @property string $received
  * @property string $created

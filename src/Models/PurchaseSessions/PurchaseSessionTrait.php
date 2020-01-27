@@ -13,10 +13,33 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as Abs
  * @property string $gateway
  * @property string $post
  * @property string $get
+ * @property string $debug
  * @property string $created
  */
 trait PurchaseSessionTrait
 {
+    /**
+     * @param $payment
+     * @return $this
+     */
+    public function populateFromPayment($payment)
+    {
+        $this->{$this->getPurchaseFk()} = $payment->id;
+        $this->new_status = $payment->status;
+
+        return $this;
+    }
+
+    /**
+     * @param $response
+     */
+    public function populateFromResponse($response)
+    {
+        if (method_exists($response,'getSessionDebug')) {
+            $this->debug = $response->getSessionDebug();
+        }
+    }
+
     /**
      * @param AbstractGateway $gateway
      */
@@ -25,9 +48,20 @@ trait PurchaseSessionTrait
         $this->gateway = $gateway->getName();
     }
 
+    /**
+     *
+     */
     public function populateFromRequest()
     {
         $this->post = base64_encode(gzcompress(serialize($_POST)));
         $this->get = base64_encode(gzcompress(serialize($_GET)));
+    }
+
+    /**
+     * @return string
+     */
+    protected function getPurchaseFk()
+    {
+        return 'id_purchase';
     }
 }
