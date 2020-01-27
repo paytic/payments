@@ -61,5 +61,10 @@ trait PurchaseIpnActionsTrait
         $this->ipnProcessResponseModel($response, $model);
     }
 
+    /**
+     * @param AbstractResponse|HasModelProcessedResponse $response
+     * @param IsPurchasableModelTrait $model
+     * @return mixed
+     */
     protected abstract function ipnProcessResponseModel($response, $model);
 }
