@@ -22,7 +22,7 @@
       "ByTIC\\Payments\\": "src/"
     },
     "files": [
-      "src/utility/general.php"
+      "src/Utility/general.php"
     ]
   },
   "autoload-dev": {
