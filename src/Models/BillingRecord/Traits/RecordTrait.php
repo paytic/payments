@@ -9,6 +9,7 @@ use Nip\Records\Record;
  * @package ByTIC\Payments\Models\Methods\Traits
  *
  * @property string $city
+ * @property string $phone
  *
  * @method Record getCountry
  */

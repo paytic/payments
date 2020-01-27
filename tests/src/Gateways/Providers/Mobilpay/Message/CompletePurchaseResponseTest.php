@@ -5,8 +5,8 @@ namespace ByTIC\Payments\Tests\Gateways\Providers\Mobilpay\Message;
 use ByTIC\Payments\Gateways\Providers\Mobilpay\Message\CompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\Mobilpay\Message\CompletePurchaseResponse;
 use ByTIC\Payments\Tests\AbstractTest;
-use ByTIC\Payments\Tests\Fixtures\Records\PurchasableRecord;
-use ByTIC\Payments\Tests\Fixtures\Records\PurchasableRecordManager;
+use ByTIC\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecord;
+use ByTIC\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecordManager;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Message\CompletePurchaseResponseTestTrait;
 use Symfony\Component\HttpFoundation\Request;
 

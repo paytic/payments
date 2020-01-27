@@ -20,11 +20,14 @@
   "autoload": {
     "psr-4": {
       "ByTIC\\Payments\\": "src/"
-    }
+    },
+    "files": [
+      "src/utility/general.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
-      "ByTIC\\Payments\\Tests\\": "tests/",
+      "ByTIC\\Payments\\Tests\\": "tests/src",
       "ByTIC\\Payments\\Tests\\Fixtures\\": "tests/fixtures"
     }
   },

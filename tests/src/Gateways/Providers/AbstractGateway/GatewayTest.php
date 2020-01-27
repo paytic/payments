@@ -9,8 +9,8 @@ use ByTIC\Payments\Models\Methods\Types\CreditCards;
 use ByTIC\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Tests\Fixtures\Records\BillingRecord;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
-use ByTIC\Payments\Tests\Fixtures\Records\PurchasableRecord;
-use ByTIC\Payments\Tests\Fixtures\Records\PurchasableRecordManager;
+use ByTIC\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecord;
+use ByTIC\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecordManager;
 use Mockery as m;
 
 /**

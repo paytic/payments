@@ -1,11 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Fixtures\Records;
+namespace ByTIC\Payments\Tests\Fixtures\Records\Purchases;
 
 use Nip\Records\AbstractModels\RecordManager;
 
 /**
- * Class PurchasableRecord
+ * Class PurchasableRecordManager
+ * @package ByTIC\Payments\Tests\Fixtures\Records\Purchases
  */
 class PurchasableRecordManager extends RecordManager
 {

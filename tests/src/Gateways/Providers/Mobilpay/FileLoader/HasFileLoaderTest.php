@@ -20,7 +20,7 @@ class HasFileLoaderTest extends AbstractTest
         $paymentMethod = \Mockery::mock(PaymentMethod::class)->makePartial();
         $paymentMethod->shouldReceive('save');
 
-        $paymentMethod->type = 'mobilpay';
+        $paymentMethod->type = 'credit-cards';
         $options = unserialize(MobilpayData::getMethodOptions());
         $options['mobilpay']['file'] = 'public.cer';
         $options['mobilpay']['private-key'] = 'private.key';

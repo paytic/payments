@@ -2,15 +2,18 @@
 
 namespace ByTIC\Payments\Models\Methods\Traits;
 
-use ByTIC\Common\Records\Traits\HasTypes\RecordsTrait as HasTypesRecordsTrait;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasTypes\RecordsTrait as HasTypesRecordsTrait;
 
 /**
  * Class RecordsTrait
  * @package ByTIC\Payments\Models\Methods\Traits
+ *
+ * @method getMessage($name, $params = [], $language = false)
  */
 trait RecordsTrait
 {
     use HasTypesRecordsTrait;
+    use \Nip\Records\Traits\AbstractTrait\RecordsTrait;
 
     /**
      * @return string

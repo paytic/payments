@@ -10,6 +10,7 @@ use Nip\Records\AbstractModels\RecordManager;
  * Class HasModelRequest
  * @package ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\Traits
  *
+ * @property \Symfony\Component\HttpFoundation\Request $httpRequest
  */
 trait HasModelRequest
 {
@@ -70,6 +71,7 @@ trait HasModelRequest
     public function getModelIdFromRequest()
     {
         if (is_callable('parent::getModelIdFromRequest')) {
+            /** @noinspection PhpUndefinedClassInspection */
             return parent::getModelIdFromRequest();
         }
         return false;
@@ -193,4 +195,14 @@ trait HasModelRequest
     {
         return $this->getParameter('model');
     }
+
+    /**
+     * @inheritDoc
+     */
+    abstract protected function setParameter($key, $value);
+
+    /**
+     * @inheritDoc
+     */
+    abstract protected function getParameter($key);
 }

@@ -9,6 +9,7 @@ use ByTIC\MediaLibrary\HasMedia\Traits\AddMediaTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use ByTIC\Payments\Models\Methods\Types\AbstractType;
 use ByTIC\Payments\Models\Methods\Types\CreditCards;
+use Nip\Records\RecordManager;
 
 /**
  * Class MethodTrait
@@ -17,13 +18,16 @@ use ByTIC\Payments\Models\Methods\Types\CreditCards;
  * @property string $name
  * @property string $internal_name
  * @property string $description
+ * @property string $__notes
  *
  * @method AbstractType|CreditCards getType
- * @method RecordsTrait getManager()
+ * @method RecordsTrait|RecordManager getManager()
  */
 trait RecordTrait
 {
-    use HasTypesRecordTrait;
+    use HasTypesRecordTrait {
+        setType as setTypeTrait;
+    }
     use \ByTIC\Common\Records\Traits\HasSerializedOptions\RecordTrait;
 
     use HasMediaTrait;
@@ -112,6 +116,19 @@ trait RecordTrait
         }
 
         return false;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setType($type = null)
+    {
+        $paymentGatewaysNames = \ByTIC\Payments\Gateways\Manager::getCollection()->keys();
+        if (in_array($type, $paymentGatewaysNames)) {
+            $this->setOption('payment_gateway', $type);
+            $type = 'credit-cards';
+        }
+        return $this->setTypeTrait($type);
     }
 
     /**

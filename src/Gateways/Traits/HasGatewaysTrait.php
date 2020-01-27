@@ -65,11 +65,10 @@ trait HasGatewaysTrait
             throw new \Exception("No name in newGateway for ".get_class($this));
         }
 
-        $gateway = $this->getGatewaysManager()::getCollection()->offsetGet($name);
+        $gateway = clone $this->getGatewaysManager()::getCollection()->offsetGet($name);
         if (!($gateway instanceof GatewayInterface)) {
             throw new \Exception("Invalid gateway name ['.$name.'] in ".get_class($this));
         }
-
         $gatewayParams = $this->getGatewayOptions();
         $gateway->initialize($gatewayParams);
 

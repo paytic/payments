@@ -147,7 +147,7 @@ class Manager
      */
     public function getLabel($type, $params = [], $language = false)
     {
-        return translator()->translate('payment-gateways.labels.' . $type, $params, $language);
+        return translator()->trans('payment-gateways.labels.' . $type, $params, $language);
     }
 
     /**
@@ -158,6 +158,6 @@ class Manager
      */
     public function getMessage($name, $params = [], $language = false)
     {
-        return translator()->translate('payment-gateways.messages.' . $name, $params, $language);
+        return translator()->trans('payment-gateways.messages.' . $name, $params, $language);
     }
 }

@@ -17,6 +17,11 @@ class PaymentMethod extends Record
     {
     }
 
+    public function inflectManagerName()
+    {
+        return PaymentMethods::class;
+    }
+
     /**
      * @return string
      */
