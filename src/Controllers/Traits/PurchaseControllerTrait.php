@@ -29,7 +29,7 @@ trait PurchaseControllerTrait
         /** @var RedirectHtmlTrait $response */
         $response = $request->send();
         $this->redirectToPaymentPrepareResponse($response, $model);
-        echo $response->getRedirectResponse()->getContent();
+        $response->getRedirectResponse()->send();
         die();
     }
 
@@ -86,25 +86,6 @@ trait PurchaseControllerTrait
 
         return $response;
     }
-
-    /**
-     * @return RecordManager
-     */
-    abstract protected function getModelManager();
-
-    /**
-     * @return Request
-     */
-    abstract protected function getRequest();
-
-    abstract protected function dispatchAccessDeniedResponse();
-
-    /**
-     * @param CompletePurchaseResponseTrait $response
-     * @return void
-     */
-    abstract protected function confirmProcessResponse($response);
-
     public function ipn()
     {
         $response = $this->getIpnActionResponse();
@@ -137,16 +118,34 @@ trait PurchaseControllerTrait
     }
 
     /**
-     * @param AbstractResponse $response
-     * @return void
-     */
-    abstract protected function ipnProcessResponse($response);
-
-    /**
      * @return GatewaysManager
      */
     protected function getGatewaysManager()
     {
         return GatewaysManager::instance();
     }
+
+    /**
+     * @param AbstractResponse $response
+     * @return void
+     */
+    abstract protected function ipnProcessResponse($response);
+
+    /**
+     * @return RecordManager
+     */
+    abstract protected function getModelManager();
+
+    /**
+     * @return Request
+     */
+    abstract protected function getRequest();
+
+    abstract protected function dispatchAccessDeniedResponse();
+
+    /**
+     * @param CompletePurchaseResponseTrait $response
+     * @return void
+     */
+    abstract protected function confirmProcessResponse($response);
 }

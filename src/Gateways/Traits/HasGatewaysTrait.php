@@ -56,7 +56,7 @@ trait HasGatewaysTrait
     protected function newGateway($name)
     {
         /** @var AbstractGateway $gateway */
-        $gateway       = $this->getGatewaysManager()::getCollection()->offsetGet($name);
+        $gateway = clone $this->getGatewaysManager()::getCollection()->offsetGet($name);
         $gatewayParams = $this->getGatewayOptions();
         $gateway->initialize($gatewayParams);
         return $gateway;

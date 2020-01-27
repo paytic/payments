@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments;
 
+use ByTIC\Payments\Gateways\Manager;
 use Nip\Container\ServiceProvider\AbstractSignatureServiceProvider;
 use Nip\Records\Locator\ModelLocator;
 
@@ -13,6 +14,37 @@ class PaymentsServiceProvider extends AbstractSignatureServiceProvider
 {
     protected static $purchaseModel = 'purchases';
     protected static $purchaseSessionsModel = 'purchase-sessions';
+
+    /**
+     * @inheritdoc
+     */
+    public function register()
+    {
+        $this->registerPurchases();
+        $this->registerGatewaysManager();
+        $this->registerPurchaseSessions();
+    }
+
+    protected function registerPurchases()
+    {
+        $this->getContainer()->singleton('purchases', function () {
+            return ModelLocator::get($this::$purchaseModel);
+        });
+    }
+
+    protected function registerPurchaseSessions()
+    {
+        $this->getContainer()->singleton('purchase-sessions', function () {
+            return ModelLocator::get($this::$purchaseSessionsModel);
+        });
+    }
+
+    protected function registerGatewaysManager()
+    {
+        $this->getContainer()->singleton('payments.gateways', function () {
+            return new Manager();
+        });
+    }
 
     /**
      * @param string $purchaseModel
@@ -33,31 +65,8 @@ class PaymentsServiceProvider extends AbstractSignatureServiceProvider
     /**
      * @inheritdoc
      */
-    public function register()
-    {
-        $this->registerPurchases();
-        $this->registerPurchaseSessions();
-    }
-
-    protected function registerPurchases()
-    {
-        $this->getContainer()->singleton('purchases', function () {
-            return ModelLocator::get($this::$purchaseModel);
-        });
-    }
-
-    protected function registerPurchaseSessions()
-    {
-        $this->getContainer()->singleton('purchase-sessions', function () {
-            return ModelLocator::get($this::$purchaseSessionsModel);
-        });
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function provides()
     {
-        return ['purchases', 'purchase-sessions'];
+        return ['purchases', 'purchase-sessions','payments.gateways'];
     }
 }
