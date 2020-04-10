@@ -35,7 +35,7 @@ trait PurchaseSessionTrait
      */
     public function populateFromResponse($response)
     {
-        if (method_exists($response,'getSessionDebug')) {
+        if (method_exists($response, 'getSessionDebug')) {
             $this->debug = $response->getSessionDebug();
         }
     }
