@@ -16,7 +16,6 @@ use Omnipay\Common\Message\AbstractResponse;
  */
 trait PurchaseConfirmActionsTrait
 {
-
     public function confirm()
     {
         $response = $this->getConfirmActionResponse();
@@ -115,5 +114,5 @@ trait PurchaseConfirmActionsTrait
      * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
      * @param IsPurchasableModelTrait $model
      */
-    protected abstract function confirmProcessResponseModel($response, $model);
+    abstract protected function confirmProcessResponseModel($response, $model);
 }
