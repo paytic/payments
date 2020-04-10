@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
 
+use ByTIC\Omnipay\Common\Library\View\View;
 use ByTIC\Omnipay\Common\Message\Traits\HtmlResponses\ConfirmHtmlTrait;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
@@ -20,7 +21,7 @@ trait PurchaseConfirmActionsTrait
     {
         $response = $this->getConfirmActionResponse();
         $model = $response->getModel();
-        if ($model) {
+        if (is_object($model)) {
             $response->processModel();
         }
         $this->confirmProcessResponse($response);
@@ -71,7 +72,7 @@ trait PurchaseConfirmActionsTrait
      */
     protected function confirmProcessResponseTitle($response, $model)
     {
-        if (!$model) {
+        if (!is_object($model)) {
             $response->getView()->set('title', 'Error confirming payment');
             return;
         }
@@ -87,7 +88,7 @@ trait PurchaseConfirmActionsTrait
      */
     protected function confirmProcessResponseMessage($response, $model)
     {
-        if (!$model) {
+        if (!is_object($model)) {
             return;
         }
         $response->getView()->set(
@@ -102,7 +103,7 @@ trait PurchaseConfirmActionsTrait
      */
     protected function confirmProcessResponseButton($response, $model)
     {
-        if (!$model) {
+        if (!is_object($model)) {
             return;
         }
 
@@ -115,4 +116,9 @@ trait PurchaseConfirmActionsTrait
      * @param IsPurchasableModelTrait $model
      */
     abstract protected function confirmProcessResponseModel($response, $model);
+
+    /**
+     * @return View|null
+     */
+    abstract public function getView();
 }
