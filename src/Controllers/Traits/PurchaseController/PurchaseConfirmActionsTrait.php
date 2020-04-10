@@ -7,7 +7,6 @@ use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
 use Nip\Records\Locator\ModelLocator;
 use Omnipay\Common\Message\AbstractResponse;
 
@@ -65,31 +64,15 @@ trait PurchaseConfirmActionsTrait
         $this->confirmProcessResponseMessage($response, $model);
         $this->confirmProcessResponseButton($response, $model);
         $this->confirmProcessResponseModel($response, $model);
-
-        if ($model) {
-//            $this->_detectEvent($model);
-//            /** @var Order $order */
-//            $order = $model->getOrder();
-
-
-            $buttonUrl = $order ? $order->getURL() : $model->getURL();
-            $response->setButton('Click aici pentru a continua.', $buttonUrl);
-            Payment_Sessions::instance()->createFromPurchase($model, 'confirm');
-
-            if ($model->getStatus()->getName() == 'active') {
-                $model->autoConfirmOnlineEntries();
-                $redirectUrl = $this->getRedirectOrderUrl($model);
-                $response->setRedirectUrl($redirectUrl);
-            }
-        }
     }
 
     /**
      * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param IsPurchasableModelTrait $model
      */
     protected function confirmProcessResponseTitle($response, $model)
     {
-        if ($model) {
+        if (!$model) {
             $response->getView()->set('title', 'Error confirming payment');
             return;
         }
@@ -99,6 +82,10 @@ trait PurchaseConfirmActionsTrait
         );
     }
 
+    /**
+     * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param IsPurchasableModelTrait $model
+     */
     protected function confirmProcessResponseMessage($response, $model)
     {
         if (!$model) {
@@ -110,6 +97,10 @@ trait PurchaseConfirmActionsTrait
         );
     }
 
+    /**
+     * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param IsPurchasableModelTrait $model
+     */
     protected function confirmProcessResponseButton($response, $model)
     {
         if (!$model) {
@@ -120,5 +111,9 @@ trait PurchaseConfirmActionsTrait
         $response->setButton('Click aici pentru a continua.', $buttonUrl);
     }
 
+    /**
+     * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param IsPurchasableModelTrait $model
+     */
     protected abstract function confirmProcessResponseModel($response, $model);
 }
