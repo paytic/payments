@@ -204,8 +204,8 @@ trait PaymentMethodFormTrait
 
     protected function initNameElements()
     {
-        $this->addInput('internal_name', translator()->translate('internal_name'), true);
-        $this->addInput('name', translator()->translate('name'), true);
+        $this->addInput('internal_name', translator()->trans('internal_name'), true);
+        $this->addInput('name', translator()->trans('name'), true);
 
         $this->addDisplayGroup(['internal_name', 'name'], 'Details');
     }
@@ -213,8 +213,8 @@ trait PaymentMethodFormTrait
     protected function initTypeElement()
     {
         if ($this->getModel()->getPurchasesCount() > 0) {
-            $this->addHidden('type', translator()->translate('type'), true);
-            $this->addInput('typeText', translator()->translate('type'), false);
+            $this->addHidden('type', translator()->trans('type'), true);
+            $this->addInput('typeText', translator()->trans('type'), false);
             $this->getElement('typeText')->setAttrib('readonly', 'readonly');
         } else {
             $this->initTypeSelect();
@@ -225,7 +225,7 @@ trait PaymentMethodFormTrait
 
     protected function initTypeSelect()
     {
-        $this->addSelect('type', translator()->translate('type'), true);
+        $this->addSelect('type', translator()->trans('type'), true);
         $types = $this->getModel()->getManager()->getTypes();
         foreach ($types as $type) {
             $this->getElement('type')
