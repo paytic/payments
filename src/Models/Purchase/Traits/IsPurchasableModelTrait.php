@@ -25,9 +25,6 @@ use Omnipay\Common\Message\RequestInterface;
  */
 trait IsPurchasableModelTrait
 {
-    use IsPurchasableTrait {
-        getPurchaseParameters as getPurchaseParametersAbstract;
-    }
 
     /**
      * @return RequestInterface
