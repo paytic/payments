@@ -34,7 +34,6 @@
   "require": {
     "php": "^7.0",
     "ext-zlib": "*",
-    "bytic/common": "^1.0",
     "bytic/medialibrary": "^0.9",
     "bytic/omnipay-euplatesc": "^1.0",
     "bytic/omnipay-librapay": "^1.0",
@@ -44,6 +43,7 @@
     "bytic/omnipay-twispay": "^1.0"
   },
   "require-dev": {
+    "bytic/common": "^1.0",
     "vlucas/phpdotenv": "^2.4",
     "bytic/facebook-pixel": "^1.0",
     "symfony/dom-crawler": "^3.3",
