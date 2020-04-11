@@ -46,15 +46,15 @@ class Form extends AbstractForm
         parent::processValidation();
 
         if ($_FILES['mobilpay']) {
-            $files = ['certificate', 'privateKey'];
+            $files = ['file', 'private-key'];
             foreach ($files as $fileType) {
-                $element = $this->getForm()->getElement('mobilpay['.$fileType.'Upload]');
+                $element = $this->getForm()->getElement('mobilpay['.$fileType.']');
 
                 /** @var UploadedFile $uploadedFile */
                 $uploadedFile = $element->getValue();
                 if ($uploadedFile instanceof UploadedFile) {
                     if ($uploadedFile->isValid()) {
-                        $extension = $fileType == 'certificate' ? 'cer' : 'key';
+                        $extension = $fileType == 'file' ? 'cer' : 'key';
                         if ($uploadedFile->getClientOriginalExtension() != $extension) {
                             $element->addError(
                                 'Invalid extension ['.$extension.']['.$uploadedFile->getClientOriginalName().']'
