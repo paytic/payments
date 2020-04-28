@@ -36,8 +36,8 @@ class GatewayTest extends AbstractGatewayTest
         self::assertSame(200, $payuResponse->getStatusCode());
 
         $body = $payuResponse->getBody(true);
-        self::assertContains('checkout.php', $body);
-        self::assertContains('CART_ID=', $body);
+        self::assertStringContainsString('checkout.php', $body);
+        self::assertStringContainsString('CART_ID=', $body);
     }
 
     public function testCompletePurchaseResponse()
@@ -97,7 +97,7 @@ class GatewayTest extends AbstractGatewayTest
         self::assertStringEndsWith('</EPAYMENT>', $content);
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 

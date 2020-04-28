@@ -35,8 +35,8 @@ class GatewayTest extends AbstractGatewayTest
         //Validate first Response
         $body = $gatewayResponse->getBody(true);
 
-        self::assertContains('Tranzactie Aprobata', $body);
-        self::assertContains('value="Aproba" name="SEND_BUTTON"', $body);
+        self::assertStringContainsString('Tranzactie Aprobata', $body);
+        self::assertStringContainsString('value="Aproba" name="SEND_BUTTON"', $body);
     }
 
     public function testCompletePurchaseRequest()
@@ -69,7 +69,7 @@ class GatewayTest extends AbstractGatewayTest
         self::assertTrue($gateway->isActive());
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 

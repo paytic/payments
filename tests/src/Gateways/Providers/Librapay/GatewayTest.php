@@ -35,7 +35,7 @@ class GatewayTest extends AbstractGatewayTest
         self::assertTrue($gateway->isActive());
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 

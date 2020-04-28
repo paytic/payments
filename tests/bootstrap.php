@@ -15,4 +15,9 @@ if (file_exists(__DIR__.DIRECTORY_SEPARATOR.'.env')) {
 Container::setInstance(new Container());
 Container::getInstance()->set('inflector', \Nip\Inflector\Inflector::instance());
 
+$translator = Mockery::mock(\Nip\I18n\Translator::class)->shouldAllowMockingProtectedMethods()->makePartial();
+$translator->shouldReceive('persistLocale');
+Container::getInstance()->set('translator', $translator);
+Container::getInstance()->set('request', new \Nip\Request());
+
 require dirname(__DIR__).'/vendor/autoload.php';

@@ -28,6 +28,7 @@ use Omnipay\Common\Message\RequestInterface;
  */
 trait IsPurchasableModelTrait
 {
+    use IsPurchasableTrait;
 
     /**
      * @return RequestInterface

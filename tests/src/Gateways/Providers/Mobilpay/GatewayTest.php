@@ -38,9 +38,9 @@ class GatewayTest extends AbstractGatewayTest
 
         //Validate first Response
         $body = $gatewayResponse->getBody(true);
-        self::assertContains('ID Tranzactie', $body);
-        self::assertContains('Descriere plata', $body);
-        self::assertContains('Site comerciant', $body);
+        self::assertStringContainsString('ID Tranzactie', $body);
+        self::assertStringContainsString('Descriere plata', $body);
+        self::assertStringContainsString('Site comerciant', $body);
     }
 
     public function testPurchaseResponseSandbox()
@@ -65,9 +65,9 @@ class GatewayTest extends AbstractGatewayTest
 
         //Validate first Response
         $body = $gatewayResponse->getBody(true);
-        self::assertContains('ID Tranzactie', $body);
-        self::assertContains('Descriere plata', $body);
-        self::assertContains('Site comerciant', $body);
+        self::assertStringContainsString('ID Tranzactie', $body);
+        self::assertStringContainsString('Descriere plata', $body);
+        self::assertStringContainsString('Site comerciant', $body);
     }
 
     public function testCompletePurchaseResponse()
@@ -174,7 +174,7 @@ class GatewayTest extends AbstractGatewayTest
         self::assertSame($validContent, $content);
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 

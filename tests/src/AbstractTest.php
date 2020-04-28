@@ -31,7 +31,7 @@ abstract class AbstractTest extends TestCase
         return $httpRequest;
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
         $this->client = new \Guzzle\Http\Client();

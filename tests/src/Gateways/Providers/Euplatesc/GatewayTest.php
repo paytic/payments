@@ -55,8 +55,8 @@ class GatewayTest extends AbstractGatewayTest
         //Validate first Response
         $body = $gatewaySecondResponse->getBody(true);
 
-        self::assertContains('checkout_plus.php', $body);
-        self::assertContains('cart_id=', $body);
+        self::assertStringContainsString('checkout_plus.php', $body);
+        self::assertStringContainsString('cart_id=', $body);
     }
 
     public function testCompletePurchaseResponse()
@@ -108,7 +108,7 @@ class GatewayTest extends AbstractGatewayTest
         self::assertEquals($response->getTransactionId(), '24669');
     }
 
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 

@@ -37,7 +37,7 @@ class CompletePurchaseResponseTest extends AbstractTest
 
 //        $content = $response->getViewContent();
 //
-//        self::assertContains('++++', $content);
+//        self::assertStringContainsString('++++', $content);
     }
 
     protected function getNewResponse()
