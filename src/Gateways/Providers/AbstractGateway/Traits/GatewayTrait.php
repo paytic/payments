@@ -7,6 +7,7 @@ use ByTIC\Common\Records\Traits\Media\Files\RecordTrait as HasFilesRecord;
 use ByTIC\Payments\Gateways\Manager;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodRecord;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use ByTIC\Payments\Utility\GatewayImages;
 use Nip\Utility\Traits\NameWorksTrait;
 use Omnipay\Common\Message\RequestInterface;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
@@ -184,6 +185,24 @@ trait GatewayTrait
     public function setHttpRequest($httpRequest)
     {
         $this->httpRequest = $httpRequest;
+    }
+
+    /**
+     * @param null $default
+     * @return string|null
+     */
+    public function getImageBand($default = null)
+    {
+        return GatewayImages::band($this->getName(), $default);
+    }
+
+    /**
+     * @param null $default
+     * @return string|null
+     */
+    public function getLogo($default = null)
+    {
+        return GatewayImages::logo($this->getName(), $default);
     }
 
     /**
