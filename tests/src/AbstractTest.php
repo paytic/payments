@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments\Tests;
 
+use Omnipay\Common\Http\Client;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
@@ -34,13 +35,13 @@ abstract class AbstractTest extends TestCase
     protected function setUp() : void
     {
         parent::setUp();
-        $this->client = new \Guzzle\Http\Client();
-        $this->client->setConfig(
-            [
-                'curl.CURLOPT_SSL_VERIFYHOST' => false,
-                'curl.CURLOPT_SSL_VERIFYPEER' => false
-            ]
-        );
-        $this->client->setSslVerification(false, false);
+        $this->client = new Client();
+//        $this->client->setConfig(
+//            [
+//                'curl.CURLOPT_SSL_VERIFYHOST' => false,
+//                'curl.CURLOPT_SSL_VERIFYPEER' => false
+//            ]
+//        );
+//        $this->client->setSslVerification(false, false);
     }
 }

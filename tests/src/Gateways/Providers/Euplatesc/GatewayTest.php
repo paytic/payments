@@ -8,6 +8,7 @@ use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Euplatesc\EuplatescData;
+use Http\Discovery\Psr17FactoryDiscovery;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -28,14 +29,19 @@ class GatewayTest extends AbstractGatewayTest
 
         $data = $response->getRedirectData();
 //        Debug::debug($data);
-        self::assertCount(18, $data);
+        self::assertGreaterThan(18, count($data));
         self::assertSame('44840981287', $data['merch_id']);
 
-        $gatewayResponse = $this->client->post($response->getRedirectUrl(), null, $data)->send();
+        $gatewayResponse = $this->client->request(
+            'POST',
+            $response->getRedirectUrl(),
+            ['Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8'],
+            Psr17FactoryDiscovery::findStreamFactory()->createStream(http_build_query($data, '', '&'))
+        );
         self::assertSame(200, $gatewayResponse->getStatusCode());
 
         //Validate first Response
-        $body = $gatewayResponse->getBody(true);
+        $body = $gatewayResponse->getBody();
 
         if (strpos($body, '<META HTTP-EQUIV=') === false) {
             $crawler = new Crawler('<body>'.$body.'</body>', $gatewayResponse->getEffectiveUrl());
@@ -44,19 +50,24 @@ class GatewayTest extends AbstractGatewayTest
             self::assertSame('https://secure2.euplatesc.ro/tdsprocess/tranzactd.php', $form->getUri());
             self::assertCount(14, $form->getValues());
 
-            $gatewaySecondResponse = $this->client->post($form->getUri(), null, $form->getValues())->send();
+            $gatewaySecondResponse = $this->client->request(
+                'POST',
+                $response->getUri(),
+                ['Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8'],
+                Psr17FactoryDiscovery::findStreamFactory()->createStream(http_build_query($form->getValues(), '', '&'))
+            );
         } else {
             $uri = str_replace("<META HTTP-EQUIV='Refresh' CONTENT='0;URL=", '', $body);
             $uri = str_replace("'>", '', $uri);
 
-            $gatewaySecondResponse = $this->client->get($uri)->send();
+            $gatewaySecondResponse = $this->client->request('GET', $uri);
         }
 
         //Validate first Response
-        $body = $gatewaySecondResponse->getBody(true);
+        $body = $gatewaySecondResponse->getBody()->__toString();
 
-        self::assertStringContainsString('checkout_plus.php', $body);
-        self::assertStringContainsString('cart_id=', $body);
+        self::assertRegexp('/checkout_plus.php/', $body);
+        self::assertRegexp('/cart_id=/', $body);
     }
 
     public function testCompletePurchaseResponse()

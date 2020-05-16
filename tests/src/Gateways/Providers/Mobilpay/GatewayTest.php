@@ -9,6 +9,7 @@ use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Mobilpay\MobilpayData;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
+use Http\Discovery\Psr17FactoryDiscovery;
 
 /**
  * Class GatewayTest
@@ -29,18 +30,23 @@ class GatewayTest extends AbstractGatewayTest
         self::assertInstanceOf(PurchaseResponse::class, $response);
 
         $data = $response->getRedirectData();
-
         self::assertCount(2, $data);
+        self::assertSame('https://secure.mobilpay.ro', $response->getRedirectUrl());
 
-        $gatewayResponse = $this->client->post($response->getRedirectUrl(), null, $data)->send();
+        $gatewayResponse = $this->client->request(
+            'POST',
+            $response->getRedirectUrl(),
+            ['Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8'],
+            Psr17FactoryDiscovery::findStreamFactory()->createStream(http_build_query($data, '', '&'))
+        );
+
         self::assertSame(200, $gatewayResponse->getStatusCode());
-        self::assertSame('https://secure.mobilpay.ro', $gatewayResponse->getEffectiveUrl());
 
         //Validate first Response
-        $body = $gatewayResponse->getBody(true);
-        self::assertStringContainsString('ID Tranzactie', $body);
-        self::assertStringContainsString('Descriere plata', $body);
-        self::assertStringContainsString('Site comerciant', $body);
+        $body = $gatewayResponse->getBody()->__toString();
+        self::assertRegexp('/ID Tranzactie/', $body);
+        self::assertRegexp('/Descriere plata/', $body);
+        self::assertRegexp('/Site comerciant/', $body);
     }
 
     public function testPurchaseResponseSandbox()
@@ -58,16 +64,21 @@ class GatewayTest extends AbstractGatewayTest
         $data = $response->getRedirectData();
 
         self::assertCount(2, $data);
+        self::assertSame('http://sandboxsecure.mobilpay.ro', $response->getRedirectUrl());
 
-        $gatewayResponse = $this->client->post($response->getRedirectUrl(), null, $data)->send();
+        $gatewayResponse = $this->client->request(
+            'POST',
+            $response->getRedirectUrl(),
+            ['Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8'],
+            Psr17FactoryDiscovery::findStreamFactory()->createStream(http_build_query($data, '', '&'))
+        );
         self::assertSame(200, $gatewayResponse->getStatusCode());
-        self::assertSame('http://sandboxsecure.mobilpay.ro', $gatewayResponse->getEffectiveUrl());
 
         //Validate first Response
-        $body = $gatewayResponse->getBody(true);
-        self::assertStringContainsString('ID Tranzactie', $body);
-        self::assertStringContainsString('Descriere plata', $body);
-        self::assertStringContainsString('Site comerciant', $body);
+        $body = $gatewayResponse->getBody()->__toString();
+        self::assertRegexp('/ID Tranzactie/', $body);
+        self::assertRegexp('/Descriere plata/', $body);
+        self::assertRegexp('/Site comerciant/', $body);
     }
 
     public function testCompletePurchaseResponse()

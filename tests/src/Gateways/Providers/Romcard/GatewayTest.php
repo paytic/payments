@@ -9,6 +9,7 @@ use ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Romcard\RomcardData;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
+use Http\Discovery\Psr17FactoryDiscovery;
 
 /**
  * Class GatewayTest
@@ -29,14 +30,19 @@ class GatewayTest extends AbstractGatewayTest
         $data = $response->getRedirectData();
         self::assertSame('000000060001099', $data['MERCHANT']);
 
-        $gatewayResponse = $this->client->post($response->getRedirectUrl(), null, $data)->send();
+        $gatewayResponse = $this->client->request(
+            'POST',
+            $response->getRedirectUrl(),
+            ['Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8'],
+            Psr17FactoryDiscovery::findStreamFactory()->createStream(http_build_query($data, '', '&'))
+        );
         self::assertSame(200, $gatewayResponse->getStatusCode());
 
         //Validate first Response
-        $body = $gatewayResponse->getBody(true);
+        $body = $gatewayResponse->getBody()->__toString();
 
-        self::assertStringContainsString('Tranzactie Aprobata', $body);
-        self::assertStringContainsString('value="Aproba" name="SEND_BUTTON"', $body);
+        self::assertRegexp('/Tranzactie Aprobata/', $body);
+        self::assertRegexp('/value="Aproba" name="SEND_BUTTON"/', $body);
     }
 
     public function testCompletePurchaseRequest()

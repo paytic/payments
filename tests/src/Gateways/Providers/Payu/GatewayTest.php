@@ -9,6 +9,7 @@ use ByTIC\Payments\Gateways\Providers\Payu\Message\ServerCompletePurchaseRespons
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Payu\PayuData;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
+use Http\Discovery\Psr17FactoryDiscovery;
 
 /**
  * Class TraitsTest
@@ -23,7 +24,7 @@ class GatewayTest extends AbstractGatewayTest
 //        Debug::debug($this->gateway->getParameters());
 //        Debug::debug($request->getParameters());
 
-        $this->client->setDefaultOption('verify', false);
+//        $this->client->setDefaultOption('verify', false);
 
         /** @var PurchaseResponse $response */
         $response = $request->send();
@@ -32,12 +33,17 @@ class GatewayTest extends AbstractGatewayTest
         $data = $response->getRedirectData();
         self::assertSame('GALANTOM', $data['MERCHANT']);
 
-        $payuResponse = $this->client->post($response->getRedirectUrl(), null, $data)->send();
+        $payuResponse = $this->client->request(
+            'POST',
+            $response->getRedirectUrl(),
+            ['Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8'],
+            Psr17FactoryDiscovery::findStreamFactory()->createStream(http_build_query($data, '', '&'))
+        );
         self::assertSame(200, $payuResponse->getStatusCode());
 
-        $body = $payuResponse->getBody(true);
-        self::assertStringContainsString('checkout.php', $body);
-        self::assertStringContainsString('CART_ID=', $body);
+        $body = $payuResponse->getBody()->__toString();
+        self::assertRegexp('/checkout.php/', $body);
+        self::assertRegexp('/CART_ID=/', $body);
     }
 
     public function testCompletePurchaseResponse()
