@@ -41,7 +41,9 @@
     "bytic/omnipay-mobilpay": "^2.0|^3.0",
     "bytic/omnipay-payu": "^2.0|^3.0",
     "bytic/omnipay-romcard": "^2.0|^3.0",
-    "bytic/omnipay-twispay": "^2.0|^3.0"
+    "bytic/omnipay-twispay": "^2.0|^3.0",
+    "php-http/httplug": "^1.0 || ^2.0",
+    "psr/http-client": "^1.0"
   },
   "require-dev": {
     "bytic/common": "^0.9|^1.0",
