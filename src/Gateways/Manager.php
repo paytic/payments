@@ -119,7 +119,8 @@ class Manager
             'Euplatesc',
             'Librapay',
             'Romcard',
-            'Twispay'
+            'Twispay',
+            'Paylike'
         ];
     }
 
