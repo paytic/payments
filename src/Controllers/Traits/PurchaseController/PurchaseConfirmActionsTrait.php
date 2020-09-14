@@ -14,6 +14,9 @@ use Omnipay\Common\Message\AbstractResponse;
 /**
  * Trait PurchaseConfirmActionsTrait
  * @package ByTIC\Payments\Controllers\Traits\PurchaseController
+ *
+ * @method getModelManager()
+ * @method dispatchAccessDeniedResponse()
  */
 trait PurchaseConfirmActionsTrait
 {

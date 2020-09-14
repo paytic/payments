@@ -27,14 +27,14 @@ class PaymentsServiceProvider extends AbstractSignatureServiceProvider
 
     protected function registerPurchases()
     {
-        $this->getContainer()->singleton('purchases', function () {
+        $this->getContainer()->share('purchases', function () {
             return ModelLocator::get($this::$purchaseModel);
         });
     }
 
     protected function registerPurchaseSessions()
     {
-        $this->getContainer()->singleton('purchase-sessions', function () {
+        $this->getContainer()->share('purchase-sessions', function () {
             return ModelLocator::get($this::$purchaseSessionsModel);
         });
     }

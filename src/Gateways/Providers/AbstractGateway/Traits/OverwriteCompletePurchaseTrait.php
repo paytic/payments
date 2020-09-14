@@ -17,6 +17,6 @@ trait OverwriteCompletePurchaseTrait
      */
     public function completePurchase(array $parameters = []): RequestInterface
     {
-        return $this->createRequestWithInternalCheck('CompletePurchaseRequest', $parameters);
+        return $this->createRequestWithInternalCheck('completePurchase', $parameters);
     }
 }

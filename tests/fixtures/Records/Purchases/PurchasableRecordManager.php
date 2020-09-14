@@ -16,4 +16,11 @@ class PurchasableRecordManager extends RecordManager
     {
         return 'id';
     }
+
+    protected function generateTableStructure()
+    {
+        return [
+            'fields' => []
+        ];
+    }
 }

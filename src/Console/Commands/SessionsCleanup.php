@@ -21,6 +21,7 @@ class SessionsCleanup
         /** @var PurchaseSessionsTrait $manager */
         $manager = app('purchase-sessions');
         $result = $manager->reduceOldSessions();
-        return $result->numRows();
+        $rows = $result->numRows();
+        return is_int($rows) ? $rows : 0;
     }
 }

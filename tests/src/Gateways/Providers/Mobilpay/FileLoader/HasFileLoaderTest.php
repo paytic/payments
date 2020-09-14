@@ -6,6 +6,7 @@ use ByTIC\Payments\Gateways\Providers\Mobilpay\Gateway;
 use ByTIC\Payments\Models\Methods\Types\CreditCards;
 use ByTIC\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Mobilpay\MobilpayData;
+use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethods;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 
 /**
@@ -18,6 +19,7 @@ class HasFileLoaderTest extends AbstractTest
     {
         /** @var PaymentMethod $paymentMethod */
         $paymentMethod = \Mockery::mock(PaymentMethod::class)->makePartial();
+        $paymentMethod->setManager(PaymentMethods::instance());
         $paymentMethod->shouldReceive('save');
 
         $paymentMethod->type = 'credit-cards';

@@ -64,6 +64,9 @@ trait MagicMessagesTrait
      */
     protected function createNamespacedRequest($class, array $parameters)
     {
+        if (strpos($class, 'Request') === false) {
+            $class .= 'Request';
+        }
         $class = $this->getRequestClass($class);
 
         if (class_exists($class)) {
@@ -90,7 +93,7 @@ trait MagicMessagesTrait
      */
     protected function getRequestClass($class)
     {
-        $class = $this->getNamespacePath() . '\Message\\' . $class;
+        $class = $this->getNamespacePath() . '\Message\\' . ucfirst($class);
 
         if (class_exists($class)) {
             return $class;
