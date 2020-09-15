@@ -58,6 +58,10 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
                 '/romcard/completePurchaseParams.php',
                 \ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest::class,
             ],
+            [
+                '/paylike/completePurchase/basicParams.php',
+                \ByTIC\Payments\Gateways\Providers\Paylike\Message\CompletePurchaseRequest::class,
+            ],
         ];
     }
 }
