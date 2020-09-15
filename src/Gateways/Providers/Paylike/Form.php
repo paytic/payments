@@ -17,8 +17,8 @@ class Form extends AbstractForm
         parent::initElements();
         $this->initElementSandbox();
 
-        $this->addInput('public-key', 'Public key', false);
-        $this->addInput('private-key', 'Private key', false);
+        $this->addInput('public_key', 'Public key', false);
+        $this->addInput('private_key', 'Private key', false);
     }
 
     public function getDataFromModel()
