@@ -6,6 +6,7 @@ use ByTIC\Common\Records\Record;
 use ByTIC\FacebookPixel\FacebookPixel;
 use ByTIC\Omnipay\Common\Message\Traits\RedirectHtmlTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
  * Trait PurchaseRedirectActionsTrait
@@ -20,7 +21,12 @@ trait PurchaseRedirectActionsTrait
         /** @var RedirectHtmlTrait $response */
         $response = $request->send();
         $this->redirectToPaymentPrepareResponse($response, $model);
-        $response->getRedirectResponse()->send();
+
+        if (!$response instanceof RedirectResponseInterface || !$response->isRedirect()) {
+            $response->getRedirectResponse()->send();
+        } else {
+            $response->send();
+        }
         die();
     }
 
