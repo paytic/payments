@@ -33,7 +33,7 @@ class HelperTest extends AbstractTest
     {
         self::assertEquals(
             89,
-                Helper::decodeOrderId('999999999999900089')
+            Helper::decodeOrderId('999999999999900089')
         );
     }
 }

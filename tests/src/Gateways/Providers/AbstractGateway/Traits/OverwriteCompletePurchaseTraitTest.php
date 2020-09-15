@@ -24,5 +24,4 @@ class OverwriteCompletePurchaseTraitTest extends AbstractTest
         $request = $paylike->completePurchase();
         self::assertInstanceOf(PaylikeCompletePurchaseRequest::class, $request);
     }
-
 }

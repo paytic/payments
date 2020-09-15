@@ -5,6 +5,7 @@ namespace ByTIC\Payments\Tests\Gateways\Providers\Paylike;
 use ByTIC\Payments\Gateways\Providers\Paylike\Gateway;
 
 use ByTIC\Payments\Tests\AbstractTest as AbstractGatewayTest;
+
 //use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 
 /**
@@ -13,7 +14,6 @@ use ByTIC\Payments\Tests\AbstractTest as AbstractGatewayTest;
  */
 class GatewayTest extends AbstractGatewayTest
 {
-
     public function testIsActive()
     {
         $gateway = new Gateway();
