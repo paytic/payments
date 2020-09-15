@@ -22,7 +22,7 @@ trait PurchaseRedirectActionsTrait
         $response = $request->send();
         $this->redirectToPaymentPrepareResponse($response, $model);
 
-        if (!$response instanceof RedirectResponseInterface || !$response->isRedirect()) {
+        if ($response instanceof RedirectResponseInterface  && $response->isRedirect()) {
             $response->getRedirectResponse()->send();
         } else {
             $response->send();
