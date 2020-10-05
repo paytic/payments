@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Paylike\Message;
+namespace ByTIC\Payments\Gateways\Providers\PlatiOnline\Message;
 
-use ByTIC\Omnipay\Paylike\Message\CompletePurchaseResponse as AbstractCompletePurchaseResponse;
+use ByTIC\Omnipay\PlatiOnline\Message\CompletePurchaseResponse as AbstractCompletePurchaseResponse;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 
 /**
  * Class CompletePurchaseResponse
- * @package ByTIC\Payments\Gateways\Providers\Paylike\Message
+ * @package ByTIC\Payments\Gateways\Providers\PlatiOnline\Message
  */
 class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
 {

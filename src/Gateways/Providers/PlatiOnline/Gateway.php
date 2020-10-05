@@ -1,11 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Mobilpay;
+namespace ByTIC\Payments\Gateways\Providers\PlatiOnline;
 
-use ByTIC\Omnipay\Mobilpay\Gateway as AbstractGateway;
+use ByTIC\Omnipay\PlatiOnline\Gateway as AbstractGateway;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\OverwriteServerCompletePurchaseTrait;
-use ByTIC\Payments\Gateways\Providers\Mobilpay\FileLoader\HasFileLoader;
 
 /**
  * Class Gateway
@@ -15,7 +14,6 @@ class Gateway extends AbstractGateway
 {
     use GatewayTrait;
     use OverwriteServerCompletePurchaseTrait;
-    use HasFileLoader;
 
     /**
      * @inheritDoc
@@ -38,7 +36,7 @@ class Gateway extends AbstractGateway
      */
     public function isActive()
     {
-        if (strlen($this->getCertificate()) >= 5 && strlen($this->getPrivateKey()) > 10) {
+        if (strlen($this->getPublicKey()) >= 5 && strlen($this->getPrivateKey()) > 10) {
             return true;
         }
 

@@ -120,7 +120,8 @@ class Manager
             'Librapay',
             'Romcard',
             'Twispay',
-            'Paylike'
+            'Paylike',
+            'PlatiOnline'
         ];
     }
 
