@@ -22,7 +22,7 @@ trait AdminPaymentMethodsTrait
         $type = 'error';
         $message = $this->getModelManager()->getMessage('deleteFile.error');
         if ($fileName) {
-            $files = $item->findFiles();
+            $files = $item->getFiles();
             if ($files[$fileName]) {
                 $files[$fileName]->delete();
                 $type = 'success';
@@ -33,7 +33,7 @@ trait AdminPaymentMethodsTrait
         } else {
             $message = $this->getModelManager()->getMessage('deleteFile.no-filename');
         }
-        $this->flashRedirect($message, $item->getViewURL(), $type);
+        $this->flashRedirect($message, $item->compileURL('view'), $type);
     }
 
     /**

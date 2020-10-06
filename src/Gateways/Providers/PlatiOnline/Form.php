@@ -17,15 +17,14 @@ class Form extends AbstractForm
         parent::initElements();
         $this->initElementSandbox();
 
-        $this->addInput('loginId', 'Login ID', true);
-        $this->addInput('website', 'Website', true);
+        $this->addInput('loginId', 'Login ID', false);
+        $this->addInput('website', 'Website', false);
 
-        $this->addInput('initialVector', 'Initial Vector', true);
-        $this->addInput('initialVectorItsn', 'Initial Vector Itsn', true);
+        $this->addInput('initialVector', 'Initial Vector', false);
+        $this->addInput('initialVectorItsn', 'Initial Vector Itsn', false);
 
-        $this->addTextarea('publicKey', 'Public Key', true);
-
-        $this->addTextarea('privateKey', 'Private key', true);
+        $this->addTextarea('publicKey', 'Public Key', false);
+        $this->addTextarea('privateKey', 'Private key', false);
     }
 
     public function getDataFromModel()

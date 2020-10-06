@@ -10,6 +10,7 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
 use Nip\Records\Locator\ModelLocator;
 use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Common\Message\ResponseInterface;
 
 /**
  * Trait PurchaseConfirmActionsTrait
@@ -33,7 +34,7 @@ trait PurchaseConfirmActionsTrait
     }
 
     /**
-     * @return CompletePurchaseResponseTrait|ConfirmHtmlTrait
+     * @return AbstractResponse|CompletePurchaseResponseTrait|ConfirmHtmlTrait
      */
     protected function getConfirmActionResponse()
     {
@@ -52,7 +53,7 @@ trait PurchaseConfirmActionsTrait
     }
 
     /**
-     * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param AbstractResponse|CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
      */
     protected function confirmProcessResponse($response)
     {
@@ -70,7 +71,7 @@ trait PurchaseConfirmActionsTrait
     }
 
     /**
-     * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param AbstractResponse|CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
      * @param IsPurchasableModelTrait $model
      */
     protected function confirmProcessResponseTitle($response, $model)
@@ -86,7 +87,7 @@ trait PurchaseConfirmActionsTrait
     }
 
     /**
-     * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param AbstractResponse|CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
      * @param IsPurchasableModelTrait $model
      */
     protected function confirmProcessResponseMessage($response, $model)
@@ -101,7 +102,7 @@ trait PurchaseConfirmActionsTrait
     }
 
     /**
-     * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param AbstractResponse|CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
      * @param IsPurchasableModelTrait $model
      */
     protected function confirmProcessResponseButton($response, $model)
@@ -115,7 +116,7 @@ trait PurchaseConfirmActionsTrait
     }
 
     /**
-     * @param CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
+     * @param AbstractResponse|CompletePurchaseResponseTrait|ConfirmHtmlTrait $response
      * @param IsPurchasableModelTrait $model
      */
     abstract protected function confirmProcessResponseModel($response, $model);
