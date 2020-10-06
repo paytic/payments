@@ -17,5 +17,4 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {
     use HasModelRequest;
     use Traits\CompletePurchaseTrait;
-
 }
