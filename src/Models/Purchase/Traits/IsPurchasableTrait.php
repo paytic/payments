@@ -22,6 +22,7 @@ trait IsPurchasableTrait
         $parameters['orderName'] = $this->getPurchaseName();
         $parameters['orderDate'] = $this->getPurchaseDate();
 
+        $parameters['transactionId'] = $this->id;
         $parameters['description'] = $this->getPurchaseName();
         $parameters['lang'] = translator()->getLanguage();
 
