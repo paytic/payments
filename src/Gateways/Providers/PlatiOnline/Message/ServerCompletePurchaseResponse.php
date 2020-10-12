@@ -20,4 +20,12 @@ class ServerCompletePurchaseResponse extends AbstractServerCompletePurchaseRespo
     {
         return true;
     }
+
+    /**
+     * @return \SimpleXMLElement
+     */
+    public function getSessionDebug()
+    {
+        return $this->getNotification();
+    }
 }

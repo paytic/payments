@@ -5,6 +5,7 @@ namespace ByTIC\Payments\Models\PurchaseSessions;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
+use Omnipay\Common\Message\ResponseInterface;
 
 /**
  * Trait PurchaseSessionsTrait
@@ -18,7 +19,7 @@ trait PurchaseSessionsTrait
 
     /**
      * @param string $type
-     * @param CompletePurchaseResponseTrait $response
+     * @param CompletePurchaseResponseTrait|ResponseInterface $response
      * @return PurchaseSessionTrait
      */
     public function createFromResponse($response, $type)

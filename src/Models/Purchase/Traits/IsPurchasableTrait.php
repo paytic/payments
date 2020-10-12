@@ -3,8 +3,8 @@
 namespace ByTIC\Payments\Models\Purchase\Traits;
 
 /**
- * Class MethodTrait
- * @package ByTIC\Payments\Traits
+ * Trait IsPurchasableTrait
+ * @package ByTIC\Payments\Models\Purchase\Traits
  */
 trait IsPurchasableTrait
 {

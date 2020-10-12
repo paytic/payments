@@ -36,7 +36,7 @@ trait PurchaseSessionTrait
     public function populateFromResponse($response)
     {
         if (method_exists($response, 'getSessionDebug')) {
-            $this->debug = $response->getSessionDebug();
+            $this->debug = base64_encode(gzcompress(serialize($response->getSessionDebug())));
         }
     }
 

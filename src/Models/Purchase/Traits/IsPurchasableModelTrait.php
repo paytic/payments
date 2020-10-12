@@ -10,8 +10,8 @@ use Exception;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Class MethodTrait
- * @package ByTIC\Payments\Traits
+ * Trait IsPurchasableModelTrait
+ * @package ByTIC\Payments\Models\Purchase\Traits
  *
  * @property int $id
  * @property string $status
