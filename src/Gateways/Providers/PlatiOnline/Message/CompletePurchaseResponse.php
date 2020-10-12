@@ -23,10 +23,15 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
     }
 
     /**
-     * @return SimpleXMLElement
+     * @return []
      */
     public function getSessionDebug()
     {
-        return $this->getNotification();
+        $notification = $this->getNotification();
+        if ($notification instanceof \SimpleXMLElement) {
+            $objJsonDocument = json_encode($notification);
+            return json_decode($objJsonDocument, TRUE);
+        }
+        return [];
     }
 }

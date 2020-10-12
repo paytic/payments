@@ -7,7 +7,6 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelPro
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
-use ByTIC\Payments\PaymentsServiceProvider;
 use Nip\Records\Locator\ModelLocator;
 use Omnipay\Common\Message\AbstractResponse;
 
@@ -39,7 +38,7 @@ trait PurchaseIpnActionsTrait
             $purchaseMethodsManager = $this->getModelManager()->getRelation('Method')->getWith();
             /** @var MethodRecordTrait $purchaseMethod */
             $purchaseMethod = $purchaseMethodsManager->findOne($idGateway);
-            $request = $purchaseMethod->getType()->getGateway()->serverCompletePurchase();
+            $request = $purchaseMethod->getType()->getGateway()->serverCompletePurchase(['modelManager' => $this->getModelManager()]);
             $response = $request->send();
         } else {
             /** @var AbstractResponse|HasModelProcessedResponse $response */
