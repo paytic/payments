@@ -52,9 +52,9 @@ trait RecordTrait
     public function getName($type = false)
     {
         if ($type == 'internal') {
-            return $this->internal_name;
+            return $this->getAttributeFromArray('internal_name');
         }
-        return $this->name;
+        return $this->getAttributeFromArray('name');
     }
 
     /**
@@ -86,7 +86,7 @@ trait RecordTrait
      */
     public function getDescription()
     {
-        return $this->description;
+        return $this->getAttributeFromArray('description');
     }
 
     /**

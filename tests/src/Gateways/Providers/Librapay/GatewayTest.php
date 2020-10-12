@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\Librapay;
 
+use ByTIC\Omnipay\Librapay\Message\ServerCompletePurchaseResponse;
 use ByTIC\Payments\Gateways\Providers\Librapay\Gateway;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Librapay\LibrapayData;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
@@ -35,7 +36,36 @@ class GatewayTest extends AbstractGatewayTest
         self::assertTrue($gateway->isActive());
     }
 
-    protected function setUp() : void
+    public function testServerCompletePurchaseConfirmedResponse()
+    {
+        $httpRequest = LibrapayData::getServerCompletePurchaseRequest();
+        $response = $this->createServerCompletePurchaseResponse($httpRequest);
+
+        self::assertTrue($response->isSuccessful());
+
+        $content = $response->getContent();
+        self::assertSame('1', $content);
+    }
+
+    /**
+     * @param $request
+     * @return ServerCompletePurchaseResponse
+     */
+    protected function createServerCompletePurchaseResponse($request)
+    {
+        /** @var ServerCompletePurchaseResponse $response */
+        $response = $this->gatewayManager->detectItemFromHttpRequest(
+            $this->purchaseManager,
+            'serverCompletePurchase',
+            $request
+        );
+
+        self::assertInstanceOf(ServerCompletePurchaseResponse::class, $response);
+
+        return $response;
+    }
+
+    protected function setUp(): void
     {
         parent::setUp();
 

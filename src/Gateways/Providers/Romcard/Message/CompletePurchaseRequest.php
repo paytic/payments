@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Gateways\Providers\Romcard\Message;
 
 use ByTIC\Omnipay\Romcard\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
 use ByTIC\Payments\Gateways\Providers\Romcard\Helper;
 use ByTIC\Payments\Gateways\Providers\Romcard\Message\Traits\CompletePurchaseTrait;
@@ -15,6 +16,7 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {
     use HasModelRequest;
     use CompletePurchaseTrait;
+    use HasGatewayRequestTrait;
 
     /**
      * @inheritdoc
@@ -47,7 +49,7 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
     {
         if ($this->validateModel()) {
             $model = $this->getModel();
-            $this->updateParametersFromModel($model);
+            $this->updateParametersFromPurchase($model);
         }
 
         return parent::parseNotification();

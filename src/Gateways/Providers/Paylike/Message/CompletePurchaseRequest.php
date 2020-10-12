@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Gateways\Providers\Paylike\Message;
 
 use ByTIC\Omnipay\Paylike\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
 use ByTIC\Payments\Gateways\Providers\Paylike\Gateway;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
@@ -16,6 +17,7 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {
     use HasModelRequest;
+    use HasGatewayRequestTrait;
 
     /**
      * @inheritdoc
@@ -49,21 +51,17 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
     {
         if ($this->validateModel()) {
             $model = $this->getModel();
-            $this->updateParametersFromModel($model);
+            $this->updateParametersFromPurchase($model);
         }
 
         return parent::parseNotification();
     }
 
     /**
-     * @param IsPurchasableModelTrait $model
-     *
-     * @throws \Exception
+     * @param Gateway $modelGateway
      */
-    protected function updateParametersFromModel($model)
+    protected function updateParametersFromGateway($modelGateway)
     {
-        /** @var Gateway $modelGateway */
-        $modelGateway = $model->getPaymentMethod()->getType()->getGateway();
         $this->setPublicKey($modelGateway->getPublicKey());
         $this->setPrivateKey($modelGateway->getPrivateKey());
     }

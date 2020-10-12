@@ -15,7 +15,7 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
  */
 class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {
-    use HasModelRequest;
+    use Traits\CompletePurchaseRequestTrait;
 
     /**
      * @inheritdoc
@@ -39,33 +39,5 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
         $modelId = $this->httpRequest->query->get('orderId');
 
         return $modelId;
-    }
-
-    /**
-     * @return bool|mixed
-     * @throws \Exception
-     */
-    protected function parseNotification()
-    {
-        if ($this->validateModel()) {
-            $model = $this->getModel();
-            $this->updateParametersFromModel($model);
-        }
-
-        return parent::parseNotification();
-    }
-
-    /**
-     * @param IsPurchasableModelTrait $model
-     *
-     * @throws \Exception
-     */
-    protected function updateParametersFromModel($model)
-    {
-        /** @var Gateway $modelGateway */
-        $modelGateway = $model->getPaymentMethod()->getType()->getGateway();
-        $this->setSignature($modelGateway->getSignature());
-        $this->setCertificate($modelGateway->getCertificate());
-        $this->setPrivateKey($modelGateway->getPrivateKey());
     }
 }

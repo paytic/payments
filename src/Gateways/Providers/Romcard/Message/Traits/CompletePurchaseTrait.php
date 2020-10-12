@@ -3,7 +3,6 @@
 namespace ByTIC\Payments\Gateways\Providers\Romcard\Message\Traits;
 
 use ByTIC\Payments\Gateways\Providers\Romcard\Gateway;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Trait CompletePurchaseTrait
@@ -11,18 +10,14 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 trait CompletePurchaseTrait
 {
     /**
-     * @param IsPurchasableModelTrait $model
+     * @param Gateway $gateway
      */
-    protected function updateParametersFromModel($model)
+    protected function updateParametersFromGateway($gateway)
     {
-        /** @var Gateway $gateway */
-        $gateway = $model->getPaymentGateway();
-        if ($gateway) {
-            $this->setTerminal($gateway->getTerminal());
-            $this->setKey($gateway->getKey());
-            $this->setMerchantName($gateway->getMerchantName());
-            $this->setMerchantEmail($gateway->getMerchantEmail());
-            $this->setMerchantUrl($gateway->getMerchantUrl());
-        }
+        $this->setTerminal($gateway->getTerminal());
+        $this->setKey($gateway->getKey());
+        $this->setMerchantName($gateway->getMerchantName());
+        $this->setMerchantEmail($gateway->getMerchantEmail());
+        $this->setMerchantUrl($gateway->getMerchantUrl());
     }
 }

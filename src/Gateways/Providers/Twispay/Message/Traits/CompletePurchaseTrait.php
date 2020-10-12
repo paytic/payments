@@ -1,17 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Euplatesc\Message\Traits;
+namespace ByTIC\Payments\Gateways\Providers\Twispay\Message\Traits;
 
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
-use ByTIC\Payments\Gateways\Providers\Euplatesc\Gateway;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
+use ByTIC\Payments\Gateways\Providers\Twispay\Gateway;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Trait CompletePurchaseTrait
- * @package ByTIC\Payments\Gateways\Providers\Euplatesc\Message\Traits
+ * @package ByTIC\Payments\Gateways\Providers\Twispay\Message\Traits
  */
 trait CompletePurchaseTrait
 {
+    use HasModelRequest;
     use HasGatewayRequestTrait;
 
     /**
@@ -24,12 +26,11 @@ trait CompletePurchaseTrait
         if (count($return)) {
             $return['model'] = $this->getModel();
         }
-
         return $return;
     }
 
     /**
-     * @inheritdoc
+     * @return bool|mixed
      */
     protected function parseNotification()
     {
@@ -37,16 +38,14 @@ trait CompletePurchaseTrait
             $model = $this->getModel();
             $this->updateParametersFromPurchase($model);
         }
-
         return parent::parseNotification();
     }
 
     /**
-     * @param Gateway $model
+     * @param Gateway $gateway
      */
     protected function updateParametersFromGateway($gateway)
     {
-        $this->setMid($gateway->getMid());
-        $this->setKey($gateway->getKey());
+        $this->setApiKey($gateway->getParameter('apiKey'));
     }
 }

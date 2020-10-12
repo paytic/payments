@@ -13,21 +13,7 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
  */
 class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {
-    use HasModelRequest;
-
-    /**
-     * @inheritdoc
-     */
-    public function getData()
-    {
-        $return = parent::getData();
-        // Add model only if has data
-        if (count($return)) {
-            $return['model'] = $this->getModel();
-        }
-
-        return $return;
-    }
+    use Traits\CompletePurchaseRequestTrait;
 
     /**
      * @inheritdoc
@@ -56,26 +42,16 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
     }
 
     /**
-     * @return bool|mixed
+     * @inheritDoc
      */
     protected function parseNotification()
     {
         $model = $this->getModel();
-        $this->updateParametersFromModel($model);
+        $this->updateParametersFromPurchase($model);
 
         return parent::parseNotification();
     }
 
-    /**
-     * @param IsPurchasableModelTrait $model
-     */
-    protected function updateParametersFromModel($model)
-    {
-        /** @var Gateway $gateway */
-        $gateway = $model->getPaymentMethod()->getType()->getGateway();
-//        $this->setMerchant($gateway->getMerchant());
-        $this->setSecretKey($gateway->getSecretKey());
-    }
 
     /**
      * @inheritdoc

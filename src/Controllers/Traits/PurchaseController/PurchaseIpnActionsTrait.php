@@ -4,8 +4,10 @@ namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
 
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
+use ByTIC\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
+use ByTIC\Payments\PaymentsServiceProvider;
 use Nip\Records\Locator\ModelLocator;
 use Omnipay\Common\Message\AbstractResponse;
 
@@ -32,12 +34,21 @@ trait PurchaseIpnActionsTrait
      */
     protected function getIpnActionResponse()
     {
-        /** @var AbstractResponse|HasModelProcessedResponse $response */
-        $response = GatewaysManager::detectItemFromHttpRequest(
-            $this->getModelManager(),
-            'serverCompletePurchase',
-            $this->getRequest()
-        );
+        $idGateway = request()->get('paymentMethodId');
+        if ($idGateway > 0) {
+            $purchaseMethodsManager = $this->getModelManager()->getRelation('Method')->getWith();
+            /** @var MethodRecordTrait $purchaseMethod */
+            $purchaseMethod = $purchaseMethodsManager->findOne($idGateway);
+            $request = $purchaseMethod->getType()->getGateway()->serverCompletePurchase();
+            $response = $request->send();
+        } else {
+            /** @var AbstractResponse|HasModelProcessedResponse $response */
+            $response = GatewaysManager::detectItemFromHttpRequest(
+                $this->getModelManager(),
+                'serverCompletePurchase',
+                $this->getRequest()
+            );
+        }
 
         if (($response instanceof AbstractResponse) === false) {
             $this->dispatchAccessDeniedResponse();

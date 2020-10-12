@@ -98,6 +98,7 @@ abstract class GatewayTest extends AbstractTest
         $purchaseManager->shouldReceive('findOne')->withArgs([37250])->andReturn($purchase);
         $purchaseManager->shouldReceive('findOne')->withArgs([24669])->andReturn($purchase);
         $purchaseManager->shouldReceive('findOne')->withArgs([24677])->andReturn($purchase);
+        $purchaseManager->shouldReceive('findOne')->withArgs([172490])->andReturn($purchase);
 
         return $purchaseManager;
     }

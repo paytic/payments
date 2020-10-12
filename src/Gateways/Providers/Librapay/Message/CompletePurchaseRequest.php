@@ -14,33 +14,7 @@ use ByTIC\Payments\Gateways\Providers\Librapay\Message\Traits\CompletePurchaseTr
  */
 class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {
-    use HasModelRequest;
     use CompletePurchaseTrait;
-
-    /**
-     * @inheritdoc
-     */
-    public function getData()
-    {
-        $return = parent::getData();
-        // Add model only if has data
-        if (count($return)) {
-            $return['model'] = $this->getModel();
-        }
-
-        return $return;
-    }
-
-    /**
-     * @return string
-     */
-    public function getModelIdFromRequest()
-    {
-        $modelId = $this->getHttpRequestBag()->get('ORDER');
-        $modelId = Helper::decodeOrderId($modelId);
-
-        return $modelId;
-    }
 
     /**
      * @inheritdoc
@@ -49,7 +23,7 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
     {
         if ($this->validateModel()) {
             $model = $this->getModel();
-            $this->updateParametersFromModel($model);
+            $this->updateParametersFromPurchase($model);
         }
 
         return parent::parseNotification();

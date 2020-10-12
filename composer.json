@@ -32,7 +32,7 @@
     }
   },
   "require": {
-    "php": "^7.0",
+    "php": "^7.1",
     "ext-zlib": "*",
     "bytic/medialibrary": "^0.8|^0.9",
     "bytic/translation": "^0.9|^1.0",

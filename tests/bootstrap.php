@@ -12,6 +12,9 @@ if (file_exists(__DIR__.DIRECTORY_SEPARATOR.'.env')) {
     $dotenv->load();
 }
 
+putenv('PLATIONLINE_PUBLIC_KEY='.gzinflate(base64_decode(getenv('PLATIONLINE_PUBLIC_KEY'))));
+putenv('PLATIONLINE_PRIVATE_KEY='.gzinflate(base64_decode(getenv('PLATIONLINE_PRIVATE_KEY'))));
+
 Container::setInstance(new Container());
 Container::getInstance()->set('inflector', \Nip\Inflector\Inflector::instance());
 
@@ -21,3 +24,4 @@ Container::getInstance()->set('translator', $translator);
 Container::getInstance()->set('request', new \Nip\Request());
 
 require dirname(__DIR__).'/vendor/autoload.php';
+

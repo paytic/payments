@@ -4,8 +4,6 @@ namespace ByTIC\Payments\Gateways\Providers\PlatiOnline\Message;
 
 use ByTIC\Omnipay\PlatiOnline\Message\ServerCompletePurchaseRequest as AbstractServerCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
-use ByTIC\Payments\Gateways\Providers\PlatiOnline\Gateway;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Class ServerCompletePurchaseRequest
@@ -15,4 +13,19 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
 {
     use HasModelRequest;
     use Traits\CompletePurchaseTrait;
+
+    /**
+     * @inheritDoc
+     */
+    protected function parseNotification()
+    {
+        $return = parent::parseNotification();
+        if ($return->f_order_number) {
+            $model = $this->findModel($return->f_order_number);
+            if (is_object($model)) {
+                $this->setModel($model);
+            }
+        }
+        return $return;
+    }
 }

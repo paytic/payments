@@ -13,21 +13,7 @@ use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
  */
 class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseRequest
 {
-    use HasModelRequest;
-
-    /**
-     * @inheritdoc
-     */
-    public function getData()
-    {
-        $return = parent::getData();
-        // Add model only if has data
-        if (count($return)) {
-            $return['model'] = $this->getModel();
-        }
-
-        return $return;
-    }
+    use Traits\CompletePurchaseRequestTrait;
 
     /**
      * @inheritdoc
@@ -37,7 +23,7 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
         if ($this->hasPOST('REFNOEXT')) {
             if ($this->validateModel()) {
                 $model = $this->getModel();
-                $this->updateParametersFromModel($model);
+                $this->updateParametersFromPurchase($model);
 
                 return parent::isValidNotification();
             }
@@ -55,14 +41,4 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
         return $this->httpRequest->request->get('REFNOEXT');
     }
 
-    /**
-     * @param IsPurchasableModelTrait $model
-     */
-    protected function updateParametersFromModel($model)
-    {
-        /** @var Gateway $gateway */
-        $gateway = $model->getPaymentMethod()->getType()->getGateway();
-//        $this->setMerchant($gateway->getMerchant());
-        $this->setSecretKey($gateway->getSecretKey());
-    }
 }
