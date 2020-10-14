@@ -36,13 +36,17 @@ class ServerCompletePurchaseResponseTest extends AbstractTest
 
         $response = $request->send();
         self::assertInstanceOf(ServerCompletePurchaseResponse::class, $response);
+        self::assertInstanceOf(PurchasableRecord::class, $response->getModel());
         self::assertSame(false, $response->isCancelled());
         self::assertSame(false, $response->isPending());
-        self::assertSame('error', $response->getModelResponseStatus());
+        self::assertSame('active', $response->getModelResponseStatus());
 
-//        $content = $response->getViewContent();
-//
-//        self::assertStringContainsString('++++', $content);
+        $sessionDebug = $response->getSessionDebug();
+        self::assertArrayHasKey('order', $sessionDebug);
+        self::assertArrayHasKey('transaction', $sessionDebug);
+
+        $content = $response->getContent();
+        self::assertSame('<?xml version="1.0" encoding="UTF-8" ?><itsn><x_trans_id>6917422</x_trans_id><merchServerStamp>' . date("Y-m-d H:m:s") . '</merchServerStamp><f_response_code>1</f_response_code></itsn>', $content);
     }
 
     /**

@@ -27,10 +27,7 @@ class ServerCompletePurchaseResponse extends AbstractServerCompletePurchaseRespo
     public function getSessionDebug()
     {
         $notification = $this->getNotification();
-        if ($notification instanceof \SimpleXMLElement) {
-            $objJsonDocument = json_encode($notification);
-            return json_decode($objJsonDocument, TRUE);
-        }
-        return [];
+        $objJsonDocument = json_encode($notification);
+        return json_decode($objJsonDocument, TRUE);
     }
 }
