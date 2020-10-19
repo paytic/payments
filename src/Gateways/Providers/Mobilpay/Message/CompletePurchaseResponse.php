@@ -20,7 +20,8 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
     {
         $model = $this->getModel();
         if ($model) {
-            if (empty($model->status) or $model->status === 'pending') {
+            $status = $model->status;
+            if (empty($status) or $status == 'pending') {
                 return true;
             }
         }
@@ -34,7 +35,7 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
     {
         $model = $this->getModel();
         if ($model) {
-            if ($model->status === 'canceled') {
+            if ($model->status == 'canceled') {
                 return true;
             }
         }
@@ -48,7 +49,7 @@ class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
     {
         $model = $this->getModel();
         if ($model) {
-            if ($model->status === 'active') {
+            if ($model->status == 'active') {
                 return true;
             }
         }

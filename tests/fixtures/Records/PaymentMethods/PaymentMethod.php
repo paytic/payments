@@ -17,12 +17,17 @@ class PaymentMethod extends Record
     {
     }
 
+    public function getManager()
+    {
+        return PaymentMethods::instance();
+    }
+
     /**
      * @return string
      */
     public function getFilesDirectory()
     {
-        return TEST_FIXTURE_PATH. '/files/';
+        return TEST_FIXTURE_PATH . '/files/';
     }
 
     /**

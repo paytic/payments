@@ -85,7 +85,7 @@ abstract class GatewayTest extends AbstractTest
     protected function setUpPurchaseManagerMock()
     {
         $this->purchaseManager = $this->generatePurchaseManagerMock($this->purchase);
-        $this->purchase->setManager($this->purchaseManager);
+        $this->purchase->shouldReceive('getManager')->andReturn($this->purchaseManager);
     }
 
     /**

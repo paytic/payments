@@ -25,7 +25,7 @@ trait PurchaseSessionTrait
     public function populateFromPayment($payment)
     {
         $this->{$this->getPurchaseFk()} = $payment->id;
-        $this->new_status = $payment->status;
+        $this->new_status = (string) $payment->status;
 
         return $this;
     }
