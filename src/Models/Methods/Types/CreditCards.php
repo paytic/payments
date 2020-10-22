@@ -12,7 +12,7 @@ use Nip\Helpers\View\Messages as MessagesHelper;
  */
 class CreditCards extends AbstractType
 {
-    public $name = 'credit-cards';
+    protected $aliases = ['credit-cards','credit_cards'];
 
     use HasGatewaysTrait;
 

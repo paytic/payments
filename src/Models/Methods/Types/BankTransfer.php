@@ -8,5 +8,5 @@ namespace ByTIC\Payments\Models\Methods\Types;
  */
 class BankTransfer extends AbstractType
 {
-    public $name = 'bank-transfer';
+    protected $aliases = ['bank-transfer','bank_transfer'];
 }
