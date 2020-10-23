@@ -111,7 +111,7 @@ trait RecordTrait
      */
     public function getGateway()
     {
-        if ($this->getType()->getName() == 'credit-cards') {
+        if ($this->getType() instanceof CreditCards) {
             return $this->getType()->getGateway();
         }
 

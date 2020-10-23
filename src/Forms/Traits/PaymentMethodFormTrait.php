@@ -8,6 +8,7 @@ use ByTIC\MediaLibrary\HasMedia\Traits\AddMediaTrait;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Gateway;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethod;
+use ByTIC\Payments\Models\Methods\Types\CreditCards;
 use Nip_Form_Element_Abstract as FormElementAbstract;
 use Nip_Form_Element_Select as FormSelect;
 
@@ -250,7 +251,8 @@ trait PaymentMethodFormTrait
 
     protected function parseTypeForPaymentGateway()
     {
-        if ($this->getModel()->type == 'credit-cards' && $this->getModel()->getOption('payment_gateway')) {
+        $model = $this->getModel();
+        if ($model->getType() instanceof CreditCards && $model->getOption('payment_gateway')) {
             $this->getElement('type')->setValue($this->getModel()->getOption('payment_gateway'));
         }
     }
