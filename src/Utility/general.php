@@ -7,13 +7,10 @@ if (!function_exists('payments_gateways')) {
     /**
      * @return GatewaysManager
      */
-    function payments_gateways()
+    function payments_gateways(): GatewaysManager
     {
-        if (function_exists('app')) {
-            return app('payments.gateways');
-        }
+        $container = function_exists('app') ? app() : Container::getInstance();
 
-        $container = Container::getInstance();
         if ($container->has('payments.gateways')) {
             return $container->get('payments.gateways');
         }

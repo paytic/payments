@@ -4,30 +4,39 @@ namespace ByTIC\Payments\Gateways;
 
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\DetectFromHttpRequestTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use ByTIC\Payments\Legacy\Gateways\Manager\Traits\StaticCallsTrait;
 use Nip\Records\AbstractModels\RecordManager;
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Message\AbstractResponse;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
- * Class Payment_Gateways
+ * Class Manager
+ * @package ByTIC\Payments\Gateways
  */
 class Manager
 {
+    use Manager\Traits\HasFactoryTrait;
+    use Manager\Traits\HasGatewaysCollectionTrait;
+//    use StaticCallsTrait;
+
 
     /**
-     * Internal factory storage
-     *
-     * @var GatewayFactory
+     * @param null|Manager $newInstance
+     * @return Manager
      */
-    private static $factory;
-
-    /**
-     * Internal factory storage
-     *
-     * @var GatewaysCollection|GatewayTrait[]
-     */
-    private static $collection;
+    public static function instance($newInstance = null): Manager
+    {
+        static $instance;
+        if ($newInstance instanceof self) {
+            $instance = $newInstance;
+            return $instance;
+        }
+        if (!($instance instanceof self)) {
+            $instance = new self();
+        }
+        return $instance;
+    }
 
     /**
      * @param RecordManager $modelManager
@@ -37,6 +46,7 @@ class Manager
      */
     public static function detectItemFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
     {
+        /** @noinspection PhpUnhandledExceptionInspection */
         $request = self::getRequestFromHttpRequest($modelManager, $callback, $httpRequest);
         if (!is_subclass_of($request, AbstractRequest::class)) {
             return false;
@@ -70,75 +80,6 @@ class Manager
         }
 
         return false;
-    }
-
-    /**
-     * @return GatewaysCollection
-     */
-    public static function getAll()
-    {
-        return self::getCollection();
-    }
-
-    /**
-     * Get the gateway factory
-     *
-     * Creates a new empty GatewayFactory if none has been set previously.
-     *
-     * @return GatewaysCollection A GatewayFactory instance
-     */
-    public static function getCollection()
-    {
-        if (is_null(static::$collection)) {
-            static::$collection = new GatewaysCollection;
-            self::initCollection();
-        }
-
-        return static::$collection;
-    }
-
-    protected static function initCollection()
-    {
-        $gatewayNames = self::getSupportedGateways();
-        foreach ($gatewayNames as $gatewayName) {
-            $gateway = self::getFactory()->create($gatewayName);
-            self::getCollection()->offsetSet($gateway->getName(), $gateway);
-        }
-    }
-
-    /**
-     * Get a list of supported gateways which may be available
-     *
-     * @return array
-     */
-    public static function getSupportedGateways()
-    {
-        return [
-            'Payu',
-            'Mobilpay',
-            'Euplatesc',
-            'Librapay',
-            'Romcard',
-            'Twispay',
-            'Paylike',
-            'PlatiOnline'
-        ];
-    }
-
-    /**
-     * Get the gateway factory
-     *
-     * Creates a new empty GatewayFactory if none has been set previously.
-     *
-     * @return GatewayFactory A GatewayFactory instance
-     */
-    public static function getFactory()
-    {
-        if (is_null(static::$factory)) {
-            static::$factory = new GatewayFactory;
-        }
-
-        return static::$factory;
     }
 
     /**

@@ -123,7 +123,7 @@ trait RecordTrait
      */
     public function setType($type = null)
     {
-        $paymentGatewaysNames = \ByTIC\Payments\Gateways\Manager::getCollection()->keys();
+        $paymentGatewaysNames = \ByTIC\Payments\Gateways\Manager::getAll()->keys();
         if (in_array($type, $paymentGatewaysNames)) {
             $this->setOption('payment_gateway', $type);
             $type = 'credit-cards';

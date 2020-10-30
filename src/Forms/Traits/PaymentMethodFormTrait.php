@@ -83,8 +83,8 @@ trait PaymentMethodFormTrait
     protected function checkPaymentGatewaysValues()
     {
         if ($this->paymentGatewaysItems == null) {
-            $this->paymentGatewaysItems = $this->getPaymentGatewaysManager()::getCollection();
-            $this->paymentGatewaysNames = $this->getPaymentGatewaysManager()::getCollection()->keys();
+            $this->paymentGatewaysItems = $this->getPaymentGatewaysManager()::getAll();
+            $this->paymentGatewaysNames = $this->paymentGatewaysItems->keys();
         }
     }
 

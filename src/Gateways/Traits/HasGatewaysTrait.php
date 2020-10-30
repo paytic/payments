@@ -65,7 +65,7 @@ trait HasGatewaysTrait
             throw new \Exception("No name in newGateway for ".get_class($this));
         }
 
-        $gateway = clone $this->getGatewaysManager()::getCollection()->offsetGet($name);
+        $gateway = clone $this->getGatewaysManager()::gateway($name);
         if (!($gateway instanceof GatewayInterface)) {
             throw new \Exception("Invalid gateway name ['.$name.'] in ".get_class($this));
         }
@@ -97,7 +97,12 @@ trait HasGatewaysTrait
 
     protected function initGatewaysManager()
     {
-        $this->setGatewaysManager(new Manager());
+        $this->setGatewaysManager($this->generateGatewaysManager());
+    }
+
+    protected function generateGatewaysManager(): Manager
+    {
+        return payments_gateways();
     }
 
     /**

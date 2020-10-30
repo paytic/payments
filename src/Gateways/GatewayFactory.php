@@ -2,8 +2,8 @@
 
 namespace ByTIC\Payments\Gateways;
 
-use Guzzle\Http\ClientInterface;
 use Omnipay\Common\GatewayInterface;
+use Omnipay\Common\Http\ClientInterface;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
@@ -25,10 +25,11 @@ class GatewayFactory
      */
     public function create($class, ClientInterface $httpClient = null, HttpRequest $httpRequest = null)
     {
-        $class = self::getGatewayClassName($class);
-
         if (!class_exists($class)) {
-            throw new RuntimeException("Class '$class' not found");
+            $class = self::getGatewayClassName($class);
+            if (!class_exists($class)) {
+                throw new RuntimeException("Class '$class' not found");
+            }
         }
 
         return new $class($httpClient, $httpRequest);

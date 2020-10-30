@@ -19,7 +19,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "ByTIC\\Payments\\": "src/"
+      "ByTIC\\Payments\\": "src/",
+      "ByTIC\\Payments\\Legacy\\": "legacy/"
     },
     "files": [
       "src/Utility/general.php"
