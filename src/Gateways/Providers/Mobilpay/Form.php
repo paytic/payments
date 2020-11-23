@@ -46,7 +46,7 @@ class Form extends AbstractForm
     {
         parent::processValidation();
 
-        if ($_FILES['mobilpay']) {
+        if (isset($_FILES['mobilpay'])) {
             $files = ['file', 'private-key'];
             foreach ($files as $fileType) {
                 $element = $this->getForm()->getElement('mobilpay['.$fileType.']');

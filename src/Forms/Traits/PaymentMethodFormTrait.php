@@ -6,10 +6,10 @@ use ByTIC\Common\Forms\Traits\AbstractFormTrait;
 use ByTIC\MediaLibrary\HasMedia\HasMediaTrait;
 use ByTIC\MediaLibrary\HasMedia\Traits\AddMediaTrait;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Gateway;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethod;
 use ByTIC\Payments\Models\Methods\Types\CreditCards;
-use Nip_Form_Element_Abstract as FormElementAbstract;
+use Nip\Form\Elements\AbstractElement as FormElementAbstract;
 use Nip_Form_Element_Select as FormSelect;
 
 /**
@@ -31,7 +31,7 @@ trait PaymentMethodFormTrait
     protected $paymentGatewaysManager = null;
 
     /**
-     * @var null|Gateway[]
+     * @var null|GatewayTrait[]
      */
     protected $paymentGatewaysItems = null;
 
@@ -63,7 +63,7 @@ trait PaymentMethodFormTrait
     }
 
     /**
-     * @return Gateway[]
+     * @return GatewayTrait[]
      */
     public function getPaymentGatewaysItems()
     {

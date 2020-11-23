@@ -36,13 +36,13 @@ trait RecordTrait
      * @param array $data
      * @return mixed
      */
-    public function writeData($data = [])
+    public function fill($data = [])
     {
-        if (!$data['type']) {
+        if (!isset($data['type'])) {
             $data['type'] = 'bank-transfer';
         }
 
-        return parent::writeData($data);
+        return parent::fill($data);
     }
 
     /**
