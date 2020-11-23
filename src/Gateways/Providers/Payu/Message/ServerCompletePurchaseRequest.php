@@ -40,5 +40,4 @@ class ServerCompletePurchaseRequest extends AbstractServerCompletePurchaseReques
     {
         return $this->httpRequest->request->get('REFNOEXT');
     }
-
 }

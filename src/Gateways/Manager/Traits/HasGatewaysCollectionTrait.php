@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Gateways\Manager\Traits;
 
-
 use ByTIC\Payments\Gateways\GatewaysCollection;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Nip\Container\Container;
@@ -63,7 +62,7 @@ trait HasGatewaysCollectionTrait
         $gatewayNames = self::getSupportedGateways();
         $collection = self::getCollection();
         foreach ($gatewayNames as $gatewayClass) {
-            $gateway = $this->getFactory()->create( $gatewayClass);
+            $gateway = $this->getFactory()->create($gatewayClass);
             $collection->offsetSet($gateway->getName(), $gateway);
         }
     }

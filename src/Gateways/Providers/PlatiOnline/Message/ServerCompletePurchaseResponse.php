@@ -28,6 +28,6 @@ class ServerCompletePurchaseResponse extends AbstractServerCompletePurchaseRespo
     {
         $notification = $this->getNotification();
         $objJsonDocument = json_encode($notification);
-        return json_decode($objJsonDocument, TRUE);
+        return json_decode($objJsonDocument, true);
     }
 }
