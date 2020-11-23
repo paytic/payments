@@ -24,4 +24,3 @@ Container::getInstance()->set('translator', $translator);
 Container::getInstance()->set('request', new \Nip\Request());
 
 require dirname(__DIR__).'/vendor/autoload.php';
-
