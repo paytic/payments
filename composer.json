@@ -37,6 +37,7 @@
     "ext-zlib": "*",
     "bytic/medialibrary": "^0.8|^0.9",
     "bytic/translation": "^0.9|^1.0",
+    "bytic/models-smart-properties": "^0.9|^1.0",
     "bytic/omnipay-euplatesc": "^2.0|^3.0",
     "bytic/omnipay-librapay": "^2.0|^3.0",
     "bytic/omnipay-mobilpay": "^2.0|^3.0",
@@ -52,9 +53,9 @@
     "bytic/common": "^0.9|^1.0",
     "bytic/dotenv": "^2.0|^4.0",
     "bytic/facebook-pixel": "^1.0",
+    "bytic/payments-tests": "^1.0",
     "symfony/dom-crawler": "^3.3|^4.0|^5.0",
     "phpunit/phpunit": "^6.5|^7.5|^8.0|^9.0",
-    "omnipay/tests": "^3",
     "php-http/mock-client": "^1.0",
     "nyholm/psr7": "^1.1"
   },
