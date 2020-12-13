@@ -10,3 +10,6 @@
 [![StyleCI](https://styleci.io/repos/95359082/shield?branch=master)](https://styleci.io/repos/95359082)
 [![Total Downloads](https://img.shields.io/packagist/dt/bytic/payments.svg?style=flat-square)](https://packagist.org/packages/bytic/payments)
 
+#### Inspiration
+* https://github.com/Sylius/Sylius/blob/master/src/Sylius/Component/Payment/Model/Payment.php
+* https://github.com/DarvinStudio/DarvinPaymentBundle
