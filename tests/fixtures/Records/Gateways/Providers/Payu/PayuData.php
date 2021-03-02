@@ -17,8 +17,8 @@ class PayuData
     public static function getMethodOptions()
     {
         $data = 'a:2:{s:15:"payment_gateway";s:4:"payu";s:4:"payu";'.
-            'a:2:{s:8:"merchant";s:8:"'.getenv('PAYU_MERCHANT').'";'.
-            's:9:"secretKey";s:20:"'.getenv('PAYU_KEY').'";'
+            'a:2:{s:8:"merchant";s:8:"'.envVar('PAYU_MERCHANT').'";'.
+            's:9:"secretKey";s:20:"'.envVar('PAYU_KEY').'";'
             .'}}';
 
         return $data;

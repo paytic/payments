@@ -66,8 +66,8 @@ class GatewayTest extends AbstractGatewayTest
         //Validate first Response
         $body = $gatewaySecondResponse->getBody()->__toString();
 
-        self::assertRegexp('/checkout_plus.php/', $body);
-        self::assertRegexp('/cart_id=/', $body);
+        self::assertMatchesRegularExpression('/checkout_plus.php/', $body);
+        self::assertMatchesRegularExpression('/cart_id=/', $body);
     }
 
     public function testCompletePurchaseResponse()

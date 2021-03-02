@@ -41,8 +41,8 @@ class GatewayTest extends AbstractGatewayTest
         //Validate first Response
         $body = $gatewayResponse->getBody()->__toString();
 
-        self::assertRegexp('/Tranzactie Aprobata/', $body);
-        self::assertRegexp('/value="Aproba" name="SEND_BUTTON"/', $body);
+        self::assertMatchesRegularExpression('/Tranzactie Aprobata/', $body);
+        self::assertMatchesRegularExpression('/value="Aproba" name="SEND_BUTTON"/', $body);
     }
 
     public function testCompletePurchaseRequest()

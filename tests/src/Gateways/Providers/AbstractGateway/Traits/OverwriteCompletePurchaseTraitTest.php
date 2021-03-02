@@ -2,8 +2,8 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Traits;
 
-use ByTIC\Payments\Gateways\Providers\Mobilpay\Gateway as MobilpayGateway;
-use ByTIC\Payments\Gateways\Providers\Mobilpay\Message\CompletePurchaseRequest as MobilpayCompletePurchaseRequest;
+use ByTIC\Payments\Mobilpay\Gateway as MobilpayGateway;
+use ByTIC\Payments\Mobilpay\Message\CompletePurchaseRequest as MobilpayCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\Paylike\Gateway as PaylikeGateway;
 use ByTIC\Omnipay\Paylike\Message\CompletePurchaseRequest as PaylikeCompletePurchaseRequest;
 use ByTIC\Payments\Tests\AbstractTest;

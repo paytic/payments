@@ -17,11 +17,11 @@ class RomcardData
     {
         $data = 'a:2:{s:15:"payment_gateway";s:7:"romcard";s:7:"romcard";'.
             'a:5:{'
-            .'s:8:"terminal";s:8:"'.getenv('ROMCARD_TERMINAL').'";'
-            .'s:3:"key";s:32:"'.getenv('ROMCARD_KEY').'";'
-            .'s:12:"merchantName";s:8:"'.getenv('ROMCARD_MERCHANT_NAME').'";'
-            .'s:11:"merchantUrl";s:15:"'.getenv('ROMCARD_MERCHANT_URL').'";'
-            .'s:13:"merchantEmail";s:17:"'.getenv('ROMCARD_MERCHANT_EMAIL').'";'
+            .'s:8:"terminal";s:8:"'.envVar('ROMCARD_TERMINAL').'";'
+            .'s:3:"key";s:32:"'.envVar('ROMCARD_KEY').'";'
+            .'s:12:"merchantName";s:8:"'.envVar('ROMCARD_MERCHANT_NAME').'";'
+            .'s:11:"merchantUrl";s:15:"'.envVar('ROMCARD_MERCHANT_URL').'";'
+            .'s:13:"merchantEmail";s:17:"'.envVar('ROMCARD_MERCHANT_EMAIL').'";'
             .'}}';
 
         return $data;

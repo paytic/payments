@@ -42,8 +42,8 @@ class GatewayTest extends AbstractGatewayTest
         self::assertSame(200, $payuResponse->getStatusCode());
 
         $body = $payuResponse->getBody()->__toString();
-        self::assertRegexp('/checkout.php/', $body);
-        self::assertRegexp('/CART_ID=/', $body);
+        self::assertMatchesRegularExpression('/checkout.php/', $body);
+        self::assertMatchesRegularExpression('/CART_ID=/', $body);
     }
 
     public function testCompletePurchaseResponse()

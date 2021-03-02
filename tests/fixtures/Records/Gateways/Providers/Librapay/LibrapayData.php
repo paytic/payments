@@ -15,7 +15,9 @@ class LibrapayData
      */
     public static function getMethodOptions()
     {
-        $data = 'a:2:{s:15:"payment_gateway";s:8:"librapay";s:8:"librapay";a:7:{s:7:"sandbox";s:2:"no";s:8:"merchant";s:15:"'.getenv('LIBRAPAY_MERCHANT').'";s:12:"merchantName";s:36:"'.getenv('LIBRAPAY_MERCHANTNAME').'";s:13:"merchantEmail";s:17:"'.getenv('LIBRAPAY_MERCHANTEMAIL').'";s:11:"merchantUrl";s:16:"register.42km.ro";s:8:"terminal";s:8:"'.getenv('LIBRAPAY_TERMINAL').'";s:3:"key";s:32:"'.getenv('LIBRAPAY_KEY').'";}}';
+        $data = 'a:2:{'
+            . 's:15:"payment_gateway";s:8:"librapay";s:8:"librapay";'
+            . 'a:7:{s:7:"sandbox";s:2:"no";s:8:"merchant";s:15:"' . envVar('LIBRAPAY_MERCHANT') . '";s:12:"merchantName";s:36:"' . envVar('LIBRAPAY_MERCHANTNAME') . '";s:13:"merchantEmail";s:17:"' . envVar('LIBRAPAY_MERCHANTEMAIL') . '";s:11:"merchantUrl";s:16:"register.42km.ro";s:8:"terminal";s:8:"' . envVar('LIBRAPAY_TERMINAL') . '";s:3:"key";s:32:"' . envVar('LIBRAPAY_KEY') . '";}}';
         return $data;
     }
 

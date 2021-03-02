@@ -31,7 +31,7 @@ class GatewayFactoryTest extends AbstractTest
     {
         return [
             ['Payu', '\ByTIC\Payments\Gateways\Providers\Payu\Gateway'],
-            ['Mobilpay', '\ByTIC\Payments\Gateways\Providers\Mobilpay\Gateway'],
+            ['Mobilpay', '\ByTIC\Payments\Mobilpay\Gateway'],
             ['Euplatesc', '\ByTIC\Payments\Gateways\Providers\Euplatesc\Gateway'],
             ['Twispay', '\ByTIC\Payments\Gateways\Providers\Twispay\Gateway']
         ];

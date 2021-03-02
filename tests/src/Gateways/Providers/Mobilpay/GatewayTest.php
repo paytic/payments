@@ -44,9 +44,9 @@ class GatewayTest extends AbstractGatewayTest
 
         //Validate first Response
         $body = $gatewayResponse->getBody()->__toString();
-        self::assertRegexp('/ID Tranzactie/', $body);
-        self::assertRegexp('/Descriere plata/', $body);
-        self::assertRegexp('/Site comerciant/', $body);
+        self::assertMatchesRegularExpression('/ID Tranzactie/', $body);
+        self::assertMatchesRegularExpression('/Descriere plata/', $body);
+        self::assertMatchesRegularExpression('/Site comerciant/', $body);
     }
 
     public function testPurchaseResponseSandbox()
@@ -76,9 +76,9 @@ class GatewayTest extends AbstractGatewayTest
 
         //Validate first Response
         $body = $gatewayResponse->getBody()->__toString();
-        self::assertRegexp('/ID Tranzactie/', $body);
-        self::assertRegexp('/Descriere plata/', $body);
-        self::assertRegexp('/Site comerciant/', $body);
+        self::assertMatchesRegularExpression('/ID Tranzactie/', $body);
+        self::assertMatchesRegularExpression('/Descriere plata/', $body);
+        self::assertMatchesRegularExpression('/Site comerciant/', $body);
     }
 
     public function testCompletePurchaseResponse()

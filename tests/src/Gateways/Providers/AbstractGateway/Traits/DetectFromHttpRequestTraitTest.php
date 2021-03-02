@@ -52,7 +52,7 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
             ],
             [
                 '/mobilpay/completePurchase/basicParams.php',
-                \ByTIC\Payments\Gateways\Providers\Mobilpay\Message\CompletePurchaseRequest::class,
+                \ByTIC\Payments\Mobilpay\Message\CompletePurchaseRequest::class,
             ],
             [
                 '/romcard/completePurchaseParams.php',
