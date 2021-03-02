@@ -7,6 +7,7 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelPro
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
+use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Records\Locator\ModelLocator;
 use Omnipay\Common\Message\AbstractResponse;
 
@@ -65,7 +66,7 @@ trait PurchaseIpnActionsTrait
         $model = $response->getModel();
 
         /** @var PurchaseSessionsTrait $sessions */
-        $sessions = ModelLocator::get('PurchaseSessions');
+        $sessions = PaymentsModels::sessions();
         $sessions->createFromResponse($response, 'IPN');
 
         $this->ipnProcessResponseModel($response, $model);

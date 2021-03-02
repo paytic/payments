@@ -8,6 +8,7 @@ use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
+use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Records\Locator\ModelLocator;
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\ResponseInterface;
@@ -61,7 +62,7 @@ trait PurchaseConfirmActionsTrait
         $model = $response->getModel();
 
         /** @var PurchaseSessionsTrait $sessions */
-        $sessions = ModelLocator::get('PurchaseSessions');
+        $sessions = PaymentsModels::sessions();
         $sessions->createFromResponse($response, 'confirm');
 
         $this->confirmProcessResponseTitle($response, $model);

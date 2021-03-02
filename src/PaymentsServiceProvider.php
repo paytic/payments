@@ -3,6 +3,7 @@
 namespace ByTIC\Payments;
 
 use ByTIC\Payments\Gateways\Manager;
+use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Container\ServiceProviders\Providers\AbstractSignatureServiceProvider;
 use Nip\Records\Locator\ModelLocator;
 
@@ -12,9 +13,6 @@ use Nip\Records\Locator\ModelLocator;
  */
 class PaymentsServiceProvider extends AbstractSignatureServiceProvider
 {
-    protected static $purchaseModel = 'purchases';
-    protected static $purchaseSessionsModel = 'purchase-sessions';
-
     /**
      * @inheritdoc
      */
@@ -28,14 +26,14 @@ class PaymentsServiceProvider extends AbstractSignatureServiceProvider
     protected function registerPurchases()
     {
         $this->getContainer()->share('purchases', function () {
-            return ModelLocator::get($this::$purchaseModel);
+            return PaymentsModels::purchases();
         });
     }
 
     protected function registerPurchaseSessions()
     {
         $this->getContainer()->share('purchase-sessions', function () {
-            return ModelLocator::get($this::$purchaseSessionsModel);
+            return PaymentsModels::sessions();
         });
     }
 
@@ -44,22 +42,6 @@ class PaymentsServiceProvider extends AbstractSignatureServiceProvider
         $this->getContainer()->singleton('payments.gateways', function () {
             return new Manager();
         });
-    }
-
-    /**
-     * @param string $purchaseModel
-     */
-    public static function setPurchaseModel(string $purchaseModel)
-    {
-        self::$purchaseModel = $purchaseModel;
-    }
-
-    /**
-     * @param string $purchaseSessionsModel
-     */
-    public static function setPurchaseSessionsModel(string $purchaseSessionsModel)
-    {
-        self::$purchaseSessionsModel = $purchaseSessionsModel;
     }
 
     /**

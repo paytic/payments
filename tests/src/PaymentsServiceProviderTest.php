@@ -4,7 +4,9 @@ namespace ByTIC\Payments\Tests;
 
 use ByTIC\Payments\PaymentsServiceProvider;
 use ByTIC\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecordManager;
+use Nip\Config\Config;
 use Nip\Container\Container;
+use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class PaymentsServiceProviderTest
@@ -14,9 +16,18 @@ class PaymentsServiceProviderTest extends AbstractTest
 {
     public function testRegister()
     {
+        $container = Container::getInstance();
+
+        $data = [
+            'payments' => require PROJECT_BASE_PATH . '/config/payments.php'
+        ];
+        $config = new Config($data);
+        $container->set('config', $config);
+
+        ModelLocator::set('purchases' , new PurchasableRecordManager());
+
         $provider = new PaymentsServiceProvider();
-        $provider->setContainer(Container::getInstance());
-        $provider::setPurchaseModel(PurchasableRecordManager::class);
+        $provider->setContainer($container);
         $provider->register();
 
         $purchases = $provider->getContainer()->get('purchases');
