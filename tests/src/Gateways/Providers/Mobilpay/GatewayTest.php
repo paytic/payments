@@ -8,6 +8,7 @@ use ByTIC\Omnipay\Mobilpay\Message\PurchaseResponse;
 use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Mobilpay\MobilpayData;
+use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 use Http\Discovery\Psr17FactoryDiscovery;
 
