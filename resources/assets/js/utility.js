@@ -1,10 +1,10 @@
 
-class PaymentUtility {
+export default class PaymentUtility {
 
     static netToGross(amount, percentage, fixed)
     {
         let result;
-        result = (amount + fixed) / (1 - percentage / 100);
-        return Math.ceil(result);
+        result = (parseFloat(amount) + parseFloat(fixed)) / (1 - parseFloat(percentage) / 100);
+        return result.toFixed(1);
     }
 }

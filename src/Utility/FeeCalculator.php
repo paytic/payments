@@ -16,6 +16,6 @@ class FeeCalculator
     public static function netToGross($amount, $percentage, $fixed = 0)
     {
         $result = ($amount + $fixed) / (1 - $percentage / 100);
-        return ceil($result);
+        return round($result, 1);
     }
 }
