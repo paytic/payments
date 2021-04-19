@@ -1,10 +1,12 @@
 <?php
 /** @var \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait[] $sessions */
 $sessions_repository = \ByTIC\Payments\Utility\PaymentsModels::sessions();
+
+if (count($sessions) < 1) {
+    echo $this->Messages()->info($sessions_repository->getMessage('dnx'));
+    return;
+}
 ?>
-<?php if (count($sessions) < 1) { ?>
-    <?php echo $this->Messages()->info($sessions_repository->getMessage('dnx')); ?>
-<?php } ?>
 <table class="table table-striped table-bordered donation-sessions">
     <thead>
     <tr>

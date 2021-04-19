@@ -18,6 +18,6 @@ trait IsPurchasableRepositoryTrait
 
     public function initRelationsSessions()
     {
-        $this->hasMany('PurchasesSessions', ['class' => get_class(PaymentsModels::purchases()), 'fk' => 'id_purchase']);
+        $this->hasMany('PurchasesSessions', ['class' => get_class(PaymentsModels::sessions()), 'fk' => 'id_purchase']);
     }
 }
