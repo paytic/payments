@@ -2,8 +2,8 @@
 
 return [
     'models' => [
-        'purchases' => 'purchases',
-        'purchasesSessions' => 'purchase-sessions',
+        'purchases' => \ByTIC\Payments\Models\Purchases\Purchases::class,
+        'purchasesSessions' => \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessions::class,
     ],
     'tables' => [
         'purchases_sessions' => 'purchases_sessions',

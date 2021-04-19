@@ -5,6 +5,7 @@ namespace ByTIC\Payments\Models\PurchaseSessions;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
+use ByTIC\Payments\Utility\PaymentsModels;
 use Omnipay\Common\Message\ResponseInterface;
 
 /**
@@ -44,6 +45,30 @@ trait PurchaseSessionsTrait
         $session->insert();
 
         return $session;
+    }
+
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public static function decodeParams($params)
+    {
+        return unserialize(gzuncompress(base64_decode($params)));
+    }
+
+    protected function initRelations()
+    {
+        parent::initRelations();
+    }
+
+    protected function initRelationsCommon()
+    {
+        $this->initRelationsPurchase();
+    }
+
+    protected function initRelationsPurchase()
+    {
+        $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases())]);
     }
 
     /**

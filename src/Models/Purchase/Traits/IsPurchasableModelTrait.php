@@ -6,7 +6,9 @@ use ByTIC\Common\Records\Records;
 use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
 use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait;
+use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
 use Exception;
+use Nip\Records\Collections\Associated;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
@@ -21,10 +23,12 @@ use Omnipay\Common\Message\RequestInterface;
  *
  * @method string getConfirmURL()
  * @method string getIpnURL()
- * @method Records getManager()
  * @method update()
  * @method string getClassName()
  * @method string getStatus()
+ *
+ * @method Records getManager()
+ * @method PurchaseSessionTrait[]|Associated getPurchasesSessions()
  */
 trait IsPurchasableModelTrait
 {
