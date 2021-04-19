@@ -1,11 +1,18 @@
 <?php
 /** @var \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait[] $sessions */
+
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+
 $sessions_repository = \ByTIC\Payments\Utility\PaymentsModels::sessions();
 
 if (count($sessions) < 1) {
     echo $this->Messages()->info($sessions_repository->getMessage('dnx'));
     return;
 }
+
+$cloner = new VarCloner();
+$dumper = new HtmlDumper();
 ?>
 <table class="table table-striped table-bordered donation-sessions">
     <thead>
@@ -29,7 +36,8 @@ if (count($sessions) < 1) {
                 <?php
                 foreach (['get', 'post', 'deug'] as $type) {
                     $rawData = print_r($sessions_repository::decodeParams($item->$type), true);
-                    echo '<pre>' . $rawData . '</pre>';
+                    echo '<strong>' . strtoupper($type) . ':</strong>';
+                    echo $dumper->dump($cloner->cloneVar($rawData), true);
                     echo '<hr/>';
                 }
                 ?>
