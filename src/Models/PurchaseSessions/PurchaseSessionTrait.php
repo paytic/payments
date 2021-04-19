@@ -15,6 +15,8 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as Abs
  * @property string $get
  * @property string $debug
  * @property string $created
+ *
+ * @method PurchaseSessionsTrait getManager
  */
 trait PurchaseSessionTrait
 {
@@ -36,7 +38,7 @@ trait PurchaseSessionTrait
     public function populateFromResponse($response)
     {
         if (method_exists($response, 'getSessionDebug')) {
-            $this->debug = base64_encode(gzcompress(serialize($response->getSessionDebug())));
+            $this->debug = $this->getManager()::encodeParams($response->getSessionDebug());
         }
     }
 
@@ -53,8 +55,8 @@ trait PurchaseSessionTrait
      */
     public function populateFromRequest()
     {
-        $this->post = base64_encode(gzcompress(serialize($_POST)));
-        $this->get = base64_encode(gzcompress(serialize($_GET)));
+        $this->post = $this->getManager()::encodeParams($_POST);
+        $this->get = $this->getManager()::encodeParams($_GET);
     }
 
     /**

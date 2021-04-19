@@ -53,7 +53,15 @@ trait PurchaseSessionsTrait
      */
     public static function decodeParams($params)
     {
+        if (empty($params)) {
+            return $params;
+        }
         return unserialize(gzuncompress(base64_decode($params)));
+    }
+
+    public static function  encodeParams($params)
+    {
+        return base64_encode(gzcompress(serialize($params)));
     }
 
     protected function initRelations()
