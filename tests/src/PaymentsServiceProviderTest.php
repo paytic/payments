@@ -24,7 +24,7 @@ class PaymentsServiceProviderTest extends AbstractTest
         $config = new Config($data);
         $container->set('config', $config);
 
-        ModelLocator::set('purchases' , new PurchasableRecordManager());
+        ModelLocator::set('purchases', new PurchasableRecordManager());
 
         $provider = new PaymentsServiceProvider();
         $provider->setContainer($container);
