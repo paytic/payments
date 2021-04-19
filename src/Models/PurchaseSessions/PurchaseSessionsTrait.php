@@ -81,4 +81,13 @@ trait PurchaseSessionsTrait
 
         return $session;
     }
+
+    /**
+     * @return mixed|\Nip\Config\Config
+     * @throws \Exception
+     */
+    protected function generateTable()
+    {
+        return config('payments.tables.purchases_sessions','purchases_sessions');
+    }
 }
