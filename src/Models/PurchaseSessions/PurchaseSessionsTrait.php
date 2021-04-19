@@ -88,6 +88,6 @@ trait PurchaseSessionsTrait
      */
     protected function generateTable()
     {
-        return config('payments.tables.purchases_sessions','purchases_sessions');
+        return config('payments.tables.purchases_sessions', 'purchases_sessions');
     }
 }
