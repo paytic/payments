@@ -14,4 +14,9 @@ class Purchases extends RecordManager
 {
     use SingletonTrait;
     use IsPurchasableRepositoryTrait;
+
+    public function getRootNamespace()
+    {
+        return 'ByTIC\Payments\Models\\';
+    }
 }

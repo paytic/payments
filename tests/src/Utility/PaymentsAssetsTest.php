@@ -4,18 +4,16 @@ namespace ByTIC\Payments\Tests\Utility;
 
 use ByTIC\Payments\Models\Purchases\Purchase;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessions;
-use ByTIC\Payments\Tests\AbstractTest;
+use ByTIC\Payments\Tests\AbstractTestCase;
 use ByTIC\Payments\Utility\PaymentsAssets;
-use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class PaymentsAssetsTest
  * @package ByTIC\Payments\Tests\Utility
  */
-class PaymentsAssetsTest extends AbstractTest
+class PaymentsAssetsTest extends AbstractTestCase
 {
-    use MockeryPHPUnitIntegration;
 
     public function basePath()
     {

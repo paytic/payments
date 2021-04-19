@@ -14,4 +14,8 @@ class PurchaseSessions extends Records
     use SingletonTrait;
     use PurchaseSessionsTrait;
 
+    public function getRootNamespace()
+    {
+        return 'ByTIC\Payments\Models\\';
+    }
 }
