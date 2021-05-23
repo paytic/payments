@@ -30,6 +30,14 @@ class PaymentsModels
     }
 
     /**
+     * @return RecordManager
+     */
+    public static function methods()
+    {
+        return static::getModels('methods', 'payment-methods');
+    }
+
+    /**
      * @return PurchaseSessionsTrait
      */
     public static function sessions()

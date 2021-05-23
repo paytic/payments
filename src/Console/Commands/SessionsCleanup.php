@@ -3,7 +3,6 @@
 namespace ByTIC\Payments\Console\Commands;
 
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
-use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class SessionsCleanup

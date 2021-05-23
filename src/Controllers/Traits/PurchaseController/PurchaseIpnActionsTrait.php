@@ -2,11 +2,11 @@
 
 namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
 
+use ByTIC\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Utility\PaymentsModels;
 use Omnipay\Common\Message\AbstractResponse;
 
 /**
@@ -63,12 +63,7 @@ trait PurchaseIpnActionsTrait
         /** @var IsPurchasableModelTrait $model */
         $model = $response->getModel();
 
-        PaymentsModels::sessions()
-            ->createFromResponse($response, 'IPN');
-
-        PaymentsModels::transactions()
-            ->findOrCreateForPurchase($model)
-            ->updateFromResponse($response, 'IPN');
+        UpdatePaymentModelsFromResponse::handle($response, $model, 'IPN');
 
         $this->ipnProcessResponseModel($response, $model);
     }

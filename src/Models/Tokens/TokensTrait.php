@@ -2,7 +2,9 @@
 
 namespace ByTIC\Payments\Models\Tokens;
 
+use ByTIC\Omnipay\Common\Models\TokenInterface;
 use ByTIC\Payments\Utility\PaymentsModels;
+use Nip\Records\AbstractModels\Record;
 
 /**
  * Trait TokensTrait
@@ -13,6 +15,26 @@ use ByTIC\Payments\Utility\PaymentsModels;
 trait TokensTrait
 {
 
+    public function findOrCreateForMethod($method, TokenInterface $token)
+    {
+        $findToken = $this->findOneByParams(
+            [
+                'where' => [
+                    ['id_method =?', $method],
+                    ['token_id = ?', $token->getId()],
+                ]
+            ]);
+
+        if ($findToken instanceof Record) {
+            return $findToken;
+        }
+        $token = $this->getNew();
+        $token->populateFromPaymentMethod($method);
+        $token->populateFromToken($token);
+        $token->insert();
+        return $token;
+    }
+
     protected function initRelations()
     {
         parent::initRelations();
@@ -21,11 +43,17 @@ trait TokensTrait
     protected function initRelationsCommon()
     {
         $this->initRelationsPurchase();
+        $this->initRelationsPaymentMethod();
     }
 
     protected function initRelationsPurchase()
     {
         $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases())]);
+    }
+
+    protected function initRelationsPaymentMethod()
+    {
+        $this->belongsTo('PaymentMethod', ['class' => get_class(PaymentsModels::methods())]);
     }
 
     /**

@@ -14,6 +14,7 @@ use Omnipay\Common\Message\AbstractResponse;
  * @package ByTIC\Payments\Models\Transactions
  *
  * @property int $id_purchase
+ * @property int $id_token
  * @property string $gateway
  * @property string $currency
  *
@@ -76,17 +77,6 @@ trait TransactionTrait
      */
     public function updateFromResponse($response, $type)
     {
-        $code = $response->getCode();
-        if ($code) {
-            $this->code = $code;
-        }
-
-        $reference = $response->getTransactionReference();
-        if ($reference) {
-            $this->reference = $reference;
-        }
-
-        $this->update();
     }
 
     /**
@@ -95,15 +85,5 @@ trait TransactionTrait
     public function populateFromGateway($gateway)
     {
         $this->gateway = $gateway->getName();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function insert()
-    {
-        $this->created = date('Y-m-d H:i:s');
-
-        return parent::insert();
     }
 }

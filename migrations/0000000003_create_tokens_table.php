@@ -22,21 +22,17 @@ final class CreateTokensTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table_name = \ByTIC\Payments\Utility\PaymentsModels::transactions()->getTable();
+        $table_name = \ByTIC\Payments\Utility\PaymentsModels::tokens()->getTable();
         $exists = $this->hasTable($table_name);
         if ($exists) {
             return;
         }
 
         $table = $this->table($table_name)
-            ->addColumn('id_purchase', 'biginteger')
+            ->addColumn('id_method', 'biginteger')
             ->addColumn('gateway', 'string')
-            ->addColumn('currency', 'string', ['limit' => '3'])
-
-            ->addColumn('card', 'string')
-            ->addColumn('code', 'string')
-            ->addColumn('reference', 'string')
-            ->addColumn('metadata', 'json')
+            ->addColumn('token_id', 'string')
+            ->addColumn('expiration', 'timestamp')
             ->addColumn('modified', 'timestamp', [
                 'default' => 'CURRENT_TIMESTAMP',
                 'update' => 'CURRENT_TIMESTAMP',
@@ -45,9 +41,10 @@ final class CreateTokensTable extends AbstractMigration
                 'default' => 'CURRENT_TIMESTAMP',
             ]);
 
-        $table->addIndex(['id_purchase']);
-        $table->addIndex(['currency']);
-        $table->addIndex(['type']);
+        $table->addIndex(['id_method']);
+        $table->addIndex(['gateway']);
+        $table->addIndex(['token_id']);
+        $table->addIndex(['id_method', 'token_id'], ['unique' => true]);
 
         $table->save();
     }

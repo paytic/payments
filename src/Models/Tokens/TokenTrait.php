@@ -2,21 +2,21 @@
 
 namespace ByTIC\Payments\Models\Tokens;
 
+use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
+use ByTIC\Omnipay\Common\Models\TokenInterface;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
+use ByTIC\Payments\Models\Methods\PaymentMethod;
 
 /**
  * Trait TokenTrait
  * @package ByTIC\Payments\Models\Tokens
  *
- * @property int $id_purchase
+ * @property int $id_method
  * @property string $gateway
- * @property string $currency
  *
- * @property string $card
- * @property string $code A response code from the payment gateway
- * @property string $reference A reference provided by the gateway to represent this transaction
- * @property string $metadata
+ * @property string $token_id
+ * @property string $expiration
  *
  * @property string $modified
  * @property string $created
@@ -26,6 +26,17 @@ use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
 trait TokenTrait
 {
     use HasPurchaseParent;
+    use TimestampableTrait;
+
+    /**
+     * @var string
+     */
+    static protected $createTimestamps = ['created'];
+
+    /**
+     * @var string
+     */
+    static protected $updateTimestamps = ['modified'];
 
     /**
      * @param AbstractGateway $gateway
@@ -36,13 +47,19 @@ trait TokenTrait
     }
 
     /**
-     * @inheritdoc
+     * @param PaymentMethod $gateway
      */
-    public function insert()
+    public function populateFromPaymentMethod($method)
     {
-        $this->created = date('Y-m-d H:i:s');
-
-        return parent::insert();
+        $this->id_method = is_object($method) ? $method->id : $method;
     }
 
+    /**
+     * @param TokenInterface $token
+     */
+    public function populateFromToken(TokenInterface $token)
+    {
+        $this->token_id = $token->getId();
+        $this->expiration = $token->getExpirationDate();
+    }
 }

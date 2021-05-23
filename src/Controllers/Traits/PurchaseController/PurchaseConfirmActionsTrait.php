@@ -4,14 +4,11 @@ namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
 
 use ByTIC\Omnipay\Common\Library\View\View;
 use ByTIC\Omnipay\Common\Message\Traits\HtmlResponses\ConfirmHtmlTrait;
+use ByTIC\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
-use ByTIC\Payments\Utility\PaymentsModels;
-use Nip\Records\Locator\ModelLocator;
 use Omnipay\Common\Message\AbstractResponse;
-use Omnipay\Common\Message\ResponseInterface;
 
 /**
  * Trait PurchaseConfirmActionsTrait
@@ -61,12 +58,7 @@ trait PurchaseConfirmActionsTrait
         /** @var IsPurchasableModelTrait $model */
         $model = $response->getModel();
 
-        PaymentsModels::sessions()
-            ->createFromResponse($response, 'confirm');
-
-        PaymentsModels::transactions()
-            ->findOrCreateForPurchase($model)
-            ->updateFromResponse($response, 'confirm');
+        UpdatePaymentModelsFromResponse::handle($response, $model, 'confirm');
 
         $this->confirmProcessResponseTitle($response, $model);
         $this->confirmProcessResponseMessage($response, $model);

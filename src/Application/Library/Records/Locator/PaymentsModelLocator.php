@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments\Application\Library\Records\Locator;
 
+use ByTIC\Payments\Models\Methods\PaymentMethods;
 use ByTIC\Payments\Models\Purchases\Purchases;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessions;
 use ByTIC\Payments\Models\Tokens\Tokens;
@@ -23,6 +24,14 @@ trait PaymentsModelLocator
     public static function paymentsPurchases(): RecordManager
     {
         return PaymentsModels::purchases();
+    }
+
+    /**
+     * @return RecordManager|PaymentMethods
+     */
+    public static function paymentsMethods(): RecordManager
+    {
+        return PaymentsModels::methods();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments\Models\PurchaseSessions;
 
+use ByTIC\Payments\Actions\GatewayNotifications\CreateSessionFromResponse;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\PurchaseSessions\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
@@ -25,13 +26,7 @@ trait PurchaseSessionsTrait
      */
     public function createFromResponse($response, $type)
     {
-        /** @var IsPurchasableModelTrait $payment */
-        $payment = $response->getModel();
-        $session = $this->generateFromPurchaseType($payment, $type);
-        $session->populateFromResponse($response);
-        $session->insert();
-
-        return $session;
+        return CreateSessionFromResponse::handle($response, $response->getModel(), $type);
     }
 
     /**

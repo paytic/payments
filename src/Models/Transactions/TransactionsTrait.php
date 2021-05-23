@@ -56,11 +56,23 @@ trait TransactionsTrait
     protected function initRelationsCommon()
     {
         $this->initRelationsPurchase();
+        $this->initRelationsPaymentMethod();
+        $this->initRelationsToken();
     }
 
     protected function initRelationsPurchase()
     {
         $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases())]);
+    }
+
+    protected function initRelationsPaymentMethod()
+    {
+        $this->belongsTo('PaymentMethod', ['class' => get_class(PaymentsModels::methods())]);
+    }
+
+    protected function initRelationsToken()
+    {
+        $this->belongsTo('PaymentToken', ['class' => get_class(PaymentsModels::tokens())]);
     }
 
     /**
