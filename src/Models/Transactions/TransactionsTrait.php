@@ -2,7 +2,10 @@
 
 namespace ByTIC\Payments\Models\Transactions;
 
+use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use ByTIC\Payments\Models\Purchases\Purchase;
 use ByTIC\Payments\Utility\PaymentsModels;
+use Nip\Records\AbstractModels\Record;
 
 /**
  * Trait TransactionsTrait
@@ -12,6 +15,38 @@ use ByTIC\Payments\Utility\PaymentsModels;
  */
 trait TransactionsTrait
 {
+
+    /**
+     * @param Purchase|IsPurchasableModelTrait $purchase
+     */
+    public function findOrCreateForPurchase($purchase)
+    {
+        $transaction = $this->findOneByField($purchase);
+        if ($transaction instanceof Record) {
+            return $transaction;
+        }
+        return $this->createForPurchase($purchase);
+    }
+
+    /**
+     * @param Purchase|IsPurchasableModelTrait $purchase
+     * @return \Nip\Records\AbstractModels\Record|null
+     */
+    public function findForPurchase($purchase)
+    {
+        return $this->findOneByField('id_purchase', $purchase->id);
+    }
+
+    /**
+     * @param Purchase|IsPurchasableModelTrait $purchase
+     */
+    protected function createForPurchase($purchase): TransactionTrait
+    {
+        $transaction = $this->getNew();
+        $transaction->populateFromPayment($purchase);
+        $transaction->insert();
+        return $transaction;
+    }
 
     protected function initRelations()
     {

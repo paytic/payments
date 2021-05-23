@@ -61,9 +61,12 @@ trait PurchaseConfirmActionsTrait
         /** @var IsPurchasableModelTrait $model */
         $model = $response->getModel();
 
-        /** @var PurchaseSessionsTrait $sessions */
-        $sessions = PaymentsModels::sessions();
-        $sessions->createFromResponse($response, 'confirm');
+        PaymentsModels::sessions()
+            ->createFromResponse($response, 'confirm');
+
+        PaymentsModels::transactions()
+            ->findOrCreateForPurchase($model)
+            ->updateFromResponse($response, 'confirm');
 
         $this->confirmProcessResponseTitle($response, $model);
         $this->confirmProcessResponseMessage($response, $model);

@@ -6,9 +6,7 @@ use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
 use ByTIC\Payments\Utility\PaymentsModels;
-use Nip\Records\Locator\ModelLocator;
 use Omnipay\Common\Message\AbstractResponse;
 
 /**
@@ -65,9 +63,12 @@ trait PurchaseIpnActionsTrait
         /** @var IsPurchasableModelTrait $model */
         $model = $response->getModel();
 
-        /** @var PurchaseSessionsTrait $sessions */
-        $sessions = PaymentsModels::sessions();
-        $sessions->createFromResponse($response, 'IPN');
+        PaymentsModels::sessions()
+            ->createFromResponse($response, 'IPN');
+
+        PaymentsModels::transactions()
+            ->findOrCreateForPurchase($model)
+            ->updateFromResponse($response, 'IPN');
 
         $this->ipnProcessResponseModel($response, $model);
     }

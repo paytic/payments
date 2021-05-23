@@ -2,8 +2,12 @@
 
 namespace ByTIC\Payments\Models\Transactions;
 
+use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
+use ByTIC\DataObjects\Casts\AsArrayObject;
+use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
+use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Trait TransactionTrait
@@ -26,6 +30,64 @@ use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
 trait TransactionTrait
 {
     use HasPurchaseParent;
+    use TimestampableTrait;
+
+    /**
+     * @var string
+     */
+    static protected $createTimestamps = ['created'];
+
+    /**
+     * @var string
+     */
+    static protected $updateTimestamps = ['modified'];
+
+    public function bootTransactionTrait()
+    {
+        $this->addCast('metadata', AsArrayObject::class . ':json');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMetadata()
+    {
+        return $this->getPropertyValue('metadata');
+    }
+
+    public function setMedata($value)
+    {
+        return $this->setPropertyValue('metadata', $value);
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     */
+    public function addMedata($key, $value)
+    {
+        $metadata = $this->metadata;
+        $metadata[$key] = $value;
+        $this->setMedata($metadata);
+    }
+
+    /**
+     * @param AbstractResponse|HasModelProcessedResponse $response
+     */
+    public function updateFromResponse($response, $type)
+    {
+        $code = $response->getCode();
+        if ($code) {
+            $this->code = $code;
+        }
+
+        $reference = $response->getTransactionReference();
+        if ($reference) {
+            $this->reference = $reference;
+        }
+
+        $this->update();
+    }
 
     /**
      * @param AbstractGateway $gateway
