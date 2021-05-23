@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Models\PurchaseSessions;
 
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
+use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
 
 /**
  * Trait PurchaseSessionTrait
@@ -20,13 +21,17 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as Abs
  */
 trait PurchaseSessionTrait
 {
+    use HasPurchaseParent {
+        populateFromPayment as populateFromPaymentTrait;
+    }
+
     /**
      * @param $payment
      * @return $this
      */
     public function populateFromPayment($payment)
     {
-        $this->{$this->getPurchaseFk()} = $payment->id;
+        $this->populateFromPaymentTrait($payment);
         $this->new_status = (string) $payment->status;
 
         return $this;
@@ -67,13 +72,5 @@ trait PurchaseSessionTrait
         $this->created = date('Y-m-d H:i:s');
 
         return parent::insert();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getPurchaseFk()
-    {
-        return 'id_purchase';
     }
 }

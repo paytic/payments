@@ -5,6 +5,8 @@ namespace ByTIC\Payments\Utility;
 use ByTIC\MediaLibrary\Models\MediaProperties\MediaProperties;
 use ByTIC\MediaLibrary\Models\MediaRecords\MediaRecords;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
+use ByTIC\Payments\Models\Tokens\Tokens;
+use ByTIC\Payments\Models\Transactions\Transactions;
 use Nip\Records\Locator\ModelLocator;
 use Nip\Records\RecordManager;
 
@@ -33,6 +35,22 @@ class PaymentsModels
     public static function sessions()
     {
         return static::getModels('purchasesSessions', 'purchase-sessions');
+    }
+
+    /**
+     * @return Transactions
+     */
+    public static function transactions()
+    {
+        return static::getModels('transactions', 'payments-transactions');
+    }
+
+    /**
+     * @return Tokens
+     */
+    public static function tokens()
+    {
+        return static::getModels('tokens', 'payments-tokens');
     }
 
     /**
