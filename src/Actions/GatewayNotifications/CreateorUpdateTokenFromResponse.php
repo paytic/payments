@@ -27,6 +27,9 @@ class CreateorUpdateTokenFromResponse
         if (!($token instanceof TokenInterface)) {
             return null;
         }
+        if (empty($token->getId())) {
+            return null;
+        }
         return PaymentsModels::tokens()->findOrCreateForMethod($model->getPaymentMethod(), $token);
     }
 }

@@ -10,17 +10,22 @@ use Nip\Records\AbstractModels\Record;
  * Trait TokensTrait
  * @package ByTIC\Payments\Models\Tokens
  *
- * @method TokenTrait getNew
+ * @method TokenTrait|Token getNew
  */
 trait TokensTrait
 {
 
+    /**
+     * @param $method
+     * @param TokenInterface $token
+     * @return TokenTrait|Record
+     */
     public function findOrCreateForMethod($method, TokenInterface $token)
     {
         $findToken = $this->findOneByParams(
             [
                 'where' => [
-                    ['id_method =?', $method],
+                    ['id_method =?', is_object($method) ? $method->id : $method],
                     ['token_id = ?', $token->getId()],
                 ]
             ]);
@@ -28,11 +33,12 @@ trait TokensTrait
         if ($findToken instanceof Record) {
             return $findToken;
         }
-        $token = $this->getNew();
-        $token->populateFromPaymentMethod($method);
-        $token->populateFromToken($token);
-        $token->insert();
-        return $token;
+        $tokenRecord = $this->getNew();
+        $tokenRecord->populateFromPaymentMethod($method);
+        $tokenRecord->populateFromToken($token);
+        $tokenRecord->insert();
+
+        return $tokenRecord;
     }
 
     protected function initRelations()
