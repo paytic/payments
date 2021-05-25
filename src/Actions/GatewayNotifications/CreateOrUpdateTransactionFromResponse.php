@@ -32,16 +32,28 @@ class CreateOrUpdateTransactionFromResponse
      */
     protected static function updateTransaction(AbstractResponse $response, $transaction)
     {
-        $code = $response->getCode();
-        if ($code) {
-            $transaction->code = $code;
-        }
-
-        $reference = $response->getTransactionReference();
-        if ($reference) {
-            $transaction->reference = $reference;
-        }
+        static::setPropertyFromResponse($response, $transaction, 'getCode', 'code');
+        static::setPropertyFromResponse($response, $transaction, 'getTransactionReference', 'reference');
+        static::setPropertyFromResponse($response, $transaction, 'getCardMasked', 'card');
 
         $transaction->update();
+    }
+
+    /**
+     * @param $response
+     * @param $transaction
+     * @param $method
+     * @param $property
+     */
+    protected static function setPropertyFromResponse($response, $transaction, $method, $property)
+    {
+        if (!method_exists($response, $method)) {
+            return;
+        }
+        $value = $response->{$method}();
+        if ($value === null || $value === '') {
+            return;
+        }
+        $transaction->{$property} = $value;
     }
 }

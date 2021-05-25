@@ -13,7 +13,7 @@ class CreateSessionFromResponse
 {
     /**
      * @param $response
-     * @param $model
+     * @param IsPurchasableModelTrait $model
      * @param $type
      * @return \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait
      */
@@ -21,9 +21,7 @@ class CreateSessionFromResponse
     {
         $sessions = PaymentsModels::sessions();
 
-        /** @var IsPurchasableModelTrait $payment */
-        $payment = $response->getModel();
-        $session = $sessions->generateFromPurchaseType($payment, $type);
+        $session = $sessions->generateFromPurchaseType($model, $type);
         $session->populateFromResponse($response);
         $session->insert();
         return $session;

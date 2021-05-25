@@ -59,6 +59,7 @@ trait TransactionsTrait
     {
         $transaction = $this->getNew();
         $transaction->populateFromPayment($purchase);
+        $transaction->populateFromGateway($purchase->getPaymentMethod()->getType()->getGateway());
         $transaction->insert();
         return $transaction;
     }
