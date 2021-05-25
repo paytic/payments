@@ -7,6 +7,10 @@ use ByTIC\DataObjects\Casts\AsArrayObject;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
+use Nip\MailModule\Models\EmailsTable\EmailTrait;
+use Nip\Records\AbstractModels\RecordManager;
+use Nip\Records\EventManager\Events\Event;
+use Nip\Records\Record;
 use Omnipay\Common\Message\AbstractResponse;
 
 /**

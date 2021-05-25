@@ -47,7 +47,9 @@ final class CreateTransactionsTable extends AbstractMigration
 
         $table->addIndex(['id_purchase']);
         $table->addIndex(['currency']);
-        $table->addIndex(['type']);
+        $table->addIndex(['card']);
+        $table->addIndex(['code']);
+        $table->addIndex(['reference']);
 
         $table->save();
     }

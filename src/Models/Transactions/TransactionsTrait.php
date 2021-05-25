@@ -5,7 +5,9 @@ namespace ByTIC\Payments\Models\Transactions;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\Purchases\Purchase;
 use ByTIC\Payments\Utility\PaymentsModels;
+use Nip\MailModule\Models\EmailsTable\EmailTrait;
 use Nip\Records\AbstractModels\Record;
+use Nip\Records\EventManager\Events\Event;
 
 /**
  * Trait TransactionsTrait
@@ -16,12 +18,25 @@ use Nip\Records\AbstractModels\Record;
 trait TransactionsTrait
 {
 
+    public function bootTransactionsTrait()
+    {
+        static::creating(function (Event $event) {
+
+            /** @var EmailTrait|\Nip\Records\Record $record */
+            $record = $event->getRecord();
+
+            $record->setIf('metadata', '{}', function () use ($record) {
+                return count($record->metadata) < 1;
+            });
+        });
+    }
+
     /**
      * @param Purchase|IsPurchasableModelTrait $purchase
      */
     public function findOrCreateForPurchase($purchase)
     {
-        $transaction = $this->findOneByField($purchase);
+        $transaction = $this->findForPurchase($purchase);
         if ($transaction instanceof Record) {
             return $transaction;
         }
@@ -40,7 +55,7 @@ trait TransactionsTrait
     /**
      * @param Purchase|IsPurchasableModelTrait $purchase
      */
-    protected function createForPurchase($purchase): TransactionTrait
+    protected function createForPurchase($purchase)
     {
         $transaction = $this->getNew();
         $transaction->populateFromPayment($purchase);

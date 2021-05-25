@@ -17,7 +17,7 @@ class CreateSessionFromResponse
      * @param $type
      * @return \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait
      */
-    public static function handle($response, $model, $type): \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait
+    public static function handle($response, $model, $type)
     {
         $sessions = PaymentsModels::sessions();
 

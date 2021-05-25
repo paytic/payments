@@ -89,7 +89,7 @@ trait PurchaseSessionsTrait
      * @param string $type
      * @return PurchaseSessionTrait
      */
-    protected function generateFromPurchaseType($payment, $type)
+    public function generateFromPurchaseType($payment, $type)
     {
         $session = $this->generateFromPurchase($payment);
         $session->type = $type;

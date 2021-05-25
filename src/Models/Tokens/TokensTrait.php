@@ -73,6 +73,6 @@ trait TokensTrait
      */
     protected function generateTable()
     {
-        return config('payments.tables.purchases_sessions', Tokens::TABLE);
+        return config('payments.tables.tokens', Tokens::TABLE);
     }
 }

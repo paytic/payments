@@ -3,7 +3,9 @@
 namespace ByTIC\Payments\Tests\Models\Transactions;
 
 use ByTIC\Payments\Models\Transactions\Transaction;
+use ByTIC\Payments\Models\Transactions\Transactions;
 use ByTIC\Payments\Tests\AbstractTest;
+use Nip\Database\Query\Insert;
 
 /**
  * Class TransactionTraitTest
@@ -22,5 +24,19 @@ class TransactionTraitTest extends AbstractTest
         self::assertSame(99, $item->metadata['test']);
 
         self::assertSame('{"test":99}', $item->getPropertyRaw('metadata'));
+    }
+
+    public function test_cast_metadata_empty()
+    {
+        $repository = \Mockery::mock(Transactions::class)->shouldAllowMockingProtectedMethods()->makePartial();
+        $repository->shouldReceive('insertQuery')->once()->andReturn(new Insert());
+        $repository->shouldReceive('performInsert')->once();
+        $repository->bootTransactionsTrait();
+
+        $item = new Transaction();
+        $item->setManager($repository);
+        $item->insert();
+
+        self::assertSame('{}', $item->getPropertyRaw('metadata'));
     }
 }
