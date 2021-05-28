@@ -34,7 +34,7 @@ $dumper = new HtmlDumper();
             <td><?php echo $item->new_status; ?></td>
             <td>
                 <?php
-                foreach (['get', 'post', 'deug'] as $type) {
+                foreach (['get', 'post', 'debug'] as $type) {
                     $rawData = print_r($sessions_repository::decodeParams($item->$type), true);
                     echo '<strong>' . strtoupper($type) . ':</strong>';
                     echo $dumper->dump($cloner->cloneVar($rawData), true);

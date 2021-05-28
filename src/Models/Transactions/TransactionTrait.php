@@ -14,6 +14,7 @@ use Omnipay\Common\Message\AbstractResponse;
  * @package ByTIC\Payments\Models\Transactions
  *
  * @property int $id_purchase
+ * @property int $id_subscription
  * @property int $id_token
  * @property string $gateway
  * @property string $currency
