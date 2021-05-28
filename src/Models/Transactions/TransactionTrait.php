@@ -5,12 +5,8 @@ namespace ByTIC\Payments\Models\Transactions;
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\AsArrayObject;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
+use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
-use Nip\MailModule\Models\EmailsTable\EmailTrait;
-use Nip\Records\AbstractModels\RecordManager;
-use Nip\Records\EventManager\Events\Event;
-use Nip\Records\Record;
 use Omnipay\Common\Message\AbstractResponse;
 
 /**
@@ -35,6 +31,7 @@ use Omnipay\Common\Message\AbstractResponse;
 trait TransactionTrait
 {
     use HasPurchaseParent;
+    use HasGatewayRecordTrait;
     use TimestampableTrait;
 
     /**
@@ -81,13 +78,5 @@ trait TransactionTrait
      */
     public function updateFromResponse($response, $type)
     {
-    }
-
-    /**
-     * @param AbstractGateway $gateway
-     */
-    public function populateFromGateway($gateway)
-    {
-        $this->gateway = $gateway->getName();
     }
 }

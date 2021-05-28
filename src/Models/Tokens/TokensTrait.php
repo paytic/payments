@@ -38,7 +38,22 @@ trait TokensTrait
         $tokenRecord->populateFromToken($token);
         $tokenRecord->insert();
 
-        return $tokenRecord;
+        return $this->createForMethod($method, $token);
+    }
+
+    /**
+     * @param $method
+     * @param TokenInterface $token
+     * @return Token|TokenTrait
+     */
+    protected function createForMethod($method, TokenInterface $token)
+    {
+        $item = $this->getNew();
+        $item->populateFromPaymentMethod($method);
+        $item->populateFromGateway($method->getType()->getGateway());
+        $item->populateFromToken($token);
+        $item->insert();
+        return $item;
     }
 
     protected function initRelations()
