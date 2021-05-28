@@ -33,10 +33,6 @@ trait TokensTrait
         if ($findToken instanceof Record) {
             return $findToken;
         }
-        $tokenRecord = $this->getNew();
-        $tokenRecord->populateFromPaymentMethod($method);
-        $tokenRecord->populateFromToken($token);
-        $tokenRecord->insert();
 
         return $this->createForMethod($method, $token);
     }
