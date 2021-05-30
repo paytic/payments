@@ -6,6 +6,7 @@ use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\Omnipay\Common\Models\TokenInterface;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
 use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
+use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
 use ByTIC\Payments\Models\Methods\PaymentMethod;
 
@@ -28,6 +29,7 @@ trait TokenTrait
 {
     use HasPurchaseParent;
     use HasGatewayRecordTrait;
+    use HasPaymentMethodRecordTrait;
     use TimestampableTrait;
 
     /**
@@ -39,14 +41,6 @@ trait TokenTrait
      * @var string
      */
     static protected $updateTimestamps = ['modified'];
-
-    /**
-     * @param PaymentMethod $gateway
-     */
-    public function populateFromPaymentMethod($method)
-    {
-        $this->id_method = is_object($method) ? $method->id : $method;
-    }
 
     /**
      * @param TokenInterface $token

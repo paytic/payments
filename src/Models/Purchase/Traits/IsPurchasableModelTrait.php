@@ -7,6 +7,7 @@ use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
 use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait;
 use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use ByTIC\Payments\Subscriptions\SubscriptionBuilder;
 use Exception;
 use Nip\Records\Collections\Associated;
 use Omnipay\Common\Message\RequestInterface;
@@ -117,10 +118,18 @@ trait IsPurchasableModelTrait
     }
 
     /**
+     * @return SubscriptionBuilder
+     */
+    public function newSubscription()
+    {
+        return SubscriptionBuilder::fromPurchase($this);
+    }
+
+    /**
      * @return mixed
      */
     public function getConfirmStatusTitle()
     {
-        return $this->getManager()->getMessage('confirm.'.$this->getStatus()->getName());
+        return $this->getManager()->getMessage('confirm.' . $this->getStatus()->getName());
     }
 }

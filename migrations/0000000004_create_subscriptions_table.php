@@ -33,14 +33,18 @@ final class CreateSubscriptionsTable extends AbstractMigration
             ->addColumn('id_token', 'biginteger')
             ->addColumn('id_last_transaction', 'biginteger')
             ->addColumn('id_billing_record', 'biginteger')
-            ->addColumn('billing_interval', 'enum', ['values' => ['day', 'week', 'month', 'year']])
-            ->addColumn('billing_interval_count', 'integer', ['limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
-            ->addColumn('billing_next_date', 'date', ['null' => true])
-            ->addColumn('start_date', 'date', ['null' => true])
-            ->addColumn('cancel_at', 'date', ['null' => true])
-            ->addColumn('start_date', 'date', ['null' => true])
-            ->addColumn('collection_method', 'string')
             ->addColumn('status', 'enum', ['values' => ['not_started', 'active', 'completed', 'canceled']])
+            ->addColumn('billing_period', 'enum', ['values' => ['daily', 'weekly', 'monthly', 'yearly']])
+            ->addColumn('billing_interval', 'integer', ['limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
+            ->addColumn('billing_count', 'integer', ['null' => true, 'limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
+            ->addColumn('start_at', 'date', ['null' => true])
+            ->addColumn('cancel_at', 'date', ['null' => true])
+            ->addColumn('ended_at', 'date', ['null' => true])
+            ->addColumn('charge_at', 'date', ['null' => true])
+            ->addColumn('charge_attempts', 'integer', ['limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
+            ->addColumn('charge_count', 'integer', ['null' => true,'limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
+            ->addColumn('charge_method', 'string')
+            ->addColumn('metadata', 'json')
             ->addColumn('modified', 'timestamp', [
                 'default' => 'CURRENT_TIMESTAMP',
                 'update' => 'CURRENT_TIMESTAMP',
@@ -50,11 +54,14 @@ final class CreateSubscriptionsTable extends AbstractMigration
             ]);
 
         $table->addIndex(['id_method']);
-        $table->addIndex(['id_billing_record']);
         $table->addIndex(['id_token']);
-        $table->addIndex(['date_start']);
-        $table->addIndex(['date_end']);
+        $table->addIndex(['id_last_transaction']);
+        $table->addIndex(['id_billing_record']);
         $table->addIndex(['status']);
+        $table->addIndex(['start_at']);
+        $table->addIndex(['cancel_at']);
+        $table->addIndex(['ended_at']);
+        $table->addIndex(['charge_at']);
 
         $table->save();
     }

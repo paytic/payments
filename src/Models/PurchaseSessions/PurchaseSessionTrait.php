@@ -2,7 +2,8 @@
 
 namespace ByTIC\Payments\Models\PurchaseSessions;
 
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
+use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
+use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
 
 /**
@@ -24,6 +25,18 @@ trait PurchaseSessionTrait
     use HasPurchaseParent {
         populateFromPayment as populateFromPaymentTrait;
     }
+    use HasGatewayRecordTrait;
+    use TimestampableTrait;
+
+    /**
+     * @var string
+     */
+    static protected $createTimestamps = ['created'];
+
+    /**
+     * @var string
+     */
+    static protected $updateTimestamps = [];
 
     /**
      * @param $payment
@@ -47,30 +60,9 @@ trait PurchaseSessionTrait
         }
     }
 
-    /**
-     * @param AbstractGateway $gateway
-     */
-    public function populateFromGateway($gateway)
-    {
-        $this->gateway = $gateway->getName();
-    }
-
-    /**
-     *
-     */
     public function populateFromRequest()
     {
         $this->post = $this->getManager()::encodeParams($_POST);
         $this->get = $this->getManager()::encodeParams($_GET);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function insert()
-    {
-        $this->created = date('Y-m-d H:i:s');
-
-        return parent::insert();
     }
 }

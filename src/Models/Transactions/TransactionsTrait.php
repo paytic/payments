@@ -33,6 +33,7 @@ trait TransactionsTrait
 
     /**
      * @param Purchase|IsPurchasableModelTrait $purchase
+     * @return TransactionTrait
      */
     public function findOrCreateForPurchase($purchase)
     {
@@ -45,7 +46,7 @@ trait TransactionsTrait
 
     /**
      * @param Purchase|IsPurchasableModelTrait $purchase
-     * @return \Nip\Records\AbstractModels\Record|null
+     * @return TransactionTrait|null
      */
     public function findForPurchase($purchase)
     {
@@ -54,6 +55,7 @@ trait TransactionsTrait
 
     /**
      * @param Purchase|IsPurchasableModelTrait $purchase
+     * @return TransactionTrait
      */
     protected function createForPurchase($purchase)
     {

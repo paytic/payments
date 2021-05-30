@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Models\Transactions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\AsArrayObject;
+use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
@@ -47,7 +48,7 @@ trait TransactionTrait
 
     public function bootTransactionTrait()
     {
-        $this->addCast('metadata', AsArrayObject::class . ':json');
+        $this->addCast('metadata', AsMetadataObject::class . ':json');
     }
 
     /**

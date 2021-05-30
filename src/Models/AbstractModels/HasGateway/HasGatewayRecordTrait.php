@@ -12,8 +12,6 @@ use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as Abs
  */
 trait HasGatewayRecordTrait
 {
-
-
     /**
      * @param AbstractGateway $gateway
      */

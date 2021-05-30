@@ -3,21 +3,22 @@
 namespace ByTIC\Payments\Models\Subscriptions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
+use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Omnipay\Common\Models\SubscriptionInterface;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
-use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
-use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
-use ByTIC\Payments\Models\Methods\PaymentMethod;
+use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
 
 /**
  * Trait SubscriptionTrait
  * @package ByTIC\Payments\Models\Subscriptions
  *
  * @property int $id_method
- * @property string $gateway
+ * @property int $id_token
+ * @property int $id_last_transaction
+ * @property int $id_billing_record
  *
- * @property string $token_id
- * @property string $expiration
+ * @property string $billing_period
+ * @property int $billing_interval
+ * @property int $billing_count
  *
  * @property string $modified
  * @property string $created
@@ -26,8 +27,7 @@ use ByTIC\Payments\Models\Methods\PaymentMethod;
  */
 trait SubscriptionTrait
 {
-    use HasPurchaseParent;
-    use HasGatewayRecordTrait;
+    use HasPaymentMethodRecordTrait;
     use TimestampableTrait;
 
     /**
@@ -40,20 +40,24 @@ trait SubscriptionTrait
      */
     static protected $updateTimestamps = ['modified'];
 
-    /**
-     * @param PaymentMethod $gateway
-     */
-    public function populateFromPaymentMethod($method)
+    public function bootSubscriptionTrait()
     {
-        $this->id_method = is_object($method) ? $method->id : $method;
+        $fields = ['start_at', 'cancel_at', 'ended_at', 'charge_at'];
+        foreach ($fields as $field) {
+            if ($this->hasCast($field)) {
+                continue;
+            }
+            $this->addCast($field, 'datetime');
+        }
+        $this->addCast('metadata', AsMetadataObject::class . ':json');
     }
 
     /**
-     * @param SubscriptionInterface $token
+     * @param $key
+     * @param $value
      */
-    public function populateFromSubscription(SubscriptionInterface $token)
+    public function addMedata($key, $value)
     {
-        $this->token_id = $token->getId();
-        $this->expiration = $token->getExpirationDate();
+        $this->metadata->set($key, $value);
     }
 }
