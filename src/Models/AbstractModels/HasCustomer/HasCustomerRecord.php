@@ -2,8 +2,8 @@
 
 namespace ByTIC\Payments\Models\AbstractModels\HasCustomer;
 
-use ByTIC\Payments\Tests\Fixtures\Records\BillingRecord;
 use Nip\Records\Record;
+use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
 
 /**
  * Trait HasCustomerRecord

@@ -3,8 +3,11 @@
 namespace ByTIC\Payments\Tests\Models\Subscriptions;
 
 use ByTIC\Payments\Models\Subscriptions\Subscription;
+use ByTIC\Payments\Models\Subscriptions\Subscriptions;
 use ByTIC\Payments\Models\Transactions\Transaction;
 use ByTIC\Payments\Models\Transactions\Transactions;
+use ByTIC\Payments\Subscriptions\Statuses\Active;
+use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
 use ByTIC\Payments\Tests\AbstractTest;
 use Nip\Database\Query\Insert;
 
@@ -14,6 +17,17 @@ use Nip\Database\Query\Insert;
  */
 class SubscriptionTraitTest extends AbstractTest
 {
+
+    public function testGetStatuses()
+    {
+        $statuses = Subscriptions::instance()->getStatuses();
+
+        self::assertCount(4, $statuses);
+
+        self::assertInstanceOf(Active::class, $statuses[Active::NAME]);
+        self::assertInstanceOf(NotStarted::class, $statuses[NotStarted::NAME]);
+    }
+
     public function test_cast_metadata()
     {
         $item = new Subscription();

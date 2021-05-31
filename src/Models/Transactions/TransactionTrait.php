@@ -3,12 +3,10 @@
 namespace ByTIC\Payments\Models\Transactions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
-use ByTIC\DataObjects\Casts\AsArrayObject;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
-use Omnipay\Common\Message\AbstractResponse;
+use ByTIC\Payments\Models\Subscriptions\Subscription;
 
 /**
  * Trait TransactionTrait
@@ -29,6 +27,7 @@ use Omnipay\Common\Message\AbstractResponse;
  * @property string $created
  *
  * @method TransactionsTrait getManager
+ * @method Subscription getSubscription
  */
 trait TransactionTrait
 {
@@ -52,33 +51,23 @@ trait TransactionTrait
     }
 
     /**
-     * @return mixed
+     * @param Subscription $method
      */
-    public function getMetadata()
+    public function populateFromSubscription($subscription)
     {
-        return $this->getPropertyValue('metadata');
+        $this->id_subscription = is_object($subscription) ? $subscription->id : $subscription;
     }
-
-    public function setMedata($value)
-    {
-        return $this->setPropertyValue('metadata', $value);
-    }
-
     /**
      * @param $key
      * @param $value
      */
     public function addMedata($key, $value)
     {
-        $metadata = $this->metadata;
-        $metadata[$key] = $value;
-        $this->setMedata($metadata);
+        $this->metadata->set($key, $value);
     }
 
-    /**
-     * @param AbstractResponse|HasModelProcessedResponse $response
-     */
-    public function updateFromResponse($response, $type)
+    public function isSubscription(): bool
     {
+        return $this->id_subscription > 0;
     }
 }

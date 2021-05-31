@@ -7,6 +7,9 @@ use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Omnipay\Common\Models\SubscriptionInterface;
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
+use ByTIC\Payments\Models\Tokens\Token;
+use ByTIC\Payments\Models\Transactions\Transaction;
+use ByTIC\Payments\Models\Transactions\TransactionTrait;
 
 /**
  * Trait SubscriptionTrait
@@ -21,6 +24,11 @@ use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord
  * @property int $billing_interval
  * @property int $billing_count
  *
+ * @property string $start_at
+ * @property string $cancel_at
+ * @property string $ended_at
+ * @property string $charge_at
+ *
  * @property string $modified
  * @property string $created
  *
@@ -28,6 +36,7 @@ use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord
  */
 trait SubscriptionTrait
 {
+    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
     use HasPaymentMethodRecordTrait;
     use HasCustomerRecord;
     use TimestampableTrait;
@@ -61,5 +70,23 @@ trait SubscriptionTrait
     public function addMedata($key, $value)
     {
         $this->metadata->set($key, $value);
+    }
+
+    /**
+     * @param Transaction|TransactionTrait $transaction
+     */
+    public function populateFromLastTransaction($transaction)
+    {
+        $this->id_last_transaction = $transaction->id;
+        $this->getRelation('LastTransaction')->setResults($transaction);
+    }
+
+    /**
+     * @param Token $token
+     */
+    public function populateFromToken($token)
+    {
+        $this->id_token = $token->id;
+        $this->getRelation('Token')->setResults($token);
     }
 }

@@ -30,6 +30,7 @@ final class CreateTransactionsTable extends AbstractMigration
 
         $table = $this->table($table_name)
             ->addColumn('id_purchase', 'biginteger')
+            ->addColumn('id_token', 'biginteger', ['null' => true])
             ->addColumn('id_subscription', 'biginteger', ['null' => true])
             ->addColumn('gateway', 'string')
             ->addColumn('currency', 'string', ['limit' => '3'])
@@ -47,6 +48,7 @@ final class CreateTransactionsTable extends AbstractMigration
             ]);
 
         $table->addIndex(['id_purchase']);
+        $table->addIndex(['id_token']);
         $table->addIndex(['id_subscription']);
         $table->addIndex(['currency']);
         $table->addIndex(['card']);

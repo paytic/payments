@@ -8,22 +8,21 @@ use ByTIC\Payments\Utility\PaymentsModels;
 /**
  * Class CreateSessionFromResponse
  * @package ByTIC\Payments\Actions\GatewayNotifications
+ * @internal
  */
 class CreateSessionFromResponse
 {
     /**
-     * @param $response
-     * @param IsPurchasableModelTrait $model
-     * @param $type
+     * @param NotificationData $notification
      * @return \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait
      */
-    public static function handle($response, $model, $type)
+    public static function handle(NotificationData $notification)
     {
         $sessions = PaymentsModels::sessions();
 
-        $session = $sessions->generateFromPurchaseType($model, $type);
-        $session->populateFromResponse($response);
-        $session->insert();
-        return $session;
+        $notification->session = $sessions->generateFromPurchaseType($notification->purchase, $notification->type);
+        $notification->session->populateFromResponse($notification->response);
+        $notification->session->insert();
+        return $notification->session;
     }
 }

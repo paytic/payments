@@ -5,6 +5,7 @@ namespace ByTIC\Payments\Actions\GatewayNotifications;
 /**
  * Class UpdatePaymentModelsFromResponse
  * @package ByTIC\Payments\Actions
+ * @internal
  */
 class UpdatePaymentModelsFromResponse
 {
@@ -15,9 +16,12 @@ class UpdatePaymentModelsFromResponse
      */
     public static function handle($response, $model, $type)
     {
-        CreateSessionFromResponse::handle($response, $model, $type);
-        CreateOrUpdateTransactionFromResponse::handle($response, $model, $type);
-        CreateorUpdateTokenFromResponse::handle($response, $model, $type);
+        $notification = new NotificationData($type, $response, $model);
+
+        CreateSessionFromResponse::handle($notification);
+        CreateOrUpdateTokenFromResponse::handle($notification);
+        CreateOrUpdateTransactionFromResponse::handle($notification);
+        CreateOrUpdateSubscriptionFromResponse::handle($notification);
     }
 
 }

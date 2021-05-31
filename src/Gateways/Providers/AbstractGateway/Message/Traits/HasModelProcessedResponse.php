@@ -45,7 +45,7 @@ trait HasModelProcessedResponse
             if ($newModelStatus == 'active') {
                 $model->received = $this->getTransactionDate();
                 $model->updateStatus($newModelStatus);
-            } elseif ($modelStatus == 'active' && $newModelStatus = 'error') {
+            } elseif ($modelStatus == 'active' && $newModelStatus == 'error') {
                 // ignore error status after active received
             } else {
                 $model->updateStatus($newModelStatus);

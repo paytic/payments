@@ -9,6 +9,7 @@ use Omnipay\Common\Message\AbstractResponse;
 /**
  * Class CreateOrUpdateTransactionFromResponse
  * @package ByTIC\Payments\Actions\GatewayNotifications
+ * @internal
  */
 class CreateOrUpdateTransactionFromResponse
 {
@@ -18,11 +19,11 @@ class CreateOrUpdateTransactionFromResponse
      * @param $type
      * @return \ByTIC\Payments\Models\Transactions\TransactionTrait|\Nip\Records\AbstractModels\Record
      */
-    public static function handle($response, $model, $type)
+    public static function handle(NotificationData $notification)
     {
-        $transaction = PaymentsModels::transactions()->findOrCreateForPurchase($model);
-        static::updateTransaction($response, $transaction);
-        return $transaction;
+        $notification->transaction = PaymentsModels::transactions()->findOrCreateForPurchase($notification->purchase);
+        static::updateTransaction($notification->response, $notification->transaction);
+        return $notification->transaction;
     }
 
 

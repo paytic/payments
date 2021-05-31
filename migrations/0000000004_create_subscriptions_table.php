@@ -57,7 +57,7 @@ final class CreateSubscriptionsTable extends AbstractMigration
         $table->addIndex(['id_method']);
         $table->addIndex(['id_token']);
         $table->addIndex(['id_last_transaction']);
-        $table->addIndex(['id_billing_record']);
+        $table->addIndex(['customer_id','customer_type']);
         $table->addIndex(['status']);
         $table->addIndex(['start_at']);
         $table->addIndex(['cancel_at']);
