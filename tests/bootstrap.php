@@ -19,15 +19,22 @@ function envVar($key)
     return getenv($key);
 }
 
-putenv('PLATIONLINE_PUBLIC_KEY='.gzinflate(base64_decode(envVar('PLATIONLINE_PUBLIC_KEY'))));
-putenv('PLATIONLINE_PRIVATE_KEY='.gzinflate(base64_decode(envVar('PLATIONLINE_PRIVATE_KEY'))));
+putenv('PLATIONLINE_PUBLIC_KEY=' . gzinflate(base64_decode(envVar('PLATIONLINE_PUBLIC_KEY'))));
+putenv('PLATIONLINE_PRIVATE_KEY=' . gzinflate(base64_decode(envVar('PLATIONLINE_PRIVATE_KEY'))));
 
-Container::setInstance(new Container());
-Container::getInstance()->set('inflector', \Nip\Inflector\Inflector::instance());
+$container = new Container();
+Container::setInstance($container);
+$container->set('inflector', \Nip\Inflector\Inflector::instance());
 
 $translator = Mockery::mock(\Nip\I18n\Translator::class)->shouldAllowMockingProtectedMethods()->makePartial();
 $translator->shouldReceive('persistLocale');
-Container::getInstance()->set('translator', $translator);
-Container::getInstance()->set('request', new \Nip\Request());
 
-require dirname(__DIR__).'/vendor/autoload.php';
+$container->set('translator', $translator);
+$container->set('request', new \Nip\Request());
+
+$data = [
+    'payments' => require PROJECT_BASE_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'payments.php'
+];
+$container->set('config', new \Nip\Config\Config($data));
+
+require dirname(__DIR__) . '/vendor/autoload.php';

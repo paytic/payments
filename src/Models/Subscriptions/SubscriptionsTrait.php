@@ -26,6 +26,7 @@ trait SubscriptionsTrait
     {
         $this->initRelationsTransactions();
         $this->initRelationsLastTransaction();
+        $this->initRelationsToken();
     }
 
     protected function initRelationsTransactions()
@@ -36,6 +37,11 @@ trait SubscriptionsTrait
     protected function initRelationsLastTransaction()
     {
         $this->hasOne('LastTransaction', ['class' => get_class(PaymentsModels::transactions())]);
+    }
+
+    protected function initRelationsToken()
+    {
+        $this->hasMany('Token', ['class' => get_class(PaymentsModels::tokens())]);
     }
 
     /**
