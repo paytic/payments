@@ -65,7 +65,6 @@ class SubscriptionBuilder
     public function withPaymentMethod($method): SubscriptionBuilder
     {
         $this->subscription->populateFromPaymentMethod($method);
-        $this->subscription->populateFromGateway($method->getGateway());
         return $this;
     }
 

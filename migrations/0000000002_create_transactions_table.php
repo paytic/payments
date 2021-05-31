@@ -38,7 +38,7 @@ final class CreateTransactionsTable extends AbstractMigration
             ->addColumn('card', 'string')
             ->addColumn('code', 'string')
             ->addColumn('reference', 'string')
-            ->addColumn('metadata', 'json')
+            ->addColumn('metadata', 'json',['null' => true])
             ->addColumn('modified', 'timestamp', [
                 'default' => 'CURRENT_TIMESTAMP',
                 'update' => 'CURRENT_TIMESTAMP',

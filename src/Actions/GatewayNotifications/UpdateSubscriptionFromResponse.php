@@ -2,8 +2,6 @@
 
 namespace ByTIC\Payments\Actions\GatewayNotifications;
 
-use ByTIC\Payments\Utility\PaymentsModels;
-
 /**
  * Class UpdateSubscriptionFromResponse
  * @package ByTIC\Payments\Actions\GatewayNotifications

@@ -21,7 +21,7 @@ class UpdatePaymentModelsFromResponse
         CreateSessionFromResponse::handle($notification);
         CreateOrUpdateTokenFromResponse::handle($notification);
         CreateOrUpdateTransactionFromResponse::handle($notification);
-        CreateOrUpdateSubscriptionFromResponse::handle($notification);
+        UpdateSubscriptionFromResponse::handle($notification);
     }
 
 }

@@ -56,7 +56,7 @@ class NotificationData
      * @param HasModelProcessedResponse|\Omnipay\Common\Message\AbstractResponse $response
      * @param IsPurchasableModelTrait $purchase
      */
-    public function __construct(string $type, $response, IsPurchasableModelTrait $purchase)
+    public function __construct(string $type, $response, $purchase)
     {
         $this->type = $type;
         $this->response = $response;

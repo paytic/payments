@@ -19,6 +19,7 @@ trait SubscriptionsTrait
     protected function initRelations()
     {
         parent::initRelations();
+        $this->initRelationsPayments();
     }
 
     protected function initRelationsPayments()

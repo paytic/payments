@@ -37,15 +37,17 @@ final class CreateSubscriptionsTable extends AbstractMigration
             ->addColumn('status', 'enum', ['values' => ['not_started', 'active', 'completed', 'canceled']])
             ->addColumn('billing_period', 'enum', ['values' => ['daily', 'weekly', 'monthly', 'yearly']])
             ->addColumn('billing_interval', 'integer', ['limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
-            ->addColumn('billing_count', 'integer', ['null' => true, 'limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
+            ->addColumn('billing_count', 'integer',
+                ['null' => true, 'limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
             ->addColumn('start_at', 'date', ['null' => true])
             ->addColumn('cancel_at', 'date', ['null' => true])
             ->addColumn('ended_at', 'date', ['null' => true])
             ->addColumn('charge_at', 'date', ['null' => true])
             ->addColumn('charge_attempts', 'integer', ['limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
-            ->addColumn('charge_count', 'integer', ['null' => true,'limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
+            ->addColumn('charge_count', 'integer',
+                ['null' => true, 'limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
             ->addColumn('charge_method', 'string')
-            ->addColumn('metadata', 'json')
+            ->addColumn('metadata', 'json', ['null' => true])
             ->addColumn('modified', 'timestamp', [
                 'default' => 'CURRENT_TIMESTAMP',
                 'update' => 'CURRENT_TIMESTAMP',
@@ -57,7 +59,7 @@ final class CreateSubscriptionsTable extends AbstractMigration
         $table->addIndex(['id_method']);
         $table->addIndex(['id_token']);
         $table->addIndex(['id_last_transaction']);
-        $table->addIndex(['customer_id','customer_type']);
+        $table->addIndex(['customer_id', 'customer_type']);
         $table->addIndex(['status']);
         $table->addIndex(['start_at']);
         $table->addIndex(['cancel_at']);
