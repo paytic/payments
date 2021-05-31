@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Models\Purchase\Traits;
 
 
+use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use ByTIC\Payments\Utility\PaymentsModels;
 
 /**
@@ -11,12 +12,27 @@ use ByTIC\Payments\Utility\PaymentsModels;
  */
 trait IsPurchasableRepositoryTrait
 {
-    public function initRelationsPaymentMethod()
+    use HasCustomerRepository;
+
+    public function initRelations()
+    {
+        parent::initRelations();
+        $this->initRelationsPayments();
+    }
+
+    protected function initRelationsPayments()
+    {
+        $this->initRelationsCustomer();
+        $this->initRelationsPaymentMethod();
+        $this->initRelationsSessions();
+    }
+
+    protected function initRelationsPaymentMethod()
     {
         $this->belongsTo('PaymentMethod');
     }
 
-    public function initRelationsSessions()
+    protected function initRelationsSessions()
     {
         $this->hasMany('PurchasesSessions', ['class' => get_class(PaymentsModels::sessions()), 'fk' => 'id_purchase']);
     }

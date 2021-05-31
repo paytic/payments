@@ -31,6 +31,8 @@ final class CreateTokensTable extends AbstractMigration
         $table = $this->table($table_name)
             ->addColumn('id_method', 'biginteger')
             ->addColumn('gateway', 'string')
+            ->addColumn('customer_id', 'biginteger')
+            ->addColumn('customer_type', 'string')
             ->addColumn('token_id', 'string')
             ->addColumn('expiration', 'timestamp')
             ->addColumn('modified', 'timestamp', [

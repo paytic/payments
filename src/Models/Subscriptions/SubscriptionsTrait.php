@@ -2,9 +2,7 @@
 
 namespace ByTIC\Payments\Models\Subscriptions;
 
-use ByTIC\Omnipay\Common\Models\SubscriptionInterface;
-use ByTIC\Payments\Utility\PaymentsModels;
-use Nip\Records\AbstractModels\Record;
+use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 
 /**
  * Trait SubscriptionsTrait
@@ -14,6 +12,7 @@ use Nip\Records\AbstractModels\Record;
  */
 trait SubscriptionsTrait
 {
+    use HasCustomerRepository;
 
     /**
      * @return mixed|\Nip\Config\Config

@@ -5,6 +5,7 @@ namespace ByTIC\Payments\Models\Subscriptions;
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Omnipay\Common\Models\SubscriptionInterface;
+use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
 
 /**
@@ -28,6 +29,7 @@ use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord
 trait SubscriptionTrait
 {
     use HasPaymentMethodRecordTrait;
+    use HasCustomerRecord;
     use TimestampableTrait;
 
     /**

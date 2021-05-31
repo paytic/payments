@@ -5,6 +5,7 @@ namespace ByTIC\Payments\Models\Tokens;
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\Omnipay\Common\Models\TokenInterface;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
+use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
@@ -28,6 +29,7 @@ use ByTIC\Payments\Models\Methods\PaymentMethod;
 trait TokenTrait
 {
     use HasPurchaseParent;
+    use HasCustomerRecord;
     use HasGatewayRecordTrait;
     use HasPaymentMethodRecordTrait;
     use TimestampableTrait;

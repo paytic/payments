@@ -3,6 +3,7 @@
 namespace ByTIC\Payments\Models\Tokens;
 
 use ByTIC\Omnipay\Common\Models\TokenInterface;
+use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Records\AbstractModels\Record;
 
@@ -14,6 +15,7 @@ use Nip\Records\AbstractModels\Record;
  */
 trait TokensTrait
 {
+    use HasCustomerRepository;
 
     /**
      * @param $method
