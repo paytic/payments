@@ -2,8 +2,9 @@
 
 namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
-use ByTIC\Common\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Common\Records\Traits\HasStatus\RecordTrait;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use ByTIC\Payments\Models\Transactions\Statuses\{Active, Canceled, Error, Pending};
 use Nip\Records\Record;
 
 /**
@@ -41,16 +42,17 @@ trait HasModelProcessedResponse
         $model = $this->getModel();
         $modelStatus = $this->getModel()->getStatus()->getName();
         $newModelStatus = $this->getModelResponseStatus();
-        if ($newModelStatus && $modelStatus !== $newModelStatus) {
-            if ($newModelStatus == 'active') {
-                $model->received = $this->getTransactionDate();
-                $model->updateStatus($newModelStatus);
-            } elseif ($modelStatus == 'active' && $newModelStatus == 'error') {
-                // ignore error status after active received
-            } else {
-                $model->updateStatus($newModelStatus);
-            }
+        if (!$newModelStatus || $modelStatus === $newModelStatus) {
+            return;
         }
+        if ($modelStatus == 'active' && $newModelStatus == 'error') {
+            // ignore error status after active received
+            return;
+        }
+        if ($newModelStatus == 'active') {
+            $model->received = $this->getTransactionDate();
+        }
+        $model->updateStatus($newModelStatus);
     }
 
     /**
@@ -64,17 +66,17 @@ trait HasModelProcessedResponse
     /**
      * @return null|string
      */
-    public function getModelResponseStatus()
+    public function getModelResponseStatus(): ?string
     {
         if ($this->modelResponseStatus === null) {
             if ($this->isSuccessful()) {
-                $status = 'active';
+                $status = Active::NAME;
             } elseif ($this->isCancelled()) {
-                $status = 'canceled';
+                $status = Canceled::NAME;
             } elseif ($this->isPending()) {
-                $status = 'pending';
+                $status = Pending::NAME;
             } else {
-                $status = 'error';
+                $status = Error::NAME;
             }
             $this->modelResponseStatus = $status;
         }

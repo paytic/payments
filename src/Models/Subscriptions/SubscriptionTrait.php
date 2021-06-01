@@ -10,6 +10,7 @@ use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord
 use ByTIC\Payments\Models\Tokens\Token;
 use ByTIC\Payments\Models\Transactions\Transaction;
 use ByTIC\Payments\Models\Transactions\TransactionTrait;
+use DateTime;
 
 /**
  * Trait SubscriptionTrait
@@ -24,10 +25,10 @@ use ByTIC\Payments\Models\Transactions\TransactionTrait;
  * @property int $billing_interval
  * @property int $billing_count
  *
- * @property string $start_at
- * @property string $cancel_at
- * @property string $ended_at
- * @property string $charge_at
+ * @property string|DateTime $start_at
+ * @property string|DateTime $cancel_at
+ * @property string|DateTime $ended_at
+ * @property string|DateTime $charge_at
  *
  * @property string $modified
  * @property string $created

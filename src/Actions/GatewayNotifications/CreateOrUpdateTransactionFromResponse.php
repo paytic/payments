@@ -22,7 +22,12 @@ class CreateOrUpdateTransactionFromResponse
     public static function handle(NotificationData $notification)
     {
         $notification->transaction = PaymentsModels::transactions()->findOrCreateForPurchase($notification->purchase);
-        static::updateTransaction($notification->response, $notification->transaction);
+
+        static::updateFromResponse($notification->response, $notification->transaction);
+        $notification->transaction->status = $notification->purchase->getStatus();
+
+        $notification->transaction->update();
+
         return $notification->transaction;
     }
 
@@ -31,13 +36,11 @@ class CreateOrUpdateTransactionFromResponse
      * @param AbstractResponse|ServerCompletePurchaseResponse $response
      * @param $transaction
      */
-    protected static function updateTransaction(AbstractResponse $response, $transaction)
+    protected static function updateFromResponse(AbstractResponse $response, $transaction)
     {
         static::setPropertyFromResponse($response, $transaction, 'getCode', 'code');
         static::setPropertyFromResponse($response, $transaction, 'getTransactionReference', 'reference');
         static::setPropertyFromResponse($response, $transaction, 'getCardMasked', 'card');
-
-        $transaction->update();
     }
 
     /**

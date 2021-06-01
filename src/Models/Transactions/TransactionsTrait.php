@@ -17,6 +17,7 @@ use Nip\Records\EventManager\Events\Event;
  */
 trait TransactionsTrait
 {
+    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
 
     public function bootTransactionsTrait()
     {
@@ -51,6 +52,22 @@ trait TransactionsTrait
     public function findForPurchase($purchase)
     {
         return $this->findOneByField('id_purchase', $purchase->id);
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusItemsRootNamespace()
+    {
+        return '\ByTIC\Payments\Models\Transactions\Statuses\\';
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusItemsDirectory()
+    {
+        return __DIR__ . DIRECTORY_SEPARATOR . 'Statuses';
     }
 
     /**

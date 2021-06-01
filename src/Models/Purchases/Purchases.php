@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Models\Purchases;
 
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableRepositoryTrait;
 use Nip\Records\RecordManager;
 use Nip\Utility\Traits\SingletonTrait;
 
@@ -13,7 +12,7 @@ use Nip\Utility\Traits\SingletonTrait;
 class Purchases extends RecordManager
 {
     use SingletonTrait;
-    use IsPurchasableRepositoryTrait;
+    use PurchasesTrait;
 
     public function getRootNamespace()
     {

@@ -2,9 +2,8 @@
 
 namespace ByTIC\Payments\Models\Purchases;
 
-use ByTIC\Payments\Models\Methods\Traits\RecordTrait;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\Record;
+use Nip_Registry;
 
 /**
  * Class Purchase
@@ -12,7 +11,7 @@ use Nip\Records\Record;
  */
 class Purchase extends Record
 {
-    use IsPurchasableModelTrait;
+    use PurchaseTrait;
 
     public function getPaymentMethod()
     {
@@ -27,5 +26,10 @@ class Purchase extends Record
     public function getName()
     {
         // TODO: Implement getName() method.
+    }
+
+    public function getRegistry()
+    {
+        // TODO: Implement getRegistry() method.
     }
 }

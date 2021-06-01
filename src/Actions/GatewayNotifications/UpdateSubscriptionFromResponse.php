@@ -2,6 +2,8 @@
 
 namespace ByTIC\Payments\Actions\GatewayNotifications;
 
+use ByTIC\Payments\Actions\Subscriptions\UpdateFromTransactionNotification;
+
 /**
  * Class UpdateSubscriptionFromResponse
  * @package ByTIC\Payments\Actions\GatewayNotifications
@@ -18,13 +20,14 @@ class UpdateSubscriptionFromResponse
         if (!is_object($notification->transaction) || $notification->transaction->isSubscription() !== true) {
             return null;
         }
-        if (!is_object($notification->token)) {
-            return null;
-        }
-
         $notification->subscription = $notification->transaction->getSubscription();
-        $notification->subscription->populateFromToken($notification->token);
+
+        if (is_object($notification->token)) {
+            $notification->subscription->populateFromToken($notification->token);
+        }
         $notification->subscription->update();
+
+        UpdateFromTransactionNotification::handle($notification->subscription, $notification->transaction);
 
         return $notification->subscription;
     }

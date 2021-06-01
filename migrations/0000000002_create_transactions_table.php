@@ -34,7 +34,7 @@ final class CreateTransactionsTable extends AbstractMigration
             ->addColumn('id_subscription', 'biginteger', ['null' => true])
             ->addColumn('gateway', 'string')
             ->addColumn('currency', 'string', ['limit' => '3'])
-
+            ->addColumn('status', 'enum', ['values' => ['pending', 'active', 'error', 'canceled']])
             ->addColumn('card', 'string')
             ->addColumn('code', 'string')
             ->addColumn('reference', 'string')

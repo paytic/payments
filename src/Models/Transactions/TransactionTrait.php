@@ -34,6 +34,7 @@ trait TransactionTrait
     use HasPurchaseParent;
     use HasGatewayRecordTrait;
     use TimestampableTrait;
+    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
 
     /**
      * @var string
