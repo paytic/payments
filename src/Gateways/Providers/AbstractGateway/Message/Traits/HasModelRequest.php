@@ -71,7 +71,7 @@ trait HasModelRequest
     public function getModelIdFromRequest()
     {
         if (is_callable('parent::getModelIdFromRequest')) {
-            /** @noinspection PhpUndefinedClassInspection */
+            /** @phpstan-ignore-next-line */
             return parent::getModelIdFromRequest();
         }
         return false;

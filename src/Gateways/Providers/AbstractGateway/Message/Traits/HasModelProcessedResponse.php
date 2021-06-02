@@ -90,6 +90,7 @@ trait HasModelProcessedResponse
     public function getTransactionDate()
     {
         if (is_callable('parent::getTransactionDate')) {
+            /** @noinspection PhpUndefinedMethodInspection @phpstan-ignore-next-line */
             return parent::getTransactionDate();
         }
         return date('Y-m-d H:i:s');

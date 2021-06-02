@@ -40,7 +40,7 @@ class SubscriptionBuilder
      */
     public static function fromPurchase($purchase): SubscriptionBuilder
     {
-        $builder = new static();
+        $builder = new self();
         $builder->withPaymentMethod($purchase->getPaymentMethod());
         $builder->withCustomer($purchase->getPurchaseBillingRecord());
 

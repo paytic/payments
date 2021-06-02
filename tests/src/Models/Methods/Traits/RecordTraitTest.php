@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Tests\Models\Methods\Traits;
 
-use ByTIC\Payments\Gateways\Providers\Mobilpay\Gateway as MobilpayGateway;
+use ByTIC\Payments\Mobilpay\Gateway as MobilpayGateway;
 use ByTIC\Payments\Gateways\Providers\Euplatesc\Gateway as EuplatescGateway;
 use ByTIC\Payments\Models\Methods\Types\BankTransfer;
 use ByTIC\Payments\Models\Methods\Types\Cash;
