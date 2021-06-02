@@ -31,7 +31,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
             [
                 [
                     'start_at' => '2020-01-01',
-                    'charge_at' => '',
+                    'charge_count' => '',
                     'billing_period' => BillingPeriod::DAILY,
                     'billing_interval' => 1
                 ],
@@ -40,11 +40,11 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
             [
                 [
                     'start_at' => '2020-01-01',
-                    'charge_at' => '2020-02-01',
+                    'charge_count' => 4,
                     'billing_period' => BillingPeriod::DAILY,
                     'billing_interval' => 1
                 ],
-                '2020-02-02',
+                '2020-01-05',
             ],
             [
                 [
@@ -56,12 +56,39 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
             ],
             [
                 [
-                    'start_at' => '2020-01-01',
-                    'charge_at' => '',
-                    'billing_period' => BillingPeriod::WEEKLY,
+                    'start_at' => '2021-05-31 00:00:00',
+                    'charge_count' => '',
+                    'billing_period' => BillingPeriod::MONTHLY,
                     'billing_interval' => 1
                 ],
-                '2020-01-08',
+                '2021-06-30',
+            ],
+            [
+                [
+                    'start_at' => '2021-05-30 00:00:00',
+                    'charge_count' => '',
+                    'billing_period' => BillingPeriod::MONTHLY,
+                    'billing_interval' => 1
+                ],
+                '2021-06-30',
+            ],
+            [
+                [
+                    'start_at' => '2021-06-30 00:00:00',
+                    'charge_count' => '',
+                    'billing_period' => BillingPeriod::MONTHLY,
+                    'billing_interval' => 1
+                ],
+                '2021-07-30',
+            ],
+            [
+                [
+                    'start_at' => '2021-05-31 00:00:00',
+                    'charge_count' => 2,
+                    'billing_period' => BillingPeriod::MONTHLY,
+                    'billing_interval' => 1
+                ],
+                '2021-07-31',
             ]
         ];
     }

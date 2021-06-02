@@ -15,7 +15,7 @@ class ChargedSuccessfully
      */
     public static function handle($subscription)
     {
-        $subscription->billing_count = $subscription->billing_count+1;
+        $subscription->charge_count = $subscription->charge_count + 1;
         CalculateNextCharge::for($subscription);
         $subscription->update();
     }

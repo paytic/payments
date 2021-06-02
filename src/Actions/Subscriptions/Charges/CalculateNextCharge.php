@@ -17,10 +17,11 @@ class CalculateNextCharge
      */
     public static function for($subscription)
     {
+        $count = $subscription->charge_count > 0 ? $subscription->charge_count : 1;
         $subscription->charge_at = static::nextBillingDate(
             static::determineStartDate($subscription),
             $subscription->billing_period,
-            $subscription->billing_interval
+            $subscription->billing_interval * $count
         );
     }
 
@@ -53,7 +54,7 @@ class CalculateNextCharge
                 return $startDate->addWeeks($interval);
 
             case BillingPeriod::MONTHLY:
-                return $startDate->addMonths($interval);
+                return $startDate->addMonthsNoOverflow($interval);
 
             case BillingPeriod::YEARLY:
                 return $startDate->addYears($interval);
