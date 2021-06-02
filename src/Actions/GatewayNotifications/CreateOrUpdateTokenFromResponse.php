@@ -21,10 +21,12 @@ class CreateOrUpdateTokenFromResponse
         if (!method_exists($notification->response, 'getToken')) {
             return null;
         }
+
         $token = $notification->response->getToken();
         if (!($token instanceof TokenInterface)) {
             return null;
         }
+
         if (empty($token->getId())) {
             return null;
         }

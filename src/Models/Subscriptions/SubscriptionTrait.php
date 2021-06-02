@@ -30,6 +30,10 @@ use DateTime;
  * @property string|DateTime $ended_at
  * @property string|DateTime $charge_at
  *
+ * @property int $charge_attempts
+ * @property int $charge_count
+ * @property int $charge_method
+ *
  * @property string $modified
  * @property string $created
  *
