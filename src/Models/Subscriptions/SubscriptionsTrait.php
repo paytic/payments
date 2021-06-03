@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Models\Subscriptions;
 
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use ByTIC\Payments\Utility\PaymentsModels;
+use Nip\Records\Collections\Collection;
 
 /**
  * Trait SubscriptionsTrait
@@ -15,6 +16,20 @@ trait SubscriptionsTrait
 {
     use HasCustomerRepository;
     use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
+
+    /**
+     * @param int $count
+     * @return Collection|Subscription[]
+     */
+    public function findChargeDue(int $count = 10): Collection
+    {
+        $query = $this->paramsToQuery();
+        $query->where('charge_at IS NOT NULL');
+        $query->where('charge_at < NOW()');
+        $query->order(['charge_at', 'ASC']);
+        $query->limit($count);
+        return $this->findByQuery($query);
+    }
 
     protected function initRelations()
     {

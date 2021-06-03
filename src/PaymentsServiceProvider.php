@@ -2,6 +2,8 @@
 
 namespace ByTIC\Payments;
 
+use ByTIC\Payments\Console\Commands\SessionsCleanup;
+use ByTIC\Payments\Console\Commands\SubscriptionsCharge;
 use ByTIC\Payments\Gateways\Manager;
 use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Container\ServiceProviders\Providers\AbstractSignatureServiceProvider;
@@ -55,5 +57,13 @@ class PaymentsServiceProvider extends AbstractSignatureServiceProvider implement
         $this->getContainer()->singleton('payments.gateways', function () {
             return new Manager();
         });
+    }
+
+    protected function registerCommands()
+    {
+        $this->commands(
+            SessionsCleanup::class,
+            SubscriptionsCharge::class
+        );
     }
 }

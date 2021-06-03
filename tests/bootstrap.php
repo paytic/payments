@@ -1,6 +1,7 @@
 <?php
 
 use Nip\Container\Container;
+use Nip\Database\DatabaseManager;
 
 define('PROJECT_BASE_PATH', __DIR__.'/..');
 define('TEST_BASE_PATH', __DIR__);
@@ -36,5 +37,17 @@ $data = [
     'payments' => require PROJECT_BASE_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'payments.php'
 ];
 $container->set('config', new \Nip\Config\Config($data));
+
+$manager = new DatabaseManager();
+$connection = new \Nip\Database\Connections\Connection(false);
+
+$adapter = \Mockery::mock(\Nip\Database\Adapters\MySQLi::class)->makePartial();
+$adapter->shouldReceive('cleanData')->andReturnArg(0);
+
+$connection->setAdapter($adapter);
+$manager->setConnection($connection, 'main');
+
+Container::getInstance()->set('db', $manager);
+Container::getInstance()->set('db.connection', $connection);
 
 require dirname(__DIR__) . '/vendor/autoload.php';

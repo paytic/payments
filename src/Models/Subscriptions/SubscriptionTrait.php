@@ -58,12 +58,17 @@ trait SubscriptionTrait
 
     public function bootSubscriptionTrait()
     {
-        $fields = ['start_at', 'cancel_at', 'ended_at', 'charge_at'];
-        foreach ($fields as $field) {
+        $fields = [
+            'start_at' => 'date',
+            'cancel_at' => 'date',
+            'ended_at' => 'date',
+            'charge_at' => 'datetime'
+        ];
+        foreach ($fields as $field => $cast) {
             if ($this->hasCast($field)) {
                 continue;
             }
-            $this->addCast($field, 'datetime');
+            $this->addCast($field, $cast);
         }
         $this->addCast('metadata', AsMetadataObject::class . ':json');
     }

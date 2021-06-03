@@ -57,7 +57,7 @@ class UpdateFromTransactionNotification
     protected static function handleActive($subscription, $transaction)
     {
         if ($transaction->getStatus() instanceof Active) {
-            ChargedSuccessfully::handle($subscription);
+//            ChargedSuccessfully::handle($subscription);
             return;
         }
     }

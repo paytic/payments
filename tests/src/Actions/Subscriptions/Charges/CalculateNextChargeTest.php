@@ -22,7 +22,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
 
         CalculateNextCharge::for($subscription);
 
-        self::assertEquals($result, substr($subscription->getPropertyRaw('charge_at'), 0, 10));
+        self::assertEquals($result, $subscription->getPropertyRaw('charge_at'));
     }
 
     public function data_for(): array
@@ -35,7 +35,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
                     'billing_period' => BillingPeriod::DAILY,
                     'billing_interval' => 1
                 ],
-                '2020-01-02',
+                '2020-01-02 08:00:00',
             ],
             [
                 [
@@ -44,7 +44,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
                     'billing_period' => BillingPeriod::DAILY,
                     'billing_interval' => 1
                 ],
-                '2020-01-05',
+                '2020-01-05 08:00:00',
             ],
             [
                 [
@@ -52,7 +52,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
                     'billing_period' => BillingPeriod::MONTHLY,
                     'billing_interval' => 1
                 ],
-                '2020-02-01',
+                '2020-02-01 08:00:00',
             ],
             [
                 [
@@ -61,7 +61,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
                     'billing_period' => BillingPeriod::MONTHLY,
                     'billing_interval' => 1
                 ],
-                '2021-06-30',
+                '2021-06-30 08:00:00',
             ],
             [
                 [
@@ -70,7 +70,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
                     'billing_period' => BillingPeriod::MONTHLY,
                     'billing_interval' => 1
                 ],
-                '2021-06-30',
+                '2021-06-30 08:00:00',
             ],
             [
                 [
@@ -79,7 +79,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
                     'billing_period' => BillingPeriod::MONTHLY,
                     'billing_interval' => 1
                 ],
-                '2021-07-30',
+                '2021-07-30 08:00:00',
             ],
             [
                 [
@@ -88,7 +88,7 @@ class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
                     'billing_period' => BillingPeriod::MONTHLY,
                     'billing_interval' => 1
                 ],
-                '2021-07-31',
+                '2021-07-31 08:00:00',
             ]
         ];
     }

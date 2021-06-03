@@ -45,7 +45,8 @@ class CalculateNextCharge
      */
     protected static function nextBillingDate(\DateTime $startDate, $period, $interval)
     {
-        $startDate = Date::instance($startDate);
+        $startDate = Date::instance($startDate)->setHour(8)->setMinute(0);
+
         switch ($period) {
             case BillingPeriod::DAILY:
                 return $startDate->addDays($interval);
