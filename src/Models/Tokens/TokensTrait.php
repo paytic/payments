@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Models\Tokens;
 
 use ByTIC\Omnipay\Common\Models\TokenInterface;
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
+use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Records\AbstractModels\Record;
 
@@ -16,6 +17,7 @@ use Nip\Records\AbstractModels\Record;
 trait TokensTrait
 {
     use HasCustomerRepository;
+    use HasPaymentMethodRepository;
 
     /**
      * @param $method
@@ -68,11 +70,6 @@ trait TokensTrait
     protected function initRelationsPurchase()
     {
         $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases())]);
-    }
-
-    protected function initRelationsPaymentMethod()
-    {
-        $this->belongsTo('PaymentMethod', ['class' => get_class(PaymentsModels::methods())]);
     }
 
     /**

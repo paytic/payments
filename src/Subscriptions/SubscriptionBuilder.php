@@ -8,6 +8,7 @@ use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\Transactions\Transaction;
 use ByTIC\Payments\Models\Transactions\TransactionTrait;
+use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
 use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
 use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Utility\Date;
@@ -32,6 +33,7 @@ class SubscriptionBuilder
     {
         $this->subscription = PaymentsModels::subscriptions()->getNew();
         $this->subscription->setPropertyValue('status', NotStarted::NAME);
+        $this->subscription->charge_method = Internal::NAME;
         $this->subscription->start_at = Date::now();
     }
 

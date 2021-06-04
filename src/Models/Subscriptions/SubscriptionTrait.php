@@ -6,10 +6,13 @@ use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Omnipay\Common\Models\SubscriptionInterface;
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
+use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
+use ByTIC\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
 use ByTIC\Payments\Models\Tokens\Token;
 use ByTIC\Payments\Models\Transactions\Transaction;
 use ByTIC\Payments\Models\Transactions\TransactionTrait;
+use ByTIC\Payments\Subscriptions\ChargeMethods\AbstractMethod;
 use DateTime;
 
 /**
@@ -37,13 +40,15 @@ use DateTime;
  * @property string $modified
  * @property string $created
  *
+ * @method Transaction getLastTransaction
  * @method SubscriptionsTrait getManager
  */
 trait SubscriptionTrait
 {
     use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
-    use HasPaymentMethodRecordTrait;
+    use HasPaymentMethodRecord;
     use HasCustomerRecord;
+    use HasTokenRecord;
     use TimestampableTrait;
 
     /**
@@ -80,6 +85,14 @@ trait SubscriptionTrait
     public function addMedata($key, $value)
     {
         $this->metadata->set($key, $value);
+    }
+
+    /**
+     * @return \ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic|AbstractMethod
+     */
+    public function getChargeMethod()
+    {
+        return $this->getSmartProperty('ChargeMethods');
     }
 
     /**

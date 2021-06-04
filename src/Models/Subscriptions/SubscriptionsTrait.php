@@ -2,7 +2,11 @@
 
 namespace ByTIC\Payments\Models\Subscriptions;
 
+use ByTIC\Models\SmartProperties\Properties\Types\Generic as GenericType;
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
+use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
+use ByTIC\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
+use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
 use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Records\Collections\Collection;
 
@@ -15,6 +19,8 @@ use Nip\Records\Collections\Collection;
 trait SubscriptionsTrait
 {
     use HasCustomerRepository;
+    use HasTokenRepository;
+    use HasPaymentMethodRepository;
     use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
 
     /**
@@ -31,6 +37,28 @@ trait SubscriptionsTrait
         return $this->findByQuery($query);
     }
 
+    /**
+     * Get all the types array
+     *
+     * @return GenericType[]|null
+     */
+    public function getChargeMethods()
+    {
+        return $this->getSmartPropertyItems('ChargeMethods');
+    }
+
+    /**
+     * Get property of a type by name
+     *
+     * @param string $name Type name
+     *
+     * @return array
+     */
+    public function getChargeMethodProperty($name)
+    {
+        return $this->getSmartPropertyValues('ChargeMethods', $name);
+    }
+
     protected function initRelations()
     {
         parent::initRelations();
@@ -41,7 +69,9 @@ trait SubscriptionsTrait
     {
         $this->initRelationsTransactions();
         $this->initRelationsLastTransaction();
+        $this->initRelationsPaymentMethod();
         $this->initRelationsToken();
+        $this->initRelationsTokens();
     }
 
     protected function initRelationsTransactions()
@@ -54,9 +84,15 @@ trait SubscriptionsTrait
         $this->hasOne('LastTransaction', ['class' => get_class(PaymentsModels::transactions())]);
     }
 
-    protected function initRelationsToken()
+    protected function initRelationsTokens()
     {
-        $this->hasMany('Token', ['class' => get_class(PaymentsModels::tokens())]);
+        $this->hasMany('Tokens', ['class' => get_class(PaymentsModels::tokens())]);
+    }
+
+    protected function registerSmartProperties()
+    {
+        $this->registerSmartProperty('charge_method', 'ChargeMethods');
+        $this->registerSmartPropertyStatus();
     }
 
     /**
@@ -75,6 +111,32 @@ trait SubscriptionsTrait
         return dirname(dirname(__DIR__))
             . DIRECTORY_SEPARATOR . 'Subscriptions'
             . DIRECTORY_SEPARATOR . 'Statuses';
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultChargeMethods()
+    {
+        return Internal::NAME;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChargeMethodsItemsRootNamespace()
+    {
+        return 'ByTIC\Payments\Subscriptions\ChargeMethods\\';
+    }
+
+    /**
+     * @return string
+     */
+    public function getChargeMethodsItemsDirectory()
+    {
+        return dirname(dirname(__DIR__))
+            . DIRECTORY_SEPARATOR . 'Subscriptions'
+            . DIRECTORY_SEPARATOR . 'ChargeMethods';
     }
 
     /**

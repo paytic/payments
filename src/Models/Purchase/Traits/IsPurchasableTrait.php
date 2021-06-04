@@ -2,6 +2,8 @@
 
 namespace ByTIC\Payments\Models\Purchase\Traits;
 
+use ByTIC\Payments\Actions\Purchases\PurchaseParameters;
+
 /**
  * Trait IsPurchasableTrait
  * @package ByTIC\Payments\Models\Purchase\Traits
@@ -14,33 +16,7 @@ trait IsPurchasableTrait
      */
     public function getPurchaseParameters()
     {
-        $parameters = [];
-        $parameters['amount'] = $this->getPurchaseAmount();
-        $parameters['currency'] = $this->getPurchaseCurrency();
-
-        $parameters['orderId'] = $this->id;
-        $parameters['orderName'] = $this->getPurchaseName();
-        $parameters['orderDate'] = $this->getPurchaseDate();
-
-        $parameters['transactionId'] = $this->id;
-        $parameters['description'] = $this->getPurchaseName();
-        $parameters['lang'] = translator()->getLanguage();
-
-        $parameters['items'] = [
-            [
-                'name' => $this->getPurchaseName(),
-                'price' => $this->getPurchaseAmount(),
-                'description' => $this->getPurchaseName(),
-                'quantity' => 1,
-            ],
-        ];
-
-        $parameters['returnUrl'] = $this->getConfirmURL();
-        $parameters['notifyUrl'] = $this->getIpnURL();
-
-        $parameters['card'] = $this->getPurchaseParametersCard();
-
-        return $parameters;
+        return PurchaseParameters::for($this);
     }
 
     abstract public function getPurchaseAmount();

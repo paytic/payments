@@ -3,6 +3,10 @@
 namespace ByTIC\Payments\Tests\Models\Subscriptions;
 
 use ByTIC\Payments\Models\Subscriptions\Subscriptions;
+use ByTIC\Payments\Subscriptions\ChargeMethods\Gateway;
+use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
+use ByTIC\Payments\Subscriptions\Statuses\Active;
+use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
 use ByTIC\Payments\Tests\AbstractTest;
 use Mockery\Mock;
 use Nip\Database\Query\Select;
@@ -14,6 +18,27 @@ use Nip\Records\Collections\Collection;
  */
 class SubscriptionsTraitTest extends AbstractTest
 {
+
+    public function test_getStatuses()
+    {
+        $statuses = Subscriptions::instance()->getStatuses();
+
+        self::assertCount(4, $statuses);
+
+        self::assertInstanceOf(Active::class, $statuses[Active::NAME]);
+        self::assertInstanceOf(NotStarted::class, $statuses[NotStarted::NAME]);
+    }
+
+    public function test_getChargeMethods()
+    {
+        $repository = Subscriptions::instance();
+
+        $methods = $repository->getChargeMethods();
+
+        self::assertCount(2, $methods);
+        self::assertInstanceOf(Internal::class, $methods['internal']);
+        self::assertInstanceOf(Gateway::class, $methods['gateway']);
+    }
 
     public function test_findChargeDue()
     {

@@ -2,6 +2,8 @@
 
 namespace ByTIC\Payments\Models\Transactions;
 
+use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
+use ByTIC\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use ByTIC\Payments\Models\Purchases\Purchase;
 use ByTIC\Payments\Utility\PaymentsModels;
@@ -18,6 +20,8 @@ use Nip\Records\EventManager\Events\Event;
 trait TransactionsTrait
 {
     use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
+    use HasTokenRepository;
+    use HasPaymentMethodRepository;
 
     public function bootTransactionsTrait()
     {
@@ -102,19 +106,9 @@ trait TransactionsTrait
         $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases())]);
     }
 
-    protected function initRelationsPaymentMethod()
-    {
-        $this->belongsTo('PaymentMethod', ['class' => get_class(PaymentsModels::methods())]);
-    }
-
     protected function initRelationsSubscription()
     {
         $this->belongsTo('Subscription', ['class' => get_class(PaymentsModels::subscriptions())]);
-    }
-
-    protected function initRelationsToken()
-    {
-        $this->belongsTo('PaymentToken', ['class' => get_class(PaymentsModels::tokens())]);
     }
 
     /**

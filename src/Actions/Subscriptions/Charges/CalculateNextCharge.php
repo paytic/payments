@@ -19,23 +19,10 @@ class CalculateNextCharge
     {
         $count = $subscription->charge_count > 0 ? $subscription->charge_count : 1;
         $subscription->charge_at = static::nextBillingDate(
-            static::determineStartDate($subscription),
+            $subscription->start_at,
             $subscription->billing_period,
             $subscription->billing_interval * $count
         );
-    }
-
-    /**
-     * @param Subscription $subscription
-     * @return \DateTime
-     */
-    protected static function determineStartDate(Subscription $subscription): \DateTime
-    {
-        $chargeAt = $subscription->charge_at;
-        if ($chargeAt instanceof \DateTime && $chargeAt->year > 0) {
-            return $chargeAt;
-        }
-        return $subscription->start_at;
     }
 
     /**

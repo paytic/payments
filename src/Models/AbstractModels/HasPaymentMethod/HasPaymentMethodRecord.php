@@ -6,18 +6,23 @@ namespace ByTIC\Payments\Models\AbstractModels\HasPaymentMethod;
 use ByTIC\Payments\Models\Methods\PaymentMethod;
 
 /**
- * Trait HasPaymentMethodRecordTrait
+ * Trait HasPaymentMethodRecord
  * @package ByTIC\Payments\Models\AbstractModels\HasPaymentMethod
  *
  * @property int $id_method
+ * @method PaymentMethod getPaymentMethod()
  */
-trait HasPaymentMethodRecordTrait
+trait HasPaymentMethodRecord
 {
     /**
      * @param PaymentMethod $method
      */
     public function populateFromPaymentMethod($method)
     {
-        $this->id_method = is_object($method) ? $method->id : $method;
+        if (is_object($method)) {
+            $this->getRelation('PaymentMethod')->setResults($method);
+            $method = $method->id;
+        }
+        $this->id_method = $method;
     }
 }

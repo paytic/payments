@@ -5,7 +5,10 @@ namespace ByTIC\Payments\Models\Transactions;
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
+use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
+use ByTIC\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
+use ByTIC\Payments\Models\Purchases\PurchaseTrait;
 use ByTIC\Payments\Models\Subscriptions\Subscription;
 
 /**
@@ -27,11 +30,14 @@ use ByTIC\Payments\Models\Subscriptions\Subscription;
  * @property string $created
  *
  * @method TransactionsTrait getManager
+ * @method PurchaseTrait getPurchase
  * @method Subscription getSubscription
  */
 trait TransactionTrait
 {
     use HasPurchaseParent;
+    use HasTokenRecord;
+    use HasPaymentMethodRecord;
     use HasGatewayRecordTrait;
     use TimestampableTrait;
     use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;

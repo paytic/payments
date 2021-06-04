@@ -8,11 +8,9 @@ use ByTIC\Payments\Models\Tokens\Token;
 use ByTIC\Payments\Models\Tokens\Tokens;
 use ByTIC\Payments\Models\Transactions\Transaction;
 use ByTIC\Payments\Models\Transactions\Transactions;
-use ByTIC\Payments\Subscriptions\Statuses\Active;
-use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
+use ByTIC\Payments\Subscriptions\ChargeMethods\{Gateway, Internal};
 use ByTIC\Payments\Tests\AbstractTest;
 use Nip\Database\Query\Insert;
-use Nip\Records\AbstractModels\Record;
 use Nip\Records\Locator\ModelLocator;
 
 /**
@@ -22,14 +20,27 @@ use Nip\Records\Locator\ModelLocator;
 class SubscriptionTraitTest extends AbstractTest
 {
 
-    public function test_getStatuses()
+    /**
+     * @dataProvider data_getChargeMethod
+     */
+    public function test_getChargeMethod($value, $class)
     {
-        $statuses = Subscriptions::instance()->getStatuses();
+        $repository = Subscriptions::instance();
 
-        self::assertCount(4, $statuses);
+        $item = new Subscription();
+        $item->fill(['charge_method' => $value]);
+        $item->setManager($repository);
 
-        self::assertInstanceOf(Active::class, $statuses[Active::NAME]);
-        self::assertInstanceOf(NotStarted::class, $statuses[NotStarted::NAME]);
+        self::assertInstanceOf($class, $item->getChargeMethod());
+    }
+
+    public function data_getChargeMethod(): array
+    {
+        return [
+            ['', Internal::class],
+            [Internal::NAME, Internal::class],
+            [Gateway::NAME, Gateway::class],
+        ];
     }
 
     public function test_populateFromToken()

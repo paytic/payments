@@ -4,12 +4,10 @@ namespace ByTIC\Payments\Models\Tokens;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\Omnipay\Common\Models\TokenInterface;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
-use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
+use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
-use ByTIC\Payments\Models\Methods\PaymentMethod;
 
 /**
  * Trait TokenTrait
@@ -31,7 +29,7 @@ trait TokenTrait
     use HasPurchaseParent;
     use HasCustomerRecord;
     use HasGatewayRecordTrait;
-    use HasPaymentMethodRecordTrait;
+    use HasPaymentMethodRecord;
     use TimestampableTrait;
 
     /**
@@ -44,6 +42,11 @@ trait TokenTrait
      */
     static protected $updateTimestamps = ['modified'];
 
+    public function getTokenId(): string
+    {
+        return $this->token_id;
+    }
+
     /**
      * @param TokenInterface $token
      */
@@ -51,5 +54,16 @@ trait TokenTrait
     {
         $this->token_id = $token->getId();
         $this->expiration = $token->getExpirationDate();
+    }
+
+    /**
+     * @return \ByTIC\Omnipay\Common\Models\Token
+     */
+    public function getOmnipayToken(): \ByTIC\Omnipay\Common\Models\Token
+    {
+        return new \ByTIC\Omnipay\Common\Models\Token([
+            'id' => $this->token_id,
+            'expiration_date' => $this->expiration,
+        ]);
     }
 }
