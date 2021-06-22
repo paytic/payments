@@ -44,11 +44,11 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
         return [
             [
                 '/librapay/completePurchaseParams.php',
-                \ByTIC\Payments\Gateways\Providers\Librapay\Message\CompletePurchaseRequest::class,
+                \ByTIC\Payments\Librapay\Message\CompletePurchaseRequest::class,
             ],
             [
                 '/librapay/completePurchaseParams2.php',
-                \ByTIC\Payments\Gateways\Providers\Librapay\Message\CompletePurchaseRequest::class,
+                \ByTIC\Payments\Librapay\Message\CompletePurchaseRequest::class,
             ],
             [
                 '/mobilpay/completePurchase/basicParams.php',
