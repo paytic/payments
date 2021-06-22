@@ -63,8 +63,8 @@ class GatewayFactory
         }
 
         $tries= [
-            '\\ByTIC\Payments\Gateways\Providers\\' . $shortName . 'Gateway',
             '\\ByTIC\Payments\\' . $shortName . 'Gateway',
+            '\\ByTIC\Payments\Gateways\Providers\\' . $shortName . 'Gateway',
         ];
         foreach ($tries as $try) {
             if (class_exists($try)) {

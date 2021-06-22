@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments\Tests\Models\Subscriptions;
 
+use ByTIC\Payments\Models\Methods\PaymentMethods;
 use ByTIC\Payments\Models\Subscriptions\Subscription;
 use ByTIC\Payments\Models\Subscriptions\Subscriptions;
 use ByTIC\Payments\Models\Tokens\Token;
@@ -46,6 +47,7 @@ class SubscriptionTraitTest extends AbstractTest
     public function test_populateFromToken()
     {
         ModelLocator::set(Tokens::class, Tokens::instance());
+        ModelLocator::set(PaymentMethods::class, PaymentMethods::instance());
 
         $repository = \Mockery::mock(Subscriptions::class)->shouldAllowMockingProtectedMethods()->makePartial();
         $repository->shouldReceive('initRelationsTransactions');
