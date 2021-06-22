@@ -12,7 +12,6 @@ use ByTIC\Payments\Tests\AbstractTest;
  */
 class TransactionsTraitTest extends AbstractTest
 {
-
     public function test_getStatuses()
     {
         $statuses = Transactions::instance()->getStatuses();

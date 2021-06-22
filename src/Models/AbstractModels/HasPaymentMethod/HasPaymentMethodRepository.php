@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Models\AbstractModels\HasPaymentMethod;
 
-
 use ByTIC\Payments\Models\Methods\PaymentMethod;
 use ByTIC\Payments\Utility\PaymentsModels;
 
@@ -14,7 +13,6 @@ use ByTIC\Payments\Utility\PaymentsModels;
  */
 trait HasPaymentMethodRepository
 {
-
     public function initRelations()
     {
         parent::initRelations();

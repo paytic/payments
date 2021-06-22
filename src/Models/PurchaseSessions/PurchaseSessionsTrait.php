@@ -54,7 +54,7 @@ trait PurchaseSessionsTrait
         return unserialize(gzuncompress(base64_decode($params)));
     }
 
-    public static function  encodeParams($params)
+    public static function encodeParams($params)
     {
         return base64_encode(gzcompress(serialize($params)));
     }

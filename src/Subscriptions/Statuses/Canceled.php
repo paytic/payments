@@ -9,5 +9,4 @@ namespace ByTIC\Payments\Subscriptions\Statuses;
 class Canceled extends AbstractStatus
 {
     public const NAME = 'canceled';
-
 }

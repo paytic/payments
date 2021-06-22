@@ -10,7 +10,6 @@ use ByTIC\Payments\Utility\PaymentsModels;
  */
 trait HasTokenRepository
 {
-
     public function initRelations()
     {
         parent::initRelations();

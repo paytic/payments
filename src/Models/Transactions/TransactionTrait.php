@@ -45,12 +45,12 @@ trait TransactionTrait
     /**
      * @var string
      */
-    static protected $createTimestamps = ['created'];
+    protected static $createTimestamps = ['created'];
 
     /**
      * @var string
      */
-    static protected $updateTimestamps = ['modified'];
+    protected static $updateTimestamps = ['modified'];
 
     public function bootTransactionTrait()
     {

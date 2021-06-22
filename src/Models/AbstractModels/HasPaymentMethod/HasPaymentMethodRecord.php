@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Models\AbstractModels\HasPaymentMethod;
 
-
 use ByTIC\Payments\Models\Methods\PaymentMethod;
 
 /**

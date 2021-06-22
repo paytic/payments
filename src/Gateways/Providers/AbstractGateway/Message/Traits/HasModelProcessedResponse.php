@@ -4,7 +4,10 @@ namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\Transactions\Statuses\{Active, Canceled, Error, Pending};
+use ByTIC\Payments\Models\Transactions\Statuses\Active;
+use ByTIC\Payments\Models\Transactions\Statuses\Canceled;
+use ByTIC\Payments\Models\Transactions\Statuses\Error;
+use ByTIC\Payments\Models\Transactions\Statuses\Pending;
 use Nip\Records\Record;
 
 /**

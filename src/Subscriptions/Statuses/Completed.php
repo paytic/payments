@@ -9,5 +9,4 @@ namespace ByTIC\Payments\Subscriptions\Statuses;
 class Completed extends AbstractStatus
 {
     public const NAME = 'completed';
-
 }

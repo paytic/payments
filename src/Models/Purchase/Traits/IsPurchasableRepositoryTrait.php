@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Models\Purchase\Traits;
 
-
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use ByTIC\Payments\Utility\PaymentsModels;
 

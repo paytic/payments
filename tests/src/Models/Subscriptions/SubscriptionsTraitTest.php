@@ -18,7 +18,6 @@ use Nip\Records\Collections\Collection;
  */
 class SubscriptionsTraitTest extends AbstractTest
 {
-
     public function test_getStatuses()
     {
         $statuses = Subscriptions::instance()->getStatuses();
@@ -59,5 +58,4 @@ class SubscriptionsTraitTest extends AbstractTest
             (string)$query
         );
     }
-
 }

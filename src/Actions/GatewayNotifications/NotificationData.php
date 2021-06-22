@@ -62,5 +62,4 @@ class NotificationData
         $this->response = $response;
         $this->purchase = $purchase;
     }
-
 }

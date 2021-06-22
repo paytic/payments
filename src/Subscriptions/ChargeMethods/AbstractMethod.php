@@ -8,7 +8,6 @@ namespace ByTIC\Payments\Subscriptions\ChargeMethods;
  */
 abstract class AbstractMethod extends \ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic
 {
-
     public function getColorClass()
     {
         return 'info';

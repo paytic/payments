@@ -23,5 +23,4 @@ class UpdatePaymentModelsFromResponse
         CreateOrUpdateTransactionFromResponse::handle($notification);
         UpdateSubscriptionFromResponse::handle($notification);
     }
-
 }
