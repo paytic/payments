@@ -12,5 +12,4 @@ trait PurchaseTrait
 {
     use IsPurchasableModelTrait;
     use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
-
 }

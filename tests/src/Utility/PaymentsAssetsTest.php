@@ -14,7 +14,6 @@ use Nip\Records\Locator\ModelLocator;
  */
 class PaymentsAssetsTest extends AbstractTestCase
 {
-
     public function basePath()
     {
         self::assertStringEndsWith('bytic' . DIRECTORY_SEPARATOR . 'payments', PaymentsAssets::basePath());

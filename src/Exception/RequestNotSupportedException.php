@@ -21,7 +21,9 @@ class RequestNotSupportedException extends InvalidArgumentException
         return new self(
             sprintf(
                 'Request %s is not supported for %s',
-                $request, $gateway->getName()
-            ));
+                $request,
+                $gateway->getName()
+            )
+        );
     }
 }

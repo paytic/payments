@@ -23,7 +23,6 @@ class CreateNewForSubscription
     {
         $lastTransaction = $subscription->getLastTransaction();
         if (!is_object($lastTransaction)) {
-
         }
         $lastPurchase = $lastTransaction->getPurchase();
 

@@ -6,7 +6,10 @@ use ByTIC\Payments\Actions\Subscriptions\Charges\ChargedSuccessfully;
 use ByTIC\Payments\Models\Subscriptions\Subscription;
 use ByTIC\Payments\Models\Transactions\Statuses\Active;
 use ByTIC\Payments\Models\Transactions\Transaction;
-use ByTIC\Payments\Subscriptions\Statuses\{Active as SubscriptionActive, Canceled, Completed, NotStarted};
+use ByTIC\Payments\Subscriptions\Statuses\Active as SubscriptionActive;
+use ByTIC\Payments\Subscriptions\Statuses\Canceled;
+use ByTIC\Payments\Subscriptions\Statuses\Completed;
+use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
 
 /**
  * Class UpdateFromTransactionToken

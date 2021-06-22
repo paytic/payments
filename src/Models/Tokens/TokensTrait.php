@@ -32,7 +32,8 @@ trait TokensTrait
                     ['id_method =?', is_object($method) ? $method->id : $method],
                     ['token_id = ?', $token->getId()],
                 ]
-            ]);
+            ]
+        );
 
         if ($findToken instanceof Record) {
             return $findToken;

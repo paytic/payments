@@ -9,5 +9,4 @@ namespace ByTIC\Payments\Subscriptions\Statuses;
 class NotStarted extends AbstractStatus
 {
     public const NAME = 'not_started';
-
 }

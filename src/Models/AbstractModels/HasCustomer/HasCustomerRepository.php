@@ -8,7 +8,6 @@ namespace ByTIC\Payments\Models\AbstractModels\HasCustomer;
  */
 trait HasCustomerRepository
 {
-
     public function initRelations()
     {
         parent::initRelations();

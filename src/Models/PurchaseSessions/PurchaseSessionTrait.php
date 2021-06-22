@@ -31,12 +31,12 @@ trait PurchaseSessionTrait
     /**
      * @var string
      */
-    static protected $createTimestamps = ['created'];
+    protected static $createTimestamps = ['created'];
 
     /**
      * @var string
      */
-    static protected $updateTimestamps = [];
+    protected static $updateTimestamps = [];
 
     /**
      * @param $payment
