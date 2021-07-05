@@ -70,6 +70,11 @@ class PaymentsModels
         return static::getModels('subscriptions', 'payments-subscriptions');
     }
 
+    public static function reset()
+    {
+        static::$models = [];
+    }
+
     /**
      * @param string $type
      * @param string $default

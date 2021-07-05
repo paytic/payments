@@ -23,7 +23,7 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
     public function testGetRequestFromHttpRequest($path, $requestClass)
     {
         $httpRequest = $this->generateRequestFromFixtures(
-            TEST_FIXTURE_PATH . '/requests/' . $path
+            is_file($path) ? $path : TEST_FIXTURE_PATH . '/requests/' . $path
         );
 
         $model = \Mockery::mock(PurchasableRecord::class)->makePartial();
@@ -43,11 +43,11 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
     {
         return [
             [
-                '/librapay/completePurchaseParams.php',
+                PROJECT_BASE_PATH.'/vendor/bytic/omnipay-librapay/tests/fixtures/requests/completePurchaseParams.php',
                 \ByTIC\Payments\Librapay\Message\CompletePurchaseRequest::class,
             ],
             [
-                '/librapay/completePurchaseParams2.php',
+                PROJECT_BASE_PATH.'/vendor/bytic/omnipay-librapay/tests/fixtures/requests/completePurchaseParams2.php',
                 \ByTIC\Payments\Librapay\Message\CompletePurchaseRequest::class,
             ],
             [

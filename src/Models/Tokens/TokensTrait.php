@@ -60,6 +60,7 @@ trait TokensTrait
     protected function initRelations()
     {
         parent::initRelations();
+        $this->initRelationsCommon();
     }
 
     protected function initRelationsCommon()

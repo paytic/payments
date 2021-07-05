@@ -13,7 +13,7 @@ use Nip\Records\Locator\ModelLocator;
  * Class PaymentsServiceProviderTest
  * @package ByTIC\Payments\Tests
  */
-class PaymentsServiceProviderTest extends AbstractTest
+class PaymentsServiceProviderTest extends AbstractTestCase
 {
     public function testRegister()
     {
