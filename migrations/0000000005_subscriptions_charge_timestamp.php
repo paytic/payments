@@ -25,7 +25,7 @@ final class SubscriptionsChargeTimestamp extends AbstractMigration
         $table_name = \ByTIC\Payments\Utility\PaymentsModels::subscriptions()->getTable();
 
         $this->table($table_name)
-            ->addColumn('charge_at', 'datetime', ['null' => true])
+            ->changeColumn('charge_at', 'datetime', ['null' => true])
             ->save();
     }
 }
