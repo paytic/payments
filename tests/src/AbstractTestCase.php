@@ -40,9 +40,9 @@ abstract class AbstractTestCase extends AbstractTest
     protected function generateRepositoryClass($type)
     {
         switch ($type) {
-            case 'purchases' :
+            case 'purchases':
                 return Purchases::class;
-            case 'methods' :
+            case 'methods':
                 return PaymentMethods::class;
         }
     }
