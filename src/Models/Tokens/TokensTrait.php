@@ -84,7 +84,6 @@ trait TokensTrait
         parent::injectParams($params);
     }
 
-
     /**
      * @return mixed|\Nip\Config\Config
      * @throws \Exception
@@ -92,5 +91,14 @@ trait TokensTrait
     protected function generateTable()
     {
         return config('payments.tables.tokens', Tokens::TABLE);
+    }
+
+    /**
+     * @return mixed|\Nip\Config\Config
+     * @throws \Exception
+     */
+    protected function generateController()
+    {
+        return Tokens::CONTROLLER;
     }
 }

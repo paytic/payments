@@ -12,6 +12,7 @@ use Nip\Utility\Traits\SingletonTrait;
 class Tokens extends Records
 {
     public const TABLE = 'payments-tokens';
+    public const CONTROLLER = 'payments-tokens';
 
     use SingletonTrait;
     use TokensTrait;
