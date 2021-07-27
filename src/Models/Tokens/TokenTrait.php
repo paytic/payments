@@ -42,6 +42,19 @@ trait TokenTrait
      */
     protected static $updateTimestamps = ['modified'];
 
+    public function getName(): string
+    {
+        return 'Token '
+            . $this->getMaskedTokenId();
+    }
+
+    public function getMaskedTokenId(): string
+    {
+        return substr($this->token_id, 0, 4)
+            . '***'
+            . substr($this->token_id, -4);
+    }
+
     public function getTokenId(): string
     {
         return $this->token_id;
