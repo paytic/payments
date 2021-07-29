@@ -18,6 +18,7 @@ class TokensTraitTest extends AbstractTestCase
         $repository = Tokens::instance();
 
         self::assertTrue($repository->hasRelation('Purchase'));
+        self::assertTrue($repository->hasRelation('Customer'));
         self::assertTrue($repository->hasRelation('PaymentMethod'));
     }
 

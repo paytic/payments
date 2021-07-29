@@ -16,6 +16,6 @@ trait HasCustomerRepository
 
     protected function initRelationsCustomer()
     {
-        $this->morphTo('Customer', ['morphPrefix' => 'entry']);
+        $this->morphTo('Customer', ['morphPrefix' => 'customer']);
     }
 }

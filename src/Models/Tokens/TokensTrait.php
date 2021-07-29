@@ -65,13 +65,14 @@ trait TokensTrait
 
     protected function initRelationsCommon()
     {
-        $this->initRelationsPurchase();
+        $this->initRelationsTransactions();
         $this->initRelationsPaymentMethod();
+        $this->initRelationsCustomer();
     }
 
-    protected function initRelationsPurchase()
+    protected function initRelationsTransactions()
     {
-        $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases())]);
+        $this->hasMany('Transactions', ['class' => get_class(PaymentsModels::transactions()), 'fk' => 'id_token']);
     }
 
     /**

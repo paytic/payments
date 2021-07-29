@@ -51,6 +51,11 @@ trait SubscriptionTrait
     use HasTokenRecord;
     use TimestampableTrait;
 
+    public function getName()
+    {
+        return $this->getManager()->getLabel('title.singurlar') . ' #' . $this->id;
+    }
+
     /**
      * @var string
      */

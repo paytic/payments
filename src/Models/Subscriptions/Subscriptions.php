@@ -12,6 +12,7 @@ use Nip\Utility\Traits\SingletonTrait;
 class Subscriptions extends Records
 {
     public const TABLE = 'payments-subscriptions';
+    public const CONTROLLER = 'payments-subscriptions';
 
     use SingletonTrait;
     use SubscriptionsTrait;

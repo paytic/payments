@@ -72,6 +72,7 @@ trait SubscriptionsTrait
         $this->initRelationsPaymentMethod();
         $this->initRelationsToken();
         $this->initRelationsTokens();
+        $this->initRelationsCustomer();
     }
 
     protected function initRelationsTransactions()
@@ -146,5 +147,14 @@ trait SubscriptionsTrait
     protected function generateTable()
     {
         return config('payments.tables.subscriptions', Subscriptions::TABLE);
+    }
+
+    /**
+     * @return mixed|\Nip\Config\Config
+     * @throws \Exception
+     */
+    protected function generateController()
+    {
+        return Subscriptions::CONTROLLER;
     }
 }
