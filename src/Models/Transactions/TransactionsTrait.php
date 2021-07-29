@@ -103,7 +103,7 @@ trait TransactionsTrait
 
     protected function initRelationsPurchase()
     {
-        $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases())]);
+        $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases()), 'fk' => 'id_purchase']);
     }
 
     protected function initRelationsSubscription()

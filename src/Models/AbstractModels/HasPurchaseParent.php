@@ -3,7 +3,6 @@
 namespace ByTIC\Payments\Models\AbstractModels;
 
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\Transactions\TransactionTrait;
 
 /**
  * Trait HasPurchaseParent
@@ -18,6 +17,7 @@ trait HasPurchaseParent
     public function populateFromPayment($payment)
     {
         $this->{$this->getPurchaseFk()} = $payment->id;
+        $this->amount = floor($payment->getPurchaseAmount() * 100);
         $this->currency = $payment->getPurchaseCurrency();
 
         return $this;

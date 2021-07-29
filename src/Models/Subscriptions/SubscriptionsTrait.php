@@ -77,7 +77,7 @@ trait SubscriptionsTrait
 
     protected function initRelationsTransactions()
     {
-        $this->hasMany('Transactions', ['class' => get_class(PaymentsModels::transactions())]);
+        $this->hasMany('Transactions', ['class' => get_class(PaymentsModels::transactions()),'fk' => 'id_subscription']);
     }
 
     protected function initRelationsLastTransaction()

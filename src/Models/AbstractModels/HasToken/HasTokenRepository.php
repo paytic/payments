@@ -18,6 +18,6 @@ trait HasTokenRepository
 
     protected function initRelationsToken()
     {
-        $this->belongsTo('Token', ['class' => get_class(PaymentsModels::tokens())]);
+        $this->belongsTo('Token', ['class' => get_class(PaymentsModels::tokens()), 'fk' => 'id_token']);
     }
 }

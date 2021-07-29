@@ -19,6 +19,7 @@ use ByTIC\Payments\Models\Subscriptions\Subscription;
  * @property int $id_subscription
  * @property int $id_token
  * @property string $gateway
+ * @property int $amount
  * @property string $currency
  *
  * @property string $card

@@ -53,7 +53,7 @@ trait SubscriptionTrait
 
     public function getName()
     {
-        return $this->getManager()->getLabel('title.singurlar') . ' #' . $this->id;
+        return $this->getManager()->getLabel('title.singular') . ' #' . $this->id;
     }
 
     /**
