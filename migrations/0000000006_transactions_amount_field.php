@@ -25,7 +25,7 @@ final class TransactionsAmountField extends AbstractMigration
         $table_name = \ByTIC\Payments\Utility\PaymentsModels::transactions()->getTable();
 
         $this->table($table_name)
-            ->changeColumn('amount', 'int', ['null' => true, 'before' => 'currency'])
+            ->addColumn('amount', 'integer', ['null' => true, 'after' => 'gateway'])
             ->save();
     }
 }
