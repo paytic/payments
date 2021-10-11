@@ -4,6 +4,7 @@ namespace ByTIC\Payments\Tests;
 
 use ByTIC\Payments\Models\Methods\PaymentMethods;
 use ByTIC\Payments\Models\Purchases\Purchases;
+use ByTIC\Payments\Models\Transactions\Transactions;
 use ByTIC\Payments\Utility\PaymentsModels;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Nip\Records\AbstractModels\RecordManager;
@@ -44,6 +45,8 @@ abstract class AbstractTestCase extends AbstractTest
                 return Purchases::class;
             case 'methods':
                 return PaymentMethods::class;
+            case 'transactions':
+                return Transactions::class;
         }
     }
 }

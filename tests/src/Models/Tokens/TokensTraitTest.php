@@ -14,10 +14,11 @@ class TokensTraitTest extends AbstractTestCase
     public function test_relations()
     {
         $this->initUtilityModel('purchases');
+        $this->initUtilityModel('transactions');
         $this->initUtilityModel('methods');
         $repository = Tokens::instance();
 
-        self::assertTrue($repository->hasRelation('Purchase'));
+        self::assertTrue($repository->hasRelation('Transactions'));
         self::assertTrue($repository->hasRelation('Customer'));
         self::assertTrue($repository->hasRelation('PaymentMethod'));
     }

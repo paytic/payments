@@ -43,12 +43,12 @@ class DetectFromHttpRequestTraitTest extends AbstractTest
     {
         return [
             [
-                PROJECT_BASE_PATH.'/vendor/bytic/omnipay-librapay/tests/fixtures/requests/completePurchaseParams.php',
-                \ByTIC\Payments\Librapay\Message\CompletePurchaseRequest::class,
+                PROJECT_BASE_PATH.'/vendor/paytic/omnipay-librapay/tests/fixtures/requests/completePurchaseParams.php',
+                \Paytic\Payments\Librapay\Message\CompletePurchaseRequest::class,
             ],
             [
-                PROJECT_BASE_PATH.'/vendor/bytic/omnipay-librapay/tests/fixtures/requests/completePurchaseParams2.php',
-                \ByTIC\Payments\Librapay\Message\CompletePurchaseRequest::class,
+                PROJECT_BASE_PATH.'/vendor/paytic/omnipay-librapay/tests/fixtures/requests/completePurchaseParams2.php',
+                \Paytic\Payments\Librapay\Message\CompletePurchaseRequest::class,
             ],
             [
                 '/mobilpay/completePurchase/basicParams.php',

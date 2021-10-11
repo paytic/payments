@@ -33,7 +33,7 @@ class GatewayFactoryTest extends AbstractTest
             ['Payu', '\ByTIC\Payments\Gateways\Providers\Payu\Gateway'],
             ['Euplatesc', '\ByTIC\Payments\Gateways\Providers\Euplatesc\Gateway'],
             ['Twispay', '\ByTIC\Payments\Gateways\Providers\Twispay\Gateway'],
-            ['Librapay', '\ByTIC\Payments\Librapay\Gateway'],
+            ['Librapay', '\Paytic\Payments\Librapay\Gateway'],
             ['Mobilpay', '\ByTIC\Payments\Mobilpay\Gateway'],
         ];
     }

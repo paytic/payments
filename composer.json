@@ -44,7 +44,6 @@
     "bytic/omnipay-romcard": "^2.0|^3.0",
     "bytic/omnipay-twispay": "^2.0|^3.0",
     "bytic/omnipay-paylike": "^2.0|^3.0",
-    "bytic/omnipay-plationline": "^2.0|^3.0",
     "php-http/httplug": "^1.0 || ^2.0",
     "psr/http-client": "^1.0",
     "symfony/var-dumper": "^5.2"
