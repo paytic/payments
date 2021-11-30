@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Models\PurchaseSessions;
 
-use ByTIC\Common\Records\Record;
+use ByTIC\Payments\Models\AbstractModels\AbstractRecord;
 
 /**
  * Class PurchaseSession
  * @package ByTIC\Payments\Models\PurchaseSessions
  */
-class PurchaseSession extends Record
+class PurchaseSession extends AbstractRecord
 {
     use PurchaseSessionTrait;
 }

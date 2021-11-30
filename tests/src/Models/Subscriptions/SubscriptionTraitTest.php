@@ -11,7 +11,7 @@ use ByTIC\Payments\Models\Transactions\Transaction;
 use ByTIC\Payments\Models\Transactions\Transactions;
 use ByTIC\Payments\Subscriptions\ChargeMethods\Gateway;
 use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
-use ByTIC\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\AbstractTest;
 use Nip\Database\Query\Insert;
 use Nip\Records\Locator\ModelLocator;
 

@@ -8,7 +8,7 @@ use ByTIC\Payments\Models\Methods\Types\BankTransfer;
 use ByTIC\Payments\Models\Methods\Types\Cash;
 use ByTIC\Payments\Models\Methods\Types\CreditCards;
 use ByTIC\Payments\Models\Methods\Types\Waiver;
-use ByTIC\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 
 /**

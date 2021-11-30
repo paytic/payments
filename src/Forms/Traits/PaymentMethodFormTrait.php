@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Forms\Traits;
 
-use ByTIC\Common\Forms\Traits\AbstractFormTrait;
 use ByTIC\MediaLibrary\HasMedia\HasMediaTrait;
 use ByTIC\MediaLibrary\HasMedia\Traits\AddMediaTrait;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;

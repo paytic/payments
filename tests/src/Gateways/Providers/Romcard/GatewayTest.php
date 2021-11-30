@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\Romcard;
 
-use ByTIC\Omnipay\Romcard\Message\PurchaseResponse;
+use Paytic\Omnipay\Romcard\Message\PurchaseResponse;
 use ByTIC\Omnipay\Romcard\Message\SaleRequest;
 use ByTIC\Payments\Gateways\Providers\Romcard\Gateway;
 use ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
-use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
+use Paytic\Payments\Tests\Gateways\GatewayTest as AbstractGatewayTest;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Romcard\RomcardData;
-use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
+use Paytic\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 use Http\Discovery\Psr17FactoryDiscovery;
 
 /**

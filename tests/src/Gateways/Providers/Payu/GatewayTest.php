@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\Payu;
 
-use ByTIC\Omnipay\Payu\Message\PurchaseResponse;
+use Paytic\Omnipay\Payu\Message\PurchaseResponse;
 use ByTIC\Payments\Gateways\Providers\Payu\Gateway;
 use ByTIC\Payments\Gateways\Providers\Payu\Message\CompletePurchaseResponse;
 use ByTIC\Payments\Gateways\Providers\Payu\Message\ServerCompletePurchaseResponse;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Payu\PayuData;
-use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
-use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
+use Paytic\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
+use Paytic\Payments\Tests\Gateways\GatewayTest as AbstractGatewayTest;
 use Http\Discovery\Psr17FactoryDiscovery;
 
 /**

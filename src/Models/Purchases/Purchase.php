@@ -2,14 +2,13 @@
 
 namespace ByTIC\Payments\Models\Purchases;
 
-use Nip\Records\Record;
-use Nip_Registry;
+use ByTIC\Payments\Models\AbstractModels\AbstractRecord;
 
 /**
  * Class Purchase
  * @package ByTIC\Payments\Models\Purchases
  */
-class Purchase extends Record
+class Purchase extends AbstractRecord
 {
     use PurchaseTrait;
 

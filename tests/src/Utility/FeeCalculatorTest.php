@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Tests\Utility;
 
-use ByTIC\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Utility\FeeCalculator;
 
 /**

@@ -2,20 +2,14 @@
 
 namespace ByTIC\Payments\Models\PurchaseSessions;
 
-use ByTIC\Common\Records\Records;
-use Nip\Utility\Traits\SingletonTrait;
+use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
 
 /**
  * Class PurchaseSessions
  * @package ByTIC\Payments\Models\PurchaseSessions
  */
-class PurchaseSessions extends Records
+class PurchaseSessions extends AbstractRecordManager
 {
-    use SingletonTrait;
     use PurchaseSessionsTrait;
 
-    public function getRootNamespace()
-    {
-        return 'ByTIC\Payments\Models\\';
-    }
 }

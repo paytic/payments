@@ -8,7 +8,7 @@ use Nip\Records\AbstractModels\RecordManager;
 
 /**
  * Class HasModelRequest
- * @package ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\Traits
+ * @package ByTIC\Payments\Payments\Gateways\Providers\AbstractGateway\Message\Traits
  *
  * @property \Symfony\Component\HttpFoundation\Request $httpRequest
  */

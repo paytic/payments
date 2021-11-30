@@ -7,7 +7,7 @@ use ByTIC\Payments\Subscriptions\ChargeMethods\Gateway;
 use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
 use ByTIC\Payments\Subscriptions\Statuses\Active;
 use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
-use ByTIC\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\AbstractTest;
 use Mockery\Mock;
 use Nip\Database\Query\Select;
 use Nip\Records\Collections\Collection;

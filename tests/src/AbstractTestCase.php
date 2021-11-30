@@ -9,6 +9,7 @@ use ByTIC\Payments\Utility\PaymentsModels;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Nip\Records\AbstractModels\RecordManager;
 use Nip\Records\Locator\ModelLocator;
+use Paytic\Payments\Tests\AbstractTest;
 
 /**
  * Class AbstractTestCase

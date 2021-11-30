@@ -2,9 +2,8 @@
 
 namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
 
-use ByTIC\Common\Records\Record;
 use ByTIC\FacebookPixel\FacebookPixel;
-use ByTIC\Omnipay\Common\Message\Traits\RedirectHtmlTrait;
+use Paytic\Omnipay\Common\Message\Traits\RedirectHtmlTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Omnipay\Common\Message\RedirectResponseInterface;
 

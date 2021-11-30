@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Models\Subscriptions;
 
-use ByTIC\Common\Records\Record;
+use ByTIC\Payments\Models\AbstractModels\AbstractRecord;
 
 /**
  * Class Subscription
  * @package ByTIC\Payments\Models\Subscriptions
  */
-class Subscription extends Record
+class Subscription extends AbstractRecord
 {
     use SubscriptionTrait;
 }

@@ -2,14 +2,14 @@
 
 namespace ByTIC\Payments\Tests\Gateways\Providers\Mobilpay;
 
-use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseResponse;
-use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
-use ByTIC\Omnipay\Mobilpay\Message\PurchaseResponse;
-use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
-use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
-use ByTIC\Payments\Mobilpay\Tests\Fixtures\MobilpayData;
-use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
-use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
+use Paytic\Omnipay\Mobilpay\Message\CompletePurchaseResponse;
+use Paytic\Omnipay\Mobilpay\Message\PurchaseRequest;
+use Paytic\Omnipay\Mobilpay\Message\PurchaseResponse;
+use Paytic\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
+use Paytic\Omnipay\Mobilpay\Models\Request\Card;
+use Paytic\Payments\Mobilpay\Tests\Fixtures\MobilpayData;
+use Paytic\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
+use Paytic\Payments\Tests\Gateways\GatewayTest as AbstractGatewayTest;
 use Http\Discovery\Psr17FactoryDiscovery;
 
 /**

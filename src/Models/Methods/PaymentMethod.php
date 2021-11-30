@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Models\Methods;
 
-use ByTIC\Common\Records\Record;
+use ByTIC\Payments\Models\AbstractModels\AbstractRecord;
 
 /**
  * Class PaymentMethod
  * @package ByTIC\Payments\Models\Methods
  */
-class PaymentMethod extends Record
+class PaymentMethod extends AbstractRecord
 {
     use Traits\RecordTrait;
 

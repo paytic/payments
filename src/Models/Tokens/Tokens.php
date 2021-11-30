@@ -2,23 +2,18 @@
 
 namespace ByTIC\Payments\Models\Tokens;
 
-use ByTIC\Common\Records\Records;
-use Nip\Utility\Traits\SingletonTrait;
+
+use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
 
 /**
  * Class Tokens
  * @package ByTIC\Payments\Models\Tokens
  */
-class Tokens extends Records
+class Tokens extends AbstractRecordManager
 {
     public const TABLE = 'payments-tokens';
     public const CONTROLLER = 'payments-tokens';
 
-    use SingletonTrait;
     use TokensTrait;
 
-    public function getRootNamespace()
-    {
-        return 'ByTIC\Payments\Models\\';
-    }
 }

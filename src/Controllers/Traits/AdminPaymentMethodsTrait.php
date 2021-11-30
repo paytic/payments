@@ -2,15 +2,15 @@
 
 namespace ByTIC\Payments\Controllers\Traits;
 
-use ByTIC\Common\Records\Record;
-use ByTIC\Common\Records\Records;
 use ByTIC\Payments\Models\Methods\Traits\RecordsTrait;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait;
-use Nip\Request;
+use Nip\Records\AbstractModels\Record;
+use Nip\Records\AbstractModels\RecordManager;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class AdminPaymentMethodsTrait
- * @package ByTIC\Common\Payments\Controllers\Traits
+ * @package ByTIC\Payments\Payments\Controllers\Traits
  */
 trait AdminPaymentMethodsTrait
 {
@@ -48,7 +48,7 @@ trait AdminPaymentMethodsTrait
     abstract protected function getRequest();
 
     /**
-     * @return Records|RecordsTrait
+     * @return RecordManager|RecordsTrait
      */
     abstract protected function getModelManager();
 

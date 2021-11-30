@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Models\Methods\Types;
 
-use ByTIC\Common\Records\Traits\HasSerializedOptions\RecordTrait as HasOptionsRecord;
 use ByTIC\Payments\Gateways\Traits\HasGatewaysTrait;
+use ByTIC\Payments\Models\Methods\PaymentMethod;
 use Nip\Helpers\View\Messages as MessagesHelper;
 
 /**
  * Class Payment_Method_Type_Credit_Cards
- * @method HasOptionsRecord getItem()
+ * @method PaymentMethod getItem()
  */
 class CreditCards extends AbstractType
 {

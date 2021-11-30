@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Tests\Models\Currencies\Traits;
 
-use ByTIC\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\AbstractTest;
 use ByTIC\Payments\Tests\Fixtures\Records\Currencies\Currency;
 
 /**

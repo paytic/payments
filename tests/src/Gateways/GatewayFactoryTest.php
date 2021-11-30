@@ -3,7 +3,7 @@
 namespace ByTIC\Payments\Tests\Gateways;
 
 use ByTIC\Payments\Gateways\GatewayFactory;
-use ByTIC\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\AbstractTest;
 
 /**
  * Class GatewayFactoryTest

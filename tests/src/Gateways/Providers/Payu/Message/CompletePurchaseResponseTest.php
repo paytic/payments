@@ -4,8 +4,8 @@ namespace ByTIC\Payments\Tests\Gateways\Providers\Payu\Message;
 
 use ByTIC\Payments\Gateways\Providers\Payu\Message\CompletePurchaseResponse;
 use ByTIC\Payments\Gateways\Providers\Payu\Message\CompletePurchaseRequest;
-use ByTIC\Payments\Tests\AbstractTest;
-use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Message\CompletePurchaseResponseTestTrait;
+use Paytic\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\Gateways\Message\CompletePurchaseResponseTestTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 class CompletePurchaseResponseTest extends AbstractTest

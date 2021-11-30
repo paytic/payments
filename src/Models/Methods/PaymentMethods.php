@@ -2,22 +2,15 @@
 
 namespace ByTIC\Payments\Models\Methods;
 
-use ByTIC\Common\Records\Records;
-use Nip\Utility\Traits\SingletonTrait;
+use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
 
 /**
  * Class PaymentMethods
  * @package ByTIC\Payments\Models\Methods
  */
-class PaymentMethods extends Records
+class PaymentMethods extends AbstractRecordManager
 {
     public const TABLE = 'payments-methods';
 
     use Traits\RecordsTrait;
-    use SingletonTrait;
-
-    public function getRootNamespace()
-    {
-        return 'ByTIC\Payments\Models\\';
-    }
 }

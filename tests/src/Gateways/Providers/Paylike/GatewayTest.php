@@ -4,7 +4,7 @@ namespace ByTIC\Payments\Tests\Gateways\Providers\Paylike;
 
 use ByTIC\Payments\Gateways\Providers\Paylike\Gateway;
 
-use ByTIC\Payments\Tests\AbstractTest as AbstractGatewayTest;
+use Paytic\Payments\Tests\AbstractTest as AbstractGatewayTest;
 
 //use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 

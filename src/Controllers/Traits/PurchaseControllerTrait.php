@@ -2,20 +2,18 @@
 
 namespace ByTIC\Payments\Controllers\Traits;
 
-use ByTIC\Common\Records\Record;
-use ByTIC\FacebookPixel\FacebookPixel;
-use ByTIC\Omnipay\Common\Message\Traits\RedirectHtmlTrait;
 use ByTIC\Payments\Controllers\Traits\PurchaseController\PurchaseConfirmActionsTrait;
 use ByTIC\Payments\Controllers\Traits\PurchaseController\PurchaseIpnActionsTrait;
 use ByTIC\Payments\Controllers\Traits\PurchaseController\PurchaseRedirectActionsTrait;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Nip\Records\AbstractModels\Record;
 use Nip\Records\RecordManager;
-use Nip\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class PurchaseControllerTrait
- * @package ByTIC\Common\Payments\Controllers\Traits
+ * @package ByTIC\Payments\Payments\Controllers\Traits
  *
  * @method IsPurchasableModelTrait checkItem
  */

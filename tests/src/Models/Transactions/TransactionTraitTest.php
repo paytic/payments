@@ -4,7 +4,7 @@ namespace ByTIC\Payments\Tests\Models\Transactions;
 
 use ByTIC\Payments\Models\Transactions\Transaction;
 use ByTIC\Payments\Models\Transactions\Transactions;
-use ByTIC\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\AbstractTest;
 use Nip\Database\Query\Insert;
 
 /**
