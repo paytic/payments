@@ -41,7 +41,7 @@
   },
   "require-dev": {
     "bytic/facebook-pixel": "^1.0",
-    "bytic/payments-gateways": "^1.0",
+    "paytic/payments-gateways": "^1.0",
     "paytic/payments-tests": "^1.0"
   },
   "suggest": {
