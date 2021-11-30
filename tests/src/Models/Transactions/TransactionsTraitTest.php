@@ -14,7 +14,8 @@ class TransactionsTraitTest extends AbstractTest
 {
     public function test_getStatuses()
     {
-        $statuses = Transactions::instance()->getStatuses();
+        $repository = new Transactions();
+        $statuses = $repository->getStatuses();
 
         self::assertCount(4, $statuses);
         self::assertInstanceOf(Active::class, $statuses['active']);

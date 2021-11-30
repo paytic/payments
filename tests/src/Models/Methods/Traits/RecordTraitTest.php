@@ -2,14 +2,14 @@
 
 namespace ByTIC\Payments\Tests\Models\Methods\Traits;
 
-use ByTIC\Payments\Mobilpay\Gateway as MobilpayGateway;
-use ByTIC\Payments\Gateways\Providers\Euplatesc\Gateway as EuplatescGateway;
+use Paytic\Payments\Mobilpay\Gateway as MobilpayGateway;
+use Paytic\Payments\Euplatesc\Gateway as EuplatescGateway;
 use ByTIC\Payments\Models\Methods\Types\BankTransfer;
 use ByTIC\Payments\Models\Methods\Types\Cash;
 use ByTIC\Payments\Models\Methods\Types\CreditCards;
 use ByTIC\Payments\Models\Methods\Types\Waiver;
 use Paytic\Payments\Tests\AbstractTest;
-use ByTIC\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
+use Paytic\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 
 /**
  * Class RecordTraitTest

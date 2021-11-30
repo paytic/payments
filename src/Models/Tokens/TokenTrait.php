@@ -32,6 +32,8 @@ trait TokenTrait
     use HasPaymentMethodRecord;
     use TimestampableTrait;
 
+    protected $token_id;
+
     /**
      * @var string
      */

@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Gateways\Providers\Paylike;
 
-use ByTIC\Omnipay\Paylike\Gateway as AbstractGateway;
+use Paytic\Omnipay\Paylike\Gateway as AbstractGateway;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 
 /**

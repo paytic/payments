@@ -4,7 +4,7 @@ namespace ByTIC\Payments\Tests;
 
 use ByTIC\Payments\Models\Purchases\Purchases;
 use ByTIC\Payments\PaymentsServiceProvider;
-use ByTIC\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecordManager;
+use Paytic\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecordManager;
 use Nip\Config\Config;
 use Nip\Container\Container;
 use Nip\Records\Locator\ModelLocator;

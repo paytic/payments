@@ -16,7 +16,7 @@ class TokensTraitTest extends AbstractTestCase
         $this->initUtilityModel('purchases');
         $this->initUtilityModel('transactions');
         $this->initUtilityModel('methods');
-        $repository = Tokens::instance();
+        $repository = new Tokens();
 
         self::assertTrue($repository->hasRelation('Transactions'));
         self::assertTrue($repository->hasRelation('Customer'));
@@ -25,14 +25,14 @@ class TokensTraitTest extends AbstractTestCase
 
     public function test_getTable()
     {
-        $repository = Tokens::instance();
+        $repository = new Tokens();
 
         self::assertSame('payments-tokens', $repository->getTable());
     }
 
     public function test_getController()
     {
-        $repository = Tokens::instance();
+        $repository = new Tokens();
 
         self::assertSame('payments-tokens', $repository->getController());
     }

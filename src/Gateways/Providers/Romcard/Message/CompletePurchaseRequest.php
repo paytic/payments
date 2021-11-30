@@ -2,10 +2,9 @@
 
 namespace ByTIC\Payments\Gateways\Providers\Romcard\Message;
 
-use ByTIC\Omnipay\Romcard\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
+use Paytic\Omnipay\Romcard\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
-use ByTIC\Payments\Gateways\Providers\Romcard\Helper;
 use ByTIC\Payments\Gateways\Providers\Romcard\Message\Traits\CompletePurchaseTrait;
 
 /**

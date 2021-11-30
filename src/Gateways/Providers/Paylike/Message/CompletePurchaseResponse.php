@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Gateways\Providers\Paylike\Message;
 
-use ByTIC\Omnipay\Paylike\Message\CompletePurchaseResponse as AbstractCompletePurchaseResponse;
+use Paytic\Omnipay\Paylike\Message\CompletePurchaseResponse as AbstractCompletePurchaseResponse;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 
 /**

@@ -2,6 +2,7 @@
 
 namespace ByTIC\Payments\Models\AbstractModels;
 
+use ByTIC\Records\Behaviors\I18n\I18nRecordsTrait;
 use Nip\Records\RecordManager;
 
 /**
@@ -10,6 +11,7 @@ use Nip\Records\RecordManager;
  */
 abstract class AbstractRecordManager extends RecordManager
 {
+    use I18nRecordsTrait;
 
     public function getRootNamespace()
     {

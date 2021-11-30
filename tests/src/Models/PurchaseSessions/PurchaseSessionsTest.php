@@ -13,6 +13,7 @@ class PurchaseSessionsTest extends AbstractTestCase
 {
     public function test_getController()
     {
-        self::assertSame('purchase_sessions', PurchaseSessions::instance()->getController());
+        $repository = new PurchaseSessions();
+        self::assertSame('purchase_sessions', $repository->getController());
     }
 }

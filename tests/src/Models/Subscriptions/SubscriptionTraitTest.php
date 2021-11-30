@@ -27,7 +27,7 @@ class SubscriptionTraitTest extends AbstractTest
      */
     public function test_getChargeMethod($value, $class)
     {
-        $repository = Subscriptions::instance();
+        $repository = new Subscriptions();
 
         $item = new Subscription();
         $item->fill(['charge_method' => $value]);
@@ -47,8 +47,8 @@ class SubscriptionTraitTest extends AbstractTest
 
     public function test_populateFromToken()
     {
-        ModelLocator::set(Tokens::class, Tokens::instance());
-        ModelLocator::set(PaymentMethods::class, PaymentMethods::instance());
+        ModelLocator::set(Tokens::class, new Tokens());
+        ModelLocator::set(PaymentMethods::class, new PaymentMethods());
 
         $repository = \Mockery::mock(Subscriptions::class)->shouldAllowMockingProtectedMethods()->makePartial();
         $repository->shouldReceive('initRelationsTransactions');

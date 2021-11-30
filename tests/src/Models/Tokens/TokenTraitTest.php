@@ -3,7 +3,6 @@
 namespace ByTIC\Payments\Tests\Models\Tokens;
 
 use ByTIC\Payments\Models\Tokens\Token;
-use ByTIC\Payments\Models\Tokens\Tokens;
 use ByTIC\Payments\Tests\AbstractTestCase;
 
 /**

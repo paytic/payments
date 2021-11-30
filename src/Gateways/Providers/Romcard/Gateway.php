@@ -2,7 +2,7 @@
 
 namespace ByTIC\Payments\Gateways\Providers\Romcard;
 
-use ByTIC\Omnipay\Romcard\Gateway as AbstractGateway;
+use Paytic\Omnipay\Romcard\Gateway as AbstractGateway;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\Romcard\Message\PurchaseRequest;

@@ -30,11 +30,15 @@
   "require": {
     "php": "^7.2|^8.0",
     "ext-zlib": "*",
+    "paytic/omnipay-paylike": "^3.0",
+    "paytic/omnipay-romcard": "^3.0",
     "bytic/medialibrary": "^0.8|^0.9",
     "bytic/form": "^0.9|^1.0",
     "bytic/orm-behaviors": "^0.9|^1.0",
+    "bytic/event-dispatcher": "^0.9|^1.0",
     "bytic/translation": "^0.9|^1.0",
     "bytic/models-smart-properties": "^0.9|^1.0",
+    "bytic/view": "^0.9|^1.0",
     "php-http/httplug": "^1.0 || ^2.0",
     "psr/http-client": "^1.0",
     "symfony/var-dumper": "^5.2"

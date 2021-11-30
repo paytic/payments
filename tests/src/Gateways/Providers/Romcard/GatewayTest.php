@@ -3,9 +3,9 @@
 namespace ByTIC\Payments\Tests\Gateways\Providers\Romcard;
 
 use Paytic\Omnipay\Romcard\Message\PurchaseResponse;
-use ByTIC\Omnipay\Romcard\Message\SaleRequest;
 use ByTIC\Payments\Gateways\Providers\Romcard\Gateway;
 use ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
+use Paytic\Omnipay\Romcard\Message\SaleRequest;
 use Paytic\Payments\Tests\Gateways\GatewayTest as AbstractGatewayTest;
 use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Romcard\RomcardData;
 use Paytic\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;

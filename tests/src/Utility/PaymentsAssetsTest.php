@@ -24,7 +24,7 @@ class PaymentsAssetsTest extends AbstractTestCase
         $purchase = \Mockery::mock(Purchase::class)->makePartial();
         $purchase->shouldReceive('getPurchasesSessions')->once()->andReturn([]);
 
-        ModelLocator::set(PurchaseSessions::class, PurchaseSessions::instance());
+        ModelLocator::set(PurchaseSessions::class, new PurchaseSessions());
 
         $return = PaymentsAssets::adminPurchasesSessionsList($purchase);
         self::assertStringContainsString('dnx', $return);

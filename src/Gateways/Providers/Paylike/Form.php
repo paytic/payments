@@ -4,7 +4,6 @@ namespace ByTIC\Payments\Gateways\Providers\Paylike;
 
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
 use ByTIC\Payments\Models\Methods\Types\CreditCards;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class Form

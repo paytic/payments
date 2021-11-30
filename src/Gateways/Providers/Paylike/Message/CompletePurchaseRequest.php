@@ -2,11 +2,10 @@
 
 namespace ByTIC\Payments\Gateways\Providers\Paylike\Message;
 
-use ByTIC\Omnipay\Paylike\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
+use Paytic\Omnipay\Paylike\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
 use ByTIC\Payments\Gateways\Providers\Paylike\Gateway;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Class PurchaseResponse

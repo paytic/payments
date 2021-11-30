@@ -32,11 +32,12 @@ abstract class AbstractTestCase extends AbstractTest
             ModelLocator::set($type, $value);
         } else {
             $class = $this->generateRepositoryClass($type);
-            $value = call_user_func([$class, 'instance']);
+            $value = new $class();
 
             ModelLocator::set($class, $value);
             ModelLocator::set($type, $value);
         }
+        return $value;
     }
 
     protected function generateRepositoryClass($type)

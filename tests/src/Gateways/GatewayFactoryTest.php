@@ -30,11 +30,11 @@ class GatewayFactoryTest extends AbstractTest
     public function getNameProvider()
     {
         return [
-            ['Payu', '\ByTIC\Payments\Gateways\Providers\Payu\Gateway'],
-            ['Euplatesc', '\ByTIC\Payments\Gateways\Providers\Euplatesc\Gateway'],
-            ['Twispay', '\ByTIC\Payments\Gateways\Providers\Twispay\Gateway'],
+            ['Payu', '\Paytic\Payments\Payu\Gateway'],
+            ['Euplatesc', '\Paytic\Payments\Euplatesc\Gateway'],
+            ['Twispay', '\Paytic\Payments\Twispay\Gateway'],
             ['Librapay', '\Paytic\Payments\Librapay\Gateway'],
-            ['Mobilpay', '\ByTIC\Payments\Mobilpay\Gateway'],
+            ['Mobilpay', '\Paytic\Payments\Mobilpay\Gateway'],
         ];
     }
 }

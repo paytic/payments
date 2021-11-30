@@ -2,8 +2,7 @@
 
 namespace ByTIC\Payments\Gateways\Providers\Romcard\Message;
 
-use ByTIC\Omnipay\Romcard\Message\PurchaseRequest as AbstractRequest;
-use ByTIC\Payments\Gateways\Providers\Romcard\Helper;
+use Paytic\Omnipay\Romcard\Message\PurchaseRequest as AbstractRequest;
 
 /**
  * Class PurchaseResponse

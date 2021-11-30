@@ -3,7 +3,7 @@
 namespace ByTIC\Payments\Tests\Models\Currencies\Traits;
 
 use Paytic\Payments\Tests\AbstractTest;
-use ByTIC\Payments\Tests\Fixtures\Records\Currencies\Currency;
+use Paytic\Payments\Tests\Fixtures\Records\Currencies\Currency;
 
 /**
  * Class CurrencyTraitTest
