@@ -11,5 +11,4 @@ use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
 class PurchaseSessions extends AbstractRecordManager
 {
     use PurchaseSessionsTrait;
-
 }

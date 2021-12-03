@@ -10,7 +10,7 @@ use Nip\Records\Record;
  */
 abstract class AbstractRecord extends Record
 {
-   public function getRegistry()
-   {
-   }
+    public function getRegistry()
+    {
+    }
 }

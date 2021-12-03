@@ -11,7 +11,6 @@ use ByTIC\Payments\Tests\AbstractTestCase;
  */
 class TokenTraitTest extends AbstractTestCase
 {
-
     public function test_getTable()
     {
         $token = new Token();

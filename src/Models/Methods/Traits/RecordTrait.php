@@ -150,5 +150,4 @@ trait RecordTrait
 
         return $this->setOption($gatewayName, $options);
     }
-
 }

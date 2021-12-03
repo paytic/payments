@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Models\Tokens;
 
-
 use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
 
 /**
@@ -15,5 +14,4 @@ class Tokens extends AbstractRecordManager
     public const CONTROLLER = 'payments-tokens';
 
     use TokensTrait;
-
 }
