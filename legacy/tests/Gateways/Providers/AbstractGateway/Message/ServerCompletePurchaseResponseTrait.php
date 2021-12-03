@@ -10,5 +10,4 @@ namespace ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Message;
 trait ServerCompletePurchaseResponseTrait
 {
     use \Paytic\Payments\Tests\Gateways\Message\ServerCompletePurchaseResponseTrait;
-
 }

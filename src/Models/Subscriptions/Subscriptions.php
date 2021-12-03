@@ -14,5 +14,4 @@ class Subscriptions extends AbstractRecordManager
     public const CONTROLLER = 'payments-subscriptions';
 
     use SubscriptionsTrait;
-
 }

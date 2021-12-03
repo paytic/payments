@@ -13,5 +13,4 @@ class Purchases extends AbstractRecordManager
 {
     use SingletonTrait;
     use PurchasesTrait;
-
 }
