@@ -35,4 +35,9 @@ return [
         'Paylike',
         'PlatiOnline'
     ],
+
+    'database' => [
+        'connection' => 'main',
+        'migrations' => true,
+    ],
 ];

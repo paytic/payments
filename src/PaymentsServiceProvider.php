@@ -2,19 +2,25 @@
 
 namespace ByTIC\Payments;
 
+use ByTIC\PackageBase\BaseBootableServiceProvider;
 use ByTIC\Payments\Console\Commands\SessionsCleanup;
 use ByTIC\Payments\Console\Commands\SubscriptionsCharge;
 use ByTIC\Payments\Gateways\Manager;
+use ByTIC\Payments\Utility\PackageConfig;
 use ByTIC\Payments\Utility\PaymentsModels;
-use Nip\Container\ServiceProviders\Providers\AbstractSignatureServiceProvider;
-use Nip\Container\ServiceProviders\Providers\BootableServiceProviderInterface;
 
 /**
  * Class PaymentsServiceProvider
  * @package ByTIC\Payments
  */
-class PaymentsServiceProvider extends AbstractSignatureServiceProvider implements BootableServiceProviderInterface
+class PaymentsServiceProvider extends BaseBootableServiceProvider
 {
+    public const NAME = 'payments';
+
+    public const PURCHASES = 'purchases';
+    public const SESSIONS = 'purchase-sessions';
+    public const GATEWAYS = 'payments.gateways';
+
     /**
      * @inheritdoc
      */
@@ -30,31 +36,39 @@ class PaymentsServiceProvider extends AbstractSignatureServiceProvider implement
      */
     public function provides()
     {
-        return ['purchases', 'purchase-sessions', 'payments.gateways'];
+        return [
+            self::PURCHASES,
+            self::SESSIONS,
+            self::GATEWAYS,
+        ];
     }
 
-    public function boot()
+    public function migrations(): ?string
     {
-        $this->getContainer()->get('migrations.migrator')->path(dirname(__DIR__) . '/migrations/');
+        if (PackageConfig::shouldRunMigrations()) {
+            return dirname(__DIR__) . '/migrations/';
+        }
+
+        return null;
     }
 
     protected function registerPurchases()
     {
-        $this->getContainer()->share('purchases', function () {
+        $this->getContainer()->share(self::PURCHASES, function () {
             return PaymentsModels::purchases();
         });
     }
 
     protected function registerPurchaseSessions()
     {
-        $this->getContainer()->share('purchase-sessions', function () {
+        $this->getContainer()->share(self::SESSIONS, function () {
             return PaymentsModels::sessions();
         });
     }
 
     protected function registerGatewaysManager()
     {
-        $this->getContainer()->singleton('payments.gateways', function () {
+        $this->getContainer()->share(self::GATEWAYS, function () {
             return new Manager();
         });
     }
