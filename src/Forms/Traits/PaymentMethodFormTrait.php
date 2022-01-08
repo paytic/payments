@@ -22,7 +22,7 @@ use Nip_Form_Element_Select as FormSelect;
  */
 trait PaymentMethodFormTrait
 {
-    use AbstractFormTrait;
+//    use AbstractFormTrait;
 
     /**
      * @var null|GatewaysManager
@@ -100,7 +100,7 @@ trait PaymentMethodFormTrait
     }
 
     /**
-     * @param null $paymentGatewaysManager
+     * @param ?GatewaysManager $paymentGatewaysManager
      */
     public function setPaymentGatewaysManager($paymentGatewaysManager)
     {

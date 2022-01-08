@@ -6,6 +6,7 @@ use ByTIC\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use ByTIC\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
+use ByTIC\Payments\Models\Purchase\IsPurchasableRepository;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Omnipay\Common\Message\AbstractResponse;
 
@@ -34,10 +35,15 @@ trait PurchaseIpnActionsTrait
     {
         $idGateway = request()->get('paymentMethodId');
         if ($idGateway > 0) {
-            $purchaseMethodsManager = $this->getModelManager()->getRelation('Method')->getWith();
+            $purchaseMethodsManager = $this->getModelManager()
+                ->getRelation(IsPurchasableRepository::RELATION_METHODS)
+                ->getWith();
+
             /** @var MethodRecordTrait $purchaseMethod */
             $purchaseMethod = $purchaseMethodsManager->findOne($idGateway);
-            $request = $purchaseMethod->getType()->getGateway()->serverCompletePurchase(['modelManager' => $this->getModelManager()]);
+            $request = $purchaseMethod->getType()
+                ->getGateway()
+                ->serverCompletePurchase(['modelManager' => $this->getModelManager()]);
             $response = $request->send();
         } else {
             /** @var AbstractResponse|HasModelProcessedResponse $response */
