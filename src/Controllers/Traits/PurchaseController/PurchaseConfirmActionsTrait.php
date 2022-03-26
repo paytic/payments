@@ -2,13 +2,13 @@
 
 namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
 
-use ByTIC\Omnipay\Common\Library\View\View;
-use ByTIC\Omnipay\Common\Message\Traits\HtmlResponses\ConfirmHtmlTrait;
 use ByTIC\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
 use ByTIC\Payments\Gateways\Manager as GatewaysManager;
 use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Omnipay\Common\Message\AbstractResponse;
+use Paytic\Omnipay\Common\Library\View\View;
+use Paytic\Omnipay\Common\Message\Traits\HtmlResponses\ConfirmHtmlTrait;
 
 /**
  * Trait PurchaseConfirmActionsTrait

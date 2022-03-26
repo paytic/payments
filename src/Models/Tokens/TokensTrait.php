@@ -2,11 +2,13 @@
 
 namespace ByTIC\Payments\Models\Tokens;
 
-use ByTIC\Omnipay\Common\Models\TokenInterface;
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use ByTIC\Payments\Utility\PaymentsModels;
+use Exception;
+use Nip\Config\Config;
 use Nip\Records\AbstractModels\Record;
+use Paytic\Omnipay\Common\Models\TokenInterface;
 
 /**
  * Trait TokensTrait
@@ -86,8 +88,8 @@ trait TokensTrait
     }
 
     /**
-     * @return mixed|\Nip\Config\Config
-     * @throws \Exception
+     * @return mixed|Config
+     * @throws Exception
      */
     protected function generateTable()
     {
@@ -95,8 +97,8 @@ trait TokensTrait
     }
 
     /**
-     * @return mixed|\Nip\Config\Config
-     * @throws \Exception
+     * @return mixed|Config
+     * @throws Exception
      */
     protected function generateController()
     {

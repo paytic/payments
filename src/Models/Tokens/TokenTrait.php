@@ -3,11 +3,11 @@
 namespace ByTIC\Payments\Models\Tokens;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
-use ByTIC\Omnipay\Common\Models\TokenInterface;
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
+use Paytic\Omnipay\Common\Models\TokenInterface;
 
 /**
  * Trait TokenTrait
@@ -72,11 +72,11 @@ trait TokenTrait
     }
 
     /**
-     * @return \ByTIC\Omnipay\Common\Models\Token
+     * @return \Paytic\Omnipay\Common\Models\Token
      */
-    public function getOmnipayToken(): \ByTIC\Omnipay\Common\Models\Token
+    public function getOmnipayToken(): \Paytic\Omnipay\Common\Models\Token
     {
-        return new \ByTIC\Omnipay\Common\Models\Token([
+        return new \Paytic\Omnipay\Common\Models\Token([
             'id' => $this->token_id,
             'expiration_date' => $this->expiration,
         ]);

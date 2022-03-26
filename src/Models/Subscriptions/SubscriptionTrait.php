@@ -4,7 +4,8 @@ namespace ByTIC\Payments\Models\Subscriptions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
-use ByTIC\Omnipay\Common\Models\SubscriptionInterface;
+use ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
 use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
@@ -14,6 +15,7 @@ use ByTIC\Payments\Models\Transactions\Transaction;
 use ByTIC\Payments\Models\Transactions\TransactionTrait;
 use ByTIC\Payments\Subscriptions\ChargeMethods\AbstractMethod;
 use DateTime;
+use Paytic\Omnipay\Common\Models\SubscriptionInterface;
 
 /**
  * Trait SubscriptionTrait
@@ -45,7 +47,7 @@ use DateTime;
  */
 trait SubscriptionTrait
 {
-    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+    use RecordTrait;
     use HasPaymentMethodRecord;
     use HasCustomerRecord;
     use HasTokenRecord;
@@ -93,7 +95,7 @@ trait SubscriptionTrait
     }
 
     /**
-     * @return \ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic|AbstractMethod
+     * @return Generic|AbstractMethod
      */
     public function getChargeMethod()
     {

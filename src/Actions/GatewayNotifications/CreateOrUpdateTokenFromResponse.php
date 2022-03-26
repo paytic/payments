@@ -2,8 +2,10 @@
 
 namespace ByTIC\Payments\Actions\GatewayNotifications;
 
-use ByTIC\Omnipay\Common\Models\TokenInterface;
+use ByTIC\Payments\Models\Transactions\TransactionTrait;
 use ByTIC\Payments\Utility\PaymentsModels;
+use Nip\Records\AbstractModels\Record;
+use Paytic\Omnipay\Common\Models\TokenInterface;
 
 /**
  * Class CreateOrUpdateTokenFromResponse
@@ -14,7 +16,7 @@ class CreateOrUpdateTokenFromResponse
 {
     /**
      * @param NotificationData $notification
-     * @return \ByTIC\Payments\Models\Transactions\TransactionTrait|\Nip\Records\AbstractModels\Record
+     * @return TransactionTrait|Record
      */
     public static function handle(NotificationData $notification)
     {
