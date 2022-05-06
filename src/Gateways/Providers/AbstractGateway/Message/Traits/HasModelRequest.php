@@ -5,12 +5,13 @@ namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\AbstractModels\RecordManager;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class HasModelRequest
  * @package ByTIC\Payments\Payments\Gateways\Providers\AbstractGateway\Message\Traits
  *
- * @property \Symfony\Component\HttpFoundation\Request $httpRequest
+ * @property Request $httpRequest
  */
 trait HasModelRequest
 {
@@ -46,9 +47,9 @@ trait HasModelRequest
         $model = $this->generateModelFromRequestBody();
         if ($this->isValidModel($model)) {
             return $model;
-        } else {
-            return $this->generateModelFromRequestQuery();
         }
+        return $this->generateModelFromRequestQuery();
+
     }
 
     /**
@@ -61,7 +62,9 @@ trait HasModelRequest
         if (strlen($idModel) === strlen($id) && is_int($id) && $id > 0) {
             return $this->findModel($idModel);
         }
-        return false;
+
+        $field = $this->getModelUrlPkRequestKey();
+        return $this->findModelByField($field, $idModel);
     }
 
     /**
@@ -141,7 +144,7 @@ trait HasModelRequest
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Request
+     * @return Request
      */
     public function getHttpRequest()
     {
