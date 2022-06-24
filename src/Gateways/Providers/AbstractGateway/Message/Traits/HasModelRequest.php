@@ -58,6 +58,9 @@ trait HasModelRequest
     protected function generateModelFromRequestBody()
     {
         $idModel = $this->getModelIdFromRequest();
+        if (empty($idModel)) {
+            return null;
+        }
         $id = intval($idModel);
         if (strlen($idModel) === strlen($id) && is_int($id) && $id > 0) {
             return $this->findModel($idModel);
