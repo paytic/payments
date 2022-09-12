@@ -31,41 +31,40 @@
     "php": "^7.2|^8.0",
     "ext-zlib": "*",
     "bytic/package-base": "^1.0",
-    "paytic/omnipay-paylike": "^3.0",
-    "paytic/omnipay-romcard": "^3.0",
     "bytic/medialibrary": "^0.8|^0.9",
     "bytic/form": "^0.9|^1.0",
     "bytic/orm-behaviors": "^0.9|^1.0",
+    "bytic/orm-filters": "^0.9|^1.0",
     "bytic/event-dispatcher": "^0.9|^1.0",
     "bytic/translation": "^0.9|^1.0",
     "bytic/models-smart-properties": "^0.9|^1.0",
     "bytic/view": "^0.9|^1.0",
     "php-http/httplug": "^1.0 || ^2.0",
-    "psr/http-client": "^1.0",
-    "symfony/var-dumper": "^5.2"
+    "psr/http-client": "^1",
+    "symfony/var-dumper": "^5.2|^6.0"
   },
   "require-dev": {
     "bytic/facebook-pixel": "^1.0",
-    "bytic/phpqatools": "^1.0",
+    "paytic/omnipay-paylike": "^3.0",
+    "paytic/omnipay-romcard": "^3.0",
     "paytic/payments-gateways": "^1.0",
-    "paytic/payments-tests": "^1.0.10"
+    "paytic/payments-tests": "^1.0.10",
+    "symfony/http-client": "^5.0|^6.0",
+    "bytic/phpqatools": "^1.0"
   },
   "suggest": {
     "bytic/facebook-pixel": "^1.0"
   },
   "scripts": {
-    "tests": [
-      "@analyse",
-      "@test"
-    ],
-    "test": [
-      "phpunit"
-    ],
-    "analyse": [
-      "@stan",
-      "@psalm"
-    ],
-    "stan": "phpstan analyse",
-    "psalm": "psalm --output-format=compact --find-dead-code --find-unused-psalm-suppress --long-progress "
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "ergebnis/composer-normalize": true,
+      "phpstan/extension-installer": true,
+      "bytic/phpqatools": true
+    }
   }
 }
