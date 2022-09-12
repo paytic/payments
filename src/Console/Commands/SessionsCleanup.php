@@ -29,7 +29,7 @@ class SessionsCleanup extends Command
     /**
      * @inheritDoc
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $result = $this->handle();
         $output->writeln(
