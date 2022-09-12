@@ -45,10 +45,8 @@
   },
   "require-dev": {
     "bytic/facebook-pixel": "^1.0",
-    "paytic/omnipay-paylike": "^3.0",
-    "paytic/omnipay-romcard": "^3.0",
     "paytic/payments-gateways": "^1.0",
-    "paytic/payments-tests": "^1.0.10",
+    "paytic/payments-tests": "^1.0",
     "symfony/http-client": "^5.0|^6.0",
     "bytic/phpqatools": "^1.0"
   },
