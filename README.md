@@ -14,4 +14,5 @@
 * https://github.com/Sylius/Sylius/blob/master/src/Sylius/Component/Payment/Model/Payment.php
 * https://github.com/DarvinStudio/DarvinPaymentBundle
 * https://github.com/Payum/PayumBundle
+* https://github.com/activecollab/payments
 ##
