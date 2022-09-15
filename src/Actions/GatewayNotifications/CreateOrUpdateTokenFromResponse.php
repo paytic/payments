@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Payments\Actions\GatewayNotifications;
+namespace Paytic\Payments\Actions\GatewayNotifications;
 
-use ByTIC\Payments\Models\Transactions\TransactionTrait;
-use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Records\AbstractModels\Record;
 use Paytic\Omnipay\Common\Models\TokenInterface;
+use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class CreateOrUpdateTokenFromResponse
- * @package ByTIC\Payments\Actions\GatewayNotifications
+ * @package Paytic\Payments\Actions\GatewayNotifications
  * @internal
  */
 class CreateOrUpdateTokenFromResponse

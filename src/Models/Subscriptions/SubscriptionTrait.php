@@ -1,25 +1,25 @@
 <?php
 
-namespace ByTIC\Payments\Models\Subscriptions;
+namespace Paytic\Payments\Models\Subscriptions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic;
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
-use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
-use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
-use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
-use ByTIC\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
-use ByTIC\Payments\Models\Tokens\Token;
-use ByTIC\Payments\Models\Transactions\Transaction;
-use ByTIC\Payments\Models\Transactions\TransactionTrait;
-use ByTIC\Payments\Subscriptions\ChargeMethods\AbstractMethod;
+use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
+use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
+use Paytic\Payments\Models\Tokens\Token;
+use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\Subscriptions\ChargeMethods\AbstractMethod;
 use DateTime;
 use Paytic\Omnipay\Common\Models\SubscriptionInterface;
 
 /**
  * Trait SubscriptionTrait
- * @package ByTIC\Payments\Models\Subscriptions
+ * @package Paytic\Payments\Models\Subscriptions
  *
  * @property int $id_method
  * @property int $id_token

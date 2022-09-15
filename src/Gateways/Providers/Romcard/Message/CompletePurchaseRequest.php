@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Romcard\Message;
+namespace Paytic\Payments\Gateways\Providers\Romcard\Message;
 
 use Paytic\Omnipay\Romcard\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
-use ByTIC\Payments\Gateways\Providers\Romcard\Message\Traits\CompletePurchaseTrait;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
+use Paytic\Payments\Gateways\Providers\Romcard\Message\Traits\CompletePurchaseTrait;
 
 /**
  * Class PurchaseResponse
- * @package ByTIC\Payments\Gateways\Providers\Romcard\Message
+ * @package Paytic\Payments\Gateways\Providers\Romcard\Message
  */
 class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 {

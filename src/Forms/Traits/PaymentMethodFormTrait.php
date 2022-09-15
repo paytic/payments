@@ -1,19 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Forms\Traits;
+namespace Paytic\Payments\Forms\Traits;
 
 use ByTIC\MediaLibrary\HasMedia\HasMediaTrait;
 use ByTIC\MediaLibrary\HasMedia\Traits\AddMediaTrait;
-use ByTIC\Payments\Gateways\Manager as GatewaysManager;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
-use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethod;
-use ByTIC\Payments\Models\Methods\Types\CreditCards;
+use Paytic\Payments\Gateways\Manager as GatewaysManager;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Models\Methods\Traits\RecordTrait as PaymentMethod;
+use Paytic\Payments\Models\Methods\Types\CreditCards;
 use Nip\Form\Elements\AbstractElement as FormElementAbstract;
 use Nip_Form_Element_Select as FormSelect;
 
 /**
  * Class PaymentMethodFormTrait
- * @package ByTIC\Payments\Forms\Traits
+ * @package Paytic\Payments\Forms\Traits
  *
  * @method addInput($name, $label = false, $type = 'input', $isRequired = false)
  * @method addHidden($name, $label = false, $type = 'input', $isRequired = false)

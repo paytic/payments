@@ -1,11 +1,11 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Traits;
 
-use ByTIC\Payments\Gateways\Manager;
-use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodRecord;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Utility\GatewayImages;
+use Paytic\Payments\Gateways\Manager;
+use Paytic\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodRecord;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Utility\GatewayImages;
 use Nip\Records\AbstractModels\Record;
 use Nip\Utility\Traits\NameWorksTrait;
 use Omnipay\Common\Message\RequestInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Class Gateway
- * @package ByTIC\Payments\Gateways\Providers\AbstractGateway
+ * @package Paytic\Payments\Gateways\Providers\AbstractGateway
  *
  * @property $parameters \Symfony\Component\HttpFoundation\ParameterBag
  */

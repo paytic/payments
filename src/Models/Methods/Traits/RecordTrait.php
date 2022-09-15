@@ -1,17 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Models\Methods\Traits;
+namespace Paytic\Payments\Models\Methods\Traits;
 
 use ByTIC\Models\SmartProperties\RecordsTraits\HasTypes\RecordTrait as HasTypesRecordTrait;
 use ByTIC\MediaLibrary\HasMedia\HasMediaTrait;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
-use ByTIC\Payments\Models\Methods\Types\AbstractType;
-use ByTIC\Payments\Models\Methods\Types\CreditCards;
+use ByTIC\Records\Behaviors\HasSerializedOptions\HasSerializedOptionsRecordTrait;
+use Paytic\Payments\Gateways\Manager;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Models\Methods\Types\AbstractType;
+use Paytic\Payments\Models\Methods\Types\CreditCards;
 use Nip\Records\RecordManager;
 
 /**
  * Class MethodTrait
- * @package ByTIC\Payments\Models\Methods\Traits
+ * @package Paytic\Payments\Models\Methods\Traits
  *
  * @property string $name
  * @property string $internal_name
@@ -26,7 +28,7 @@ trait RecordTrait
     use HasTypesRecordTrait {
         setType as setTypeTrait;
     }
-    use \ByTIC\Records\Behaviors\HasSerializedOptions\HasSerializedOptionsRecordTrait;
+    use HasSerializedOptionsRecordTrait;
 
     use HasMediaTrait;
 
@@ -121,7 +123,7 @@ trait RecordTrait
      */
     public function setType($type = null)
     {
-        $paymentGatewaysNames = \ByTIC\Payments\Gateways\Manager::getAll()->keys();
+        $paymentGatewaysNames = Manager::getAll()->keys();
         if (in_array($type, $paymentGatewaysNames)) {
             $this->setOption('payment_gateway', $type);
             $type = 'credit-cards';

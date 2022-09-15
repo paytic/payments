@@ -1,16 +1,16 @@
 <?php
 
-namespace ByTIC\Payments\Controllers\Traits;
+namespace Paytic\Payments\Controllers\Traits;
 
-use ByTIC\Payments\Models\Methods\Traits\RecordsTrait;
-use ByTIC\Payments\Models\Methods\Traits\RecordTrait;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\AbstractModels\RecordManager;
+use Paytic\Payments\Models\Methods\Traits\RecordsTrait;
+use Paytic\Payments\Models\Methods\Traits\RecordTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class AdminPaymentMethodsTrait
- * @package ByTIC\Payments\Payments\Controllers\Traits
+ * @package Paytic\Payments\Payments\Controllers\Traits
  */
 trait AdminPaymentMethodsTrait
 {

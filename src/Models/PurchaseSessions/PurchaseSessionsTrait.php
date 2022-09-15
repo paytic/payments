@@ -1,17 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Models\PurchaseSessions;
+namespace Paytic\Payments\Models\PurchaseSessions;
 
-use ByTIC\Payments\Actions\GatewayNotifications\CreateSessionFromResponse;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\PurchaseSessions\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Exception;
+use Nip\Config\Config;
+use Paytic\Payments\Actions\GatewayNotifications\CreateSessionFromResponse;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\PurchaseSessions\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
+use Paytic\Payments\Utility\PaymentsModels;
 use Omnipay\Common\Message\ResponseInterface;
 
 /**
  * Trait PurchaseSessionsTrait
- * @package ByTIC\Payments\Models\PurchaseSessions
+ * @package Paytic\Payments\Models\PurchaseSessions
  *
  * @method PurchaseSessionTrait getNew
  */
@@ -111,8 +113,8 @@ trait PurchaseSessionsTrait
     }
 
     /**
-     * @return mixed|\Nip\Config\Config
-     * @throws \Exception
+     * @return mixed|Config
+     * @throws Exception
      */
     protected function generateTable()
     {

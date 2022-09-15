@@ -1,9 +1,9 @@
 <?php
 
-namespace ByTIC\Payments\Subscriptions\Statuses;
+namespace Paytic\Payments\Subscriptions\Statuses;
 
 use ByTIC\Models\SmartProperties\Properties\Statuses\Generic as GenericStatus;
-use ByTIC\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**
  * Class AbstractStatus

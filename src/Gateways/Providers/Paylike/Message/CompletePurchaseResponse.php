@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Paylike\Message;
+namespace Paytic\Payments\Gateways\Providers\Paylike\Message;
 
 use Paytic\Omnipay\Paylike\Message\CompletePurchaseResponse as AbstractCompletePurchaseResponse;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 
 /**
  * Class CompletePurchaseResponse
- * @package ByTIC\Payments\Gateways\Providers\Paylike\Message
+ * @package Paytic\Payments\Gateways\Providers\Paylike\Message
  */
 class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\BillingRecord\Traits;
+namespace Paytic\Payments\Models\BillingRecord\Traits;
 
 use Nip\Records\Record;
 
 /**
  * Class MethodTrait
- * @package ByTIC\Payments\Models\Methods\Traits
+ * @package Paytic\Payments\Models\Methods\Traits
  *
  * @property string $city
  * @property string $phone

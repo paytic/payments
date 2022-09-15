@@ -1,15 +1,16 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Paylike\Message;
+namespace Paytic\Payments\Gateways\Providers\Paylike\Message;
 
+use Exception;
 use Paytic\Omnipay\Paylike\Message\CompletePurchaseRequest as AbstractCompletePurchaseRequest;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
-use ByTIC\Payments\Gateways\Providers\Paylike\Gateway;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasGatewayRequestTrait;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
+use Paytic\Payments\Gateways\Providers\Paylike\Gateway;
 
 /**
  * Class PurchaseResponse
- * @package ByTIC\Payments\Gateways\Providers\Paylike\Message
+ * @package Paytic\Payments\Gateways\Providers\Paylike\Message
  *
  * @method CompletePurchaseResponse send
  */
@@ -44,7 +45,7 @@ class CompletePurchaseRequest extends AbstractCompletePurchaseRequest
 
     /**
      * @return bool|mixed
-     * @throws \Exception
+     * @throws Exception
      */
     protected function parseNotification()
     {

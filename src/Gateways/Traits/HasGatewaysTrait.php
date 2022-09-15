@@ -1,15 +1,16 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Traits;
+namespace Paytic\Payments\Gateways\Traits;
 
-use ByTIC\Payments\Gateways\Manager;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Exception;
+use Paytic\Payments\Gateways\Manager;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\GatewayInterface;
 
 /**
  * Class HasGatewaysTrait
- * @package ByTIC\Payments\Traits
+ * @package Paytic\Payments\Traits
  */
 trait HasGatewaysTrait
 {
@@ -26,7 +27,7 @@ trait HasGatewaysTrait
 
     /**
      * @return GatewayTrait|GatewayInterface|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function getGateway()
     {
@@ -46,7 +47,7 @@ trait HasGatewaysTrait
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected function initGateway()
     {
@@ -57,17 +58,17 @@ trait HasGatewaysTrait
     /**
      * @param $name
      * @return null|GatewayTrait|GatewayInterface
-     * @throws \Exception
+     * @throws Exception
      */
     protected function newGateway($name)
     {
         if (empty($name)) {
-            throw new \Exception("No name in newGateway for ".get_class($this));
+            throw new Exception("No name in newGateway for ".get_class($this));
         }
 
         $gateway = clone $this->getGatewaysManager()::gateway($name);
         if (!($gateway instanceof GatewayInterface)) {
-            throw new \Exception("Invalid gateway name ['.$name.'] in ".get_class($this));
+            throw new Exception("Invalid gateway name ['.$name.'] in ".get_class($this));
         }
         $gatewayParams = $this->getGatewayOptions();
         $gateway->initialize($gatewayParams);

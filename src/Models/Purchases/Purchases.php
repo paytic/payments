@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Models\Purchases;
+namespace Paytic\Payments\Models\Purchases;
 
-use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
+use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
 use Nip\Utility\Traits\SingletonTrait;
 
 /**
  * Class Purchases
- * @package ByTIC\Payments\Models\Purchases
+ * @package Paytic\Payments\Models\Purchases
  */
 class Purchases extends AbstractRecordManager
 {

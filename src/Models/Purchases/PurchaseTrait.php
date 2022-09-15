@@ -1,15 +1,16 @@
 <?php
 
-namespace ByTIC\Payments\Models\Purchases;
+namespace Paytic\Payments\Models\Purchases;
 
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Trait PurchaseTrait
- * @package ByTIC\Payments\Models\Purchases
+ * @package Paytic\Payments\Models\Purchases
  */
 trait PurchaseTrait
 {
     use IsPurchasableModelTrait;
-    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+    use RecordTrait;
 }

@@ -1,19 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Gateways\Providers\Romcard;
+namespace Paytic\Payments\Tests\Gateways\Providers\Romcard;
 
 use Paytic\Omnipay\Romcard\Message\PurchaseResponse;
-use ByTIC\Payments\Gateways\Providers\Romcard\Gateway;
-use ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
+use Paytic\Payments\Gateways\Providers\Romcard\Gateway;
+use Paytic\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
 use Paytic\Omnipay\Romcard\Message\SaleRequest;
 use Paytic\Payments\Tests\Gateways\GatewayTest as AbstractGatewayTest;
-use ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Romcard\RomcardData;
+use Paytic\Payments\Tests\Fixtures\Records\Gateways\Providers\Romcard\RomcardData;
 use Paytic\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 use Http\Discovery\Psr17FactoryDiscovery;
 
 /**
  * Class GatewayTest
- * @package ByTIC\Payments\Tests\Gateways\Providers\Romcard
+ * @package Paytic\Payments\Tests\Gateways\Providers\Romcard
  */
 class GatewayTest extends AbstractGatewayTest
 {

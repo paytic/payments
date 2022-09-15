@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Romcard\Message;
+namespace Paytic\Payments\Gateways\Providers\Romcard\Message;
 
 use Paytic\Omnipay\Romcard\Message\PurchaseRequest as AbstractRequest;
 
 /**
  * Class PurchaseResponse
- * @package ByTIC\Payments\Gateways\Providers\Romcard\Message
+ * @package Paytic\Payments\Gateways\Providers\Romcard\Message
  */
 class PurchaseRequest extends AbstractRequest
 {

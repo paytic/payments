@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\AbstractModels\HasToken;
+namespace Paytic\Payments\Models\AbstractModels\HasToken;
 
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Trait HasTokenRepository
- * @package ByTIC\Payments\Models\AbstractModels\HasToken
+ * @package Paytic\Payments\Models\AbstractModels\HasToken
  */
 trait HasTokenRepository
 {

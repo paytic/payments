@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Models\Methods\Types;
+namespace Paytic\Payments\Models\Methods\Types;
 
-use ByTIC\Payments\Gateways\Traits\HasGatewaysTrait;
-use ByTIC\Payments\Models\Methods\PaymentMethod;
 use Nip\Helpers\View\Messages as MessagesHelper;
+use Paytic\Payments\Gateways\Traits\HasGatewaysTrait;
+use Paytic\Payments\Models\Methods\PaymentMethod;
 
 /**
  * Class Payment_Method_Type_Credit_Cards

@@ -1,8 +1,8 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Romcard\Message\Traits;
+namespace Paytic\Payments\Gateways\Providers\Romcard\Message\Traits;
 
-use ByTIC\Payments\Gateways\Providers\Romcard\Gateway;
+use Paytic\Payments\Gateways\Providers\Romcard\Gateway;
 
 /**
  * Trait CompletePurchaseTrait

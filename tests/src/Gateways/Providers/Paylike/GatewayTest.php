@@ -1,16 +1,16 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Gateways\Providers\Paylike;
+namespace Paytic\Payments\Tests\Gateways\Providers\Paylike;
 
-use ByTIC\Payments\Gateways\Providers\Paylike\Gateway;
+use Paytic\Payments\Gateways\Providers\Paylike\Gateway;
 
 use Paytic\Payments\Tests\AbstractTest as AbstractGatewayTest;
 
-//use ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
+//use Paytic\Payments\Tests\Gateways\Providers\AbstractGateway\GatewayTest as AbstractGatewayTest;
 
 /**
  * Class GatewayTest
- * @package ByTIC\Payments\Tests\Gateways\Providers\Paylike
+ * @package Paytic\Payments\Tests\Gateways\Providers\Paylike
  */
 class GatewayTest extends AbstractGatewayTest
 {

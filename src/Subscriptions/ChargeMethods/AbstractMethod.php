@@ -1,12 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Subscriptions\ChargeMethods;
+namespace Paytic\Payments\Subscriptions\ChargeMethods;
+
+use ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic;
 
 /**
  * Class AbstractMethod
- * @package ByTIC\Payments\Subscriptions\ChargeMethods
+ * @package Paytic\Payments\Subscriptions\ChargeMethods
  */
-abstract class AbstractMethod extends \ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic
+abstract class AbstractMethod extends Generic
 {
     public function getColorClass()
     {

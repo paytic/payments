@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Models\Currencies\Traits;
+namespace Paytic\Payments\Models\Currencies\Traits;
 
 /**
  * Trait CurrencyTrait
- * @package ByTIC\Payments\Models\Currencies\Traits
+ * @package Paytic\Payments\Models\Currencies\Traits
  *
  * @property string $code
  * @property string $symbol

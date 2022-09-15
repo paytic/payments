@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Paylike;
+namespace Paytic\Payments\Gateways\Providers\Paylike;
 
 use Paytic\Omnipay\Paylike\Gateway as AbstractGateway;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 
 /**
  * Class Gateway
- * @package ByTIC\Payments\Gateways\Providers\Paylike
+ * @package Paytic\Payments\Gateways\Providers\Paylike
  */
 class Gateway extends AbstractGateway
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\AbstractModels\HasGateway;
+namespace Paytic\Payments\Models\AbstractModels\HasGateway;
 
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait as AbstractGateway;
 
 /**
  * Trait HasGatewayRecordTrait
- * @package ByTIC\Payments\Models\AbstractModels\HasGateway
+ * @package Paytic\Payments\Models\AbstractModels\HasGateway
  *
  * @property string $gateway
  */

@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\Currencies\Traits;
+namespace Paytic\Payments\Models\Currencies\Traits;
 
 use Nip\Records\Traits\AbstractTrait\RecordsTrait;
 
 /**
  * Trait CurrenciesTrait
- * @package ByTIC\Payments\Models\Currencies\Traits
+ * @package Paytic\Payments\Models\Currencies\Traits
  */
 trait CurrenciesTrait
 {

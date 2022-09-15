@@ -1,13 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Actions\Purchases;
+namespace Paytic\Payments\Actions\Purchases;
 
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\Purchases\Purchase;
+use Nip\Records\AbstractModels\Record;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\Purchases\Purchase;
 
 /**
  * Class DuplicatePurchase
- * @package ByTIC\Payments\Actions\Purchases
+ * @package Paytic\Payments\Actions\Purchases
  */
 class DuplicatePurchase
 {
@@ -15,7 +16,7 @@ class DuplicatePurchase
      * @param Purchase|IsPurchasableModelTrait $purchase
      * @return Purchase
      */
-    public static function fromSibling($purchase): \Nip\Records\AbstractModels\Record
+    public static function fromSibling($purchase): Record
     {
         $duplicate = $purchase->getClone();
         $unset = ['uuid','status'];

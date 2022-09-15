@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Manager\Traits;
+namespace Paytic\Payments\Gateways\Manager\Traits;
 
-use ByTIC\Payments\Gateways\GatewayFactory;
+use Paytic\Payments\Gateways\GatewayFactory;
 
 /**
  * Trait HasFactoryTrait
- * @package ByTIC\Payments\Gateways\Manager\Traits
+ * @package Paytic\Payments\Gateways\Manager\Traits
  */
 trait HasFactoryTrait
 {

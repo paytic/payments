@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Romcard;
+namespace Paytic\Payments\Gateways\Providers\Romcard;
 
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
 
 /**
  * Class Form
- * @package ByTIC\Payments\Gateways\Providers\Euplatesc
+ * @package Paytic\Payments\Gateways\Providers\Euplatesc
  */
 class Form extends AbstractForm
 {

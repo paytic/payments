@@ -1,9 +1,9 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway;
 
-use ByTIC\Payments\Forms\Traits\PaymentMethodFormTrait;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Forms\Traits\PaymentMethodFormTrait;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Nip\Form\AbstractForm;
 use Nip\Form\Traits\MagicMethodElementsFormTrait;
 use Nip_Form as NipForm;
@@ -11,7 +11,7 @@ use Nip_Form_Element_Select as SelectElement;
 
 /**
  * Class Form
- * @package ByTIC\Payments\Gateways\Providers\AbstractGateway
+ * @package Paytic\Payments\Gateways\Providers\AbstractGateway
  */
 abstract class Form
 {

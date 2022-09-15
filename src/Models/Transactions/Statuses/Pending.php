@@ -1,9 +1,9 @@
 <?php
-namespace ByTIC\Payments\Models\Transactions\Statuses;
+namespace Paytic\Payments\Models\Transactions\Statuses;
 
 /**
  * Class Pending
- * @package ByTIC\Payments\Models\Transactions\Statuses
+ * @package Paytic\Payments\Models\Transactions\Statuses
  */
 class Pending extends AbstractStatus
 {

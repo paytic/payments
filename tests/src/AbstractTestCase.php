@@ -1,19 +1,18 @@
 <?php
 
-namespace ByTIC\Payments\Tests;
+namespace Paytic\Payments\Tests;
 
-use ByTIC\Payments\Models\Methods\PaymentMethods;
-use ByTIC\Payments\Models\Purchases\Purchases;
-use ByTIC\Payments\Models\Transactions\Transactions;
-use ByTIC\Payments\Utility\PaymentsModels;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Nip\Records\AbstractModels\RecordManager;
 use Nip\Records\Locator\ModelLocator;
-use Paytic\Payments\Tests\AbstractTest;
+use Paytic\Payments\Models\Methods\PaymentMethods;
+use Paytic\Payments\Models\Purchases\Purchases;
+use Paytic\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class AbstractTestCase
- * @package ByTIC\Payments\Tests
+ * @package Paytic\Payments\Tests
  */
 abstract class AbstractTestCase extends AbstractTest
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Models\PurchaseSessions;
+namespace Paytic\Payments\Tests\Models\PurchaseSessions;
 
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessions;
-use ByTIC\Payments\Tests\AbstractTestCase;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
+use Paytic\Payments\Tests\AbstractTestCase;
 
 /**
  * Class PaymentsAssetsTest
- * @package ByTIC\Payments\Tests\Utility
+ * @package Paytic\Payments\Tests\Utility
  */
 class PurchaseSessionsTest extends AbstractTestCase
 {

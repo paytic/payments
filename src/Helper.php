@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments;
+namespace Paytic\Payments;
 
 /**
  * Class Helper
- * @package ByTIC\Payments
+ * @package Paytic\Payments
  */
 class Helper
 {

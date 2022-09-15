@@ -1,17 +1,17 @@
 <?php
 
-namespace ByTIC\Payments\Models\Tokens;
+namespace Paytic\Payments\Models\Tokens;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
-use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
-use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
-use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
-use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
+use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
+use Paytic\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
+use Paytic\Payments\Models\AbstractModels\HasPurchaseParent;
 use Paytic\Omnipay\Common\Models\TokenInterface;
 
 /**
  * Trait TokenTrait
- * @package ByTIC\Payments\Models\Tokens
+ * @package Paytic\Payments\Models\Tokens
  *
  * @property int $id_method
  * @property string $gateway

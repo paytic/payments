@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Exception;
+namespace Paytic\Payments\Exception;
 
 use Omnipay\Common\AbstractGateway;
 
 /**
  * Class RequestNotSupportedException
- * @package ByTIC\Payments\Exception
+ * @package Paytic\Payments\Exception
  */
 class RequestNotSupportedException extends InvalidArgumentException
 {

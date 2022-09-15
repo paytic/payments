@@ -1,10 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Gateways;
+namespace Paytic\Payments\Gateways;
 
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\DetectFromHttpRequestTrait;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
-use ByTIC\Payments\Legacy\Gateways\Manager\Traits\StaticCallsTrait;
+use Exception;
+use Omnipay\Common\Message\ResponseInterface;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\DetectFromHttpRequestTrait;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Legacy\Gateways\Manager\Traits\StaticCallsTrait;
 use Nip\Records\AbstractModels\RecordManager;
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Message\AbstractResponse;
@@ -12,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Class Manager
- * @package ByTIC\Payments\Gateways
+ * @package Paytic\Payments\Gateways
  */
 class Manager
 {
@@ -42,7 +44,7 @@ class Manager
      * @param RecordManager $modelManager
      * @param string $callback
      * @param null|HttpRequest $httpRequest
-     * @return bool|\Omnipay\Common\Message\ResponseInterface
+     * @return bool|ResponseInterface
      */
     public static function detectItemFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
     {
@@ -64,8 +66,8 @@ class Manager
      * @param RecordManager $modelManager
      * @param string $callback
      * @param null|HttpRequest $httpRequest
-     * @return bool|\Omnipay\Common\Message\ResponseInterface
-     * @throws \Exception
+     * @return bool|ResponseInterface
+     * @throws Exception
      */
     public static function getRequestFromHttpRequest($modelManager, $callback = null, $httpRequest = null)
     {

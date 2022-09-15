@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\AbstractModels;
+namespace Paytic\Payments\Models\AbstractModels;
 
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Trait HasPurchaseParent
- * @package ByTIC\Payments\Models\AbstractModels
+ * @package Paytic\Payments\Models\AbstractModels
  */
 trait HasPurchaseParent
 {

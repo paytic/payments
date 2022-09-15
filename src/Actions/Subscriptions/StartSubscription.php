@@ -1,14 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Actions\Subscriptions;
+namespace Paytic\Payments\Actions\Subscriptions;
 
-use ByTIC\Payments\Actions\Subscriptions\Charges\CalculateNextCharge;
-use ByTIC\Payments\Models\Subscriptions\Subscription;
-use ByTIC\Payments\Subscriptions\Statuses\Active;
+use Paytic\Payments\Actions\Subscriptions\Charges\CalculateNextCharge;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Statuses\Active;
 
 /**
  * Class StartSubscription
- * @package ByTIC\Payments\Actions\Subscriptions
+ * @package Paytic\Payments\Actions\Subscriptions
  */
 class StartSubscription
 {

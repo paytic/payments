@@ -1,19 +1,20 @@
 <?php
 
-namespace ByTIC\Payments\Models\Transactions;
+namespace Paytic\Payments\Models\Transactions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
-use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
-use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
-use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
-use ByTIC\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
-use ByTIC\Payments\Models\Purchases\PurchaseTrait;
-use ByTIC\Payments\Models\Subscriptions\Subscription;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+use Paytic\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
+use Paytic\Payments\Models\AbstractModels\HasPurchaseParent;
+use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
+use Paytic\Payments\Models\Purchases\PurchaseTrait;
+use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**
  * Trait TransactionTrait
- * @package ByTIC\Payments\Models\Transactions
+ * @package Paytic\Payments\Models\Transactions
  *
  * @property int $id_purchase
  * @property int $id_subscription
@@ -41,7 +42,7 @@ trait TransactionTrait
     use HasPaymentMethodRecord;
     use HasGatewayRecordTrait;
     use TimestampableTrait;
-    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+    use RecordTrait;
 
     /**
      * @var string

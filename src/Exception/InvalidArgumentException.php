@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Exception;
+namespace Paytic\Payments\Exception;
 
 /**
  * Class InvalidArgumentException
- * @package ByTIC\Payments\Exception
+ * @package Paytic\Payments\Exception
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {

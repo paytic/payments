@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Exception;
+namespace Paytic\Payments\Exception;
 
 /**
  * Interface ExceptionInterface
- * @package ByTIC\Payments\Exception
+ * @package Paytic\Payments\Exception
  */
 interface ExceptionInterface
 {

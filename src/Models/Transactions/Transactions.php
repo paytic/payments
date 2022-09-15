@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\Transactions;
+namespace Paytic\Payments\Models\Transactions;
 
-use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
+use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
 
 /**
  * Class Transactions
- * @package ByTIC\Payments\Models\Transactions
+ * @package Paytic\Payments\Models\Transactions
  */
 class Transactions extends AbstractRecordManager
 {

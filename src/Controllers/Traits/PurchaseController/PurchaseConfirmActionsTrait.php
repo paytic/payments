@@ -1,18 +1,18 @@
 <?php
 
-namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
+namespace Paytic\Payments\Controllers\Traits\PurchaseController;
 
-use ByTIC\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
-use ByTIC\Payments\Gateways\Manager as GatewaysManager;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
+use Paytic\Payments\Gateways\Manager as GatewaysManager;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Omnipay\Common\Message\AbstractResponse;
 use Paytic\Omnipay\Common\Library\View\View;
 use Paytic\Omnipay\Common\Message\Traits\HtmlResponses\ConfirmHtmlTrait;
 
 /**
  * Trait PurchaseConfirmActionsTrait
- * @package ByTIC\Payments\Controllers\Traits\PurchaseController
+ * @package Paytic\Payments\Controllers\Traits\PurchaseController
  *
  * @method getModelManager()
  * @method dispatchAccessDeniedResponse()

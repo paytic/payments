@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Utility;
+namespace Paytic\Payments\Utility;
 
-use ByTIC\Payments\Console\Commands\SessionsCleanup;
+use Paytic\Payments\Console\Commands\SessionsCleanup;
 
 /**
  * Class PurchaseSessionsCrons
- * @package ByTIC\Payments\Utility
+ * @package Paytic\Payments\Utility
  */
 class PurchaseSessionsCrons
 {

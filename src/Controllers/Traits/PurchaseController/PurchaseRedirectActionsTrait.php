@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
+namespace Paytic\Payments\Controllers\Traits\PurchaseController;
 
 use ByTIC\FacebookPixel\FacebookPixel;
 use Paytic\Omnipay\Common\Message\Traits\RedirectHtmlTrait;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
  * Trait PurchaseRedirectActionsTrait
- * @package ByTIC\Payments\Controllers\Traits\PurchaseController
+ * @package Paytic\Payments\Controllers\Traits\PurchaseController
  */
 trait PurchaseRedirectActionsTrait
 {

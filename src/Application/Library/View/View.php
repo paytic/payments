@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Application\Library\View;
+namespace Paytic\Payments\Application\Library\View;
 
-use ByTIC\Payments\Utility\PaymentsAssets;
+use Paytic\Payments\Utility\PaymentsAssets;
 use Nip\Utility\Traits\SingletonTrait;
 
 /**
  * Class View
- * @package ByTIC\Payments\Application\Library\View
+ * @package Paytic\Payments\Application\Library\View
  */
 class View extends \Nip\View
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Models\PurchaseSessions;
+namespace Paytic\Payments\Models\PurchaseSessions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
-use ByTIC\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
-use ByTIC\Payments\Models\AbstractModels\HasPurchaseParent;
+use Paytic\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
+use Paytic\Payments\Models\AbstractModels\HasPurchaseParent;
 
 /**
  * Trait PurchaseSessionTrait
- * @package ByTIC\Payments\Models\PurchaseSessions
+ * @package Paytic\Payments\Models\PurchaseSessions
  *
  * @property string $type
  * @property string $new_status

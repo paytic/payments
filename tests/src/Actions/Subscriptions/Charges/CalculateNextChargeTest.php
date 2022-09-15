@@ -1,16 +1,17 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Actions\Subscriptions\Charges;
+namespace Paytic\Payments\Tests\Actions\Subscriptions\Charges;
 
-use ByTIC\Payments\Actions\Subscriptions\Charges\CalculateNextCharge;
-use ByTIC\Payments\Models\Subscriptions\Subscription;
-use ByTIC\Payments\Subscriptions\Billing\BillingPeriod;
+use Paytic\Payments\Actions\Subscriptions\Charges\CalculateNextCharge;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Billing\BillingPeriod;
+use Paytic\Payments\Tests\AbstractTestCase;
 
 /**
  * Class CalculateNextChargeTest
- * @package ByTIC\Payments\Tests\Actions\Subscriptions\Charges
+ * @package Paytic\Payments\Tests\Actions\Subscriptions\Charges
  */
-class CalculateNextChargeTest extends \ByTIC\Payments\Tests\AbstractTestCase
+class CalculateNextChargeTest extends AbstractTestCase
 {
     /**
      * @dataProvider data_for

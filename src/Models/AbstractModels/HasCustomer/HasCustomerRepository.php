@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Models\AbstractModels\HasCustomer;
+namespace Paytic\Payments\Models\AbstractModels\HasCustomer;
 
 /**
  * Trait HasCustomerRepository
- * @package ByTIC\Payments\Models\AbstractModels\HasCustomer
+ * @package Paytic\Payments\Models\AbstractModels\HasCustomer
  */
 trait HasCustomerRepository
 {

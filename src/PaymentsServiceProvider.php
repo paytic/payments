@@ -1,17 +1,17 @@
 <?php
 
-namespace ByTIC\Payments;
+namespace Paytic\Payments;
 
 use ByTIC\PackageBase\BaseBootableServiceProvider;
-use ByTIC\Payments\Console\Commands\SessionsCleanup;
-use ByTIC\Payments\Console\Commands\SubscriptionsCharge;
-use ByTIC\Payments\Gateways\Manager;
-use ByTIC\Payments\Utility\PackageConfig;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Console\Commands\SessionsCleanup;
+use Paytic\Payments\Console\Commands\SubscriptionsCharge;
+use Paytic\Payments\Gateways\Manager;
+use Paytic\Payments\Utility\PackageConfig;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class PaymentsServiceProvider
- * @package ByTIC\Payments
+ * @package Paytic\Payments
  */
 class PaymentsServiceProvider extends BaseBootableServiceProvider
 {

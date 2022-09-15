@@ -1,17 +1,17 @@
 <?php
 
-namespace ByTIC\Payments\Actions\Transactions;
+namespace Paytic\Payments\Actions\Transactions;
 
-use ByTIC\Payments\Actions\Purchases\DuplicatePurchase;
-use ByTIC\Payments\Models\Subscriptions\Subscription;
-use ByTIC\Payments\Models\Transactions\Transaction;
-use ByTIC\Payments\Models\Transactions\TransactionTrait;
-use ByTIC\Payments\Utility\PaymentsModels;
 use Nip\Records\Record;
+use Paytic\Payments\Actions\Purchases\DuplicatePurchase;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class CreateNewForSubscription
- * @package ByTIC\Payments\Actions\Transactions
+ * @package Paytic\Payments\Actions\Transactions
  */
 class CreateNewForSubscription
 {

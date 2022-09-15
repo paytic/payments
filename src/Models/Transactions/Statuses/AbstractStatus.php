@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Models\Transactions\Statuses;
+namespace Paytic\Payments\Models\Transactions\Statuses;
 
 use ByTIC\Models\SmartProperties\Properties\Statuses\Generic;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\Record;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Class AbstractStatus

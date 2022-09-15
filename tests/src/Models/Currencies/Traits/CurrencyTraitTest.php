@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Models\Currencies\Traits;
+namespace Paytic\Payments\Tests\Models\Currencies\Traits;
 
 use Paytic\Payments\Tests\AbstractTest;
 use Paytic\Payments\Tests\Fixtures\Records\Currencies\Currency;
 
 /**
  * Class CurrencyTraitTest
- * @package ByTIC\Payments\Tests\Models\Currencies\Traits
+ * @package Paytic\Payments\Tests\Models\Currencies\Traits
  */
 class CurrencyTraitTest extends AbstractTest
 {

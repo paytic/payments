@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\AbstractModels\RecordManager;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class HasModelRequest
- * @package ByTIC\Payments\Payments\Gateways\Providers\AbstractGateway\Message\Traits
+ * @package Paytic\Payments\Payments\Gateways\Providers\AbstractGateway\Message\Traits
  *
  * @property Request $httpRequest
  */

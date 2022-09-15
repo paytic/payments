@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Message;
+namespace Paytic\Payments\Tests\Gateways\Providers\AbstractGateway\Message;
 
 /**
  * Trait CompletePurchaseResponseTestTrait
- * @package ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Message
+ * @package Paytic\Payments\Tests\Gateways\Providers\AbstractGateway\Message
  * @deprecated use \Paytic\Payments\Tests\Gateways\Message\CompletePurchaseResponseTestTrait;
  */
 trait CompletePurchaseResponseTestTrait

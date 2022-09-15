@@ -1,8 +1,8 @@
 <?php
 
-namespace ByTIC\Payments\Utility;
+namespace Paytic\Payments\Utility;
 
-use ByTIC\Payments\PaymentsServiceProvider;
+use Paytic\Payments\PaymentsServiceProvider;
 use Exception;
 use Nip\Utility\Traits\SingletonTrait;
 

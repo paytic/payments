@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\Tokens;
+namespace Paytic\Payments\Models\Tokens;
 
-use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
+use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
 
 /**
  * Class Tokens
- * @package ByTIC\Payments\Models\Tokens
+ * @package Paytic\Payments\Models\Tokens
  */
 class Tokens extends AbstractRecordManager
 {

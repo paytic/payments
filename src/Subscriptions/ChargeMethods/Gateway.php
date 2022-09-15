@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Subscriptions\ChargeMethods;
+namespace Paytic\Payments\Subscriptions\ChargeMethods;
 
 /**
  * Class Gateway
- * @package ByTIC\Payments\Subscriptions\ChargeMethods
+ * @package Paytic\Payments\Subscriptions\ChargeMethods
  */
 class Gateway extends AbstractMethod
 {

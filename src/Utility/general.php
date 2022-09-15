@@ -1,6 +1,6 @@
 <?php
 
-use ByTIC\Payments\Gateways\Manager as GatewaysManager;
+use Paytic\Payments\Gateways\Manager as GatewaysManager;
 use Nip\Container\Container;
 
 if (!function_exists('payments_gateways')) {

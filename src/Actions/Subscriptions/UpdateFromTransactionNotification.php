@@ -1,19 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Actions\Subscriptions;
+namespace Paytic\Payments\Actions\Subscriptions;
 
-use ByTIC\Payments\Actions\Subscriptions\Charges\ChargedSuccessfully;
-use ByTIC\Payments\Models\Subscriptions\Subscription;
-use ByTIC\Payments\Models\Transactions\Statuses\Active;
-use ByTIC\Payments\Models\Transactions\Transaction;
-use ByTIC\Payments\Subscriptions\Statuses\Active as SubscriptionActive;
-use ByTIC\Payments\Subscriptions\Statuses\Canceled;
-use ByTIC\Payments\Subscriptions\Statuses\Completed;
-use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
+use Paytic\Payments\Actions\Subscriptions\Charges\ChargedSuccessfully;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Transactions\Statuses\Active;
+use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Subscriptions\Statuses\Active as SubscriptionActive;
+use Paytic\Payments\Subscriptions\Statuses\Canceled;
+use Paytic\Payments\Subscriptions\Statuses\Completed;
+use Paytic\Payments\Subscriptions\Statuses\NotStarted;
 
 /**
  * Class UpdateFromTransactionToken
- * @package ByTIC\Payments\Actions\Subscriptions
+ * @package Paytic\Payments\Actions\Subscriptions
  */
 class UpdateFromTransactionNotification
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Models\AbstractModels\HasCustomer;
+namespace Paytic\Payments\Models\AbstractModels\HasCustomer;
 
 use Nip\Records\Record;
-use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
+use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
 
 /**
  * Trait HasCustomerRecord
- * @package ByTIC\Payments\Models\AbstractModels\HasCustomer
+ * @package Paytic\Payments\Models\AbstractModels\HasCustomer
  *
  * @property int $customer_id
  * @property string $customer_type

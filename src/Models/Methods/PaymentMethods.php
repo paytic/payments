@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\Methods;
+namespace Paytic\Payments\Models\Methods;
 
-use ByTIC\Payments\Models\AbstractModels\AbstractRecordManager;
+use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
 
 /**
  * Class PaymentMethods
- * @package ByTIC\Payments\Models\Methods
+ * @package Paytic\Payments\Models\Methods
  */
 class PaymentMethods extends AbstractRecordManager
 {

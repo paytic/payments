@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Traits;
 
 use BadMethodCallException;
 use Omnipay\Common\Message\RequestInterface;
@@ -8,7 +8,7 @@ use Omnipay\Common\Message\ResponseInterface as MessageResponseInterface;
 
 /**
  * Trait MagicMessagesTrait
- * @package ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits
+ * @package Paytic\Payments\Gateways\Providers\AbstractGateway\Traits
  *
  * @method MessageResponseInterface authorize(array $options = [])
  * @method MessageResponseInterface completeAuthorize(array $options = [])
@@ -98,6 +98,6 @@ trait MagicMessagesTrait
         if (class_exists($class)) {
             return $class;
         }
-        return str_replace('ByTIC\Payments', 'ByTIC\Common\Payments', $class);
+        return str_replace('Paytic\Payments', 'ByTIC\Common\Payments', $class);
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Gateways;
+namespace Paytic\Payments\Gateways;
 
 use Nip\Collections\Collection;
 
 /**
  * Class GatewaysCollection
- * @package ByTIC\Payments\Gateways
+ * @package Paytic\Payments\Gateways
  */
 class GatewaysCollection extends Collection
 {

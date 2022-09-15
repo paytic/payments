@@ -1,19 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Utility;
+namespace Paytic\Payments\Utility;
 
 use ByTIC\MediaLibrary\Models\MediaProperties\MediaProperties;
 use ByTIC\MediaLibrary\Models\MediaRecords\MediaRecords;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
-use ByTIC\Payments\Models\Subscriptions\Subscriptions;
-use ByTIC\Payments\Models\Tokens\Tokens;
-use ByTIC\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
+use Paytic\Payments\Models\Subscriptions\Subscriptions;
+use Paytic\Payments\Models\Tokens\Tokens;
+use Paytic\Payments\Models\Transactions\Transactions;
 use Nip\Records\Locator\ModelLocator;
 use Nip\Records\RecordManager;
 
 /**
  * Class PaymentsModels
- * @package ByTIC\Payments\Utility
+ * @package Paytic\Payments\Utility
  */
 class PaymentsModels
 {

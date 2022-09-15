@@ -1,11 +1,11 @@
 <?php
 
-use ByTIC\Payments\Models\Methods\PaymentMethods;
-use ByTIC\Payments\Models\Purchases\Purchases;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessions;
-use ByTIC\Payments\Models\Subscriptions\Subscriptions;
-use ByTIC\Payments\Models\Tokens\Tokens;
-use ByTIC\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\Models\Methods\PaymentMethods;
+use Paytic\Payments\Models\Purchases\Purchases;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
+use Paytic\Payments\Models\Subscriptions\Subscriptions;
+use Paytic\Payments\Models\Tokens\Tokens;
+use Paytic\Payments\Models\Transactions\Transactions;
 
 return [
     'models' => [

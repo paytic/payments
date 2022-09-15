@@ -1,9 +1,9 @@
 <?php
 
-namespace ByTIC\Payments\Tests;
+namespace Paytic\Payments\Tests;
 
-use ByTIC\Payments\Models\Purchases\Purchases;
-use ByTIC\Payments\PaymentsServiceProvider;
+use Paytic\Payments\Models\Purchases\Purchases;
+use Paytic\Payments\PaymentsServiceProvider;
 use Paytic\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecordManager;
 use Nip\Config\Config;
 use Nip\Container\Container;
@@ -11,7 +11,7 @@ use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class PaymentsServiceProviderTest
- * @package ByTIC\Payments\Tests
+ * @package Paytic\Payments\Tests
  */
 class PaymentsServiceProviderTest extends AbstractTestCase
 {

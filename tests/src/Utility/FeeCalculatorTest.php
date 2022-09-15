@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Utility;
+namespace Paytic\Payments\Tests\Utility;
 
 use Paytic\Payments\Tests\AbstractTest;
-use ByTIC\Payments\Utility\FeeCalculator;
+use Paytic\Payments\Utility\FeeCalculator;
 
 /**
  * Class FeeCalculatorTest
- * @package ByTIC\Payments\Tests\Utility
+ * @package Paytic\Payments\Tests\Utility
  */
 class FeeCalculatorTest extends AbstractTest
 {

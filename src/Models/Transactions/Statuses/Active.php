@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Models\Transactions\Statuses;
+namespace Paytic\Payments\Models\Transactions\Statuses;
 
 /**
  * Class Active
- * @package ByTIC\Payments\Models\Transactions\Statuses
+ * @package Paytic\Payments\Models\Transactions\Statuses
  */
 class Active extends AbstractStatus
 {

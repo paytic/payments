@@ -1,10 +1,11 @@
 <?php
 
-namespace ByTIC\Payments\Console\Commands;
+namespace Paytic\Payments\Console\Commands;
 
 use ByTIC\Console\Command;
-use ByTIC\Payments\Actions\Subscriptions\ChargeSubscription;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Actions\Subscriptions\ChargeSubscription;
+use Paytic\Payments\Actions\Subscriptions\ChargeSubscriptionsDue;
+use Paytic\Payments\Utility\PaymentsModels;
 use Enqueue\Consumption\ChainExtension;
 use Enqueue\Consumption\Extension\ExitStatusExtension;
 use Symfony\Component\Console\Input\InputInterface;
@@ -32,11 +33,7 @@ class SubscriptionsCharge extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $repository = PaymentsModels::subscriptions();
-
-        $repository->findChargeDue(10)->each(function ($subscription) {
-            ChargeSubscription::handle($subscription);
-        });
+        ChargeSubscriptionsDue::next(10);
         return 0;
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\PurchaseSessions;
+namespace Paytic\Payments\Models\PurchaseSessions;
 
-use ByTIC\Payments\Models\AbstractModels\AbstractRecord;
+use Paytic\Payments\Models\AbstractModels\AbstractRecord;
 
 /**
  * Class PurchaseSession
- * @package ByTIC\Payments\Models\PurchaseSessions
+ * @package Paytic\Payments\Models\PurchaseSessions
  */
 class PurchaseSession extends AbstractRecord
 {

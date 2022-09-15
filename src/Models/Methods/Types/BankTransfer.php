@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Models\Methods\Types;
+namespace Paytic\Payments\Models\Methods\Types;
 
 /**
  * Class BankTransfer
- * @package ByTIC\Payments\Models\Methods\Types
+ * @package Paytic\Payments\Models\Methods\Types
  */
 class BankTransfer extends AbstractType
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Models\Transactions;
+namespace Paytic\Payments\Tests\Models\Transactions;
 
-use ByTIC\Payments\Models\Transactions\Statuses\Active;
-use ByTIC\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\Models\Transactions\Statuses\Active;
+use Paytic\Payments\Models\Transactions\Transactions;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
  * Class TransactionsTraitTest
- * @package ByTIC\Payments\Tests\Models\Transactions
+ * @package Paytic\Payments\Tests\Models\Transactions
  */
 class TransactionsTraitTest extends AbstractTest
 {

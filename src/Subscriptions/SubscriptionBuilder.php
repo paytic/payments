@@ -1,28 +1,30 @@
 <?php
 
-namespace ByTIC\Payments\Subscriptions;
+namespace Paytic\Payments\Subscriptions;
 
-use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
-use ByTIC\Payments\Models\Methods\PaymentMethod;
-use ByTIC\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodTrait;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\Transactions\Transaction;
-use ByTIC\Payments\Models\Transactions\TransactionTrait;
-use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
-use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
+use Paytic\Payments\Models\Methods\PaymentMethod;
+use Paytic\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Subscriptions\SubscriptionTrait;
+use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
+use Paytic\Payments\Subscriptions\Statuses\NotStarted;
+use Paytic\Payments\Utility\PaymentsModels;
 use Nip\Utility\Date;
 
 /**
  * Class SubscriptionBuilder
- * @package ByTIC\Payments\Utility
+ * @package Paytic\Payments\Utility
  */
 class SubscriptionBuilder
 {
     use Builder\ManageBillingCycle;
 
     /**
-     * @var \ByTIC\Payments\Models\Subscriptions\Subscription
+     * @var Subscription
      */
     protected $subscription;
 
@@ -89,7 +91,7 @@ class SubscriptionBuilder
     }
 
     /**
-     * @return \ByTIC\Payments\Models\Subscriptions\Subscription|\ByTIC\Payments\Models\Subscriptions\SubscriptionTrait
+     * @return Subscription|SubscriptionTrait
      */
     public function create()
     {

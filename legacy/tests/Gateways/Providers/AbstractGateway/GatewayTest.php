@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway;
+namespace Paytic\Payments\Tests\Gateways\Providers\AbstractGateway;
 
 /**
  * Class TraitsTest

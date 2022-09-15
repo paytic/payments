@@ -1,18 +1,18 @@
 <?php
 
-namespace ByTIC\Payments\Controllers\Traits\PurchaseController;
+namespace Paytic\Payments\Controllers\Traits\PurchaseController;
 
-use ByTIC\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
-use ByTIC\Payments\Gateways\Manager as GatewaysManager;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
-use ByTIC\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
-use ByTIC\Payments\Models\Purchase\IsPurchasableRepository;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
+use Paytic\Payments\Gateways\Manager as GatewaysManager;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
+use Paytic\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
+use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Trait PurchaseIpnActionsTrait
- * @package ByTIC\Payments\Controllers\Traits\PurchaseController
+ * @package Paytic\Payments\Controllers\Traits\PurchaseController
  */
 trait PurchaseIpnActionsTrait
 {

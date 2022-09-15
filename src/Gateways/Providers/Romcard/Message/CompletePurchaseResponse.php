@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Romcard\Message;
+namespace Paytic\Payments\Gateways\Providers\Romcard\Message;
 
 use Paytic\Omnipay\Romcard\Message\CompletePurchaseResponse as AbstractCompletePurchaseResponse;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 
 /**
  * Class CompletePurchaseResponse
- * @package ByTIC\Payments\Gateways\Providers\Romcard\Message
+ * @package Paytic\Payments\Gateways\Providers\Romcard\Message
  */
 class CompletePurchaseResponse extends AbstractCompletePurchaseResponse
 {

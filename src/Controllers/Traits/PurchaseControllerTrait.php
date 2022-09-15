@@ -1,19 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Controllers\Traits;
+namespace Paytic\Payments\Controllers\Traits;
 
-use ByTIC\Payments\Controllers\Traits\PurchaseController\PurchaseConfirmActionsTrait;
-use ByTIC\Payments\Controllers\Traits\PurchaseController\PurchaseIpnActionsTrait;
-use ByTIC\Payments\Controllers\Traits\PurchaseController\PurchaseRedirectActionsTrait;
-use ByTIC\Payments\Gateways\Manager as GatewaysManager;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Controllers\Traits\PurchaseController\PurchaseConfirmActionsTrait;
+use Paytic\Payments\Controllers\Traits\PurchaseController\PurchaseIpnActionsTrait;
+use Paytic\Payments\Controllers\Traits\PurchaseController\PurchaseRedirectActionsTrait;
+use Paytic\Payments\Gateways\Manager as GatewaysManager;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\RecordManager;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class PurchaseControllerTrait
- * @package ByTIC\Payments\Payments\Controllers\Traits
+ * @package Paytic\Payments\Payments\Controllers\Traits
  *
  * @method IsPurchasableModelTrait checkItem
  */

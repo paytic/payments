@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Traits;
+namespace Paytic\Payments\Tests\Gateways\Providers\AbstractGateway\Traits;
 
-use ByTIC\Payments\Tests\AbstractTest;
+use Paytic\Payments\Tests\AbstractTest;
 
 /**
  * Class OverwriteCompletePurchaseTraitTest
- * @package ByTIC\Payments\Tests\Gateways\Providers\AbstractGateway\Traits
+ * @package Paytic\Payments\Tests\Gateways\Providers\AbstractGateway\Traits
  * @deprecated use \Paytic\Payments\Tests\Gateways\Traits\OverwriteCompletePurchaseTraitTest
  */
 class OverwriteCompletePurchaseTraitTest extends \Paytic\Payments\Tests\Gateways\Traits\OverwriteCompletePurchaseTraitTest

@@ -1,10 +1,12 @@
 <?php
-/** @var \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait[] $sessions */
+/** @var PurchaseSessionTrait[] $sessions */
 
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use Paytic\Payments\Utility\PaymentsModels;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 
-$sessions_repository = \ByTIC\Payments\Utility\PaymentsModels::sessions();
+$sessions_repository = PaymentsModels::sessions();
 
 if (count($sessions) < 1) {
     echo $this->Messages()->info($sessions_repository->getMessage('dnx'));

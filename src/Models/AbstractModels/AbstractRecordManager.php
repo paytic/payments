@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Payments\Models\AbstractModels;
+namespace Paytic\Payments\Models\AbstractModels;
 
 use ByTIC\Records\Behaviors\I18n\I18nRecordsTrait;
 use Nip\Records\Filters\Records\HasFiltersRecordsTrait;
@@ -8,7 +8,7 @@ use Nip\Records\RecordManager;
 
 /**
  * Class Subscriptions
- * @package ByTIC\Payments\Models\AbstractModels
+ * @package Paytic\Payments\Models\AbstractModels
  */
 abstract class AbstractRecordManager extends RecordManager
 {
@@ -17,6 +17,6 @@ abstract class AbstractRecordManager extends RecordManager
 
     public function getRootNamespace(): string
     {
-        return 'ByTIC\Payments\Models\\';
+        return 'Paytic\Payments\Models\\';
     }
 }

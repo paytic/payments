@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Payments\Actions\Transactions;
+namespace Paytic\Payments\Actions\Transactions;
 
-use ByTIC\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
-use ByTIC\Payments\Exception\RequestNotSupportedException;
-use ByTIC\Payments\Models\Transactions\Transaction;
 use Omnipay\Common\Message\AbstractResponse;
+use Paytic\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
+use Paytic\Payments\Exception\RequestNotSupportedException;
+use Paytic\Payments\Models\Transactions\Transaction;
 
 /**
  * Class ChargeWithToken
- * @package ByTIC\Payments\Actions\Transactions
+ * @package Paytic\Payments\Actions\Transactions
  */
 class ChargeWithToken
 {

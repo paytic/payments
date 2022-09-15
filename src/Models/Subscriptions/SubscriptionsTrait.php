@@ -1,18 +1,21 @@
 <?php
 
-namespace ByTIC\Payments\Models\Subscriptions;
+namespace Paytic\Payments\Models\Subscriptions;
 
 use ByTIC\Models\SmartProperties\Properties\Types\Generic as GenericType;
-use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
-use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
-use ByTIC\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
-use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
-use ByTIC\Payments\Utility\PaymentsModels;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
+use Exception;
+use Nip\Config\Config;
+use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
+use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
+use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
+use Paytic\Payments\Utility\PaymentsModels;
 use Nip\Records\Collections\Collection;
 
 /**
  * Trait SubscriptionsTrait
- * @package ByTIC\Payments\Models\Subscriptions
+ * @package Paytic\Payments\Models\Subscriptions
  *
  * @method SubscriptionTrait|Subscription getNew
  */
@@ -21,7 +24,7 @@ trait SubscriptionsTrait
     use HasCustomerRepository;
     use HasTokenRepository;
     use HasPaymentMethodRepository;
-    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
+    use RecordsTrait;
 
     /**
      * @param int $count
@@ -101,7 +104,7 @@ trait SubscriptionsTrait
      */
     public function getStatusItemsRootNamespace()
     {
-        return 'ByTIC\Payments\Subscriptions\Statuses\\';
+        return 'Paytic\Payments\Subscriptions\Statuses\\';
     }
 
     /**
@@ -127,7 +130,7 @@ trait SubscriptionsTrait
      */
     public function getChargeMethodsItemsRootNamespace()
     {
-        return 'ByTIC\Payments\Subscriptions\ChargeMethods\\';
+        return 'Paytic\Payments\Subscriptions\ChargeMethods\\';
     }
 
     /**
@@ -141,8 +144,8 @@ trait SubscriptionsTrait
     }
 
     /**
-     * @return mixed|\Nip\Config\Config
-     * @throws \Exception
+     * @return mixed|Config
+     * @throws Exception
      */
     protected function generateTable()
     {
@@ -150,8 +153,8 @@ trait SubscriptionsTrait
     }
 
     /**
-     * @return mixed|\Nip\Config\Config
-     * @throws \Exception
+     * @return mixed|Config
+     * @throws Exception
      */
     protected function generateController()
     {

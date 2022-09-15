@@ -1,19 +1,19 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Models\Methods\Traits;
+namespace Paytic\Payments\Tests\Models\Methods\Traits;
 
 use Paytic\Payments\Mobilpay\Gateway as MobilpayGateway;
 use Paytic\Payments\Euplatesc\Gateway as EuplatescGateway;
-use ByTIC\Payments\Models\Methods\Types\BankTransfer;
-use ByTIC\Payments\Models\Methods\Types\Cash;
-use ByTIC\Payments\Models\Methods\Types\CreditCards;
-use ByTIC\Payments\Models\Methods\Types\Waiver;
+use Paytic\Payments\Models\Methods\Types\BankTransfer;
+use Paytic\Payments\Models\Methods\Types\Cash;
+use Paytic\Payments\Models\Methods\Types\CreditCards;
+use Paytic\Payments\Models\Methods\Types\Waiver;
 use Paytic\Payments\Tests\AbstractTest;
 use Paytic\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
 
 /**
  * Class RecordTraitTest
- * @package ByTIC\Payments\Tests\Models\Methods\Traits
+ * @package Paytic\Payments\Tests\Models\Methods\Traits
  */
 class RecordTraitTest extends AbstractTest
 {

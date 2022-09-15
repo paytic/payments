@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Euplatesc;
+namespace Paytic\Payments\Tests\Fixtures\Records\Gateways\Providers\Euplatesc;
 
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Class EuplatescData
- * @package ByTIC\Payments\Tests\Fixtures\Records\Gateways\Providers\Euplatesc
+ * @package Paytic\Payments\Tests\Fixtures\Records\Gateways\Providers\Euplatesc
  */
 class EuplatescData
 {

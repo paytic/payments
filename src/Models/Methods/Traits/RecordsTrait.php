@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\Methods\Traits;
+namespace Paytic\Payments\Models\Methods\Traits;
 
 use ByTIC\Models\SmartProperties\RecordsTraits\HasTypes\RecordsTrait as HasTypesRecordsTrait;
 
 /**
  * Class RecordsTrait
- * @package ByTIC\Payments\Models\Methods\Traits
+ * @package Paytic\Payments\Models\Methods\Traits
  *
  * @method getMessage($name, $params = [], $language = false)
  */
@@ -28,6 +28,6 @@ trait RecordsTrait
      */
     public function getTypeNamespace()
     {
-        return '\ByTIC\Payments\Models\Methods\Types\\';
+        return '\Paytic\Payments\Models\Methods\Types\\';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Payments\Subscriptions\Statuses;
+namespace Paytic\Payments\Subscriptions\Statuses;
 
 /**
  * Class Active

@@ -1,12 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Actions\Subscriptions\Charges;
+namespace Paytic\Payments\Actions\Subscriptions\Charges;
 
-use ByTIC\Payments\Models\Subscriptions\Subscription;
+use DateTime;
+use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**
  * Class CalculateNextAttempt
- * @package ByTIC\Payments\Actions\Subscriptions\Charges
+ * @package Paytic\Payments\Actions\Subscriptions\Charges
  */
 class CalculateNextAttempt
 {
@@ -23,11 +24,11 @@ class CalculateNextAttempt
     }
 
     /**
-     * @param \DateTime $startDate
+     * @param DateTime $startDate
      * @param $period
      * @param $interval
      */
-    protected static function nextAttempt(\DateTime $lastAttempt, $tries)
+    protected static function nextAttempt(DateTime $lastAttempt, $tries)
     {
         switch ($tries) {
             case 1:

@@ -1,14 +1,16 @@
 <?php
 
-namespace ByTIC\Payments\Actions\Subscriptions\Charges;
+namespace Paytic\Payments\Actions\Subscriptions\Charges;
 
-use ByTIC\Payments\Models\Subscriptions\Subscription;
-use ByTIC\Payments\Subscriptions\Billing\BillingPeriod;
+use DateTime;
+use InvalidArgumentException;
 use Nip\Utility\Date;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Billing\BillingPeriod;
 
 /**
  * Class CalculateNextCharge
- * @package ByTIC\Payments\Actions\Subscriptions\Charges
+ * @package Paytic\Payments\Actions\Subscriptions\Charges
  */
 class CalculateNextCharge
 {
@@ -26,11 +28,11 @@ class CalculateNextCharge
     }
 
     /**
-     * @param \DateTime $startDate
+     * @param DateTime $startDate
      * @param $period
      * @param $interval
      */
-    protected static function nextBillingDate(\DateTime $startDate, $period, $interval)
+    protected static function nextBillingDate(DateTime $startDate, $period, $interval)
     {
         $startDate = Date::instance($startDate)->setHour(8)->setMinute(0);
 
@@ -47,6 +49,6 @@ class CalculateNextCharge
             case BillingPeriod::YEARLY:
                 return $startDate->addYears($interval);
         }
-        throw new \InvalidArgumentException("Invalid period [{$period}] provided.");
+        throw new InvalidArgumentException("Invalid period [{$period}] provided.");
     }
 }

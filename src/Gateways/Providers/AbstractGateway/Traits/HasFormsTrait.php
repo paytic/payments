@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Traits;
 
 /**
  * Trait HasFormsTrait
- * @package ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits
+ * @package Paytic\Payments\Gateways\Providers\AbstractGateway\Traits
  */
 trait HasFormsTrait
 {

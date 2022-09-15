@@ -1,18 +1,18 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\Transactions\Statuses\Active;
-use ByTIC\Payments\Models\Transactions\Statuses\Canceled;
-use ByTIC\Payments\Models\Transactions\Statuses\Error;
-use ByTIC\Payments\Models\Transactions\Statuses\Pending;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\Transactions\Statuses\Active;
+use Paytic\Payments\Models\Transactions\Statuses\Canceled;
+use Paytic\Payments\Models\Transactions\Statuses\Error;
+use Paytic\Payments\Models\Transactions\Statuses\Pending;
 use Nip\Records\Record;
 
 /**
  * Class HasView
- * @package ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits
+ * @package Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits
  *
  */
 trait HasModelProcessedResponse

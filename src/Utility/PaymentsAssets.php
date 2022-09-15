@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Utility;
+namespace Paytic\Payments\Utility;
 
-use ByTIC\Payments\Application\Library\View\View;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Application\Library\View\View;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Class PaymentsAssets
- * @package ByTIC\Payments\Utility
+ * @package Paytic\Payments\Utility
  */
 class PaymentsAssets
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Models\Tokens;
+namespace Paytic\Payments\Models\Tokens;
 
-use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
-use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
+use Paytic\Payments\Utility\PaymentsModels;
 use Exception;
 use Nip\Config\Config;
 use Nip\Records\AbstractModels\Record;
@@ -12,7 +12,7 @@ use Paytic\Omnipay\Common\Models\TokenInterface;
 
 /**
  * Trait TokensTrait
- * @package ByTIC\Payments\Models\Tokens
+ * @package Paytic\Payments\Models\Tokens
  *
  * @method TokenTrait|Token getNew
  */

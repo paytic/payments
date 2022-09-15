@@ -1,12 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Models\Subscriptions;
+namespace Paytic\Payments\Tests\Models\Subscriptions;
 
-use ByTIC\Payments\Models\Subscriptions\Subscriptions;
-use ByTIC\Payments\Subscriptions\ChargeMethods\Gateway;
-use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
-use ByTIC\Payments\Subscriptions\Statuses\Active;
-use ByTIC\Payments\Subscriptions\Statuses\NotStarted;
+use Mockery;
+use Paytic\Payments\Models\Subscriptions\Subscriptions;
+use Paytic\Payments\Subscriptions\ChargeMethods\Gateway;
+use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
+use Paytic\Payments\Subscriptions\Statuses\Active;
+use Paytic\Payments\Subscriptions\Statuses\NotStarted;
 use Paytic\Payments\Tests\AbstractTest;
 use Mockery\Mock;
 use Nip\Database\Query\Select;
@@ -14,7 +15,7 @@ use Nip\Records\Collections\Collection;
 
 /**
  * Class SubscriptionsTraitTest
- * @package ByTIC\Payments\Tests\Models\Subscriptions
+ * @package Paytic\Payments\Tests\Models\Subscriptions
  */
 class SubscriptionsTraitTest extends AbstractTest
 {
@@ -42,9 +43,9 @@ class SubscriptionsTraitTest extends AbstractTest
     public function test_findChargeDue()
     {
         /** @var Mock|Subscriptions $repository */
-        $repository = \Mockery::mock(Subscriptions::class)->makePartial()->shouldAllowMockingProtectedMethods();
+        $repository = Mockery::mock(Subscriptions::class)->makePartial()->shouldAllowMockingProtectedMethods();
         $repository->shouldReceive('findByQuery')
-            ->with(\Mockery::capture($query))
+            ->with(Mockery::capture($query))
             ->andReturn(new Collection());
 
         $repository->findChargeDue(10);

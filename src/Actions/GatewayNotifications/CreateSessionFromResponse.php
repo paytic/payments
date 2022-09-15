@@ -1,20 +1,20 @@
 <?php
 
-namespace ByTIC\Payments\Actions\GatewayNotifications;
+namespace Paytic\Payments\Actions\GatewayNotifications;
 
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class CreateSessionFromResponse
- * @package ByTIC\Payments\Actions\GatewayNotifications
+ * @package Paytic\Payments\Actions\GatewayNotifications
  * @internal
  */
 class CreateSessionFromResponse
 {
     /**
      * @param NotificationData $notification
-     * @return \ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait
+     * @return PurchaseSessionTrait
      */
     public static function handle(NotificationData $notification)
     {

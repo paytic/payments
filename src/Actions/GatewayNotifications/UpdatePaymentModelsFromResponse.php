@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Actions\GatewayNotifications;
+namespace Paytic\Payments\Actions\GatewayNotifications;
 
 /**
  * Class UpdatePaymentModelsFromResponse
- * @package ByTIC\Payments\Actions
+ * @package Paytic\Payments\Actions
  * @internal
  */
 class UpdatePaymentModelsFromResponse

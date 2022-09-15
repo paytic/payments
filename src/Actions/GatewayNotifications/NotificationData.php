@@ -1,17 +1,18 @@
 <?php
 
-namespace ByTIC\Payments\Actions\GatewayNotifications;
+namespace Paytic\Payments\Actions\GatewayNotifications;
 
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
-use ByTIC\Payments\Models\Subscriptions\Subscription;
-use ByTIC\Payments\Models\Tokens\Token;
-use ByTIC\Payments\Models\Transactions\Transaction;
+use Omnipay\Common\Message\AbstractResponse;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Tokens\Token;
+use Paytic\Payments\Models\Transactions\Transaction;
 
 /**
  * Class NotificationData
- * @package ByTIC\Payments\Actions\GatewayNotifications
+ * @package Paytic\Payments\Actions\GatewayNotifications
  */
 class NotificationData
 {
@@ -21,7 +22,7 @@ class NotificationData
     public $type;
 
     /**
-     * @var \Omnipay\Common\Message\AbstractResponse|HasModelProcessedResponse
+     * @var AbstractResponse|HasModelProcessedResponse
      */
     public $response;
 
@@ -53,7 +54,7 @@ class NotificationData
     /**
      * NotificationData constructor.
      * @param string $type
-     * @param HasModelProcessedResponse|\Omnipay\Common\Message\AbstractResponse $response
+     * @param HasModelProcessedResponse|AbstractResponse $response
      * @param IsPurchasableModelTrait $purchase
      */
     public function __construct(string $type, $response, $purchase)

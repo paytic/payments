@@ -1,18 +1,18 @@
 <?php
 
-namespace ByTIC\Payments\Application\Library\Records\Locator;
+namespace Paytic\Payments\Application\Library\Records\Locator;
 
-use ByTIC\Payments\Models\Methods\PaymentMethods;
-use ByTIC\Payments\Models\Purchases\Purchases;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessions;
-use ByTIC\Payments\Models\Tokens\Tokens;
-use ByTIC\Payments\Models\Transactions\Transactions;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Models\Methods\PaymentMethods;
+use Paytic\Payments\Models\Purchases\Purchases;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
+use Paytic\Payments\Models\Tokens\Tokens;
+use Paytic\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\Utility\PaymentsModels;
 use Nip\Records\AbstractModels\RecordManager;
 
 /**
  * Trait PaymentsModelLocator
- * @package ByTIC\Payments\Application\Library\Records\Locator
+ * @package Paytic\Payments\Application\Library\Records\Locator
  */
 trait PaymentsModelLocator
 {

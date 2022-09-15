@@ -1,12 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Models\PurchaseSessions\Traits\Cleanup;
+namespace Paytic\Payments\Models\PurchaseSessions\Traits\Cleanup;
 
 use Nip\Database\Query\Delete;
+use Nip\Database\Result;
 
 /**
  * Trait RecordsTrait
- * @package ByTIC\Payments\Models\PurchaseSessions\Traits\Cleanup
+ * @package Paytic\Payments\Models\PurchaseSessions\Traits\Cleanup
  */
 trait RecordsTrait
 {
@@ -14,7 +15,7 @@ trait RecordsTrait
     protected $daysToKeepData = 365;
 
     /**
-     * @return \Nip\Database\Result
+     * @return Result
      */
     public function reduceOldSessions()
     {

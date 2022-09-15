@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Console\Commands;
+namespace Paytic\Payments\Console\Commands;
 
 use ByTIC\Console\Command;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
+use Paytic\Payments\Utility\PaymentsModels;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

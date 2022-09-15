@@ -1,19 +1,21 @@
 <?php
 
-namespace ByTIC\Payments\Actions\GatewayNotifications;
+namespace Paytic\Payments\Actions\GatewayNotifications;
 
-use ByTIC\Payments\Actions\Subscriptions\UpdateFromTransactionNotification;
+use Nip\Records\AbstractModels\Record;
+use Paytic\Payments\Actions\Subscriptions\UpdateFromTransactionNotification;
+use Paytic\Payments\Models\Transactions\TransactionTrait;
 
 /**
  * Class UpdateSubscriptionFromResponse
- * @package ByTIC\Payments\Actions\GatewayNotifications
+ * @package Paytic\Payments\Actions\GatewayNotifications
  * @internal
  */
 class UpdateSubscriptionFromResponse
 {
     /**
      * @param NotificationData $notification
-     * @return \ByTIC\Payments\Models\Transactions\TransactionTrait|\Nip\Records\AbstractModels\Record
+     * @return TransactionTrait|Record
      */
     public static function handle(NotificationData $notification)
     {

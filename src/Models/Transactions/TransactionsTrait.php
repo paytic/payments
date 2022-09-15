@@ -1,25 +1,28 @@
 <?php
 
-namespace ByTIC\Payments\Models\Transactions;
+namespace Paytic\Payments\Models\Transactions;
 
-use ByTIC\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
-use ByTIC\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use ByTIC\Payments\Models\Purchases\Purchase;
-use ByTIC\Payments\Utility\PaymentsModels;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
+use Exception;
+use Nip\Config\Config;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
+use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\Purchases\Purchase;
+use Paytic\Payments\Utility\PaymentsModels;
 use Nip\MailModule\Models\EmailsTable\EmailTrait;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\EventManager\Events\Event;
 
 /**
  * Trait TransactionsTrait
- * @package ByTIC\Payments\Models\Transactions
+ * @package Paytic\Payments\Models\Transactions
  *
  * @method TransactionTrait getNew
  */
 trait TransactionsTrait
 {
-    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
+    use RecordsTrait;
     use HasTokenRepository;
     use HasPaymentMethodRepository;
 
@@ -63,7 +66,7 @@ trait TransactionsTrait
      */
     public function getStatusItemsRootNamespace()
     {
-        return '\ByTIC\Payments\Models\Transactions\Statuses\\';
+        return '\Paytic\Payments\Models\Transactions\Statuses\\';
     }
 
     /**
@@ -122,11 +125,11 @@ trait TransactionsTrait
     }
 
     /**
-     * @return mixed|\Nip\Config\Config
-     * @throws \Exception
+     * @return mixed|Config
+     * @throws Exception
      */
     protected function generateTable()
     {
-        return config('payments.tables.transactions', \ByTIC\Payments\Models\Transactions\Transactions::TABLE);
+        return config('payments.tables.transactions', Transactions::TABLE);
     }
 }

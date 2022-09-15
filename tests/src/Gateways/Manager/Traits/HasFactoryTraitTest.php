@@ -1,14 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Gateways\Manager\Traits;
+namespace Paytic\Payments\Tests\Gateways\Manager\Traits;
 
-use ByTIC\Payments\Gateways\GatewayFactory;
-use ByTIC\Payments\Gateways\Manager;
+use Paytic\Payments\Gateways\GatewayFactory;
+use Paytic\Payments\Gateways\Manager;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
  * Class HasFactoryTraitTest
- * @package ByTIC\Payments\Tests\Gateways\Manager\Traits
+ * @package Paytic\Payments\Tests\Gateways\Manager\Traits
  */
 class HasFactoryTraitTest extends AbstractTest
 {

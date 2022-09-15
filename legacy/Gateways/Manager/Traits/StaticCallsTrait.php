@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Legacy\Gateways\Manager\Traits;
+namespace Paytic\Payments\Legacy\Gateways\Manager\Traits;
 
 /**
  * Trait StaticCallsTrait
- * @package ByTIC\Payments\Legacy\Gateways\Manager\Traits
+ * @package Paytic\Payments\Legacy\Gateways\Manager\Traits
  */
 trait StaticCallsTrait
 {

@@ -1,25 +1,26 @@
 <?php
 
-namespace ByTIC\Payments\Models\Purchases;
+namespace Paytic\Payments\Models\Purchases;
 
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableRepositoryTrait;
-use ByTIC\Payments\Models\Transactions\Transactions;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableRepositoryTrait;
+use Paytic\Payments\Models\Transactions\Transactions;
 
 /**
  * Trait PurchasesTrait
- * @package ByTIC\Payments\Models\Purchases
+ * @package Paytic\Payments\Models\Purchases
  */
 trait PurchasesTrait
 {
     use IsPurchasableRepositoryTrait;
-    use \ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
+    use RecordsTrait;
 
     /**
      * @return string
      */
     public function getStatusItemsRootNamespace()
     {
-        return '\ByTIC\Payments\Models\Transactions\Statuses\\';
+        return '\Paytic\Payments\Models\Transactions\Statuses\\';
     }
 
     /**

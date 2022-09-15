@@ -1,12 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Models\Purchase\Traits;
+namespace Paytic\Payments\Models\Purchase\Traits;
 
-use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
-use ByTIC\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
-use ByTIC\Payments\Models\Methods\Traits\RecordTrait;
-use ByTIC\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
-use ByTIC\Payments\Subscriptions\SubscriptionBuilder;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
+use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
+use Paytic\Payments\Models\Methods\Traits\RecordTrait;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use Paytic\Payments\Subscriptions\SubscriptionBuilder;
 use Exception;
 use Nip\Records\AbstractModels\RecordManager;
 use Nip\Records\Collections\Associated;
@@ -14,7 +15,7 @@ use Omnipay\Common\Message\RequestInterface;
 
 /**
  * Trait IsPurchasableModelTrait
- * @package ByTIC\Payments\Models\Purchase\Traits
+ * @package Paytic\Payments\Models\Purchase\Traits
  *
  * @property int $id
  * @property string $status
@@ -44,7 +45,7 @@ trait IsPurchasableModelTrait
     }
 
     /**
-     * @return bool|\ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait|null
+     * @return bool|GatewayTrait|null
      */
     public function getPaymentGateway()
     {

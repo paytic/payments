@@ -1,14 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Models\AbstractModels\HasToken;
+namespace Paytic\Payments\Models\AbstractModels\HasToken;
 
-use ByTIC\Payments\Models\Tokens\Token;
-use ByTIC\Payments\Models\Tokens\TokenTrait;
+use Paytic\Payments\Models\Tokens\Token;
+use Paytic\Payments\Models\Tokens\TokenTrait;
 use Nip\Records\Record;
 
 /**
  * Trait HasTokenRecord
- * @package ByTIC\Payments\Models\AbstractModels\HasToken
+ * @package Paytic\Payments\Models\AbstractModels\HasToken
  *
  * @property int $id_token
  * @method Token getToken()

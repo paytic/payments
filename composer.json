@@ -1,10 +1,10 @@
 {
-  "name": "bytic/payments",
+  "name": "paytic/payments",
   "type": "library",
   "license": "MIT",
   "description": "Payments module for bytic library",
   "keywords": [],
-  "homepage": "https://github.com/ByTIC/payments",
+  "homepage": "https://github.com/paytic/payments",
   "authors": [
     {
       "name": "Gabriel Solomon",
@@ -13,18 +13,21 @@
   ],
   "autoload": {
     "psr-4": {
-      "ByTIC\\Payments\\": "src/",
-      "ByTIC\\Payments\\Legacy\\": "legacy/"
+      "Paytic\\Payments\\": "src/",
+      "Paytic\\Payments\\Legacy\\": "legacy/"
     },
+    "classmap": [
+      "legacy"
+    ],
     "files": [
       "src/Utility/general.php"
     ]
   },
   "autoload-dev": {
     "psr-4": {
-      "ByTIC\\Payments\\Tests\\": "tests/src",
-      "ByTIC\\Payments\\Tests\\Fixtures\\": "tests/fixtures",
-      "ByTIC\\Payments\\Mobilpay\\Tests\\Fixtures\\": "vendor/paytic/payments-mobilpay/tests/fixtures"
+      "Paytic\\Payments\\Tests\\": "tests/src",
+      "Paytic\\Payments\\Tests\\Fixtures\\": "tests/fixtures",
+      "Paytic\\Payments\\Mobilpay\\Tests\\Fixtures\\": "vendor/paytic/payments-mobilpay/tests/fixtures"
     }
   },
   "require": {
@@ -40,7 +43,7 @@
     "bytic/models-smart-properties": "^0.9|^1.0",
     "bytic/view": "^0.9|^1.0",
     "php-http/httplug": "^1.0 || ^2.0",
-    "psr/http-client": "^1",
+    "psr/http-client": "^1.0|^2.0",
     "symfony/var-dumper": "^5.2|^6.0"
   },
   "require-dev": {
@@ -53,8 +56,6 @@
   },
   "suggest": {
     "bytic/facebook-pixel": "^1.0"
-  },
-  "scripts": {
   },
   "prefer-stable": true,
   "minimum-stability": "dev",

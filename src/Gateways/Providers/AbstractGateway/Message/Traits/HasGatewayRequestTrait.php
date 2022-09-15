@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
 use Omnipay\Common\AbstractGateway;
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 
 /**
  * Trait HasGatewayParamsRequestTrait
- * @package ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits
+ * @package Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits
  */
 trait HasGatewayRequestTrait
 {

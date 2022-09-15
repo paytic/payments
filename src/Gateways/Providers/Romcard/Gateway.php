@@ -1,16 +1,16 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Romcard;
+namespace Paytic\Payments\Gateways\Providers\Romcard;
 
 use Paytic\Omnipay\Romcard\Gateway as AbstractGateway;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
-use ByTIC\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
-use ByTIC\Payments\Gateways\Providers\Romcard\Message\PurchaseRequest;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
+use Paytic\Payments\Gateways\Providers\Romcard\Message\PurchaseRequest;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
  * Class Gateway
- * @package ByTIC\Payments\Gateways\Providers\Romcard
+ * @package Paytic\Payments\Gateways\Providers\Romcard
  */
 class Gateway extends AbstractGateway
 {

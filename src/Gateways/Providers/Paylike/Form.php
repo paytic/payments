@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\Paylike;
+namespace Paytic\Payments\Gateways\Providers\Paylike;
 
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
-use ByTIC\Payments\Models\Methods\Types\CreditCards;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Form as AbstractForm;
+use Paytic\Payments\Models\Methods\Types\CreditCards;
 
 /**
  * Class Form
- * @package ByTIC\Payments\Gateways\Providers\Paylike
+ * @package Paytic\Payments\Gateways\Providers\Paylike
  */
 class Form extends AbstractForm
 {

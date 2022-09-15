@@ -1,15 +1,17 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Models\Transactions;
+namespace Paytic\Payments\Tests\Models\Transactions;
 
-use ByTIC\Payments\Models\Transactions\Transaction;
-use ByTIC\Payments\Models\Transactions\Transactions;
+use ArrayObject;
+use Mockery;
+use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Models\Transactions\Transactions;
 use Paytic\Payments\Tests\AbstractTest;
 use Nip\Database\Query\Insert;
 
 /**
  * Class TransactionTraitTest
- * @package ByTIC\Payments\Tests\Models\Transactions
+ * @package Paytic\Payments\Tests\Models\Transactions
  */
 class TransactionTraitTest extends AbstractTest
 {
@@ -18,7 +20,7 @@ class TransactionTraitTest extends AbstractTest
         $item = new Transaction();
 
         $metadata = $item->metadata;
-        self::assertInstanceOf(\ArrayObject::class, $metadata);
+        self::assertInstanceOf(ArrayObject::class, $metadata);
 
         $item->addMedata('test', 99);
         self::assertSame(99, $item->metadata['test']);
@@ -28,7 +30,7 @@ class TransactionTraitTest extends AbstractTest
 
     public function test_cast_metadata_empty()
     {
-        $repository = \Mockery::mock(Transactions::class)->shouldAllowMockingProtectedMethods()->makePartial();
+        $repository = Mockery::mock(Transactions::class)->shouldAllowMockingProtectedMethods()->makePartial();
         $repository->shouldReceive('insertQuery')->once()->andReturn(new Insert());
         $repository->shouldReceive('performInsert')->once();
         $repository->bootTransactionsTrait();

@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Manager\Traits;
+namespace Paytic\Payments\Gateways\Manager\Traits;
 
-use ByTIC\Payments\Gateways\GatewaysCollection;
-use ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Gateways\GatewaysCollection;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Nip\Container\Container;
 use Omnipay\Common\AbstractGateway;
 
 /**
  * Trait HasGatewaysCollectionTrait
- * @package ByTIC\Payments\Gateways\Manager\Traits
+ * @package Paytic\Payments\Gateways\Manager\Traits
  */
 trait HasGatewaysCollectionTrait
 {

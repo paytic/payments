@@ -1,23 +1,25 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Models\Subscriptions;
+namespace Paytic\Payments\Tests\Models\Subscriptions;
 
-use ByTIC\Payments\Models\Methods\PaymentMethods;
-use ByTIC\Payments\Models\Subscriptions\Subscription;
-use ByTIC\Payments\Models\Subscriptions\Subscriptions;
-use ByTIC\Payments\Models\Tokens\Token;
-use ByTIC\Payments\Models\Tokens\Tokens;
-use ByTIC\Payments\Models\Transactions\Transaction;
-use ByTIC\Payments\Models\Transactions\Transactions;
-use ByTIC\Payments\Subscriptions\ChargeMethods\Gateway;
-use ByTIC\Payments\Subscriptions\ChargeMethods\Internal;
+use ByTIC\DataObjects\Casts\Metadata\Metadata;
+use Mockery;
+use Paytic\Payments\Models\Methods\PaymentMethods;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Subscriptions\Subscriptions;
+use Paytic\Payments\Models\Tokens\Token;
+use Paytic\Payments\Models\Tokens\Tokens;
+use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\Subscriptions\ChargeMethods\Gateway;
+use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
 use Paytic\Payments\Tests\AbstractTest;
 use Nip\Database\Query\Insert;
 use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class SubscriptionTraitTest
- * @package ByTIC\Payments\Tests\Models\Subscriptions
+ * @package Paytic\Payments\Tests\Models\Subscriptions
  */
 class SubscriptionTraitTest extends AbstractTest
 {
@@ -50,7 +52,7 @@ class SubscriptionTraitTest extends AbstractTest
         ModelLocator::set(Tokens::class, new Tokens());
         ModelLocator::set(PaymentMethods::class, new PaymentMethods());
 
-        $repository = \Mockery::mock(Subscriptions::class)->shouldAllowMockingProtectedMethods()->makePartial();
+        $repository = Mockery::mock(Subscriptions::class)->shouldAllowMockingProtectedMethods()->makePartial();
         $repository->shouldReceive('initRelationsTransactions');
         $repository->shouldReceive('initRelationsLastTransaction');
         $repository->setPrimaryKey('id');
@@ -71,7 +73,7 @@ class SubscriptionTraitTest extends AbstractTest
         $item = new Subscription();
 
         $metadata = $item->metadata;
-        self::assertInstanceOf(\ByTIC\DataObjects\Casts\Metadata\Metadata::class, $metadata);
+        self::assertInstanceOf(Metadata::class, $metadata);
 
         $item->addMedata('test', 99);
         self::assertSame(99, $item->metadata['test']);
@@ -81,7 +83,7 @@ class SubscriptionTraitTest extends AbstractTest
 
     public function test_cast_metadata_empty()
     {
-        $repository = \Mockery::mock(Transactions::class)->shouldAllowMockingProtectedMethods()->makePartial();
+        $repository = Mockery::mock(Transactions::class)->shouldAllowMockingProtectedMethods()->makePartial();
         $repository->shouldReceive('insertQuery')->once()->andReturn(new Insert());
         $repository->shouldReceive('performInsert')->once();
         $repository->bootTransactionsTrait();

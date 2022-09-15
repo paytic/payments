@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Subscriptions\Builder;
+namespace Paytic\Payments\Subscriptions\Builder;
 
-use ByTIC\Payments\Subscriptions\Billing\BillingPeriod;
+use Paytic\Payments\Subscriptions\Billing\BillingPeriod;
 use Exception;
 
 /**
  * Trait ManageBillingCycle
- * @package ByTIC\Payments\Subscriptions\Builder
+ * @package Paytic\Payments\Subscriptions\Builder
  */
 trait ManageBillingCycle
 {

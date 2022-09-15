@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Gateways;
+namespace Paytic\Payments\Tests\Gateways;
 
-use ByTIC\Payments\Gateways\GatewayFactory;
+use Paytic\Payments\Gateways\GatewayFactory;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
  * Class GatewayFactoryTest
- * @package ByTIC\Payments\Tests\Gateways
+ * @package Paytic\Payments\Tests\Gateways
  */
 class GatewayFactoryTest extends AbstractTest
 {

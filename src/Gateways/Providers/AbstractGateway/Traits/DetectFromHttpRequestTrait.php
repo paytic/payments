@@ -1,13 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Traits;
 
+use Exception;
 use Omnipay\Common\Message\AbstractRequest;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Trait DetectFromHttpRequestTrait
- * @package ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits
+ * @package Paytic\Payments\Gateways\Providers\AbstractGateway\Traits
  */
 trait DetectFromHttpRequestTrait
 {
@@ -17,7 +18,7 @@ trait DetectFromHttpRequestTrait
      * @param HttpRequest $httpRequest
      *
      * @return AbstractRequest|false
-     * @throws \Exception
+     * @throws Exception
      */
     public function detectFromHttpRequestTrait($modelManager, $callback = null, $httpRequest = null)
     {
@@ -34,7 +35,7 @@ trait DetectFromHttpRequestTrait
             return false;
         }
         if (!method_exists($request, 'isValidNotification')) {
-            throw new \Exception("Request must have a isValidNotification public method");
+            throw new Exception("Request must have a isValidNotification public method");
         }
         if (!$request->isValidNotification()) {
             return false;

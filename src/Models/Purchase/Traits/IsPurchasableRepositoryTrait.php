@@ -1,14 +1,14 @@
 <?php
 
-namespace ByTIC\Payments\Models\Purchase\Traits;
+namespace Paytic\Payments\Models\Purchase\Traits;
 
-use ByTIC\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
-use ByTIC\Payments\Models\Purchase\IsPurchasableRepository;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
+use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Trait IsPurchasableRepositoryTrait
- * @package ByTIC\Payments\Models\Purchase\Traits
+ * @package Paytic\Payments\Models\Purchase\Traits
  */
 trait IsPurchasableRepositoryTrait
 {

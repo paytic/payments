@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
+namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Traits;
 
 use Omnipay\Common\Message\RequestInterface;
 
 /**
  * Trait OverwriteCompletePurchaseTrait
- * @package ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits
+ * @package Paytic\Payments\Gateways\Providers\AbstractGateway\Traits
  */
 trait OverwriteCompletePurchaseTrait
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Payments\Gateways;
+namespace Paytic\Payments\Gateways;
 
 use Omnipay\Common\GatewayInterface;
 use Omnipay\Common\Http\ClientInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Class GatewayFactory
- * @package ByTIC\Payments\Gateways
+ * @package Paytic\Payments\Gateways
  */
 class GatewayFactory
 {
@@ -63,8 +63,8 @@ class GatewayFactory
         }
 
         $tries= [
-            '\\ByTIC\Payments\\' . $shortName . 'Gateway',
-            '\\ByTIC\Payments\Gateways\Providers\\' . $shortName . 'Gateway',
+            '\\Paytic\Payments\\' . $shortName . 'Gateway',
+            '\\Paytic\Payments\Gateways\Providers\\' . $shortName . 'Gateway',
             '\\Paytic\Payments\\' . $shortName . 'Gateway',
             '\\Paytic\Payments\Gateways\Providers\\' . $shortName . 'Gateway'
         ];
@@ -73,6 +73,6 @@ class GatewayFactory
                 return $try;
             }
         }
-        return '\\ByTIC\Payments\Gateways\Providers\\' . $shortName . 'Gateway';
+        return '\\Paytic\Payments\Gateways\Providers\\' . $shortName . 'Gateway';
     }
 }

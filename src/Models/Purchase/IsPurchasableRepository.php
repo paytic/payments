@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Payments\Models\Purchase;
+namespace Paytic\Payments\Models\Purchase;
 
 /**
  *

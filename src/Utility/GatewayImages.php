@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Payments\Utility;
+namespace Paytic\Payments\Utility;
 
 /**
  * Class GatewayImages
- * @package ByTIC\Payments\Utility
+ * @package Paytic\Payments\Utility
  */
 class GatewayImages
 {

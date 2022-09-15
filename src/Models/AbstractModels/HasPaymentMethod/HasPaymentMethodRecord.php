@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Models\AbstractModels\HasPaymentMethod;
+namespace Paytic\Payments\Models\AbstractModels\HasPaymentMethod;
 
-use ByTIC\Payments\Models\Methods\PaymentMethod;
+use Paytic\Payments\Models\Methods\PaymentMethod;
 
 /**
  * Trait HasPaymentMethodRecord
- * @package ByTIC\Payments\Models\AbstractModels\HasPaymentMethod
+ * @package Paytic\Payments\Models\AbstractModels\HasPaymentMethod
  *
  * @property int $id_method
  * @method PaymentMethod getPaymentMethod()

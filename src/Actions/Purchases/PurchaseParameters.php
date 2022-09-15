@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Payments\Actions\Purchases;
+namespace Paytic\Payments\Actions\Purchases;
 
-use ByTIC\Payments\Models\Purchase\Traits\IsPurchasableTrait;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableTrait;
 
 /**
  * Class PurchaseParameters
- * @package ByTIC\Payments\Actions\Purchases
+ * @package Paytic\Payments\Actions\Purchases
  */
 class PurchaseParameters
 {

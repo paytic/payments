@@ -1,14 +1,16 @@
 <?php
 
-namespace ByTIC\Payments\Actions\GatewayNotifications;
+namespace Paytic\Payments\Actions\GatewayNotifications;
 
 use ByTIC\Omnipay\Librapay\Message\ServerCompletePurchaseResponse;
-use ByTIC\Payments\Utility\PaymentsModels;
+use Nip\Records\AbstractModels\Record;
 use Omnipay\Common\Message\AbstractResponse;
+use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class CreateOrUpdateTransactionFromResponse
- * @package ByTIC\Payments\Actions\GatewayNotifications
+ * @package Paytic\Payments\Actions\GatewayNotifications
  * @internal
  */
 class CreateOrUpdateTransactionFromResponse
@@ -17,7 +19,7 @@ class CreateOrUpdateTransactionFromResponse
      * @param $response
      * @param $model
      * @param $type
-     * @return \ByTIC\Payments\Models\Transactions\TransactionTrait|\Nip\Records\AbstractModels\Record
+     * @return TransactionTrait|Record
      */
     public static function handle(NotificationData $notification)
     {
