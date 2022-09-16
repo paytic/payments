@@ -1,14 +1,14 @@
 <?php
 
-namespace Paytic\Payments\Actions\Subscriptions;
+namespace Paytic\Payments\Subscriptions\Actions;
 
-use Paytic\Payments\Actions\Subscriptions\Charges\CalculateNextCharge;
 use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Actions\Charges\CalculateNextCharge;
 use Paytic\Payments\Subscriptions\Statuses\Active;
 
 /**
  * Class StartSubscription
- * @package Paytic\Payments\Actions\Subscriptions
+ * @package Paytic\Payments\Subscriptions\Actions
  */
 class StartSubscription
 {

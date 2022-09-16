@@ -1,13 +1,13 @@
 <?php
 
-namespace Paytic\Payments\Actions\Subscriptions\Charges;
+namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
 use DateTime;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**
  * Class CalculateNextAttempt
- * @package Paytic\Payments\Actions\Subscriptions\Charges
+ * @package Paytic\Payments\Subscriptions\Actions\Charges
  */
 class CalculateNextAttempt
 {

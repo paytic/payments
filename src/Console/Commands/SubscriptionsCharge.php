@@ -3,11 +3,7 @@
 namespace Paytic\Payments\Console\Commands;
 
 use ByTIC\Console\Command;
-use Paytic\Payments\Actions\Subscriptions\ChargeSubscription;
-use Paytic\Payments\Actions\Subscriptions\ChargeSubscriptionsDue;
-use Paytic\Payments\Utility\PaymentsModels;
-use Enqueue\Consumption\ChainExtension;
-use Enqueue\Consumption\Extension\ExitStatusExtension;
+use Paytic\Payments\Subscriptions\Actions\ChargeSubscriptionsDue;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

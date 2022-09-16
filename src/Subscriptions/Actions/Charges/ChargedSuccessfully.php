@@ -1,12 +1,12 @@
 <?php
 
-namespace Paytic\Payments\Actions\Subscriptions\Charges;
+namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
 use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**
  * Class ChargedSuccessfully
- * @package Paytic\Payments\Actions\Subscriptions\Charges
+ * @package Paytic\Payments\Subscriptions\Actions\Charges
  */
 class ChargedSuccessfully
 {

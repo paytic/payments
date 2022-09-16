@@ -3,8 +3,8 @@
 namespace Paytic\Payments\Actions\GatewayNotifications;
 
 use Nip\Records\AbstractModels\Record;
-use Paytic\Payments\Actions\Subscriptions\UpdateFromTransactionNotification;
 use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\Subscriptions\Actions\UpdateFromTransactionNotification;
 
 /**
  * Class UpdateSubscriptionFromResponse

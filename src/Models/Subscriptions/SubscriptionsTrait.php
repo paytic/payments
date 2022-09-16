@@ -6,12 +6,12 @@ use ByTIC\Models\SmartProperties\Properties\Types\Generic as GenericType;
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
 use Exception;
 use Nip\Config\Config;
+use Nip\Records\Collections\Collection;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
 use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
 use Paytic\Payments\Utility\PaymentsModels;
-use Nip\Records\Collections\Collection;
 
 /**
  * Trait SubscriptionsTrait
@@ -78,22 +78,22 @@ trait SubscriptionsTrait
         $this->initRelationsCustomer();
     }
 
-    protected function initRelationsTransactions()
+    protected function initRelationsTransactions(): void
     {
-        $this->hasMany('Transactions', ['class' => get_class(PaymentsModels::transactions()),'fk' => 'id_subscription']);
+        $this->hasMany('Transactions', ['class' => get_class(PaymentsModels::transactions())]);
     }
 
-    protected function initRelationsLastTransaction()
+    protected function initRelationsLastTransaction(): void
     {
         $this->hasOne('LastTransaction', ['class' => get_class(PaymentsModels::transactions())]);
     }
 
-    protected function initRelationsTokens()
+    protected function initRelationsTokens(): void
     {
         $this->hasMany('Tokens', ['class' => get_class(PaymentsModels::tokens())]);
     }
 
-    protected function registerSmartProperties()
+    protected function registerSmartProperties(): void
     {
         $this->registerSmartProperty('charge_method', 'ChargeMethods');
         $this->registerSmartPropertyStatus();
@@ -150,6 +150,11 @@ trait SubscriptionsTrait
     protected function generateTable()
     {
         return config('payments.tables.subscriptions', Subscriptions::TABLE);
+    }
+
+    public function generatePrimaryFK(): string
+    {
+        return 'id_subscription';
     }
 
     /**

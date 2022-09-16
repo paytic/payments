@@ -1,16 +1,16 @@
 <?php
 
-namespace Paytic\Payments\Actions\Subscriptions\Charges;
+namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
 use DateTime;
 use InvalidArgumentException;
 use Nip\Utility\Date;
+use Paytic\CommonObjects\Subscriptions\Billing\BillingPeriod;
 use Paytic\Payments\Models\Subscriptions\Subscription;
-use Paytic\Payments\Subscriptions\Billing\BillingPeriod;
 
 /**
  * Class CalculateNextCharge
- * @package Paytic\Payments\Actions\Subscriptions\Charges
+ * @package Paytic\Payments\Subscriptions\Actions\Charges
  */
 class CalculateNextCharge
 {

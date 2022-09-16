@@ -15,4 +15,6 @@
 * https://github.com/DarvinStudio/DarvinPaymentBundle
 * https://github.com/Payum/PayumBundle
 * https://github.com/activecollab/payments
+* https://github.com/MakingCG/saas-billing
+* https://github.com/gvidas/subcription
 ##

@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Actions\Subscriptions;
+namespace Paytic\Payments\Subscriptions\Actions;
 
 use Paytic\Payments\Models\Subscriptions\Subscriptions;
 use Paytic\Payments\Utility\PaymentsModels;

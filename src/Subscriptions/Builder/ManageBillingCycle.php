@@ -2,8 +2,8 @@
 
 namespace Paytic\Payments\Subscriptions\Builder;
 
-use Paytic\Payments\Subscriptions\Billing\BillingPeriod;
 use Exception;
+use Paytic\CommonObjects\Subscriptions\Billing\BillingPeriod;
 
 /**
  * Trait ManageBillingCycle

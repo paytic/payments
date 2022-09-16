@@ -1,11 +1,11 @@
 <?php
 
-namespace Paytic\Payments\Actions\Subscriptions;
+namespace Paytic\Payments\Subscriptions\Actions;
 
-use Paytic\Payments\Actions\Subscriptions\Charges\ChargedSuccessfully;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
 use Paytic\Payments\Subscriptions\Statuses\Active as SubscriptionActive;
 use Paytic\Payments\Subscriptions\Statuses\Canceled;
 use Paytic\Payments\Subscriptions\Statuses\Completed;
@@ -13,7 +13,7 @@ use Paytic\Payments\Subscriptions\Statuses\NotStarted;
 
 /**
  * Class UpdateFromTransactionToken
- * @package Paytic\Payments\Actions\Subscriptions
+ * @package Paytic\Payments\Subscriptions\Actions
  */
 class UpdateFromTransactionNotification
 {
@@ -60,7 +60,7 @@ class UpdateFromTransactionNotification
     protected static function handleActive($subscription, $transaction)
     {
         if ($transaction->getStatus() instanceof Active) {
-//            ChargedSuccessfully::handle($subscription);
+            ChargedSuccessfully::handle($subscription);
             return;
         }
     }

@@ -6,6 +6,7 @@ use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic;
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+use Paytic\CommonObjects\Subscription\SubscriptionImplementation;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
@@ -52,6 +53,7 @@ trait SubscriptionTrait
     use HasCustomerRecord;
     use HasTokenRecord;
     use TimestampableTrait;
+    use SubscriptionImplementation;
 
     public function getName()
     {

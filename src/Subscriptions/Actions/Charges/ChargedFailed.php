@@ -1,12 +1,12 @@
 <?php
 
-namespace Paytic\Payments\Actions\Subscriptions\Charges;
+namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
 use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**
  * Class ChargedFailed
- * @package Paytic\Payments\Actions\Subscriptions\Charges
+ * @package Paytic\Payments\Subscriptions\Actions\Charges
  */
 class ChargedFailed
 {
@@ -16,7 +16,7 @@ class ChargedFailed
     public static function handle($subscription)
     {
         $subscription->charge_attempts = $subscription->charge_attempts + 1;
-        CalculateNextCharge::for($subscription);
+//        CalculateNextCharge::for($subscription);
         $subscription->update();
     }
 }
