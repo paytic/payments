@@ -3,6 +3,7 @@
 namespace Paytic\Payments\Transactions\Actions;
 
 use Nip\Records\Record;
+use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Actions\Purchases\DuplicatePurchase;
 use Paytic\Payments\Models\Purchases\Purchase;
 use Paytic\Payments\Models\Subscriptions\Subscription;
@@ -16,12 +17,12 @@ use Paytic\Payments\Utility\PaymentsModels;
  */
 class CreateNewTransactionInSubscription
 {
-    protected Subscription $subscription;
+    protected SubscriptionInterface $subscription;
 
     /**
      * @param Subscription $subscription
      */
-    public function __construct(Subscription $subscription)
+    public function __construct(SubscriptionInterface $subscription)
     {
         $this->subscription = $subscription;
     }
@@ -30,12 +31,12 @@ class CreateNewTransactionInSubscription
      * @param Subscription $subscription
      * @return Transaction|TransactionTrait
      */
-    public static function for($subscription): Record
+    public static function for(SubscriptionInterface $subscription): Record
     {
         return (new static($subscription))->execute();
     }
 
-    protected function execute(): Record
+    protected function execute()
     {
         $purchase = $this->determinePurchase();
         $transaction = PaymentsModels::transactions()->findOrCreateForPurchase($purchase);

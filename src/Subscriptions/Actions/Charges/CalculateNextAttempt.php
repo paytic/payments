@@ -3,6 +3,7 @@
 namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
 use DateTime;
+use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**
@@ -11,15 +12,29 @@ use Paytic\Payments\Models\Subscriptions\Subscription;
  */
 class CalculateNextAttempt
 {
+    protected SubscriptionInterface $subscription;
+
+    /**
+     * @param SubscriptionInterface $subscription
+     */
+    protected function __construct(SubscriptionInterface $subscription)
+    {
+        $this->subscription = $subscription;
+    }
+
     /**
      * @param Subscription $subscription
      */
     public static function for($subscription)
     {
-        $count = $subscription->charge_attempts > 0 ? $subscription->charge_attempts : 1;
-        $subscription->charge_at = static::nextAttempt(
-            $subscription->charge_at,
-            $count
+        (new static($subscription))->execute();
+    }
+
+    protected function execute()
+    {
+        $this->subscription->charge_at = $this->nextAttempt(
+            $this->subscription->charge_at,
+            $this->getTries()
         );
     }
 
@@ -28,7 +43,7 @@ class CalculateNextAttempt
      * @param $period
      * @param $interval
      */
-    protected static function nextAttempt(DateTime $lastAttempt, $tries)
+    protected function nextAttempt(DateTime $lastAttempt, $tries)
     {
         switch ($tries) {
             case 1:
@@ -44,5 +59,12 @@ class CalculateNextAttempt
                 return $lastAttempt->addDays(2);
         }
         return $lastAttempt->addDays($tries - 2);
+    }
+
+    protected function getTries(): int
+    {
+        return $this->subscription->charge_attempts > 0
+            ? $this->subscription->charge_attempts
+            : 1;
     }
 }

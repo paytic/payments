@@ -8,6 +8,7 @@ use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedFailed;
+use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
 use Paytic\Payments\Transactions\Actions\ChargeWithToken;
 use Paytic\Payments\Transactions\Actions\CreateNewTransactionInSubscription;
 
@@ -52,12 +53,35 @@ class ChargeSubscription
         return CreateNewTransactionInSubscription::for($this->subscription);
     }
 
-    protected function chargeTransaction($transaction)
+    /**
+     * @param $transaction
+     * @return void
+     */
+    protected function chargeTransaction($transaction): void
     {
         try {
             ChargeWithToken::process($transaction);
+            $this->executeOnSuccess($transaction);
         } catch (Exception $exception) {
-            ChargedFailed::handle($this->subscription);
+            $this->executeOnFailed($transaction);
         }
+    }
+
+    /**
+     * @param $transaction
+     * @return void
+     */
+    protected function executeOnSuccess($transaction): void
+    {
+        ChargedSuccessfully::handle($this->subscription);
+    }
+
+    /**
+     * @param $transaction
+     * @return void
+     */
+    protected function executeOnFailed($transaction): void
+    {
+        ChargedFailed::handle($this->subscription);
     }
 }

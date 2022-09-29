@@ -2,7 +2,9 @@
 
 namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
+use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Actions\DeactivateSubscription;
 
 /**
  * Class ChargedFailed
@@ -11,12 +13,17 @@ use Paytic\Payments\Models\Subscriptions\Subscription;
 class ChargedFailed
 {
     /**
-     * @param Subscription $subscription
+     * @param Subscription|SubscriptionInterface $subscription
      */
-    public static function handle($subscription)
+    public static function handle(SubscriptionInterface $subscription)
     {
+        if ($subscription->isChargeAttemptsMaxed()) {
+            DeactivateSubscription::handle($subscription);
+            return;
+        }
+
         $subscription->charge_attempts = $subscription->charge_attempts + 1;
-//        CalculateNextCharge::for($subscription);
+        CalculateNextAttempt::for($subscription);
         $subscription->update();
     }
 }

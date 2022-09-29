@@ -6,6 +6,7 @@ use DateTime;
 use InvalidArgumentException;
 use Nip\Utility\Date;
 use Paytic\CommonObjects\Subscription\Billing\BillingPeriod;
+use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**
@@ -17,7 +18,7 @@ class CalculateNextCharge
     /**
      * @param Subscription $subscription
      */
-    public static function for($subscription)
+    public static function for(SubscriptionInterface $subscription)
     {
         $count = $subscription->charge_count > 0 ? $subscription->charge_count : 1;
         $subscription->charge_at = static::nextBillingDate(
