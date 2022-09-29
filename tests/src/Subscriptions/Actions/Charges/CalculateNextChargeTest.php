@@ -1,10 +1,10 @@
 <?php
 
-namespace Paytic\Payments\Tests\Actions\Subscriptions\Charges;
+namespace Paytic\Payments\Tests\Subscriptions\Actions\Charges;
 
-use Paytic\Payments\Actions\Subscriptions\Charges\CalculateNextCharge;
+use Paytic\CommonObjects\Subscription\Billing\BillingPeriod;
 use Paytic\Payments\Models\Subscriptions\Subscription;
-use Paytic\Payments\Subscriptions\Billing\BillingPeriod;
+use Paytic\Payments\Subscriptions\Actions\Charges\CalculateNextCharge;
 use Paytic\Payments\Tests\AbstractTestCase;
 
 /**

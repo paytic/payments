@@ -5,7 +5,7 @@ namespace Paytic\Payments\Subscriptions\Actions\Charges;
 use DateTime;
 use InvalidArgumentException;
 use Nip\Utility\Date;
-use Paytic\CommonObjects\Subscriptions\Billing\BillingPeriod;
+use Paytic\CommonObjects\Subscription\Billing\BillingPeriod;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 
 /**

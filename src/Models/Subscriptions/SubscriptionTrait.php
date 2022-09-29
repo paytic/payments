@@ -5,18 +5,17 @@ namespace Paytic\Payments\Models\Subscriptions;
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic;
-use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait as HasStatusRecord;
+use DateTime;
 use Paytic\CommonObjects\Subscription\SubscriptionImplementation;
+use Paytic\Omnipay\Common\Models\SubscriptionInterface;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
-use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecordTrait;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
 use Paytic\Payments\Models\Tokens\Token;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\TransactionTrait;
 use Paytic\Payments\Subscriptions\ChargeMethods\AbstractMethod;
-use DateTime;
-use Paytic\Omnipay\Common\Models\SubscriptionInterface;
 
 /**
  * Trait SubscriptionTrait
@@ -48,12 +47,15 @@ use Paytic\Omnipay\Common\Models\SubscriptionInterface;
  */
 trait SubscriptionTrait
 {
-    use RecordTrait;
+    use HasStatusRecord, SubscriptionImplementation {
+        SubscriptionImplementation::getStatus insteadof HasStatusRecord;
+        HasStatusRecord::getStatus as getStatusObject;
+    }
+
     use HasPaymentMethodRecord;
     use HasCustomerRecord;
     use HasTokenRecord;
     use TimestampableTrait;
-    use SubscriptionImplementation;
 
     public function getName()
     {
