@@ -3,10 +3,10 @@
 namespace Paytic\Payments\Subscriptions\Statuses;
 
 /**
- * Class Active
+ * Class Deactivated
  * @package KM42\Register\Models\Races\Entries\Statuses
  */
-class Active extends AbstractStatus
+class Deactivated extends AbstractStatus
 {
-    public const NAME = self::ACTIVE;
+    public const NAME = self::DEACTIVATED;
 }

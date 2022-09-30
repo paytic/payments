@@ -8,5 +8,5 @@ namespace Paytic\Payments\Subscriptions\Statuses;
  */
 class Canceled extends AbstractStatus
 {
-    public const NAME = 'canceled';
+    public const NAME = self::CANCELED;
 }

@@ -3,15 +3,16 @@
 namespace Paytic\Payments\Tests\Models\Subscriptions;
 
 use Mockery;
+use Mockery\Mock;
+use Nip\Database\Query\Select;
+use Nip\Records\Collections\Collection;
 use Paytic\Payments\Models\Subscriptions\Subscriptions;
 use Paytic\Payments\Subscriptions\ChargeMethods\Gateway;
 use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
 use Paytic\Payments\Subscriptions\Statuses\Active;
-use Paytic\Payments\Subscriptions\Statuses\NotStarted;
+use Paytic\Payments\Subscriptions\Statuses\Paused;
+use Paytic\Payments\Subscriptions\Statuses\Pending;
 use Paytic\Payments\Tests\AbstractTest;
-use Mockery\Mock;
-use Nip\Database\Query\Select;
-use Nip\Records\Collections\Collection;
 
 /**
  * Class SubscriptionsTraitTest
@@ -23,10 +24,11 @@ class SubscriptionsTraitTest extends AbstractTest
     {
         $statuses = Subscriptions::instance()->getStatuses();
 
-        self::assertCount(4, $statuses);
+        self::assertCount(5, $statuses);
 
         self::assertInstanceOf(Active::class, $statuses[Active::NAME]);
-        self::assertInstanceOf(NotStarted::class, $statuses[NotStarted::NAME]);
+        self::assertInstanceOf(Pending::class, $statuses[Pending::NAME]);
+        self::assertInstanceOf(Paused::class, $statuses[Paused::NAME]);
     }
 
     public function test_getChargeMethods()

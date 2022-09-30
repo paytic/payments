@@ -3,10 +3,10 @@
 namespace Paytic\Payments\Subscriptions\Statuses;
 
 /**
- * Class Completed
+ * Class Paused
  * @package KM42\Register\Models\Races\Entries\Statuses
  */
-class Completed extends AbstractStatus
+class Paused extends AbstractStatus
 {
-    public const NAME = 'completed';
+    public const NAME = self::PAUSED;
 }

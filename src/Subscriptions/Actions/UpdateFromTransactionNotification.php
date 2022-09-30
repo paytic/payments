@@ -8,8 +8,8 @@ use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
 use Paytic\Payments\Subscriptions\Statuses\Active as SubscriptionActive;
 use Paytic\Payments\Subscriptions\Statuses\Canceled;
-use Paytic\Payments\Subscriptions\Statuses\Completed;
-use Paytic\Payments\Subscriptions\Statuses\NotStarted;
+use Paytic\Payments\Subscriptions\Statuses\Deactivated;
+use Paytic\Payments\Subscriptions\Statuses\Pending;
 
 /**
  * Class UpdateFromTransactionToken
@@ -25,11 +25,11 @@ class UpdateFromTransactionNotification
     {
         $status = $subscription->getStatus();
 
-        if ($status instanceof Canceled || $status instanceof Completed) {
+        if ($status instanceof Canceled || $status instanceof Deactivated) {
             return;
         }
 
-        if ($status instanceof NotStarted) {
+        if ($status instanceof Pending) {
             static::handleNotStarted($subscription, $transaction);
             return;
         }

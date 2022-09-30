@@ -3,10 +3,10 @@
 namespace Paytic\Payments\Subscriptions\Statuses;
 
 /**
- * Class NotStarted
+ * Class Pending
  * @package KM42\Register\Models\Races\Entries\Statuses
  */
-class NotStarted extends AbstractStatus
+class Pending extends AbstractStatus
 {
-    public const NAME = 'not_started';
+    public const NAME = self::PENDING;
 }
