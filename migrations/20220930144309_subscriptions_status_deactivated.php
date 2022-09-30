@@ -22,7 +22,7 @@ final class SubscriptionsStatusDeactivated extends AbstractMigration
         $table_subscriptions = PaymentsModels::subscriptions()->getTable();
 
         $this->table($table_subscriptions)
-            ->addColumn('status', 'enum',
+            ->changeColumn('status', 'enum',
                 [
                     'values' => ['pending', 'active', 'canceled', 'deactivated', 'paused'],
                     'default' => 'pending',

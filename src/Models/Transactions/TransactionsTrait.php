@@ -5,14 +5,14 @@ namespace Paytic\Payments\Models\Transactions;
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
 use Exception;
 use Nip\Config\Config;
+use Nip\Records\AbstractModels\Record;
+use Nip\Records\EventManager\Events\Event;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Paytic\Payments\Models\Purchases\Purchase;
+use Paytic\Payments\Transactions\Actions\Create\CreateTransactionForPurchase;
 use Paytic\Payments\Utility\PaymentsModels;
-use Nip\MailModule\Models\EmailsTable\EmailTrait;
-use Nip\Records\AbstractModels\Record;
-use Nip\Records\EventManager\Events\Event;
 
 /**
  * Trait TransactionsTrait
@@ -30,7 +30,7 @@ trait TransactionsTrait
     {
         static::creating(function (Event $event) {
 
-            /** @var EmailTrait|\Nip\Records\Record $record */
+            /** @var \Nip\Records\Record $record */
             $record = $event->getRecord();
 
             $record->setIf('metadata', '{}', function () use ($record) {
@@ -83,11 +83,7 @@ trait TransactionsTrait
      */
     protected function createForPurchase($purchase)
     {
-        $transaction = $this->getNew();
-        $transaction->populateFromPayment($purchase);
-        $transaction->populateFromGateway($purchase->getPaymentMethod()->getType()->getGateway());
-        $transaction->insert();
-        return $transaction;
+        return CreateTransactionForPurchase::for($purchase);
     }
 
     protected function initRelations()
@@ -104,12 +100,12 @@ trait TransactionsTrait
         $this->initRelationsToken();
     }
 
-    protected function initRelationsPurchase()
+    protected function initRelationsPurchase(): void
     {
         $this->belongsTo('Purchase', ['class' => get_class(PaymentsModels::purchases()), 'fk' => 'id_purchase']);
     }
 
-    protected function initRelationsSubscription()
+    protected function initRelationsSubscription(): void
     {
         $this->belongsTo('Subscription', ['class' => get_class(PaymentsModels::subscriptions())]);
     }

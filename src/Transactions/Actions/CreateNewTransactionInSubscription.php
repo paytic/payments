@@ -45,6 +45,9 @@ class CreateNewTransactionInSubscription
         $transaction->populateFromToken($this->subscription->getToken());
         $transaction->update();
 
+        $this->subscription->id_last_transaction = $transaction->id;
+        $this->subscription->saveRecord();
+
         return $transaction;
     }
 
