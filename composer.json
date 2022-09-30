@@ -56,7 +56,8 @@
     "bytic/phpqatools": "^1.0"
   },
   "suggest": {
-    "bytic/facebook-pixel": "^1.0"
+    "bytic/facebook-pixel": "^1.0",
+    "bytic/migrations": "^1.0"
   },
   "prefer-stable": true,
   "minimum-stability": "dev",

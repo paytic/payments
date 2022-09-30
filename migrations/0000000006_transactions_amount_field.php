@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Paytic\Payments\Utility\PaymentsModels;
 use Phinx\Migration\AbstractMigration;
 
 /**
@@ -22,7 +23,7 @@ final class TransactionsAmountField extends AbstractMigration
      */
     public function change(): void
     {
-        $table_name = \ByTIC\Payments\Utility\PaymentsModels::transactions()->getTable();
+        $table_name = PaymentsModels::transactions()->getTable();
 
         $this->table($table_name)
             ->addColumn('amount', 'integer', ['null' => true, 'after' => 'gateway'])
