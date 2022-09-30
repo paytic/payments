@@ -3,7 +3,7 @@
 namespace Paytic\Payments\Subscriptions\Builder;
 
 use Exception;
-use Paytic\CommonObjects\Subscriptions\Billing\BillingPeriod;
+use Paytic\CommonObjects\Subscription\Billing\BillingPeriod;
 
 /**
  * Trait ManageBillingCycle
