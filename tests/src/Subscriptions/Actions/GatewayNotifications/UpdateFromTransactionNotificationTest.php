@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Tests\Subscriptions\Actions\GatewayNotifications;
 
-use Carbon\Carbon;
 use Mockery;
 use Mockery\Mock;
 use Paytic\CommonObjects\Subscription\Billing\BillingPeriod;
@@ -53,8 +52,7 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
         /** @var Subscription|Mock $subscription */
         list($action, $subscription, $transaction) = $this->generateEmptyMocks();
         $subscription->status = Pending::NAME;
-        $now = Carbon::now();
-        $subscription->start_at = $now->format('Y-m-d');
+        $subscription->start_at = '2022-05-01';
         $subscription->billing_period = BillingPeriod::MONTHLY;
         $subscription->billing_interval = 1;
         $subscription->shouldReceive('setStatus')->with(\Paytic\Payments\Subscriptions\Statuses\Active::NAME)->once();
@@ -63,5 +61,7 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
         $transaction->status = Active::NAME;
 
         $action->execute();
+
+        self::assertSame('2022-06-01 08:00:00', (string)$subscription->getPropertyRaw('charge_at'));
     }
 }
