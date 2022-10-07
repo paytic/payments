@@ -2,11 +2,11 @@
 
 namespace Paytic\Payments\Transactions\Actions;
 
+use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\AbstractResponse;
 use Paytic\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
 use Paytic\Payments\Exception\InvalidArgumentException;
 use Paytic\Payments\Exception\RequestNotSupportedException;
-use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Paytic\Payments\Models\Transactions\Transaction;
 
 /**
@@ -41,8 +41,9 @@ class ChargeWithToken
         $gateway = $this->determineGateway();
         $parameters = $this->determineParameters();
 
+        $request = $gateway->purchaseWithToken($parameters);
         /** @var AbstractResponse $response */
-        $response = $gateway->purchaseWithToken($parameters);
+        $response = $request->send();
 
         $response->processModel();
         UpdatePaymentModelsFromResponse::handle($response, $this->transaction, 'IPN');
@@ -50,7 +51,10 @@ class ChargeWithToken
         return $response;
     }
 
-    protected function determineGateway(): bool|GatewayTrait|null
+    /**
+     * @return bool|AbstractGateway|null
+     */
+    protected function determineGateway(): bool|AbstractGateway|null
     {
         $method = $this->transaction->getPaymentMethod();
         if (!is_object($method)) {
