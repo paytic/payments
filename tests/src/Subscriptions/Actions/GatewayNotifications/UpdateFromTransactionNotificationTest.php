@@ -1,0 +1,67 @@
+<?php
+
+namespace ByTIC\Payments\Tests\Subscriptions\Actions\GatewayNotifications;
+
+use Carbon\Carbon;
+use Mockery;
+use Mockery\Mock;
+use Paytic\CommonObjects\Subscription\Billing\BillingPeriod;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Transactions\Statuses\Active;
+use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\Subscriptions\Actions\GatewayNotifications\UpdateFromTransactionNotification;
+use Paytic\Payments\Subscriptions\Statuses\Pending;
+use Paytic\Payments\Tests\AbstractTestCase;
+
+/**
+ *
+ */
+class UpdateFromTransactionNotificationTest extends AbstractTestCase
+{
+    public function test_handle_success_on_empty_subscription()
+    {
+        /** @var UpdateFromTransactionNotification|Mock $action */
+        list($action, $subscription, $transaction) = $this->generateEmptyMocks();
+        $action->shouldReceive('handleNotStarted')->once();
+
+        $action->execute();
+    }
+
+    protected function generateEmptyMocks(): array
+    {
+        $subscription = Mockery::mock(Subscription::class)
+            ->shouldAllowMockingProtectedMethods()
+            ->makePartial();
+
+        $transaction = Mockery::mock(Transaction::class)
+            ->shouldAllowMockingProtectedMethods()
+            ->makePartial();
+        $transaction->setManager(new Transactions());
+
+        $action = Mockery::mock(UpdateFromTransactionNotification::class)
+            ->shouldAllowMockingProtectedMethods()
+            ->makePartial();
+        $action->__construct($subscription, $transaction);
+
+        return [$action, $subscription, $transaction];
+    }
+
+    public function test_handle_success_on_pending_subscription()
+    {
+        /** @var UpdateFromTransactionNotification|Mock $action */
+        /** @var Subscription|Mock $subscription */
+        list($action, $subscription, $transaction) = $this->generateEmptyMocks();
+        $subscription->status = Pending::NAME;
+        $now = Carbon::now();
+        $subscription->start_at = $now->format('Y-m-d');
+        $subscription->billing_period = BillingPeriod::MONTHLY;
+        $subscription->billing_interval = 1;
+        $subscription->shouldReceive('setStatus')->with(\Paytic\Payments\Subscriptions\Statuses\Active::NAME)->once();
+        $subscription->shouldReceive('update')->once();
+
+        $transaction->status = Active::NAME;
+
+        $action->execute();
+    }
+}

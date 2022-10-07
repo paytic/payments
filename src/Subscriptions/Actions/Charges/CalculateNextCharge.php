@@ -2,9 +2,9 @@
 
 namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
+use ByTIC\DataObjects\ValueCaster;
 use DateTime;
 use InvalidArgumentException;
-use Nip\Utility\Date;
 use Paytic\CommonObjects\Subscription\Billing\BillingPeriod;
 use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
@@ -33,9 +33,9 @@ class CalculateNextCharge
      * @param $period
      * @param $interval
      */
-    protected static function nextBillingDate(DateTime $startDate, $period, $interval)
+    protected static function nextBillingDate(DateTime|string $startDate, $period, $interval)
     {
-        $startDate = Date::instance($startDate)->setHour(8)->setMinute(0);
+        $startDate = ValueCaster::asDateTime($startDate)->setHour(8)->setMinute(0);
 
         switch ($period) {
             case BillingPeriod::DAILY:

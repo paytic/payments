@@ -44,6 +44,8 @@ trait TransactionTrait
     use TimestampableTrait;
     use RecordTrait;
 
+    public ?string $status = null;
+
     /**
      * @var string
      */

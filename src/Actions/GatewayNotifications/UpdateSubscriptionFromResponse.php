@@ -3,8 +3,8 @@
 namespace Paytic\Payments\Actions\GatewayNotifications;
 
 use Nip\Records\AbstractModels\Record;
-use Paytic\Payments\Models\Transactions\TransactionTrait;
-use Paytic\Payments\Subscriptions\Actions\UpdateFromTransactionNotification;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Actions\GatewayNotifications\UpdateFromTransactionNotification;
 
 /**
  * Class UpdateSubscriptionFromResponse
@@ -15,7 +15,7 @@ class UpdateSubscriptionFromResponse
 {
     /**
      * @param NotificationData $notification
-     * @return TransactionTrait|Record
+     * @return Subscription|Record
      */
     public static function handle(NotificationData $notification)
     {
