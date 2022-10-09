@@ -77,6 +77,13 @@ class UpdateFromTransactionNotification
     protected function handleActive(): void
     {
         if ($this->isTransactionActive()) {
+            $transactionProcessed = $this->subscription->getMetadataValue('transactions.processed');
+            $transactionProcessed = is_array($transactionProcessed) ? $transactionProcessed : [];
+            if (in_array($this->transaction->id, $transactionProcessed)) {
+                return;
+            }
+            $transactionProcessed[] = $this->transaction->id;
+            $this->subscription->addMedataValue('transactions.processed', $transactionProcessed);
             ChargedSuccessfully::handle($this->subscription);
             return;
         }

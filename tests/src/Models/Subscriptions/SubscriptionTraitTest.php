@@ -4,6 +4,8 @@ namespace Paytic\Payments\Tests\Models\Subscriptions;
 
 use ByTIC\DataObjects\Casts\Metadata\Metadata;
 use Mockery;
+use Nip\Database\Query\Insert;
+use Nip\Records\Locator\ModelLocator;
 use Paytic\Payments\Models\Methods\PaymentMethods;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Subscriptions\Subscriptions;
@@ -14,8 +16,6 @@ use Paytic\Payments\Models\Transactions\Transactions;
 use Paytic\Payments\Subscriptions\ChargeMethods\Gateway;
 use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
 use Paytic\Payments\Tests\AbstractTest;
-use Nip\Database\Query\Insert;
-use Nip\Records\Locator\ModelLocator;
 
 /**
  * Class SubscriptionTraitTest
@@ -52,7 +52,9 @@ class SubscriptionTraitTest extends AbstractTest
         ModelLocator::set(Tokens::class, new Tokens());
         ModelLocator::set(PaymentMethods::class, new PaymentMethods());
 
-        $repository = Mockery::mock(Subscriptions::class)->shouldAllowMockingProtectedMethods()->makePartial();
+        $repository = Mockery::mock(Subscriptions::class)
+            ->makePartial();
+        $repository->shouldAllowMockingProtectedMethods();
         $repository->shouldReceive('initRelationsTransactions');
         $repository->shouldReceive('initRelationsLastTransaction');
         $repository->setPrimaryKey('id');
@@ -75,7 +77,7 @@ class SubscriptionTraitTest extends AbstractTest
         $metadata = $item->metadata;
         self::assertInstanceOf(Metadata::class, $metadata);
 
-        $item->addMedata('test', 99);
+        $item->addMedataValue('test', 99);
         self::assertSame(99, $item->metadata['test']);
 
         self::assertSame('{"test":99}', $item->getPropertyRaw('metadata'));

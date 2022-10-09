@@ -32,10 +32,12 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
         $subscription = Mockery::mock(Subscription::class)
             ->shouldAllowMockingProtectedMethods()
             ->makePartial();
+        $subscription->bootTraits();
 
         $transaction = Mockery::mock(Transaction::class)
             ->shouldAllowMockingProtectedMethods()
             ->makePartial();
+        $transaction->id = 999;
         $transaction->setManager(new Transactions());
 
         $action = Mockery::mock(UpdateFromTransactionNotification::class)
@@ -62,6 +64,32 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
 
         $action->execute();
 
+        self::assertSame('2022-06-01 08:00:00', (string)$subscription->getPropertyRaw('charge_at'));
+    }
+
+
+    public function test_handle_success_on_active_subscription()
+    {
+        /** @var UpdateFromTransactionNotification|Mock $action */
+        /** @var Subscription|Mock $subscription */
+        list($action, $subscription, $transaction) = $this->generateEmptyMocks();
+        $subscription->status = Active::NAME;
+        $subscription->start_at = '2022-05-01';
+        $subscription->billing_period = BillingPeriod::MONTHLY;
+        $subscription->billing_interval = 1;
+        $subscription->shouldReceive('update')->once();
+
+        $transaction->status = Active::NAME;
+
+        $action->execute();
+
+        self::assertSame('2022-06-01 08:00:00', (string)$subscription->getPropertyRaw('charge_at'));
+        self::assertSame(
+            '{"transactions":{"processed":[999]}}',
+            $subscription->getPropertyRaw('metadata')
+        );
+
+        $action->execute();
         self::assertSame('2022-06-01 08:00:00', (string)$subscription->getPropertyRaw('charge_at'));
     }
 }

@@ -3,19 +3,20 @@
 namespace Paytic\Payments\Models\Subscriptions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
-use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Models\SmartProperties\Properties\AbstractProperty\Generic;
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait as HasStatusRecord;
 use DateTime;
 use Paytic\CommonObjects\Subscription\SubscriptionImplementation;
-use Paytic\Omnipay\Common\Models\SubscriptionInterface;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
+use Paytic\Payments\Models\AbstractModels\HasMetadata\HasMetadataRecordTrait;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
 use Paytic\Payments\Models\Tokens\Token;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\TransactionTrait;
 use Paytic\Payments\Subscriptions\ChargeMethods\AbstractMethod;
+use Paytic\Payments\Subscriptions\Statuses\Active;
+use Paytic\Payments\Subscriptions\Statuses\Pending;
 
 /**
  * Trait SubscriptionTrait
@@ -55,8 +56,12 @@ trait SubscriptionTrait
     use HasPaymentMethodRecord;
     use HasCustomerRecord;
     use HasTokenRecord;
+    use HasMetadataRecordTrait;
     use TimestampableTrait;
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->getManager()->getLabel('title.singular') . ' #' . $this->id;
@@ -86,16 +91,6 @@ trait SubscriptionTrait
             }
             $this->addCast($field, $cast);
         }
-        $this->addCast('metadata', AsMetadataObject::class . ':json');
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     */
-    public function addMedata($key, $value)
-    {
-        $this->metadata->set($key, $value);
     }
 
     /**
@@ -122,5 +117,21 @@ trait SubscriptionTrait
     {
         $this->id_token = $token->id;
         $this->getRelation('Token')->setResults($token);
+    }
+
+    public function hasPaymentIssue(): bool
+    {
+        $status = $this->getStatus();
+        if ($status == Pending::NAME) {
+            return true;
+        }
+        if ($this->getStatus() != Active::NAME) {
+            return false;
+        }
+        $lastTransaction = $this->getLastTransaction();
+        if ($lastTransaction->getStatus() == \Paytic\Payments\Models\Transactions\Statuses\Active::NAME) {
+            return false;
+        }
+        return true;
     }
 }

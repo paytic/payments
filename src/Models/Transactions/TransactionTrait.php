@@ -3,9 +3,9 @@
 namespace Paytic\Payments\Models\Transactions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
-use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
 use Paytic\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
+use Paytic\Payments\Models\AbstractModels\HasMetadata\HasMetadataRecordTrait;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use Paytic\Payments\Models\AbstractModels\HasPurchaseParent;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
@@ -26,7 +26,6 @@ use Paytic\Payments\Models\Subscriptions\Subscription;
  * @property string $card
  * @property string $code A response code from the payment gateway
  * @property string $reference A reference provided by the gateway to represent this transaction
- * @property string $metadata
  *
  * @property string $modified
  * @property string $created
@@ -41,6 +40,7 @@ trait TransactionTrait
     use HasTokenRecord;
     use HasPaymentMethodRecord;
     use HasGatewayRecordTrait;
+    use HasMetadataRecordTrait;
     use TimestampableTrait;
     use RecordTrait;
 
@@ -56,11 +56,6 @@ trait TransactionTrait
      */
     protected static $updateTimestamps = ['modified'];
 
-    public function bootTransactionTrait()
-    {
-        $this->addCast('metadata', AsMetadataObject::class . ':json');
-    }
-
     /**
      * @param Subscription $method
      */
@@ -68,14 +63,7 @@ trait TransactionTrait
     {
         $this->id_subscription = is_object($subscription) ? $subscription->id : $subscription;
     }
-    /**
-     * @param $key
-     * @param $value
-     */
-    public function addMedata($key, $value)
-    {
-        $this->metadata->set($key, $value);
-    }
+
 
     public function isSubscription(): bool
     {
