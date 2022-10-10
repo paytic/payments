@@ -67,7 +67,7 @@ class OnTransactionNotification
     protected function handleNotStarted(): void
     {
         if ($this->isTransactionActive()) {
-            StartSubscription::handle($this->subscription);
+            StartSubscription::handle($this->subscription, $this->transaction);
             return;
         }
         // @todo logic for when transaction errors

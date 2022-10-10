@@ -3,7 +3,7 @@
 namespace Paytic\Payments\Subscriptions\Actions;
 
 use Paytic\Payments\Models\Subscriptions\Subscription;
-use Paytic\Payments\Subscriptions\Actions\Charges\CalculateNextCharge;
+use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
 use Paytic\Payments\Subscriptions\Statuses\Active;
 
 /**
@@ -15,12 +15,10 @@ class StartSubscription
     /**
      * @param Subscription $subscription
      */
-    public static function handle($subscription)
+    public static function handle($subscription, $transaction)
     {
-        $subscription->charge_count = 1;
         $subscription->charge_at = $subscription->start_at;
-        CalculateNextCharge::for($subscription);
         $subscription->setStatus(Active::NAME);
-        $subscription->update();
+        ChargedSuccessfully::handle($subscription, $transaction);
     }
 }
