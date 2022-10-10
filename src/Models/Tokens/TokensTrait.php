@@ -2,13 +2,13 @@
 
 namespace Paytic\Payments\Models\Tokens;
 
-use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
-use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
-use Paytic\Payments\Utility\PaymentsModels;
 use Exception;
 use Nip\Config\Config;
 use Nip\Records\AbstractModels\Record;
 use Paytic\Omnipay\Common\Models\TokenInterface;
+use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Trait TokensTrait
@@ -24,7 +24,7 @@ trait TokensTrait
     /**
      * @param $method
      * @param TokenInterface $token
-     * @return TokenTrait|Record
+     * @return TokenTrait|Token
      */
     public function findOrCreateForMethod($method, TokenInterface $token)
     {

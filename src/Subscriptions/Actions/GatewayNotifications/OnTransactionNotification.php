@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Subscriptions\Actions\GatewayNotifications;
 
+use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Statuses\Active as TransactionActive;
 use Paytic\Payments\Models\Transactions\Transaction;
@@ -17,7 +18,7 @@ use Paytic\Payments\Subscriptions\Statuses\Pending;
  * Class UpdateFromTransactionToken
  * @package Paytic\Payments\Subscriptions\Actions
  */
-class UpdateFromTransactionNotification
+class OnTransactionNotification
 {
     protected Subscription $subscription;
     protected Transaction $transaction;
@@ -26,7 +27,7 @@ class UpdateFromTransactionNotification
      * @param Subscription $subscription
      * @param Transaction $transaction
      */
-    public function __construct(Subscription $subscription, Transaction $transaction)
+    public function __construct(SubscriptionInterface $subscription, Transaction $transaction)
     {
         $this->subscription = $subscription;
         $this->transaction = $transaction;
@@ -36,7 +37,7 @@ class UpdateFromTransactionNotification
      * @param Subscription $subscription
      * @param Transaction $transaction
      */
-    public static function handle($subscription, $transaction): void
+    public static function handle(SubscriptionInterface $subscription, $transaction): void
     {
         (new self($subscription, $transaction))
             ->execute();
@@ -77,14 +78,8 @@ class UpdateFromTransactionNotification
     protected function handleActive(): void
     {
         if ($this->isTransactionActive()) {
-            $transactionProcessed = $this->subscription->getMetadataValue('transactions.processed');
-            $transactionProcessed = is_array($transactionProcessed) ? $transactionProcessed : [];
-            if (in_array($this->transaction->id, $transactionProcessed)) {
-                return;
-            }
-            $transactionProcessed[] = $this->transaction->id;
-            $this->subscription->addMedataValue('transactions.processed', $transactionProcessed);
-            ChargedSuccessfully::handle($this->subscription);
+
+            ChargedSuccessfully::handle($this->subscription, $this->transaction);
             return;
         }
     }

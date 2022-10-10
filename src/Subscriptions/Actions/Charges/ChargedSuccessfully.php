@@ -2,23 +2,32 @@
 
 namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
-use Paytic\CommonObjects\Subscription\SubscriptionInterface;
-use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Events\Charges\SubscriptionChargedSuccessfully;
+use Paytic\Payments\Utility\PaymentsEvents;
 
 /**
  * Class ChargedSuccessfully
  * @package Paytic\Payments\Subscriptions\Actions\Charges
  */
-class ChargedSuccessfully
+class ChargedSuccessfully extends AbstractChargeWithTransaction
 {
-    /**
-     * @param Subscription $subscription
-     */
-    public static function handle(SubscriptionInterface $subscription)
+    public function execute()
     {
-        $subscription->charge_count = $subscription->charge_count + 1;
-        $subscription->charge_attempts = 0;
-        CalculateNextCharge::for($subscription);
-        $subscription->update();
+        if ($this->subscription->isTransactionProcessed($this->transaction)) {
+            return;
+        }
+        $this->updateCharge();
+    }
+
+    protected function updateCharge()
+    {
+        $this->subscription->addTransactionProcessed($this->transaction);
+        $this->subscription->charge_count = $this->subscription->charge_count + 1;
+        $this->subscription->charge_attempts = 0;
+
+        $this->calculateNextCharge();
+        $this->subscription->update();
+
+        PaymentsEvents::dispatch(SubscriptionChargedSuccessfully::class);
     }
 }

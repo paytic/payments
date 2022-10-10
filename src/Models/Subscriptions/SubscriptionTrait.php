@@ -13,7 +13,6 @@ use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecor
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
 use Paytic\Payments\Models\Tokens\Token;
 use Paytic\Payments\Models\Transactions\Transaction;
-use Paytic\Payments\Models\Transactions\TransactionTrait;
 use Paytic\Payments\Subscriptions\ChargeMethods\AbstractMethod;
 use Paytic\Payments\Subscriptions\Statuses\Active;
 use Paytic\Payments\Subscriptions\Statuses\Pending;
@@ -57,6 +56,7 @@ trait SubscriptionTrait
     use HasCustomerRecord;
     use HasTokenRecord;
     use HasMetadataRecordTrait;
+    use Behaviours\HasTransactions\HasTransactionsRecord;
     use TimestampableTrait;
 
     /**
@@ -99,15 +99,6 @@ trait SubscriptionTrait
     public function getChargeMethod()
     {
         return $this->getSmartProperty('ChargeMethods');
-    }
-
-    /**
-     * @param Transaction|TransactionTrait $transaction
-     */
-    public function populateFromLastTransaction($transaction)
-    {
-        $this->id_last_transaction = $transaction->id;
-        $this->getRelation('LastTransaction')->setResults($transaction);
     }
 
     /**

@@ -19,7 +19,7 @@ trait HasMetadataRecordTrait
      * @param $key
      * @param $value
      */
-    public function addMedataValue($key, $value): void
+    public function setMedataValue($key, $value): void
     {
         $this->metadata->set($key, $value);
     }

@@ -4,7 +4,7 @@ namespace Paytic\Payments\Actions\GatewayNotifications;
 
 use Nip\Records\AbstractModels\Record;
 use Paytic\Payments\Models\Subscriptions\Subscription;
-use Paytic\Payments\Subscriptions\Actions\GatewayNotifications\UpdateFromTransactionNotification;
+use Paytic\Payments\Subscriptions\Actions\GatewayNotifications\OnTransactionNotification;
 
 /**
  * Class UpdateSubscriptionFromResponse
@@ -29,7 +29,7 @@ class UpdateSubscriptionFromResponse
         }
         $notification->subscription->update();
 
-        UpdateFromTransactionNotification::handle($notification->subscription, $notification->transaction);
+        OnTransactionNotification::handle($notification->subscription, $notification->transaction);
 
         return $notification->subscription;
     }

@@ -24,6 +24,7 @@ trait SubscriptionsTrait
     use HasCustomerRepository;
     use HasTokenRepository;
     use HasPaymentMethodRepository;
+    use Behaviours\HasTransactions\HasTransactionsRepository;
     use RecordsTrait;
 
     /**
@@ -78,15 +79,6 @@ trait SubscriptionsTrait
         $this->initRelationsCustomer();
     }
 
-    protected function initRelationsTransactions(): void
-    {
-        $this->hasMany('Transactions', ['class' => get_class(PaymentsModels::transactions())]);
-    }
-
-    protected function initRelationsLastTransaction(): void
-    {
-        $this->hasOne('LastTransaction', ['class' => get_class(PaymentsModels::transactions())]);
-    }
 
     protected function initRelationsTokens(): void
     {

@@ -10,20 +10,20 @@ use Paytic\Payments\Subscriptions\Actions\DeactivateSubscription;
  * Class ChargedFailed
  * @package Paytic\Payments\Subscriptions\Actions\Charges
  */
-class ChargedFailed
+class ChargedFailed extends AbstractChargeWithTransaction
 {
     /**
      * @param Subscription|SubscriptionInterface $subscription
      */
-    public static function handle(SubscriptionInterface $subscription)
+    public function execute()
     {
-        if ($subscription->isChargeAttemptsMaxed()) {
-            DeactivateSubscription::handle($subscription);
+        if ($this->subscription->isChargeAttemptsMaxed()) {
+            DeactivateSubscription::handle($this->subscription);
             return;
         }
 
-        $subscription->charge_attempts = $subscription->charge_attempts + 1;
-        CalculateNextAttempt::for($subscription);
-        $subscription->update();
+        $this->subscription->charge_attempts = $this->subscription->charge_attempts + 1;
+        $this->calculateNextAttempt();
+        $this->subscription->update();
     }
 }

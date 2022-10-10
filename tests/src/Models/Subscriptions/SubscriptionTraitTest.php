@@ -77,7 +77,7 @@ class SubscriptionTraitTest extends AbstractTest
         $metadata = $item->metadata;
         self::assertInstanceOf(Metadata::class, $metadata);
 
-        $item->addMedataValue('test', 99);
+        $item->setMedataValue('test', 99);
         self::assertSame(99, $item->metadata['test']);
 
         self::assertSame('{"test":99}', $item->getPropertyRaw('metadata'));
@@ -85,7 +85,9 @@ class SubscriptionTraitTest extends AbstractTest
 
     public function test_cast_metadata_empty()
     {
-        $repository = Mockery::mock(Transactions::class)->shouldAllowMockingProtectedMethods()->makePartial();
+        $repository = Mockery::mock(Transactions::class)
+            ->makePartial();
+        $repository->shouldAllowMockingProtectedMethods();
         $repository->shouldReceive('insertQuery')->once()->andReturn(new Insert());
         $repository->shouldReceive('performInsert')->once();
         $repository->bootTransactionsTrait();

@@ -22,7 +22,7 @@ class TransactionTraitTest extends AbstractTest
         $metadata = $item->metadata;
         self::assertInstanceOf(ArrayObject::class, $metadata);
 
-        $item->addMedataValue('test', 99);
+        $item->setMedataValue('test', 99);
         self::assertSame(99, $item->metadata['test']);
 
         self::assertSame('{"test":99}', $item->getPropertyRaw('metadata'));

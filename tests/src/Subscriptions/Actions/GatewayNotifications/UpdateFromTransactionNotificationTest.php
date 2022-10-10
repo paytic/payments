@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Payments\Tests\Subscriptions\Actions\GatewayNotifications;
+namespace Paytic\Payments\Tests\Subscriptions\Actions\GatewayNotifications;
 
 use Mockery;
 use Mockery\Mock;
@@ -9,7 +9,7 @@ use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\Transactions;
-use Paytic\Payments\Subscriptions\Actions\GatewayNotifications\UpdateFromTransactionNotification;
+use Paytic\Payments\Subscriptions\Actions\GatewayNotifications\OnTransactionNotification;
 use Paytic\Payments\Subscriptions\Statuses\Pending;
 use Paytic\Payments\Tests\AbstractTestCase;
 
@@ -20,7 +20,7 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
 {
     public function test_handle_success_on_empty_subscription()
     {
-        /** @var UpdateFromTransactionNotification|Mock $action */
+        /** @var OnTransactionNotification|Mock $action */
         list($action, $subscription, $transaction) = $this->generateEmptyMocks();
         $action->shouldReceive('handleNotStarted')->once();
 
@@ -40,7 +40,7 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
         $transaction->id = 999;
         $transaction->setManager(new Transactions());
 
-        $action = Mockery::mock(UpdateFromTransactionNotification::class)
+        $action = Mockery::mock(OnTransactionNotification::class)
             ->shouldAllowMockingProtectedMethods()
             ->makePartial();
         $action->__construct($subscription, $transaction);
@@ -50,7 +50,7 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
 
     public function test_handle_success_on_pending_subscription()
     {
-        /** @var UpdateFromTransactionNotification|Mock $action */
+        /** @var OnTransactionNotification|Mock $action */
         /** @var Subscription|Mock $subscription */
         list($action, $subscription, $transaction) = $this->generateEmptyMocks();
         $subscription->status = Pending::NAME;
@@ -70,7 +70,7 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
 
     public function test_handle_success_on_active_subscription()
     {
-        /** @var UpdateFromTransactionNotification|Mock $action */
+        /** @var OnTransactionNotification|Mock $action */
         /** @var Subscription|Mock $subscription */
         list($action, $subscription, $transaction) = $this->generateEmptyMocks();
         $subscription->status = Active::NAME;

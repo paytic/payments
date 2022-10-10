@@ -77,7 +77,7 @@ class CreateOrUpdateTokenFromResponse
             ->findOrCreateForMethod($this->notification->purchase->getPaymentMethod(), $token);
         $tokenModel->populateFromCustomer($this->notification->purchase->getPurchaseBillingRecord());
         $tokenModel->update();
-        return $token;
+        return $tokenModel;
     }
 
     /**

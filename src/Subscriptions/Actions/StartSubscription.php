@@ -18,6 +18,7 @@ class StartSubscription
     public static function handle($subscription)
     {
         $subscription->charge_count = 1;
+        $subscription->charge_at = $subscription->start_at;
         CalculateNextCharge::for($subscription);
         $subscription->setStatus(Active::NAME);
         $subscription->update();
