@@ -14,7 +14,6 @@ class ChargeSubscriptionsDue
 
     public function __construct(Subscriptions $repository = null)
     {
-
         $this->repository = $repository ?? PaymentsModels::subscriptions();
     }
 

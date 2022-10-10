@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
 
-
 /**
  * Trait OverwriteServerCompletePurchaseTrait
  * @package Paytic\Payments\Gateways\Providers\AbstractGateway\Traits

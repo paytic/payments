@@ -61,5 +61,4 @@ class CreateNewTransactionInSubscription
         $newPurchase = DuplicatePurchase::fromSibling($lastPurchase);
         return $newPurchase;
     }
-
 }

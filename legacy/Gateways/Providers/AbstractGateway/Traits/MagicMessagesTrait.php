@@ -10,5 +10,5 @@ namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Traits;
  */
 trait MagicMessagesTrait
 {
- use \Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\MagicMessagesTrait;
+    use \Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\MagicMessagesTrait;
 }

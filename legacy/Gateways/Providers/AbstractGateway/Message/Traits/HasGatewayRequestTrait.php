@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
-
 /**
  * Trait HasGatewayParamsRequestTrait
  * @package Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits
