@@ -32,7 +32,7 @@ class TransactionTraitTest extends AbstractTest
     {
         $repository = Mockery::mock(Transactions::class)
             ->makePartial();
-        $repository->shouldAllowMockingProtectedMethods()
+        $repository->shouldAllowMockingProtectedMethods();
         $repository->shouldReceive('insertQuery')->once()->andReturn(new Insert());
         $repository->shouldReceive('performInsert')->once();
         $repository->bootTransactionsTrait();

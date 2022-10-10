@@ -2,6 +2,8 @@
 
 namespace Paytic\Payments\Actions\GatewayNotifications;
 
+use Paytic\Payments\Tokens\Actions\GatewayNotifications\CreateOrUpdateTokenFromResponse;
+
 /**
  * Class UpdatePaymentModelsFromResponse
  * @package Paytic\Payments\Actions
@@ -19,8 +21,8 @@ class UpdatePaymentModelsFromResponse
         $notification = new NotificationData($type, $response, $model);
 
         CreateSessionFromResponse::handle($notification);
-        CreateOrUpdateTokenFromResponse::handle($notification);
         CreateOrUpdateTransactionFromResponse::handle($notification);
+        CreateOrUpdateTokenFromResponse::handle($notification);
         UpdateSubscriptionFromResponse::handle($notification);
     }
 }

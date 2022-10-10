@@ -9,6 +9,8 @@ use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Tokens\Token;
 use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class NotificationData
@@ -62,5 +64,19 @@ class NotificationData
         $this->type = $type;
         $this->response = $response;
         $this->purchase = $purchase;
+    }
+
+    /**
+     * @return Transaction|TransactionTrait|null
+     */
+    public function getOrFindTransaction()
+    {
+        if (isset($this->transaction)) {
+            return $this->transaction;
+        }
+
+        $this->transaction = PaymentsModels::transactions()
+            ->findOrCreateForPurchase($this->purchase);
+        return $this->transaction;
     }
 }

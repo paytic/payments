@@ -2,11 +2,9 @@
 
 namespace Paytic\Payments\Actions\GatewayNotifications;
 
-use ByTIC\Omnipay\Librapay\Message\ServerCompletePurchaseResponse;
 use Nip\Records\AbstractModels\Record;
-use Omnipay\Common\Message\AbstractResponse;
+use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\TransactionTrait;
-use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class CreateOrUpdateTransactionFromResponse
@@ -15,6 +13,18 @@ use Paytic\Payments\Utility\PaymentsModels;
  */
 class CreateOrUpdateTransactionFromResponse
 {
+    protected NotificationData $notification;
+    protected Transaction $transaction;
+
+    /**
+     * @param NotificationData $notification
+     */
+    public function __construct(NotificationData $notification)
+    {
+        $this->notification = $notification;
+        $this->transaction = $notification->getOrFindTransaction();
+    }
+
     /**
      * @param $response
      * @param $model
@@ -23,36 +33,38 @@ class CreateOrUpdateTransactionFromResponse
      */
     public static function handle(NotificationData $notification)
     {
-        $notification->transaction = PaymentsModels::transactions()->findOrCreateForPurchase($notification->purchase);
-
-        static::updateFromResponse($notification->response, $notification->transaction);
-        $notification->transaction->status = $notification->purchase->getStatus();
-
-        $notification->transaction->update();
-
-        return $notification->transaction;
+        return (new self($notification))->execute();
     }
 
-
     /**
-     * @param AbstractResponse|ServerCompletePurchaseResponse $response
-     * @param $transaction
+     * @return Transaction|TransactionTrait|null
      */
-    protected static function updateFromResponse(AbstractResponse $response, $transaction)
+    public function execute()
     {
-        static::setPropertyFromResponse($response, $transaction, 'getCode', 'code');
-        static::setPropertyFromResponse($response, $transaction, 'getTransactionReference', 'reference');
-        static::setPropertyFromResponse($response, $transaction, 'getCardMasked', 'card');
+        $this->updateFromResponse();
+        $this->transaction->status = $this->notification->purchase->getStatus();
+        $this->transaction->update();
+
+        return $this->transaction;
+    }
+
+
+    /**
+     */
+    protected function updateFromResponse(): void
+    {
+        $this->setPropertyFromResponse('getCode', 'code');
+        $this->setPropertyFromResponse('getTransactionReference', 'reference');
+        $this->setPropertyFromResponse('getCardMasked', 'card');
     }
 
     /**
-     * @param $response
-     * @param $transaction
      * @param $method
      * @param $property
      */
-    protected static function setPropertyFromResponse($response, $transaction, $method, $property)
+    protected function setPropertyFromResponse($method, $property): void
     {
+        $response = $this->notification->response;
         if (!method_exists($response, $method)) {
             return;
         }
@@ -60,6 +72,6 @@ class CreateOrUpdateTransactionFromResponse
         if ($value === null || $value === '') {
             return;
         }
-        $transaction->{$property} = $value;
+        $this->transaction->{$property} = $value;
     }
 }
