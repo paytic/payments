@@ -18,5 +18,4 @@ use Nip\Records\Record;
 trait HasModelProcessedResponse
 {
     use \Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
-
 }

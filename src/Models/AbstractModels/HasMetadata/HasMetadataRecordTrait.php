@@ -10,7 +10,6 @@ use ByTIC\DataObjects\Casts\Metadata\Metadata;
  */
 trait HasMetadataRecordTrait
 {
-
     public function bootHasMetadataRecordTrait()
     {
         $this->addCast('metadata', AsMetadataObject::class . ':json');

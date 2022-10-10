@@ -9,5 +9,5 @@ namespace ByTIC\Payments\Models\Purchase\Traits;
  */
 trait IsPurchasableRepositoryTrait
 {
- use \Paytic\Payments\Models\Purchase\Traits\IsPurchasableRepositoryTrait;
+    use \Paytic\Payments\Models\Purchase\Traits\IsPurchasableRepositoryTrait;
 }

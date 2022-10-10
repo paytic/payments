@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Models\BillingRecord\Traits;
 
-
 /**
  * Class MethodTrait
  * @package ByTIC\Payments\Models\Methods\Traits

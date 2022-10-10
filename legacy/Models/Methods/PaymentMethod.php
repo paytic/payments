@@ -2,7 +2,6 @@
 
 namespace ByTIC\Payments\Models\Methods;
 
-
 /**
  * Class PaymentMethod
  * @package ByTIC\Payments\Models\Methods
@@ -10,5 +9,4 @@ namespace ByTIC\Payments\Models\Methods;
  */
 class PaymentMethod extends \Paytic\Payments\Models\Methods\PaymentMethod
 {
-
 }

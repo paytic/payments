@@ -49,7 +49,6 @@ trait HasModelRequest
             return $model;
         }
         return $this->generateModelFromRequestQuery();
-
     }
 
     /**

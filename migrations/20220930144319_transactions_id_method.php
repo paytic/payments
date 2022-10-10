@@ -23,11 +23,14 @@ final class TransactionsIdMethod extends AbstractMigration
         $table_methods = PaymentsModels::methods()->getTable();
 
         $this->table($table_transactions)
-            ->addColumn('id_method', 'integer',
+            ->addColumn(
+                'id_method',
+                'integer',
                 [
                     'after' => 'id_purchase',
                     'null' => true
-                ])
+                ]
+            )
             ->save();
 
         $this->table($table_transactions)
