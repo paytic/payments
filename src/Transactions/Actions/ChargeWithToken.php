@@ -46,7 +46,7 @@ class ChargeWithToken
         $response = $request->send();
 
         $response->processModel();
-        UpdatePaymentModelsFromResponse::handle($response, $this->transaction, 'IPN');
+        UpdatePaymentModelsFromResponse::handle($response, $this->purchase, 'IPN');
 
         return $response;
     }

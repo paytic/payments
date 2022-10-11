@@ -73,7 +73,7 @@ class ChargeSubscription
      */
     protected function executeOnSuccess($transaction): void
     {
-        ChargedSuccessfully::handle($this->subscription);
+        ChargedSuccessfully::handle($this->subscription, $transaction);
     }
 
     /**
@@ -82,6 +82,6 @@ class ChargeSubscription
      */
     protected function executeOnFailed($transaction): void
     {
-        ChargedFailed::handle($this->subscription);
+        ChargedFailed::handle($this->subscription, $transaction);
     }
 }
