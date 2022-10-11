@@ -40,6 +40,7 @@
     "bytic/orm-behaviors": "^0.9|^1.0",
     "bytic/orm-filters": "^0.9|^1.0",
     "bytic/event-dispatcher": "^0.9|^1.0",
+    "bytic/event-discovery": "^0.9|^1.0",
     "bytic/translation": "^0.9|^1.0",
     "bytic/models-smart-properties": "^0.9|^1.0",
     "bytic/view": "^0.9|^1.0",

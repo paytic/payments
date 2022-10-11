@@ -2,21 +2,11 @@
 
 namespace Paytic\Payments\Utility;
 
+use Bytic\EventDiscovery\RaiseEvent;
+
 /**
  *
  */
-class PaymentsEvents
+class PaymentsEvents extends RaiseEvent
 {
-    /**
-     * @param $event
-     * @param ...$params
-     * @return void
-     */
-    public static function dispatch($event, ...$params): void
-    {
-        $eventObject = is_object($event) ? $event : new $event($params);
-        if (app()->has('events')) {
-            event($eventObject);
-        }
-    }
 }
