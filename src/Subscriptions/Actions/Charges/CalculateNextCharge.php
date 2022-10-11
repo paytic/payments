@@ -20,12 +20,13 @@ class CalculateNextCharge
      */
     public static function for(SubscriptionInterface $subscription)
     {
-        $count = $subscription->charge_count > 0 ? $subscription->charge_count : 1;
+        $startDate = empty($subscription->charge_at) ? $subscription->start_at : $subscription->charge_at;
+
         $subscription->charge_at = static::nextBillingDate(
-            $subscription->start_at,
+            $startDate,
             $subscription->billing_period,
-            $subscription->billing_interval * $count
-        );
+            $subscription->billing_interval
+        )->format('Y-m-d H:i:s');
     }
 
     /**

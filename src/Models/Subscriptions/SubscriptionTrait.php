@@ -77,7 +77,7 @@ trait SubscriptionTrait
      */
     protected static $updateTimestamps = ['modified'];
 
-    public function bootSubscriptionTrait()
+    public function bootSubscriptionTrait(): void
     {
         $fields = [
             'start_at' => 'date',

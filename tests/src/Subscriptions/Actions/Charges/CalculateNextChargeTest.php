@@ -32,7 +32,8 @@ class CalculateNextChargeTest extends AbstractTestCase
             [
                 [
                     'start_at' => '2020-01-01',
-                    'charge_count' => '',
+                    'charge_at' => null,
+                    'charge_count' => null,
                     'billing_period' => BillingPeriod::DAILY,
                     'billing_interval' => 1
                 ],
@@ -41,11 +42,40 @@ class CalculateNextChargeTest extends AbstractTestCase
             [
                 [
                     'start_at' => '2020-01-01',
-                    'charge_count' => 4,
+                    'charge_at' => '2020-01-01',
+                    'charge_count' => null,
+                    'billing_period' => BillingPeriod::MONTHLY,
+                    'billing_interval' => 1
+                ],
+                '2020-02-01 08:00:00',
+            ],
+            [
+                [
+                    'start_at' => '2020-01-01',
+                    'charge_at' => '2020-01-01',
+                    'charge_count' => 1,
                     'billing_period' => BillingPeriod::DAILY,
                     'billing_interval' => 1
                 ],
-                '2020-01-05 08:00:00',
+                '2020-01-02 08:00:00',
+            ],
+            [
+                [
+                    'start_at' => '2020-01-01',
+                    'charge_count' => 5,
+                    'billing_period' => BillingPeriod::DAILY,
+                    'billing_interval' => 1
+                ],
+                '2020-01-02 08:00:00',
+            ],
+            [
+                [
+                    'start_at' => '2020-01-01',
+                    'charge_count' => 2,
+                    'billing_period' => BillingPeriod::DAILY,
+                    'billing_interval' => 1
+                ],
+                '2020-01-02 08:00:00',
             ],
             [
                 [
@@ -85,11 +115,12 @@ class CalculateNextChargeTest extends AbstractTestCase
             [
                 [
                     'start_at' => '2021-05-31 00:00:00',
+                    'charge_at' => '2022-06-01 00:00:00',
                     'charge_count' => 2,
                     'billing_period' => BillingPeriod::MONTHLY,
                     'billing_interval' => 1
                 ],
-                '2021-07-31 08:00:00',
+                '2022-07-01 08:00:00',
             ]
         ];
     }
