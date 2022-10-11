@@ -7,7 +7,7 @@ use Phinx\Migration\AbstractMigration;
 /**
  *
  */
-final class SubscriptionsTokensFK extends AbstractMigration
+final class SubscriptionsTokenFK extends AbstractMigration
 {
     /**
      * Change Method.

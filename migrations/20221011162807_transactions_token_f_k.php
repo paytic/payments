@@ -26,6 +26,16 @@ final class TransactionsTokenFK extends AbstractMigration
         $table_tokens = PaymentsModels::tokens()->getTable();
 
         $this->table($table_transactions)
+            ->changeColumn(
+                'id_token',
+                'integer',
+                [
+                    'null' => true
+                ]
+            )
+            ->save();
+
+        $this->table($table_transactions)
             ->addForeignKey(
                 'id_token',
                 $table_tokens,
