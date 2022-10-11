@@ -7,7 +7,7 @@ use Phinx\Migration\AbstractMigration;
 /**
  *
  */
-final class SubscriptionsTokensFK extends AbstractMigration
+final class TransactionsTokenFK extends AbstractMigration
 {
     /**
      * Change Method.
@@ -22,16 +22,16 @@ final class SubscriptionsTokensFK extends AbstractMigration
      */
     public function change(): void
     {
-        $table_subscriptions = PaymentsModels::subscriptions()->getTable();
-        $table_methods = PaymentsModels::methods()->getTable();
+        $table_transactions = PaymentsModels::transactions()->getTable();
+        $table_tokens = PaymentsModels::tokens()->getTable();
 
-        $this->table($table_subscriptions)
+        $this->table($table_transactions)
             ->addForeignKey(
-                'id_method',
-                $table_methods,
+                'id_token',
+                $table_tokens,
                 'id',
                 [
-                    'constraint' => $table_subscriptions . '_id_method_' . $table_methods,
+                    'constraint' => $table_transactions . '_id_token_' . $table_tokens,
                     'delete' => 'NO_ACTION',
                     'update' => 'NO_ACTION'
                 ]
