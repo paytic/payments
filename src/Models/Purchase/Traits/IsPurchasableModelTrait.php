@@ -2,16 +2,17 @@
 
 namespace Paytic\Payments\Models\Purchase\Traits;
 
-use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
-use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
-use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
-use Paytic\Payments\Models\Methods\Traits\RecordTrait;
-use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
-use Paytic\Payments\Subscriptions\SubscriptionBuilder;
 use Exception;
 use Nip\Records\AbstractModels\RecordManager;
 use Nip\Records\Collections\Associated;
 use Omnipay\Common\Message\RequestInterface;
+use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
+use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
+use Paytic\Payments\Models\Methods\PaymentMethod;
+use Paytic\Payments\Models\Methods\Traits\RecordTrait;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use Paytic\Payments\Subscriptions\SubscriptionBuilder;
 
 /**
  * Trait IsPurchasableModelTrait
@@ -53,7 +54,7 @@ trait IsPurchasableModelTrait
     }
 
     /**
-     * @return RecordTrait
+     * @return RecordTrait|PaymentMethod
      */
     abstract public function getPaymentMethod();
 

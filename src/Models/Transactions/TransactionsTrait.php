@@ -11,6 +11,7 @@ use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepos
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Paytic\Payments\Models\Purchases\Purchase;
+use Paytic\Payments\Models\Transactions\Statuses\Pending;
 use Paytic\Payments\Transactions\Actions\Create\CreateTransactionForPurchase;
 use Paytic\Payments\Utility\PaymentsModels;
 
@@ -75,6 +76,11 @@ trait TransactionsTrait
     public function getStatusItemsDirectory()
     {
         return __DIR__ . DIRECTORY_SEPARATOR . 'Statuses';
+    }
+
+    public function getDefaultStatus(): string
+    {
+        return Pending::NAME;
     }
 
     /**

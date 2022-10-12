@@ -25,13 +25,22 @@ abstract class AbstractTestCase extends AbstractTest
         PaymentsModels::reset();
     }
 
+    /**
+     * @param $type
+     * @param $value
+     * @return RecordManager|\Nip\Records\RecordManager|null
+     */
     protected function initUtilityModel($type, $value = null)
     {
         if ($value instanceof RecordManager) {
             ModelLocator::set($type, $value);
         } else {
             $class = $this->generateRepositoryClass($type);
+            /** @var \Nip\Records\RecordManager $value */
             $value = new $class();
+            $value->setPrimaryKey('id');
+            $value->setFields([]);
+            $value->setTableStructure(['fields' => []]);
 
             ModelLocator::set($class, $value);
             ModelLocator::set($type, $value);
@@ -39,6 +48,10 @@ abstract class AbstractTestCase extends AbstractTest
         return $value;
     }
 
+    /**
+     * @param $type
+     * @return string|void
+     */
     protected function generateRepositoryClass($type)
     {
         switch ($type) {

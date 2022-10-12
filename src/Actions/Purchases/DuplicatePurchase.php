@@ -16,13 +16,14 @@ class DuplicatePurchase
      * @param Purchase|IsPurchasableModelTrait $purchase
      * @return Purchase
      */
-    public static function fromSibling($purchase): Record
+    public static function fromSibling($purchase, $extra = []): Record
     {
         $duplicate = $purchase->getClone();
-        $unset = ['uuid','status'];
+        $unset = ['uuid', 'status'];
         foreach ($unset as $field) {
             unset($duplicate->{$field});
         }
+        $duplicate->fill($extra);
         $duplicate->insert();
         return $duplicate;
     }

@@ -6,6 +6,7 @@ use Exception;
 use Nip\Records\Record;
 use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedFailed;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
@@ -61,10 +62,13 @@ class ChargeSubscription
     {
         try {
             ChargeWithToken::process($transaction);
-            $this->executeOnSuccess($transaction);
+            if ($transaction->status == Active::NAME) {
+                $this->executeOnSuccess($transaction);
+                return;
+            }
         } catch (Exception $exception) {
-            $this->executeOnFailed($transaction);
         }
+        $this->executeOnFailed($transaction);
     }
 
     /**

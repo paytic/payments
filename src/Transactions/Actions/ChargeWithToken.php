@@ -24,6 +24,7 @@ class ChargeWithToken
     public function __construct(Transaction $transaction)
     {
         $this->transaction = $transaction;
+        $this->purchase = $this->transaction->getPurchase();
     }
 
     /**
@@ -36,8 +37,6 @@ class ChargeWithToken
 
     protected function execute(): AbstractResponse
     {
-        $this->purchase = $this->transaction->getPurchase();
-
         $gateway = $this->determineGateway();
         $parameters = $this->determineParameters();
 

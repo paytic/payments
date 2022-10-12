@@ -4,7 +4,7 @@ namespace Paytic\Payments\Models\Purchases;
 
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordsTrait;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableRepositoryTrait;
-use Paytic\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\Models\Transactions\Statuses\Pending;
 
 /**
  * Trait PurchasesTrait
@@ -29,5 +29,10 @@ trait PurchasesTrait
     public function getStatusItemsDirectory()
     {
         return dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Transactions' . DIRECTORY_SEPARATOR . 'Statuses';
+    }
+
+    public function getDefaultStatus(): string
+    {
+        return Pending::NAME;
     }
 }

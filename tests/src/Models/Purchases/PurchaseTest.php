@@ -2,7 +2,6 @@
 
 namespace Paytic\Payments\Tests\Models\Purchases;
 
-use Paytic\Payments\Models\Purchases\Purchases;
 use Paytic\Payments\Tests\AbstractTestCase;
 
 /**
@@ -11,8 +10,14 @@ use Paytic\Payments\Tests\AbstractTestCase;
  */
 class PurchaseTest extends AbstractTestCase
 {
-    public function test_getController()
+    public function test_getEmptyStatus()
     {
-        self::assertSame('purchases', Purchases::instance()->getController());
+        $purchasesRepository = $this->initUtilityModel('purchases');
+        $purchase = $purchasesRepository->getNew();
+
+        self::assertSame(null, $purchase->getPropertyRaw('status'));
+        self::assertSame('pending', (string)$purchase->getStatus());
     }
+
+
 }

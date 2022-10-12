@@ -5,6 +5,7 @@ namespace Paytic\Payments\Transactions\Actions;
 use Nip\Records\Record;
 use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Actions\Purchases\DuplicatePurchase;
+use Paytic\Payments\Exception\InvalidArgumentException;
 use Paytic\Payments\Models\Purchases\Purchase;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Transaction;
@@ -36,7 +37,7 @@ class CreateNewTransactionInSubscription
         return (new static($subscription))->execute();
     }
 
-    protected function execute()
+    protected function execute(): Record
     {
         $purchase = $this->determinePurchase();
         $transaction = PaymentsModels::transactions()->findOrCreateForPurchase($purchase);
@@ -55,10 +56,11 @@ class CreateNewTransactionInSubscription
     {
         $lastTransaction = $this->subscription->getLastTransaction();
         if (!is_object($lastTransaction)) {
+            throw new InvalidArgumentException("Subscription has not last transaction");
         }
         $lastPurchase = $lastTransaction->getPurchase();
 
-        $newPurchase = DuplicatePurchase::fromSibling($lastPurchase);
+        $newPurchase = DuplicatePurchase::fromSibling($lastPurchase, ['status' => 'pending']);
         return $newPurchase;
     }
 }
