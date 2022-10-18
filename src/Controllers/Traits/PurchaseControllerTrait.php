@@ -2,14 +2,14 @@
 
 namespace Paytic\Payments\Controllers\Traits;
 
+use Nip\Controllers\Traits\AbstractControllerTrait;
+use Nip\Records\AbstractModels\Record;
+use Nip\Records\RecordManager;
 use Paytic\Payments\Controllers\Traits\PurchaseController\PurchaseConfirmActionsTrait;
 use Paytic\Payments\Controllers\Traits\PurchaseController\PurchaseIpnActionsTrait;
 use Paytic\Payments\Controllers\Traits\PurchaseController\PurchaseRedirectActionsTrait;
 use Paytic\Payments\Gateways\Manager as GatewaysManager;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use Nip\Records\AbstractModels\Record;
-use Nip\Records\RecordManager;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class PurchaseControllerTrait
@@ -19,6 +19,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 trait PurchaseControllerTrait
 {
+    use AbstractControllerTrait;
+
     use PurchaseRedirectActionsTrait;
     use PurchaseConfirmActionsTrait;
     use PurchaseIpnActionsTrait;
@@ -41,11 +43,6 @@ trait PurchaseControllerTrait
      * @return RecordManager
      */
     abstract protected function getModelManager();
-
-    /**
-     * @return Request
-     */
-    abstract protected function getRequest();
 
     abstract protected function dispatchAccessDeniedResponse();
 }
