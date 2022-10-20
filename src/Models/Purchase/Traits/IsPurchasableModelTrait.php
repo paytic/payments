@@ -10,7 +10,7 @@ use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
 use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
 use Paytic\Payments\Models\Methods\PaymentMethod;
-use Paytic\Payments\Models\Methods\Traits\RecordTrait;
+use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
 use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
 use Paytic\Payments\Subscriptions\SubscriptionBuilder;
 
@@ -54,9 +54,16 @@ trait IsPurchasableModelTrait
     }
 
     /**
-     * @return RecordTrait|PaymentMethod
+     * @return null|PaymentMethod
      */
-    abstract public function getPaymentMethod();
+    public function getPaymentMethod()
+    {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return $this->getRelation(
+            IsPurchasableRepository::RELATION_METHODS
+        )->getResults();
+    }
+
 
     /**
      * @param $note
