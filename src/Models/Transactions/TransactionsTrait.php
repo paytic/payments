@@ -134,4 +134,13 @@ trait TransactionsTrait
     {
         return config('payments.tables.transactions', Transactions::TABLE);
     }
+
+    /**
+     * @return mixed|Config
+     * @throws Exception
+     */
+    protected function generateController()
+    {
+        return Transactions::CONTROLLER;
+    }
 }

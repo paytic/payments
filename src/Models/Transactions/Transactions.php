@@ -11,6 +11,7 @@ use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
 class Transactions extends AbstractRecordManager
 {
     public const TABLE = 'payments-transactions';
+    public const CONTROLLER = 'payments-transactions';
 
     use TransactionsTrait;
 }

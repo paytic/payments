@@ -24,6 +24,7 @@ trait IsPurchasableRepositoryTrait
     {
         $this->initRelationsCustomer();
         $this->initRelationsPaymentMethod();
+        $this->initRelationsPaymentTransaction();
         $this->initRelationsSessions();
     }
 
@@ -32,6 +33,14 @@ trait IsPurchasableRepositoryTrait
         $this->belongsTo(
             IsPurchasableRepository::RELATION_METHODS,
             ['class' => get_class(PaymentsModels::methods()), 'fk' => 'id_payment_method']
+        );
+    }
+
+    public function initRelationsPaymentTransaction()
+    {
+        $this->hasOne(
+            IsPurchasableRepository::RELATION_TRANSACTION,
+            ['class' => get_class(PaymentsModels::transactions()), 'fk' => 'id_purchase']
         );
     }
 

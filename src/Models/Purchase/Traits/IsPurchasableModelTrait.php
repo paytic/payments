@@ -12,6 +12,8 @@ use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrai
 use Paytic\Payments\Models\Methods\PaymentMethod;
 use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
 use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\SubscriptionBuilder;
 
 /**
@@ -31,6 +33,7 @@ use Paytic\Payments\Subscriptions\SubscriptionBuilder;
  * @method string getStatus()
  *
  * @method RecordManager getManager()
+ * @method Transaction getPaymentTransaction()
  * @method PurchaseSessionTrait[]|Associated getPurchasesSessions()
  */
 trait IsPurchasableModelTrait
@@ -123,6 +126,23 @@ trait IsPurchasableModelTrait
      */
     public function getPurchaseBillingRecord()
     {
+        return null;
+    }
+
+    public function isSubscription(): bool
+    {
+        return is_object($this->getSubscription());
+    }
+
+    /**
+     * @return Subscription|null
+     */
+    public function getSubscription()
+    {
+        $transaction = $this->getPaymentTransaction();
+        if ($transaction instanceof Transaction) {
+            return $transaction->getSubscription();
+        }
         return null;
     }
 
