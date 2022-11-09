@@ -29,19 +29,24 @@ $item = $item ?? $this->subscription;
     </tr>
     <tr>
         <td>
-            <?= $repository->getLabel('billing'); ?>
+            <?= $repository->getLabel('recurring'); ?>
         </td>
         <td>
-            <?= $item->billing_interval; ?>
-            <?= $item->billing_period; ?>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <?= $repository->getLabel('charge'); ?>
-        </td>
-        <td>
-            <?= $item->charge_at; ?>
+            <div class="row">
+                <div class="col">
+                    <span class="d-block text-muted">
+                        <?= $repository->getLabel('interval'); ?>
+                    </span>
+                    <strong>
+                        <?= $item->billing_interval; ?>
+                        <?= $item->billing_period; ?>
+                    </strong>
+                </div>
+                <div class="col">
+                    <span class="d-block text-muted">NEXT</span>
+                    <strong><?= $item->charge_at; ?></strong>
+                </div>
+            </div>
         </td>
     </tr>
     <tr>
@@ -50,6 +55,23 @@ $item = $item ?? $this->subscription;
         </td>
         <td>
             <?= $item->getStatusObject()->getLabelHTML(); ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <?= translator()->trans('date'); ?>
+        </td>
+        <td>
+            <div class="row">
+                <div class="col">
+                    <span class="d-block text-muted">UPDATED</span>
+                    <strong><?= $item->modified; ?></strong>
+                </div>
+                <div class="col">
+                    <span class="d-block text-muted">CREATED</span>
+                    <strong><?= $item->created; ?></strong>
+                </div>
+            </div>
         </td>
     </tr>
     </tbody>

@@ -11,6 +11,8 @@ use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
  *
  * @property int $customer_id
  * @property string $customer_type
+ *
+ * @method Record getCustomer
  */
 trait HasCustomerRecord
 {
