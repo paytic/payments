@@ -18,7 +18,7 @@ $card = Card::make()
 //    ->setHtmlAttribute('id', 'donations-panel')
     ->withViewContent(
         '/' . $repository->getController() . '/modules/lists/subscription',
-        ['item' => $customer]
+        ['items' => $items]
     );
 ?>
 <?= $card ?>

@@ -26,6 +26,6 @@ $card = Card::make()
 //    ->themeSuccess()
     ->wrapBody(false)
 //    ->setHtmlAttribute('id', 'donations-panel')
-    ->withViewContent('/payments-subscriptions/modules/item/details');
+    ->withViewContent('/payments-subscriptions/modules/item/details', ['item' => $this->item]);
 ?>
 <?= $card ?>

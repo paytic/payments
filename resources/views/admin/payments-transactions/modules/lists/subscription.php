@@ -19,6 +19,7 @@ $items = $items ?? $this->transactions;
         </th>
         <th><?= translator()->trans('amount'); ?></th>
         <th><?= translator()->trans('status'); ?></th>
+        <th><?= translator()->trans('card'); ?></th>
         <th><?= translator()->trans('date'); ?></th>
     </tr>
     </thead>
@@ -40,10 +41,16 @@ $items = $items ?? $this->transactions;
                 </a>
             </td>
             <td>
-                <?= MoneyFormat::html(\ByTIC\Money\Money::parse(intval($item->amount), $item->currency)); ?>
+                <?= Money::fromCents(intval($item->amount), $item->currency)->formatByHtml(); ?>
             </td>
             <td>
                 <?= $item->getStatus()->getLabelHTML(); ?>
+            </td>
+            <td>
+                <div class="font-monospace bg-light">
+                    <i class="fas fa-credit-card"></i>
+                    <?= $item->card; ?>
+                </div>
             </td>
             <td><?= $item->created; ?></td>
         </tr>
