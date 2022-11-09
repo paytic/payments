@@ -1,8 +1,11 @@
 <?php
 
+use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Utility\PaymentsModels;
 
 $repository = PaymentsModels::subscriptions();
+
+/** @var Subscription $item */
 $item = $item ?? $this->subscription;
 ?>
 <table class="table table-striped">
@@ -39,6 +42,14 @@ $item = $item ?? $this->subscription;
         </td>
         <td>
             <?= $item->charge_at; ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <?= $repository->getLabel('status'); ?>
+        </td>
+        <td>
+            <?= $item->getStatusObject()->getLabelHTML(); ?>
         </td>
     </tr>
     </tbody>
