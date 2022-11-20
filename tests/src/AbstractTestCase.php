@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Tests;
 
+use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Nip\Records\AbstractModels\RecordManager;
 use Nip\Records\Locator\ModelLocator;
@@ -33,18 +34,20 @@ abstract class AbstractTestCase extends AbstractTest
     protected function initUtilityModel($type, $value = null)
     {
         if ($value instanceof RecordManager) {
-            ModelLocator::set($type, $value);
+            $value = Mockery::mock($value)->shouldAllowMockingProtectedMethods()->makePartial();
         } else {
             $class = $this->generateRepositoryClass($type);
             /** @var \Nip\Records\RecordManager $value */
-            $value = new $class();
+            $value = Mockery::mock($class)->shouldAllowMockingProtectedMethods()->makePartial();
             $value->setPrimaryKey('id');
             $value->setFields([]);
             $value->setTableStructure(['fields' => []]);
+            $value->setModel($value->generateModelClass($class));
 
             ModelLocator::set($class, $value);
-            ModelLocator::set($type, $value);
         }
+        $value->shouldReceive('performInsert')->andReturnArg(1);
+        ModelLocator::set($type, $value);
         return $value;
     }
 

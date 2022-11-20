@@ -2,14 +2,15 @@
 
 namespace Paytic\Payments\Utility;
 
-use ByTIC\MediaLibrary\Models\MediaProperties\MediaProperties;
-use ByTIC\MediaLibrary\Models\MediaRecords\MediaRecords;
-use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionsTrait;
+use Nip\Records\AbstractModels\RecordManager;
+use Nip\Records\Locator\ModelLocator;
+use Paytic\Payments\Models\Locations\Locations;
+use Paytic\Payments\Models\Methods\PaymentMethods;
+use Paytic\Payments\Models\Purchases\Purchases;
+use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
 use Paytic\Payments\Models\Subscriptions\Subscriptions;
 use Paytic\Payments\Models\Tokens\Tokens;
 use Paytic\Payments\Models\Transactions\Transactions;
-use Nip\Records\Locator\ModelLocator;
-use Nip\Records\RecordManager;
 
 /**
  * Class PaymentsModels
@@ -22,52 +23,68 @@ class PaymentsModels
 
     protected static $models = [];
 
+    public const PURCHASES = 'purchases';
+    public const METHODS = 'methods';
+    public const SESSIONS = 'purchases_sessions';
+    public const TRANSACTIONS = 'transactions';
+    public const SUBSCRIPTIONS = 'subscriptions';
+    public const TOKENS = 'tokens';
+    public const LOCATIONS = 'locations';
+
     /**
-     * @return RecordManager
+     * @return Purchases
      */
-    public static function purchases()
+    public static function purchases(): RecordManager
     {
-        return static::getModels('purchases', 'purchases');
+        return static::getModels(self::PURCHASES, Purchases::class);
     }
 
     /**
-     * @return RecordManager
+     * @return PaymentMethods
      */
-    public static function methods()
+    public static function methods(): RecordManager
     {
-        return static::getModels('methods', 'payment-methods');
+        return static::getModels(self::METHODS, PaymentMethods::class);
     }
 
     /**
-     * @return PurchaseSessionsTrait
+     * @return PurchaseSessions
      */
-    public static function sessions()
+    public static function sessions(): RecordManager
     {
-        return static::getModels('purchasesSessions', 'purchase-sessions');
+        return static::getModels(self::SESSIONS, PurchaseSessions::class);
     }
 
     /**
      * @return Transactions
      */
-    public static function transactions()
+    public static function transactions(): RecordManager
     {
-        return static::getModels('transactions', 'payments-transactions');
+        return static::getModels(self::TRANSACTIONS, Transactions::class);
     }
 
     /**
      * @return Tokens
      */
-    public static function tokens()
+    public static function tokens(): RecordManager
     {
-        return static::getModels('tokens', 'payments-tokens');
+        return static::getModels(self::TOKENS, Tokens::class);
     }
 
     /**
      * @return Subscriptions
      */
-    public static function subscriptions()
+    public static function subscriptions(): RecordManager
     {
-        return static::getModels('subscriptions', 'payments-subscriptions');
+        return static::getModels(self::SUBSCRIPTIONS, Subscriptions::class);
+    }
+
+    /**
+     * @return Locations
+     */
+    public static function locations(): RecordManager
+    {
+        return static::getModels(self::LOCATIONS, Locations::class);
     }
 
     public static function reset()
@@ -78,7 +95,7 @@ class PaymentsModels
     /**
      * @param string $type
      * @param string $default
-     * @return mixed|\Nip\Records\AbstractModels\RecordManager
+     * @return mixed|RecordManager
      */
     protected static function getModels($type, $default)
     {

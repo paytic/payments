@@ -3,6 +3,7 @@
 namespace Paytic\Payments\Tests\Models\Purchases;
 
 use Paytic\Payments\Tests\AbstractTestCase;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class PurchasesTest
@@ -12,7 +13,7 @@ class PurchaseTest extends AbstractTestCase
 {
     public function test_getEmptyStatus()
     {
-        $purchasesRepository = $this->initUtilityModel('purchases');
+        $purchasesRepository = $this->initUtilityModel(PaymentsModels::PURCHASES);
         $purchase = $purchasesRepository->getNew();
 
         self::assertSame(null, $purchase->getPropertyRaw('status'));
