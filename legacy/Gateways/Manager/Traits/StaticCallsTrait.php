@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Legacy\Gateways\Manager\Traits;
 
 /**
- * Trait StaticCallsTrait
- * @package Paytic\Payments\Legacy\Gateways\Manager\Traits
+ * Trait StaticCallsTrait.
  */
 trait StaticCallsTrait
 {

@@ -1,15 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ByTIC\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
-use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use Nip\Records\AbstractModels\Record;
-use Nip\Records\AbstractModels\RecordManager;
-use Symfony\Component\HttpFoundation\Request;
-
 /**
- * Class HasModelRequest
- * @package Paytic\Payments\Payments\Gateways\Providers\AbstractGateway\Message\Traits
+ * Class HasModelRequest.
+ *
  * @deprecated use \Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelRequest;
  */
 trait HasModelRequest

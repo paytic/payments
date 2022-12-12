@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Models\Transactions;
 
 use ArrayObject;
@@ -10,12 +12,11 @@ use Paytic\Payments\Models\Transactions\Transactions;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
- * Class TransactionTraitTest
- * @package Paytic\Payments\Tests\Models\Transactions
+ * Class TransactionTraitTest.
  */
 class TransactionTraitTest extends AbstractTest
 {
-    public function test_cast_metadata()
+    public function testCastMetadata()
     {
         $item = new Transaction();
 
@@ -28,7 +29,7 @@ class TransactionTraitTest extends AbstractTest
         self::assertSame('{"test":99}', $item->getPropertyRaw('metadata'));
     }
 
-    public function test_cast_metadata_empty()
+    public function testCastMetadataEmpty()
     {
         $repository = Mockery::mock(Transactions::class)
             ->makePartial();

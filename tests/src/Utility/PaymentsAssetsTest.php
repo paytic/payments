@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Utility;
 
 use Mockery;
+use Nip\Records\Locator\ModelLocator;
 use Paytic\Payments\Models\Purchases\Purchase;
 use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
 use Paytic\Payments\Tests\AbstractTestCase;
 use Paytic\Payments\Utility\PaymentsAssets;
-use Nip\Records\Locator\ModelLocator;
+use const DIRECTORY_SEPARATOR;
 
 /**
- * Class PaymentsAssetsTest
- * @package Paytic\Payments\Tests\Utility
+ * Class PaymentsAssetsTest.
  */
 class PaymentsAssetsTest extends AbstractTestCase
 {
@@ -20,7 +22,7 @@ class PaymentsAssetsTest extends AbstractTestCase
         self::assertStringEndsWith('bytic' . DIRECTORY_SEPARATOR . 'payments', PaymentsAssets::basePath());
     }
 
-    public function test_adminPurchasesSessionsList_empty()
+    public function testAdminPurchasesSessionsListEmpty()
     {
         $purchase = Mockery::mock(Purchase::class)->makePartial();
         $purchase->shouldReceive('getPurchasesSessions')->once()->andReturn([]);

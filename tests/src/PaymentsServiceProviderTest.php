@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests;
 
-use Paytic\Payments\Models\Purchases\Purchases;
-use Paytic\Payments\PaymentsServiceProvider;
-use Paytic\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecordManager;
 use Nip\Config\Config;
 use Nip\Container\Container;
 use Nip\Records\Locator\ModelLocator;
+use Paytic\Payments\Models\Purchases\Purchases;
+use Paytic\Payments\PaymentsServiceProvider;
+use Paytic\Payments\Tests\Fixtures\Records\Purchases\PurchasableRecordManager;
 
 /**
- * Class PaymentsServiceProviderTest
- * @package Paytic\Payments\Tests
+ * Class PaymentsServiceProviderTest.
  */
 class PaymentsServiceProviderTest extends AbstractTestCase
 {
@@ -20,7 +21,7 @@ class PaymentsServiceProviderTest extends AbstractTestCase
         $container = Container::getInstance();
 
         $data = [
-            'payments' => require PROJECT_BASE_PATH . '/config/payments.php'
+            'payments' => require PROJECT_BASE_PATH . '/config/payments.php',
         ];
         $config = new Config($data);
         $container->set('config', $config);

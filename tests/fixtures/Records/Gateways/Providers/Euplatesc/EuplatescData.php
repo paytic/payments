@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Fixtures\Records\Gateways\Providers\Euplatesc;
 
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
- * Class EuplatescData
- * @package Paytic\Payments\Tests\Fixtures\Records\Gateways\Providers\Euplatesc
+ * Class EuplatescData.
  */
 class EuplatescData
 {
@@ -15,10 +16,10 @@ class EuplatescData
      */
     public static function getMethodOptions()
     {
-        $data = 'a:2:{s:15:"payment_gateway";s:9:"euplatesc";s:9:"euplatesc";'.
-            'a:2:{s:3:"mid";s:11:"'.envVar('EUPLATESC_MID').'";'.
-            's:3:"key";s:40:"'.envVar('EUPLATESC_KEY').'";'
-            .'}}';
+        $data = 'a:2:{s:15:"payment_gateway";s:9:"euplatesc";s:9:"euplatesc";' .
+            'a:2:{s:3:"mid";s:11:"' . envVar('EUPLATESC_MID') . '";' .
+            's:3:"key";s:40:"' . envVar('EUPLATESC_KEY') . '";'
+            . '}}';
 
         return $data;
     }

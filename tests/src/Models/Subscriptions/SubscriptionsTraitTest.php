@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Models\Subscriptions;
 
 use Mockery;
@@ -15,12 +17,11 @@ use Paytic\Payments\Subscriptions\Statuses\Pending;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
- * Class SubscriptionsTraitTest
- * @package Paytic\Payments\Tests\Models\Subscriptions
+ * Class SubscriptionsTraitTest.
  */
 class SubscriptionsTraitTest extends AbstractTest
 {
-    public function test_getStatuses()
+    public function testGetStatuses()
     {
         $statuses = Subscriptions::instance()->getStatuses();
 
@@ -31,7 +32,7 @@ class SubscriptionsTraitTest extends AbstractTest
         self::assertInstanceOf(Paused::class, $statuses[Paused::NAME]);
     }
 
-    public function test_getChargeMethods()
+    public function testGetChargeMethods()
     {
         $repository = Subscriptions::instance();
 
@@ -42,7 +43,7 @@ class SubscriptionsTraitTest extends AbstractTest
         self::assertInstanceOf(Gateway::class, $methods['gateway']);
     }
 
-    public function test_findChargeDue()
+    public function testFindChargeDue()
     {
         /** @var Mock|Subscriptions $repository */
         $repository = Mockery::mock(Subscriptions::class)->makePartial()->shouldAllowMockingProtectedMethods();

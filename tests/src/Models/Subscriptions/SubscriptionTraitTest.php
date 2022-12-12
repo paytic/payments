@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Models\Subscriptions;
 
 use ByTIC\DataObjects\Casts\Metadata\Metadata;
@@ -18,16 +20,14 @@ use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
- * Class SubscriptionTraitTest
- * @package Paytic\Payments\Tests\Models\Subscriptions
+ * Class SubscriptionTraitTest.
  */
 class SubscriptionTraitTest extends AbstractTest
 {
-
     /**
      * @dataProvider data_getChargeMethod
      */
-    public function test_getChargeMethod($value, $class)
+    public function testGetChargeMethod($value, $class)
     {
         $repository = new Subscriptions();
 
@@ -47,7 +47,7 @@ class SubscriptionTraitTest extends AbstractTest
         ];
     }
 
-    public function test_populateFromToken()
+    public function testPopulateFromToken()
     {
         ModelLocator::set(Tokens::class, new Tokens());
         ModelLocator::set(PaymentMethods::class, new PaymentMethods());
@@ -70,7 +70,7 @@ class SubscriptionTraitTest extends AbstractTest
         self::assertSame($token, $item->getToken());
     }
 
-    public function test_cast_metadata()
+    public function testCastMetadata()
     {
         $item = new Subscription();
 
@@ -83,7 +83,7 @@ class SubscriptionTraitTest extends AbstractTest
         self::assertSame('{"test":99}', $item->getPropertyRaw('metadata'));
     }
 
-    public function test_cast_metadata_empty()
+    public function testCastMetadataEmpty()
     {
         $repository = Mockery::mock(Transactions::class)
             ->makePartial();

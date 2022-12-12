@@ -4,12 +4,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="https://getpsalm.org/schema/config"
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-        xmlns:xi="http://www.w3.org/2001/XInclude">
+>
     <projectFiles>
+        <directory name="config"/>
+        <directory name="migrations"/>
         <directory name="src"/>
         <directory name="tests"/>
         <ignoreFiles>
-            <directory name="vendor" />
+            <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
 </psalm>

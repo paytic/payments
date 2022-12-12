@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use Nip\Container\Utility\Container;
+
+require __DIR__ . '/../vendor/autoload.php';
 
 $configData = require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'payments.php';
 

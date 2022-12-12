@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests;
 
 use Mockery;
@@ -12,8 +14,7 @@ use Paytic\Payments\Models\Transactions\Transactions;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
- * Class AbstractTestCase
- * @package Paytic\Payments\Tests
+ * Class AbstractTestCase.
  */
 abstract class AbstractTestCase extends AbstractTest
 {
@@ -27,8 +28,6 @@ abstract class AbstractTestCase extends AbstractTest
     }
 
     /**
-     * @param $type
-     * @param $value
      * @return RecordManager|\Nip\Records\RecordManager|null
      */
     protected function initUtilityModel($type, $value = null)
@@ -48,11 +47,11 @@ abstract class AbstractTestCase extends AbstractTest
         }
         $value->shouldReceive('performInsert')->andReturnArg(1);
         ModelLocator::set($type, $value);
+
         return $value;
     }
 
     /**
-     * @param $type
      * @return string|void
      */
     protected function generateRepositoryClass($type)

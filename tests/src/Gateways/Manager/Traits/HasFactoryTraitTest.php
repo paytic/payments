@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Gateways\Manager\Traits;
 
 use Paytic\Payments\Gateways\GatewayFactory;
@@ -7,12 +9,11 @@ use Paytic\Payments\Gateways\Manager;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
- * Class HasFactoryTraitTest
- * @package Paytic\Payments\Tests\Gateways\Manager\Traits
+ * Class HasFactoryTraitTest.
  */
 class HasFactoryTraitTest extends AbstractTest
 {
-    public function test_getFactory()
+    public function testGetFactory()
     {
         $manager = Manager::instance();
         $factory1 = $manager->getFactory();

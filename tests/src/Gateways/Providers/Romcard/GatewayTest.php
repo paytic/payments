@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Gateways\Providers\Romcard;
 
+use Http\Discovery\Psr17FactoryDiscovery;
 use Paytic\Omnipay\Romcard\Message\PurchaseResponse;
+use Paytic\Omnipay\Romcard\Message\SaleRequest;
 use Paytic\Payments\Gateways\Providers\Romcard\Gateway;
 use Paytic\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
-use Paytic\Omnipay\Romcard\Message\SaleRequest;
-use Paytic\Payments\Tests\Gateways\GatewayTest as AbstractGatewayTest;
 use Paytic\Payments\Tests\Fixtures\Records\Gateways\Providers\Romcard\RomcardData;
 use Paytic\Payments\Tests\Fixtures\Records\PaymentMethods\PaymentMethod;
-use Http\Discovery\Psr17FactoryDiscovery;
+use Paytic\Payments\Tests\Gateways\GatewayTest as AbstractGatewayTest;
 
 /**
- * Class GatewayTest
- * @package Paytic\Payments\Tests\Gateways\Providers\Romcard
+ * Class GatewayTest.
  */
 class GatewayTest extends AbstractGatewayTest
 {
@@ -38,7 +39,7 @@ class GatewayTest extends AbstractGatewayTest
         );
         self::assertSame(200, $gatewayResponse->getStatusCode());
 
-        //Validate first Response
+        // Validate first Response
         $body = $gatewayResponse->getBody()->__toString();
 
         self::assertMatchesRegularExpression('/Tranzactie Aprobata/', $body);
@@ -75,7 +76,7 @@ class GatewayTest extends AbstractGatewayTest
         self::assertTrue($gateway->isActive());
     }
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 

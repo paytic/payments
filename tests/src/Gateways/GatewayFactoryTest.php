@@ -1,20 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Gateways;
 
 use Paytic\Payments\Gateways\GatewayFactory;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
- * Class GatewayFactoryTest
- * @package Paytic\Payments\Tests\Gateways
+ * Class GatewayFactoryTest.
  */
 class GatewayFactoryTest extends AbstractTest
 {
     /**
      * @dataProvider getNameProvider
-     * @param $short
-     * @param $class
      */
     public function testGetGatewayClassName($short, $class)
     {

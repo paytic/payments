@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Subscriptions\Actions\GatewayNotifications;
 
 use Mockery;
@@ -13,15 +15,12 @@ use Paytic\Payments\Subscriptions\Actions\GatewayNotifications\OnTransactionNoti
 use Paytic\Payments\Subscriptions\Statuses\Pending;
 use Paytic\Payments\Tests\AbstractTestCase;
 
-/**
- *
- */
 class UpdateFromTransactionNotificationTest extends AbstractTestCase
 {
-    public function test_handle_success_on_empty_subscription()
+    public function testHandleSuccessOnEmptySubscription()
     {
         /** @var OnTransactionNotification|Mock $action */
-        list($action, $subscription, $transaction) = $this->generateEmptyMocks();
+        [$action, $subscription, $transaction] = $this->generateEmptyMocks();
         $action->shouldReceive('handleNotStarted')->once();
 
         $action->execute();
@@ -48,11 +47,11 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
         return [$action, $subscription, $transaction];
     }
 
-    public function test_handle_success_on_pending_subscription()
+    public function testHandleSuccessOnPendingSubscription()
     {
         /** @var OnTransactionNotification|Mock $action */
         /** @var Subscription|Mock $subscription */
-        list($action, $subscription, $transaction) = $this->generateEmptyMocks();
+        [$action, $subscription, $transaction] = $this->generateEmptyMocks();
         $subscription->status = Pending::NAME;
         $subscription->start_at = '2022-05-01';
         $subscription->billing_period = BillingPeriod::MONTHLY;
@@ -67,12 +66,11 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
         self::assertSame('2022-06-01 08:00:00', (string)$subscription->getPropertyRaw('charge_at'));
     }
 
-
-    public function test_handle_success_on_active_subscription()
+    public function testHandleSuccessOnActiveSubscription()
     {
         /** @var OnTransactionNotification|Mock $action */
         /** @var Subscription|Mock $subscription */
-        list($action, $subscription, $transaction) = $this->generateEmptyMocks();
+        [$action, $subscription, $transaction] = $this->generateEmptyMocks();
         $subscription->status = Active::NAME;
         $subscription->start_at = '2022-05-01';
         $subscription->billing_period = BillingPeriod::MONTHLY;

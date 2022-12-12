@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Transactions\Actions\Create;
 
 use Mockery;
@@ -9,12 +11,9 @@ use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Tests\AbstractTestCase;
 use Paytic\Payments\Transactions\Actions\Create\CreateTransactionForPurchase;
 
-/**
- *
- */
 class CreateTransactionForPurchaseTest extends AbstractTestCase
 {
-    public function test_for_purchase_throws_invalid_method()
+    public function testForPurchaseThrowsInvalidMethod()
     {
         $this->initUtilityModel('transactions');
         $this->initUtilityModel('purchases');
@@ -24,7 +23,7 @@ class CreateTransactionForPurchaseTest extends AbstractTestCase
         CreateTransactionForPurchase::for($purchase);
     }
 
-    public function test_for_purchase_empty()
+    public function testForPurchaseEmpty()
     {
         $this->initUtilityModel('transactions');
 

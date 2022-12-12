@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Paytic\Payments\Models\Locations\Locations;
 use Paytic\Payments\Models\Methods\PaymentMethods;
 use Paytic\Payments\Models\Purchases\Purchases;
@@ -37,7 +39,7 @@ return [
         'Romcard',
         'Twispay',
         'Paylike',
-        'PlatiOnline'
+        'PlatiOnline',
     ],
 
     'database' => [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Gateways\Providers\Romcard\Message;
 
 use Paytic\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;

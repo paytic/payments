@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Payments\Tests\Models\Purchases;
 
 use Paytic\Payments\Models\Purchases\Purchases;
@@ -7,17 +9,16 @@ use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Tests\AbstractTestCase;
 
 /**
- * Class PurchasesTest
- * @package Paytic\Payments\Tests\Models\Purchases
+ * Class PurchasesTest.
  */
 class PurchasesTest extends AbstractTestCase
 {
-    public function test_getController()
+    public function testGetController()
     {
         self::assertSame('purchases', Purchases::instance()->getController());
     }
 
-    public function test_getStatuses()
+    public function testGetStatuses()
     {
         $statuses = Purchases::instance()->getStatuses();
 

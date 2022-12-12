@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'GET' => [
         'TERMINAL' => '60001099',
@@ -16,6 +18,6 @@ return [
         'APPROVAL' => '621CBF',
         'TIMESTAMP' => '20190427181025',
         'NONCE' => 'f7af20b904e82bb1fe2192fe5cf89be0',
-        'P_SIGN' => '14C4D5CF743F425908D40259F94FCC4A7E68AC67'
-    ]
+        'P_SIGN' => '14C4D5CF743F425908D40259F94FCC4A7E68AC67',
+    ],
 ];
