@@ -2,9 +2,9 @@
 
 namespace Paytic\Payments\Utility;
 
-use Paytic\Payments\PaymentsServiceProvider;
 use Exception;
 use Nip\Utility\Traits\SingletonTrait;
+use Paytic\Payments\PaymentsServiceProvider;
 
 /**
  *
@@ -14,6 +14,11 @@ class PackageConfig extends \ByTIC\PackageBase\Utility\PackageConfig
     use SingletonTrait;
 
     protected $name = PaymentsServiceProvider::NAME;
+
+    public static function configPath(): string
+    {
+        return __DIR__ . '/../../config/payments.php';
+    }
 
     /**
      * @return string|null

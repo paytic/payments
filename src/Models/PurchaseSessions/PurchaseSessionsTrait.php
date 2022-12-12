@@ -4,12 +4,12 @@ namespace Paytic\Payments\Models\PurchaseSessions;
 
 use Exception;
 use Nip\Config\Config;
+use Omnipay\Common\Message\ResponseInterface;
 use Paytic\Payments\Actions\GatewayNotifications\CreateSessionFromResponse;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Paytic\Payments\Models\PurchaseSessions\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
 use Paytic\Payments\Utility\PaymentsModels;
-use Omnipay\Common\Message\ResponseInterface;
 
 /**
  * Trait PurchaseSessionsTrait
@@ -118,6 +118,15 @@ trait PurchaseSessionsTrait
      */
     protected function generateTable()
     {
-        return config('payments.tables.purchases_sessions', 'purchases_sessions');
+        return config('payments.tables.purchases_sessions', PurchaseSessions::TABLE);
+    }
+
+    /**
+     * @return mixed|Config
+     * @throws Exception
+     */
+    protected function generateController()
+    {
+        return PurchaseSessions::CONTROLLER;
     }
 }

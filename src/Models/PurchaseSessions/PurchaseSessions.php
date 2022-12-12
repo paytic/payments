@@ -10,5 +10,8 @@ use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
  */
 class PurchaseSessions extends AbstractRecordManager
 {
+    public const TABLE = 'purchases_sessions';
+    public const CONTROLLER = 'purchase_sessions';
+
     use PurchaseSessionsTrait;
 }

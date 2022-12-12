@@ -22,7 +22,7 @@ return [
 
     'tables' => [
         PaymentsModels::METHODS => PaymentMethods::TABLE,
-        PaymentsModels::SESSIONS => 'purchases_sessions',
+        PaymentsModels::SESSIONS => PurchaseSessions::TABLE,
         PaymentsModels::TOKENS => Tokens::TABLE,
         PaymentsModels::TRANSACTIONS => Transactions::TABLE,
         PaymentsModels::SUBSCRIPTIONS => Subscriptions::TABLE,
