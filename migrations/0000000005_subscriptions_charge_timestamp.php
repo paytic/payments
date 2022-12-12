@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
+use Paytic\Payments\Utility\PaymentsModels;
 use Phinx\Migration\AbstractMigration;
 
 /**
- * Class CreateTokensTable
+ * Class CreateTokensTable.
  */
 final class SubscriptionsChargeTimestamp extends AbstractMigration
 {
@@ -22,7 +23,7 @@ final class SubscriptionsChargeTimestamp extends AbstractMigration
      */
     public function change(): void
     {
-        $table_name = \ByTIC\Payments\Utility\PaymentsModels::subscriptions()->getTable();
+        $table_name = PaymentsModels::subscriptions()->getTable();
 
         $this->table($table_name)
             ->changeColumn('charge_at', 'datetime', ['null' => true])

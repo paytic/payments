@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Paytic\Payments\Utility\PaymentsModels;
@@ -38,7 +39,7 @@ final class TrasnsactionSubscriptionsFK extends AbstractMigration
                 [
                     'constraint' => $table_transactions . '_id_' . $table_subscriptions,
                     'delete' => 'NO_ACTION',
-                    'update' => 'NO_ACTION'
+                    'update' => 'NO_ACTION',
                 ]
             )
             ->save();

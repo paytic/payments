@@ -1,12 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 use Paytic\Payments\Utility\PaymentsModels;
 use Phinx\Migration\AbstractMigration;
 
-/**
- *
- */
 final class SubscriptionsTokenFK extends AbstractMigration
 {
     /**
@@ -33,7 +31,7 @@ final class SubscriptionsTokenFK extends AbstractMigration
                 [
                     'constraint' => $table_subscriptions . '_id_method_' . $table_methods,
                     'delete' => 'NO_ACTION',
-                    'update' => 'NO_ACTION'
+                    'update' => 'NO_ACTION',
                 ]
             )
             ->save();

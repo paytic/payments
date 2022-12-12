@@ -1,12 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 use Paytic\Payments\Utility\PaymentsModels;
 use Phinx\Migration\AbstractMigration;
 
-/**
- *
- */
 final class PaymentsLocationsTable extends AbstractMigration
 {
     /**
@@ -67,7 +65,7 @@ final class PaymentsLocationsTable extends AbstractMigration
                 [
                     'constraint' => $table_transactions . '_id_location_' . $table_locations,
                     'delete' => 'NO_ACTION',
-                    'update' => 'NO_ACTION'
+                    'update' => 'NO_ACTION',
                 ]
             )
             ->save();

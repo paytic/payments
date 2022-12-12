@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
+use Paytic\Payments\Utility\PaymentsModels;
 use Phinx\Migration\AbstractMigration;
 
 /**
- * Class OrgReportsFileStatus
+ * Class OrgReportsFileStatus.
  */
 final class CreateSessionsTable extends AbstractMigration
 {
@@ -22,7 +23,7 @@ final class CreateSessionsTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table_name = \ByTIC\Payments\Utility\PaymentsModels::sessions()->getTable();
+        $table_name = PaymentsModels::sessions()->getTable();
         $exists = $this->hasTable($table_name);
         if ($exists) {
             return;

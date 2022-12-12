@@ -6,7 +6,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 use Phinx\Migration\AbstractMigration;
 
 /**
- * Class TransactionsAmountField
+ * Class TransactionsAmountField.
  */
 final class TransactionsAmountField extends AbstractMigration
 {

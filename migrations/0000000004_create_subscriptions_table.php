@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+use Paytic\Payments\Utility\PaymentsModels;
+use Phinx\Db\Adapter\MysqlAdapter;
 use Phinx\Migration\AbstractMigration;
 
 /**
- * Class CreateTokensTable
+ * Class CreateTokensTable.
  */
 final class CreateSubscriptionsTable extends AbstractMigration
 {
@@ -22,7 +24,7 @@ final class CreateSubscriptionsTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table_name = \ByTIC\Payments\Utility\PaymentsModels::subscriptions()->getTable();
+        $table_name = PaymentsModels::subscriptions()->getTable();
         $exists = $this->hasTable($table_name);
         if ($exists) {
             return;
@@ -36,21 +38,21 @@ final class CreateSubscriptionsTable extends AbstractMigration
             ->addColumn('customer_type', 'string')
             ->addColumn('status', 'enum', ['values' => ['not_started', 'active', 'completed', 'canceled']])
             ->addColumn('billing_period', 'enum', ['values' => ['daily', 'weekly', 'monthly', 'yearly']])
-            ->addColumn('billing_interval', 'integer', ['limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
+            ->addColumn('billing_interval', 'integer', ['limit' => MysqlAdapter::INT_TINY])
             ->addColumn(
                 'billing_count',
                 'integer',
-                ['null' => true, 'limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY]
+                ['null' => true, 'limit' => MysqlAdapter::INT_TINY]
             )
             ->addColumn('start_at', 'date', ['null' => true])
             ->addColumn('cancel_at', 'date', ['null' => true])
             ->addColumn('ended_at', 'date', ['null' => true])
             ->addColumn('charge_at', 'date', ['null' => true])
-            ->addColumn('charge_attempts', 'integer', ['limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY])
+            ->addColumn('charge_attempts', 'integer', ['limit' => MysqlAdapter::INT_TINY])
             ->addColumn(
                 'charge_count',
                 'integer',
-                ['null' => true, 'limit' => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY]
+                ['null' => true, 'limit' => MysqlAdapter::INT_TINY]
             )
             ->addColumn('charge_method', 'string')
             ->addColumn('metadata', 'json', ['null' => true])

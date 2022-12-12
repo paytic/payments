@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
+use Paytic\Payments\Utility\PaymentsModels;
 use Phinx\Migration\AbstractMigration;
 
 /**
- * Class CreateTransactionsTable
+ * Class CreateTransactionsTable.
  */
 final class CreateTransactionsTable extends AbstractMigration
 {
@@ -22,7 +23,7 @@ final class CreateTransactionsTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table_name = \ByTIC\Payments\Utility\PaymentsModels::transactions()->getTable();
+        $table_name = PaymentsModels::transactions()->getTable();
         $exists = $this->hasTable($table_name);
         if ($exists) {
             return;

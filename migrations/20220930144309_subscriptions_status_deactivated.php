@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Paytic\Payments\Utility\PaymentsModels;
@@ -28,7 +29,7 @@ final class SubscriptionsStatusDeactivated extends AbstractMigration
                 [
                     'values' => ['pending', 'active', 'canceled', 'deactivated', 'paused'],
                     'default' => 'pending',
-                    'null' => true
+                    'null' => true,
                 ]
             )
             ->save();

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Paytic\Payments\Utility\PaymentsModels;
@@ -28,7 +29,7 @@ final class TransactionsIdMethod extends AbstractMigration
                 'integer',
                 [
                     'after' => 'id_purchase',
-                    'null' => true
+                    'null' => true,
                 ]
             )
             ->save();
@@ -41,7 +42,7 @@ final class TransactionsIdMethod extends AbstractMigration
                 [
                     'constraint' => $table_transactions . '_id_method_' . $table_methods,
                     'delete' => 'NO_ACTION',
-                    'update' => 'NO_ACTION'
+                    'update' => 'NO_ACTION',
                 ]
             )
             ->save();

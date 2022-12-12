@@ -1,12 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 use Paytic\Payments\Utility\PaymentsModels;
 use Phinx\Migration\AbstractMigration;
 
-/**
- *
- */
 final class TransactionsTokenFK extends AbstractMigration
 {
     /**
@@ -30,7 +28,7 @@ final class TransactionsTokenFK extends AbstractMigration
                 'id_token',
                 'integer',
                 [
-                    'null' => true
+                    'null' => true,
                 ]
             )
             ->save();
@@ -43,7 +41,7 @@ final class TransactionsTokenFK extends AbstractMigration
                 [
                     'constraint' => $table_transactions . '_id_token_' . $table_tokens,
                     'delete' => 'NO_ACTION',
-                    'update' => 'NO_ACTION'
+                    'update' => 'NO_ACTION',
                 ]
             )
             ->save();
