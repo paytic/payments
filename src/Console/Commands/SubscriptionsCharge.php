@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Console\Commands;
 
+use Bytic\Actions\Observers\Observers\ObserverConsoleOutput;
 use ByTIC\Console\Command;
 use Paytic\Payments\Subscriptions\Actions\ChargeSubscriptionsDue;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,7 +30,11 @@ class SubscriptionsCharge extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        ChargeSubscriptionsDue::next(10);
+        $action = ChargeSubscriptionsDue::make();
+
+        $observer = new ObserverConsoleOutput($output);
+        $action->attach($observer);
+        $action->handle();
         return 0;
     }
 }

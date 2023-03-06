@@ -2,8 +2,10 @@
 
 namespace Paytic\Payments\Subscriptions\Actions;
 
+use Bytic\Actions\ObservableAction;
 use Exception;
 use Nip\Records\Record;
+use Paytic\CommonObjects\Subscription\Exception\SubscriptionNotChargeable;
 use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Statuses\Active;
@@ -17,7 +19,7 @@ use Paytic\Payments\Transactions\Actions\CreateNewTransactionInSubscription;
  * Class ChargeSubscription
  * @package Paytic\Payments\Subscriptions\Actions
  */
-class ChargeSubscription
+class ChargeSubscription extends ObservableAction
 {
     protected SubscriptionInterface $subscription;
 
@@ -39,10 +41,17 @@ class ChargeSubscription
 
     public function execute()
     {
-        $this->subscription->guardIsChargeable();
+        $this->info('START ' . self::class);
+        try {
+            $this->subscription->guardIsChargeable();
+        } catch (SubscriptionNotChargeable $exception) {
+            $this->error('SUBSCRIPTION NOT CHARGEABLE: ' . $exception->getMessage());
+            return;
+        }
 
         $transaction = $this->determineTransaction();
         $this->chargeTransaction($transaction);
+        $this->info('END ' . self::class);
     }
 
     protected function determineTransaction(): Transaction|Record

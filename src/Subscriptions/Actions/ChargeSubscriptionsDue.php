@@ -2,15 +2,18 @@
 
 namespace Paytic\Payments\Subscriptions\Actions;
 
+use Bytic\Actions\ObservableAction;
 use Paytic\Payments\Models\Subscriptions\Subscriptions;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  *
  */
-class ChargeSubscriptionsDue
+class ChargeSubscriptionsDue extends ObservableAction
 {
     protected $repository;
+
+    protected $count = 10;
 
     public function __construct(Subscriptions $repository = null)
     {
@@ -19,12 +22,17 @@ class ChargeSubscriptionsDue
 
     /**
      * @param $count
-     * @return null
      */
-    public static function next($count = 10)
+    public static function next($count = null)
     {
         $action = new self();
-        return $action->execute($count);
+        $action->handle($count);
+    }
+
+    public function handle($count = null)
+    {
+        $this->count = $count ?? $this->count;
+        $this->execute($this->count);
     }
 
     /**
@@ -33,10 +41,15 @@ class ChargeSubscriptionsDue
      */
     protected function execute($count)
     {
+        $this->info('START ' . self::class);
         $this->repository->findChargeDue($count)
             ->each(function ($subscription) {
-                ChargeSubscription::handle($subscription);
+                $this->info('TRY CHARGE FOR ID:' . $subscription->id);
+                $action = new ChargeSubscription($subscription);
+                $action->attachAll($this->getObservers());
+                $action->execute();
             });
+        $this->info('END ' . self::class);
         return true;
     }
 }

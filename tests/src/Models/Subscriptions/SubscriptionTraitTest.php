@@ -24,6 +24,20 @@ use Paytic\Payments\Tests\AbstractTest;
  */
 class SubscriptionTraitTest extends AbstractTest
 {
+
+    public function testFillData()
+    {
+        $item = new Subscription();
+        $data = [
+            'billing_interval' => '1',
+            'billing_period' => 'month',
+        ];
+        $item->fill($data);
+
+        self::assertSame(1, $item->billing_interval);
+        self::assertSame('month', $item->billing_period);
+    }
+
     /**
      * @dataProvider data_getChargeMethod
      */
