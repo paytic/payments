@@ -9,4 +9,9 @@ namespace Paytic\Payments\Subscriptions\Statuses;
 class Paused extends AbstractStatus
 {
     public const NAME = self::PAUSED;
+
+    public function getColorClass()
+    {
+        return 'warning';
+    }
 }

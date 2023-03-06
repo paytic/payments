@@ -9,4 +9,10 @@ namespace Paytic\Payments\Subscriptions\Statuses;
 class Active extends AbstractStatus
 {
     public const NAME = self::ACTIVE;
+
+    public function getColorClass()
+    {
+        return 'success';
+    }
+
 }

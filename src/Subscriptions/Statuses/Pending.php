@@ -9,4 +9,9 @@ namespace Paytic\Payments\Subscriptions\Statuses;
 class Pending extends AbstractStatus
 {
     public const NAME = self::PENDING;
+
+    public function getColorClass()
+    {
+        return 'info';
+    }
 }

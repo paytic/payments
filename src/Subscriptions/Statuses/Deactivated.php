@@ -9,4 +9,9 @@ namespace Paytic\Payments\Subscriptions\Statuses;
 class Deactivated extends AbstractStatus
 {
     public const NAME = self::DEACTIVATED;
+
+    public function getColorClass()
+    {
+        return 'warning';
+    }
 }

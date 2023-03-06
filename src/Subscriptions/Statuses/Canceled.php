@@ -9,4 +9,9 @@ namespace Paytic\Payments\Subscriptions\Statuses;
 class Canceled extends AbstractStatus
 {
     public const NAME = self::CANCELED;
+
+    public function getColorClass()
+    {
+        return 'danger';
+    }
 }
