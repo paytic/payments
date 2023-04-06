@@ -10,6 +10,7 @@ use Nip\Records\Record;
  *
  * @property string $city
  * @property string $phone
+ * @property string $address
  *
  * @method Record getCountry
  */
@@ -58,5 +59,10 @@ trait RecordTrait
         }
 
         return 'Romania';
+    }
+
+    public function getPurchaseAddress()
+    {
+        return $this->address;
     }
 }

@@ -8,12 +8,12 @@ use Nip\Records\Collections\Associated;
 use Omnipay\Common\Message\RequestInterface;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
-use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecordTrait;
 use Paytic\Payments\Models\Methods\PaymentMethod;
 use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
 use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Purchases\Actions\CreatePurchaseParametersCardAction;
 use Paytic\Payments\Subscriptions\SubscriptionBuilder;
 
 /**
@@ -53,7 +53,7 @@ trait IsPurchasableModelTrait
      */
     public function getPaymentGateway()
     {
-        return $this->getPaymentMethod()->getGateway();
+        return $this->getPaymentMethod()?->getGateway();
     }
 
     /**
@@ -91,34 +91,7 @@ trait IsPurchasableModelTrait
      */
     public function getPurchaseParametersCard()
     {
-        $params = null;
-        $billing = $this->getPurchaseBillingRecord();
-        if (!is_object($billing)) {
-            throw new Exception(
-                sprintf(
-                    'PurchaseBillingRecord is not an object in [%s]',
-                    $this->getClassName()
-                )
-            );
-        }
-        if (!in_array(BillingRecordTrait::class, class_uses($billing))) {
-            throw new Exception(
-                sprintf(
-                    'Billing record in %s must use BillingRecordTrait %s',
-                    $this->getClassName(),
-                    BillingRecordTrait::class
-                )
-            );
-        }
-        $params = [];
-        $params['firstName'] = $billing->getFirstName();
-        $params['lastName'] = $billing->getLastName();
-        $params['email'] = $billing->getEmail();
-        $params['phone'] = $billing->getPurchasePhone();
-        $params['city'] = $billing->getPurchaseCity();
-        $params['country'] = $billing->getPurchaseCountry();
-
-        return $params;
+        return CreatePurchaseParametersCardAction::forPurchase($this)->handle();
     }
 
     /**
