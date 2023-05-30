@@ -76,13 +76,17 @@ class ChargeSubscription extends ObservableAction
     {
         try {
             ChargeWithToken::process($transaction);
-            if ($transaction->status == Active::NAME) {
-                $this->executeOnSuccess($transaction);
-                return;
-            }
         } catch (Exception $exception) {
+            $this->executeOnFailed($transaction);
+            return;
         }
-        $this->executeOnFailed($transaction);
+
+        if ($transaction->status !== Active::NAME) {
+            $this->executeOnFailed($transaction);
+            return;
+        }
+
+        $this->executeOnSuccess($transaction);
     }
 
     /**
