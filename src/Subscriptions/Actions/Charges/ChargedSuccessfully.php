@@ -2,7 +2,7 @@
 
 namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
-use Paytic\Payments\Subscriptions\Events\Charges\SubscriptionChargedSuccessfully;
+use Paytic\Payments\Subscriptions\Events\Charges\SubscriptionChargeStartAttempt;
 use Paytic\Payments\Utility\PaymentsEvents;
 
 /**
@@ -28,6 +28,6 @@ class ChargedSuccessfully extends AbstractChargeWithTransaction
         $this->calculateNextCharge();
         $this->subscription->update();
 
-        PaymentsEvents::dispatch(SubscriptionChargedSuccessfully::class);
+        PaymentsEvents::dispatch(SubscriptionChargeStartAttempt::class, $this->subscription);
     }
 }

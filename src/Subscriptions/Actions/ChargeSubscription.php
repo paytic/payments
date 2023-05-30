@@ -12,8 +12,10 @@ use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedFailed;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
+use Paytic\Payments\Subscriptions\Events\Charges\SubscriptionChargeStartAttempt;
 use Paytic\Payments\Transactions\Actions\ChargeWithToken;
 use Paytic\Payments\Transactions\Actions\CreateNewTransactionInSubscription;
+use Paytic\Payments\Utility\PaymentsEvents;
 
 /**
  * Class ChargeSubscription
@@ -42,6 +44,9 @@ class ChargeSubscription extends ObservableAction
     public function execute()
     {
         $this->info('START ' . self::class);
+
+        PaymentsEvents::dispatch(SubscriptionChargeStartAttempt::class, $this->subscription);
+
         try {
             $this->subscription->guardIsChargeable();
         } catch (SubscriptionNotChargeable $exception) {

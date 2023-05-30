@@ -34,8 +34,8 @@ trait SubscriptionsControllerTrait
      */
     protected function checkItemAccess($item)
     {
-        $method = $this->getRequest()->getMethod();
-        $this->checkAndSetForeignModelInRequest($method);
+//        $method = $this->getRequest()->getMethod();
+//        $this->checkAndSetForeignModelInRequest($method);
 
         $customer = $item->getCustomer();
         $this->checkAndSetForeignModelInRequest($customer);

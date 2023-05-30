@@ -5,7 +5,7 @@ namespace Paytic\Payments\Subscriptions\Events\Charges;
 /**
  *
  */
-class SubscriptionChargedSuccessfully extends AbstractEvent
+class SubscriptionChargeStartAttempt extends AbstractEvent
 {
 
 }

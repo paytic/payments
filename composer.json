@@ -71,7 +71,8 @@
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "ergebnis/composer-normalize": true,
       "phpstan/extension-installer": true,
-      "bytic/phpqatools": true
+      "bytic/phpqatools": true,
+      "php-http/discovery": true
     }
   }
 }

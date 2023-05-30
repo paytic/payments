@@ -34,10 +34,14 @@ class Gateway extends AbstractGateway
      */
     public function isActive()
     {
-        if (strlen($this->getPublicKey()) >= 5 && strlen($this->getPrivateKey()) > 5) {
-            return true;
+        $publicKey = $this->getPublicKey();
+        if (empty($publicKey) || strlen($publicKey) < 5) {
+            return false;
         }
-
-        return false;
+        $privateKey = $this->getPrivateKey();
+        if (empty($privateKey) || strlen($privateKey) < 5) {
+            return false;
+        }
+        return true;
     }
 }

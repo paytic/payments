@@ -2,11 +2,11 @@
 
 namespace Paytic\Payments\Gateways\Providers\Romcard;
 
+use Omnipay\Common\Message\RequestInterface;
 use Paytic\Omnipay\Romcard\Gateway as AbstractGateway;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Paytic\Payments\Gateways\Providers\Romcard\Message\CompletePurchaseRequest;
 use Paytic\Payments\Gateways\Providers\Romcard\Message\PurchaseRequest;
-use Omnipay\Common\Message\RequestInterface;
 
 /**
  * Class Gateway
@@ -44,15 +44,26 @@ class Gateway extends AbstractGateway
      */
     public function isActive()
     {
-        if (strlen($this->getTerminal()) > 5
-            && strlen($this->getKey()) > 5
-            && strlen($this->getMerchantName()) > 5
-            && strlen($this->getMerchantEmail()) > 5
-            && strlen($this->getMerchantUrl()) > 5
+        if ($this->validateParameterHasLength($this->getTerminal(), 5)
+            && $this->validateParameterHasLength($this->getKey(), 5)
+            && $this->validateParameterHasLength($this->getMerchantName(), 5)
+            && $this->validateParameterHasLength($this->getMerchantEmail(), 5)
+            && $this->validateParameterHasLength($this->getMerchantUrl(), 5)
         ) {
             return true;
         }
 
         return false;
+    }
+
+    protected function validateParameterHasLength($value, $len)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        if (strlen($value) < $len) {
+            return false;
+        }
+        return true;
     }
 }
