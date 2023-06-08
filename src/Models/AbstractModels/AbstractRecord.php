@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Models\AbstractModels;
 
+use ByTIC\Records\Behaviors\HasForms\HasFormsRecordTrait;
 use Nip\Records\Record;
 
 /**
@@ -10,6 +11,8 @@ use Nip\Records\Record;
  */
 abstract class AbstractRecord extends Record
 {
+    use HasFormsRecordTrait;
+
     public function getRegistry()
     {
     }

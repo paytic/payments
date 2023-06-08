@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Bundle\Controllers\Admin;
 
+use ByTIC\Controllers\Behaviors\HasStatus;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Utility\PaymentsModels;
 
@@ -11,6 +12,17 @@ use Paytic\Payments\Utility\PaymentsModels;
 trait SubscriptionsControllerTrait
 {
     use AbstractControllerTrait;
+    use HasStatus;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function indexPrepareItems($items)
+    {
+        parent::indexPrepareItems($items);
+        $items->loadRelation('PaymentMethod');
+        $items->loadRelation('Customer');
+    }
 
     public function view()
     {
@@ -19,6 +31,9 @@ trait SubscriptionsControllerTrait
 
         $this->payload()->with([
             'item' => $item,
+            'statuses' => $this->getModelManager()->getStatuses(),
+            'payment_method' => $item->getPaymentMethod(),
+            'payment_token' => $item->getToken(),
             'customer' => $item->getCustomer(),
             'transactions' => $item->getTransactions(),
         ]);

@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Models\AbstractModels;
 
+use ByTIC\Records\Behaviors\HasForms\HasFormsRecordsTrait;
 use ByTIC\Records\Behaviors\I18n\I18nRecordsTrait;
 use Nip\Records\Filters\Records\HasFiltersRecordsTrait;
 use Nip\Records\RecordManager;
@@ -14,6 +15,7 @@ abstract class AbstractRecordManager extends RecordManager
 {
     use I18nRecordsTrait;
     use HasFiltersRecordsTrait;
+    use HasFormsRecordsTrait;
 
     public function getRootNamespace(): string
     {

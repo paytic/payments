@@ -54,7 +54,10 @@ $item = $item ?? $this->subscription;
             <?= $repository->getLabel('status'); ?>
         </td>
         <td>
-            <?= $item->getStatusObject()->getLabelHTML(); ?>
+            <?= $this->load(
+                '/abstract/modules/item-actions/status-change',
+                ['item' => $this->item, 'statuses' => $this->statuses]
+            ); ?>
         </td>
     </tr>
     <tr>
