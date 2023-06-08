@@ -4,7 +4,6 @@ namespace Paytic\Payments\Subscriptions\Actions\GatewayNotifications;
 
 use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
-use Paytic\Payments\Models\Transactions\Statuses\Active as TransactionActive;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
 use Paytic\Payments\Subscriptions\Actions\StartSubscription;
@@ -45,18 +44,17 @@ class OnTransactionNotification
 
     public function execute(): void
     {
-        $status = $this->subscription->getStatus();
-
-        if ($status == Canceled::NAME || $status == Deactivated::NAME || $status == Paused::NAME) {
+        if ($this->subscription->isInStatus([Canceled::NAME, Deactivated::NAME, Paused::NAME])) {
             return;
         }
 
+        $status = $this->subscription->getStatus();
         if (empty($status) || $status == Pending::NAME) {
             $this->handleNotStarted();
             return;
         }
 
-        if ($status == SubscriptionActive::NAME) {
+        if ($this->subscription->isInStatus(SubscriptionActive::NAME)) {
             $this->handleActive();
             return;
         }
@@ -66,7 +64,7 @@ class OnTransactionNotification
      */
     protected function handleNotStarted(): void
     {
-        if ($this->isTransactionActive()) {
+        if ($this->transaction->isStatusActive()) {
             StartSubscription::handle($this->subscription, $this->transaction);
             return;
         }
@@ -77,15 +75,8 @@ class OnTransactionNotification
      */
     protected function handleActive(): void
     {
-        if ($this->isTransactionActive()) {
-
+        if ($this->transaction->isStatusActive()) {
             ChargedSuccessfully::handle($this->subscription, $this->transaction);
-            return;
         }
-    }
-
-    protected function isTransactionActive(): bool
-    {
-        return $this->transaction->getStatus() == TransactionActive::NAME;
     }
 }

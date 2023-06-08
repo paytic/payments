@@ -49,7 +49,6 @@ trait SubscriptionTrait
 {
     use HasStatusRecord, SubscriptionImplementation {
         SubscriptionImplementation::getStatus insteadof HasStatusRecord;
-        HasStatusRecord::getStatus as getStatusObject;
     }
 
     use HasPaymentMethodRecord;

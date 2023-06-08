@@ -8,7 +8,6 @@ use Nip\Records\Record;
 use Paytic\CommonObjects\Subscription\Exception\SubscriptionNotChargeable;
 use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
-use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedFailed;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
@@ -69,24 +68,36 @@ class ChargeSubscription extends ObservableAction
     }
 
     /**
-     * @param $transaction
+     * @param Transaction $transaction
      * @return void
      */
     protected function chargeTransaction($transaction): void
     {
-        try {
-            ChargeWithToken::process($transaction);
-        } catch (Exception $exception) {
-            $this->executeOnFailed($transaction);
-            return;
-        }
-
-        if ($transaction->status !== Active::NAME) {
+        if ($this->tryChargeTransaction($transaction) === false) {
             $this->executeOnFailed($transaction);
             return;
         }
 
         $this->executeOnSuccess($transaction);
+    }
+
+    /**
+     * @param Transaction $transaction
+     * @return bool
+     */
+    protected function tryChargeTransaction($transaction): bool
+    {
+        try {
+            ChargeWithToken::process($transaction);
+        } catch (Exception $exception) {
+            return false;
+        }
+
+        if ($transaction->isStatusActive()) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

@@ -11,6 +11,7 @@ use Paytic\Payments\Models\AbstractModels\HasPurchaseParent;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
 use Paytic\Payments\Models\Purchases\PurchaseTrait;
 use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Transactions\Statuses\Active as TransactionActive;
 
 /**
  * Trait TransactionTrait
@@ -68,5 +69,10 @@ trait TransactionTrait
     public function isSubscription(): bool
     {
         return $this->id_subscription > 0;
+    }
+
+    public function isStatusActive(): bool
+    {
+        return $this->isInStatus(TransactionActive::NAME);
     }
 }
