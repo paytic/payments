@@ -8,6 +8,7 @@ use Mockery;
 use Mockery\Mock;
 use Paytic\CommonObjects\Subscription\Billing\BillingPeriod;
 use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Models\Subscriptions\Subscriptions;
 use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\Transactions;
@@ -26,26 +27,6 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
         $action->execute();
     }
 
-    protected function generateEmptyMocks(): array
-    {
-        $subscription = Mockery::mock(Subscription::class)
-            ->shouldAllowMockingProtectedMethods()
-            ->makePartial();
-        $subscription->bootTraits();
-
-        $transaction = Mockery::mock(Transaction::class)
-            ->shouldAllowMockingProtectedMethods()
-            ->makePartial();
-        $transaction->id = 999;
-        $transaction->setManager(new Transactions());
-
-        $action = Mockery::mock(OnTransactionNotification::class)
-            ->shouldAllowMockingProtectedMethods()
-            ->makePartial();
-        $action->__construct($subscription, $transaction);
-
-        return [$action, $subscription, $transaction];
-    }
 
     public function testHandleSuccessOnPendingSubscription()
     {
@@ -89,5 +70,30 @@ class UpdateFromTransactionNotificationTest extends AbstractTestCase
 
         $action->execute();
         self::assertSame('2022-06-01 08:00:00', (string)$subscription->getPropertyRaw('charge_at'));
+    }
+
+    protected function generateEmptyMocks(): array
+    {
+        $subscription = Mockery::mock(Subscription::class)
+            ->shouldAllowMockingProtectedMethods()
+            ->makePartial();
+        $subscription->bootTraits();
+        $subscriptionRepository = Mockery::mock(Subscriptions::class)
+            ->shouldAllowMockingProtectedMethods()
+            ->makePartial();
+        $subscription->setManager($subscriptionRepository);
+
+        $transaction = Mockery::mock(Transaction::class)
+            ->shouldAllowMockingProtectedMethods()
+            ->makePartial();
+        $transaction->id = 999;
+        $transaction->setManager(new Transactions());
+
+        $action = Mockery::mock(OnTransactionNotification::class)
+            ->shouldAllowMockingProtectedMethods()
+            ->makePartial();
+        $action->__construct($subscription, $transaction);
+
+        return [$action, $subscription, $transaction];
     }
 }

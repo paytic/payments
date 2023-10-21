@@ -4,11 +4,9 @@ namespace Paytic\Payments\Models\Methods\Types;
 
 use Nip\Helpers\View\Messages as MessagesHelper;
 use Paytic\Payments\Gateways\Traits\HasGatewaysTrait;
-use Paytic\Payments\Models\Methods\PaymentMethod;
 
 /**
  * Class Payment_Method_Type_Credit_Cards
- * @method PaymentMethod getItem()
  */
 class CreditCards extends AbstractType
 {

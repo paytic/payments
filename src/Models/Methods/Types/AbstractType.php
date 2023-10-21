@@ -3,10 +3,12 @@
 namespace Paytic\Payments\Models\Methods\Types;
 
 use ByTIC\Models\SmartProperties\Properties\Types\Generic;
+use Paytic\Payments\Models\Methods\PaymentMethod;
 
 /**
  * Class AbstractType
  * @package Paytic\Payments\Models\Methods\Types
+ * @method PaymentMethod getItem()
  */
 abstract class AbstractType extends Generic
 {

@@ -11,6 +11,7 @@ use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
 use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
+use Paytic\Payments\Subscriptions\Statuses\Pending;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -69,7 +70,7 @@ trait SubscriptionsTrait
         $this->initRelationsPayments();
     }
 
-    protected function initRelationsPayments()
+    protected function initRelationsPayments(): void
     {
         $this->initRelationsTransactions();
         $this->initRelationsLastTransaction();
@@ -107,6 +108,11 @@ trait SubscriptionsTrait
         return dirname(dirname(__DIR__))
             . DIRECTORY_SEPARATOR . 'Subscriptions'
             . DIRECTORY_SEPARATOR . 'Statuses';
+    }
+
+    public function getDefaultStatus(): string
+    {
+        return Pending::NAME;
     }
 
     /**

@@ -17,6 +17,11 @@ use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\Transactions;
 use Paytic\Payments\Subscriptions\ChargeMethods\Gateway;
 use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
+use Paytic\Payments\Subscriptions\Statuses\Active;
+use Paytic\Payments\Subscriptions\Statuses\Canceled;
+use Paytic\Payments\Subscriptions\Statuses\Deactivated;
+use Paytic\Payments\Subscriptions\Statuses\Paused;
+use Paytic\Payments\Subscriptions\Statuses\Pending;
 use Paytic\Payments\Tests\AbstractTest;
 
 /**
@@ -24,6 +29,34 @@ use Paytic\Payments\Tests\AbstractTest;
  */
 class SubscriptionTraitTest extends AbstractTest
 {
+
+    /**
+     * @dataProvider data_getStatusObject
+     * @return void
+     */
+    public function test_getStatusObject($status, $class)
+    {
+        $item = new Subscription();
+        $item->setManager(new Subscriptions());
+
+        $item->fill(['status' => $status]);
+
+        self::assertEquals($status, $item->getStatus());
+        self::assertInstanceOf($class, $item->getStatusObject());
+    }
+
+    public function data_getStatusObject(): array
+    {
+        return [
+            [null, Pending::class],
+            ['', Pending::class],
+            [Canceled::NAME, Canceled::class],
+            [Deactivated::NAME, Deactivated::class],
+            [Paused::NAME, Paused::class],
+            [Pending::NAME, Pending::class],
+            [Active::NAME, Active::class],
+        ];
+    }
 
     public function testFillData()
     {

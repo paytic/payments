@@ -21,6 +21,8 @@ class PaymentsServiceProvider extends BaseBootableServiceProvider
     public const SESSIONS = 'purchase-sessions';
     public const GATEWAYS = 'payments.gateways';
 
+    public const BASE_DIRECTORY = __DIR__;
+
     /**
      * @inheritdoc
      */
