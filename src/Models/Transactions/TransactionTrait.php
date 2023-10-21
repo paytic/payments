@@ -12,6 +12,7 @@ use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
 use Paytic\Payments\Models\Purchases\PurchaseTrait;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Statuses\Active as TransactionActive;
+use Paytic\Payments\Transactions\Models\Traits\HasSource\HasSourceRecordTrait;
 
 /**
  * Trait TransactionTrait
@@ -43,7 +44,10 @@ trait TransactionTrait
     use HasGatewayRecordTrait;
     use HasMetadataRecordTrait;
     use TimestampableTrait;
-    use RecordTrait;
+    use HasSourceRecordTrait, RecordTrait {
+        HasSourceRecordTrait::getSmartPropertyValueFromDefinition insteadof RecordTrait;
+        RecordTrait::getSmartPropertyValueFromDefinition as getSmartPropertyValueFromDefinitionRecordTrait;
+    }
 
     public ?string $status = null;
 

@@ -13,6 +13,7 @@ use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Paytic\Payments\Models\Purchases\Purchase;
 use Paytic\Payments\Models\Transactions\Statuses\Pending;
 use Paytic\Payments\Transactions\Actions\Create\CreateTransactionForPurchase;
+use Paytic\Payments\Transactions\Models\Traits\HasSource\HasSourceRecordsTrait;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -26,6 +27,7 @@ trait TransactionsTrait
     use RecordsTrait;
     use HasTokenRepository;
     use HasPaymentMethodRepository;
+    use HasSourceRecordsTrait;
 
     public function bootTransactionsTrait()
     {

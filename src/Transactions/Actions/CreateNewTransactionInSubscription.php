@@ -10,6 +10,7 @@ use Paytic\Payments\Models\Purchases\Purchase;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\Transactions\SourceTypes\TokenCard;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -36,7 +37,6 @@ class CreateNewTransactionInSubscription
     {
         return (new static($subscription))->execute();
     }
-
     protected function execute(): Record
     {
         $purchase = $this->determinePurchase();
@@ -44,6 +44,7 @@ class CreateNewTransactionInSubscription
 
         $transaction->populateFromSubscription($this->subscription);
         $transaction->populateFromToken($this->subscription->getToken());
+        $transaction->setSourceType(TokenCard::NAME);
         $transaction->update();
 
         $this->subscription->id_last_transaction = $transaction->id;
