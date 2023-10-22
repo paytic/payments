@@ -9,4 +9,9 @@ namespace Paytic\Payments\Transactions\SourceTypes;
 class Api extends AbstractType
 {
     public const NAME = 'api';
+
+    public function getColorClass()
+    {
+        return 'warning';
+    }
 }

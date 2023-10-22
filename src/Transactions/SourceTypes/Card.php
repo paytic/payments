@@ -9,4 +9,9 @@ namespace Paytic\Payments\Transactions\SourceTypes;
 class Card extends AbstractType
 {
     public const NAME = 'card';
+
+    public function getColorClass()
+    {
+        return 'success';
+    }
 }

@@ -9,4 +9,9 @@ namespace Paytic\Payments\Transactions\SourceTypes;
 class TokenCard extends AbstractType
 {
     public const NAME = 'token_card';
+
+    public function getColorClass()
+    {
+        return 'danger';
+    }
 }

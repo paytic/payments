@@ -9,4 +9,9 @@ namespace Paytic\Payments\Transactions\SourceTypes;
 class External extends AbstractType
 {
     public const NAME = 'external';
+
+    public function getColorClass()
+    {
+        return 'info';
+    }
 }
