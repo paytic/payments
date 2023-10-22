@@ -4,6 +4,7 @@ namespace Paytic\Payments\Bundle\Controllers\Admin;
 
 use ByTIC\Controllers\Behaviors\HasStatus;
 use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Actions\ChargeSubscription;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -37,6 +38,21 @@ trait SubscriptionsControllerTrait
             'customer' => $item->getCustomer(),
             'transactions' => $item->getTransactions(),
         ]);
+    }
+
+    public function attemptCharge()
+    {
+        /** @var Subscription $item */
+        $item = $this->initExistingItem();
+
+        $action = new ChargeSubscription($item);
+        $action->execute();
+
+        $this->flashRedirect(
+            'Attempted charge for subscription ' . $item->id,
+            $item->compileURL('view'),
+            'success'
+        );
     }
 
     protected function generateModelName(): string

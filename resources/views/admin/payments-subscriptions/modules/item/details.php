@@ -1,6 +1,7 @@
 <?php
 
 use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Actions\Charges\ChargeIsDue;
 use Paytic\Payments\Utility\PaymentsModels;
 
 $repository = PaymentsModels::subscriptions();
@@ -54,10 +55,23 @@ $item = $item ?? $this->subscription;
             <?= $repository->getLabel('status'); ?>
         </td>
         <td>
-            <?= $this->load(
-                '/abstract/modules/item-actions/status-change',
-                ['item' => $this->item, 'statuses' => $this->statuses]
-            ); ?>
+
+            <div class="row">
+                <div class="col">
+                    <?= $this->load(
+                        '/abstract/modules/item-actions/status-change',
+                        ['item' => $this->item, 'statuses' => $this->statuses]
+                    ); ?>
+                </div>
+                <div class="col">
+                    <?php if (ChargeIsDue::for($this->item)) { ?>
+                        <a href="<?= $this->item->compileURL('attemptCharge') ?>"
+                           class="btn btn-xs btn-success pull-right">
+                            Try to charge
+                        </a>
+                    <?php } ?>
+                </div>
+            </div>
         </td>
     </tr>
     <tr>
