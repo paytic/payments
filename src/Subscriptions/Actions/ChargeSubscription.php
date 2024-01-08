@@ -93,7 +93,7 @@ class ChargeSubscription extends ObservableAction
             return false;
         }
 
-        if ($transaction->isStatusActive()) {
+        if (false === $transaction->isStatusActive()) {
             return false;
         }
 

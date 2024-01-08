@@ -8,9 +8,11 @@ return [
     'payments-subscriptions.labels.interval' => 'Interval',
     'payments-subscriptions.labels.status' => 'Status',
 
-    'payments-subscriptions.statuses.pending' => 'În așteptare',
+    'payments-subscriptions.statuses.pending' => 'Neconfirmat',
     'payments-subscriptions.statuses.active' => 'Activ',
     'payments-subscriptions.statuses.canceled' => 'Anulat',
     'payments-subscriptions.statuses.deactivated' => 'Dezactivat',
-    'payments-subscriptions.statuses.paused' => 'Întrerupt',
+    'payments-subscriptions.statuses.paused' => 'Pauză',
+    'payments-subscriptions.statuses.pastdue' => 'Plată restantă',
+    'payments-subscriptions.statuses.unpaid' => 'Neplătit',
 ];
