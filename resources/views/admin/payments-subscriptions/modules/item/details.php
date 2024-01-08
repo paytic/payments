@@ -47,6 +47,10 @@ $item = $item ?? $this->subscription;
                     <span class="d-block text-muted">NEXT</span>
                     <strong><?= $item->charge_at; ?></strong>
                 </div>
+                <div class="col">
+                    <span class="d-block text-muted">ATTEMPTS</span>
+                    <strong><?= $item->charge_attempts; ?></strong>
+                </div>
             </div>
         </td>
     </tr>

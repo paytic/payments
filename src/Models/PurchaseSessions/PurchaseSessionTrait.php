@@ -5,6 +5,7 @@ namespace Paytic\Payments\Models\PurchaseSessions;
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use Paytic\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
 use Paytic\Payments\Models\AbstractModels\HasPurchaseParent;
+use Paytic\Payments\PurchaseSessions\Actions\PopulateSessionFromResponse;
 
 /**
  * Trait PurchaseSessionTrait
@@ -55,9 +56,7 @@ trait PurchaseSessionTrait
      */
     public function populateFromResponse($response)
     {
-        if (method_exists($response, 'getSessionDebug')) {
-            $this->debug = $this->getManager()::encodeParams($response->getSessionDebug());
-        }
+        PopulateSessionFromResponse::forResponse($this, $response)->handle();
     }
 
     public function populateFromRequest()

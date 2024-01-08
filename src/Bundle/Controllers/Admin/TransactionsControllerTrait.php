@@ -4,6 +4,7 @@ namespace Paytic\Payments\Bundle\Controllers\Admin;
 
 use ByTIC\Controllers\Behaviors\HasStatus;
 use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\Transactions\Actions\ChargeWithToken;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -40,16 +41,10 @@ trait TransactionsControllerTrait
     public function retry()
     {
         $transaction = $this->getModelFromRequest();
-        $purchase = $transaction->getPurchase();
-        $token = $transaction->getToken();
 
-        $parameters = $purchase->getPurchaseParameters();
-        $parameters['token'] = $token->getTokenId();
-        $request = $purchase->getPaymentMethod()->getGateway()->purchaseWithToken($parameters);
-        $response = $request->send();
+        $response = ChargeWithToken::process($transaction);
         var_dump($response);
         exit;
-//        return $this->purchase($parameters);
     }
 
     protected function generateModelName(): string
