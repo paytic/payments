@@ -4,6 +4,8 @@ return [
     'payments-transactions.labels.title' => 'Tranzacții',
     'payments-transactions.labels.title.singular' => 'Tranzacție',
 
+    'payments-transactions.labels.status' => 'Status',
+
     'payments-transactions.statuses.pending' => 'Nefinalizată',
     'payments-transactions.statuses.pending.short' => 'PEN',
     'payments-transactions.statuses.active' => 'Confirmată',

@@ -60,12 +60,12 @@ $item = $item ?? $this->subscription;
                 <div class="col">
                     <?= $this->load(
                         '/abstract/modules/item-actions/status-change',
-                        ['item' => $this->item, 'statuses' => $this->statuses]
+                        ['item' => $item, 'statuses' => $this->statuses]
                     ); ?>
                 </div>
                 <div class="col">
-                    <?php if (ChargeIsDue::for($this->item)) { ?>
-                        <a href="<?= $this->item->compileURL('attemptCharge') ?>"
+                    <?php if (ChargeIsDue::for($item)) { ?>
+                        <a href="<?= $item->compileURL('attemptCharge') ?>"
                            class="btn btn-xs btn-success pull-right">
                             Try to charge
                         </a>
