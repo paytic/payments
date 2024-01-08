@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Subscriptions\Events\Charges;
+namespace Paytic\Payments\Subscriptions\Events\Lifecycle;
 
 
 /**

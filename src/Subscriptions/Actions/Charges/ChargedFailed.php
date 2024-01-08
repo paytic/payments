@@ -4,8 +4,9 @@ namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
 use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
-use Paytic\Payments\Subscriptions\Actions\DeactivateSubscription;
+use Paytic\Payments\Subscriptions\Actions\Lifecycle\MarkUnpaidSubscription;
 use Paytic\Payments\Subscriptions\Events\Charges\SubscriptionChargeAttemptsMaxed;
+use Paytic\Payments\Subscriptions\Statuses\Pastdue;
 use Paytic\Payments\Utility\PaymentsEvents;
 
 /**
@@ -21,12 +22,13 @@ class ChargedFailed extends AbstractChargeWithTransaction
     {
         if ($this->subscription->isChargeAttemptsMaxed()) {
             PaymentsEvents::dispatch(SubscriptionChargeAttemptsMaxed::class, $this->subscription);
-            DeactivateSubscription::handle($this->subscription);
+            MarkUnpaidSubscription::handle($this->subscription);
             return;
         }
 
         $this->subscription->charge_attempts = $this->subscription->charge_attempts + 1;
         $this->calculateNextAttempt();
+        $this->subscription->setStatus(Pastdue::NAME);
         $this->subscription->update();
     }
 }

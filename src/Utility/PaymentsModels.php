@@ -79,6 +79,11 @@ class PaymentsModels
         return static::getModels(self::SUBSCRIPTIONS, Subscriptions::class);
     }
 
+    public static function subscriptionsClass(): string
+    {
+        return static::getConfigVar(self::SUBSCRIPTIONS, Subscriptions::class);
+    }
+
     /**
      * @return Locations
      */
