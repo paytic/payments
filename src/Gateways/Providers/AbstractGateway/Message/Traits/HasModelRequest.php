@@ -2,9 +2,9 @@
 
 namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits;
 
-use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\AbstractModels\RecordManager;
+use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -28,7 +28,7 @@ trait HasModelRequest
     /**
      * @return bool
      */
-    protected function validateModel()
+    protected function validateModel(): bool
     {
         $model = $this->generateModelFromRequest();
         if ($this->isValidModel($model)) {
@@ -171,7 +171,7 @@ trait HasModelRequest
      * @param $model
      * @return $this
      */
-    protected function setModel($model)
+    public function setModel($model)
     {
         $this->setParameter('id', $model->id);
         $this->setParameter('model', $model);
@@ -199,6 +199,12 @@ trait HasModelRequest
     protected function getModel()
     {
         return $this->getParameter('model');
+    }
+
+    protected function hasModel(): bool
+    {
+        $model = $this->getModel();
+        return $this->isValidModel($model);
     }
 
     /**

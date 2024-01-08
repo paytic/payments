@@ -74,6 +74,7 @@ class ChargeWithToken
     {
         $parameters = $this->purchase->getPurchaseParameters();
         $parameters['token'] = $this->transaction->getToken()->getTokenId();
+        $parameters['model'] = $this->purchase;
         return $parameters;
     }
 }
