@@ -5,6 +5,7 @@ namespace Paytic\Payments\Bundle\Controllers\Admin;
 use ByTIC\Controllers\Behaviors\HasStatus;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Subscriptions\Actions\ChargeSubscription;
+use Paytic\Payments\Subscriptions\Actions\Stats\SubscriptionsStatsByStatus;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -38,6 +39,12 @@ trait SubscriptionsControllerTrait
             'customer' => $item->getCustomer(),
             'transactions' => $item->getTransactions(),
         ]);
+    }
+
+    public function reports()
+    {
+        $statuses = SubscriptionsStatsByStatus::make()->execute();
+        $this->payload()->with(['statuses' => $statuses]);
     }
 
     public function attemptCharge()

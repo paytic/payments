@@ -32,6 +32,7 @@
     "symfony/var-dumper": "^5.2 || ^6.0"
   },
   "require-dev": {
+    "bytic/admin-base": "^1.0",
     "bytic/console": "^1.0",
     "bytic/controllers": "^1.0 || ^2.0",
     "bytic/controllers-extra": "^1.0 || ^2.0",
