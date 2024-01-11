@@ -66,6 +66,21 @@ class NotificationData
         $this->purchase = $purchase;
     }
 
+    public function setSession($session)
+    {
+        $this->session = $session;
+    }
+
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    public function setTransaction($transaction)
+    {
+        $this->transaction = $transaction;
+    }
+
     /**
      * @return Transaction|TransactionTrait|null
      */

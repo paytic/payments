@@ -37,17 +37,30 @@ class ChargeWithToken
 
     protected function execute(): AbstractResponse
     {
+        $response = $this->sendRequest();
+        $this->processReponse($response);
+
+        return $response;
+    }
+
+    protected function sendRequest(): AbstractResponse
+    {
         $gateway = $this->determineGateway();
         $parameters = $this->determineParameters();
 
         $request = $gateway->purchaseWithToken($parameters);
         /** @var AbstractResponse $response */
         $response = $request->send();
-
         $response->processModel();
-        UpdatePaymentModelsFromResponse::handle($response, $this->purchase, 'TOKEN');
 
         return $response;
+    }
+
+    protected function processReponse($response)
+    {
+        $action = UpdatePaymentModelsFromResponse::createFor($response, $this->purchase, 'TOKEN');
+        $action->withTransaction($this->transaction);
+        $action->process();
     }
 
     /**

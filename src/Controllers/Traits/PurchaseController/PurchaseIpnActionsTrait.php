@@ -2,13 +2,13 @@
 
 namespace Paytic\Payments\Controllers\Traits\PurchaseController;
 
+use Omnipay\Common\Message\AbstractResponse;
 use Paytic\Payments\Actions\GatewayNotifications\UpdatePaymentModelsFromResponse;
 use Paytic\Payments\Gateways\Manager as GatewaysManager;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use Paytic\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
 use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Trait PurchaseIpnActionsTrait
@@ -69,7 +69,7 @@ trait PurchaseIpnActionsTrait
         /** @var IsPurchasableModelTrait $model */
         $model = $response->getModel();
 
-        UpdatePaymentModelsFromResponse::handle($response, $model, 'IPN');
+        UpdatePaymentModelsFromResponse::createFor($response, $model, 'IPN')->process();
 
         $this->ipnProcessResponseModel($response, $model);
     }
