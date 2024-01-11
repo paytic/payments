@@ -1,7 +1,6 @@
 <?php
 
 use ByTIC\Money\Utility\Money;
-use ByTIC\Money\Utility\MoneyFormat;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Utility\PaymentsModels;
 
@@ -28,17 +27,31 @@ $items = $items ?? $this->transactions;
         <?php
         $purchase = $item->getPurchase();
         $paymentMethod = $item->getPaymentMethod();
+        $subscription = $item->getSubscription();
         ?>
         <tr>
             <td>
+                <?php if ($subscription->isTransactionProcessed($item)) { ?>
+                    <span class="text-success" title="Processed">
+                        ✅
+                    </span>
+                <?php } else { ?>
+                    <span class="text-danger" title="Not Processed">
+                        ❌
+                    </span>
+                <?php } ?>
                 <a href="<?= $purchase->getURL(); ?>" title="" class="form-link">
                     <?= $purchase->getName(); ?>
                 </a>
             </td>
             <td>
+                <?php if ($paymentMethod) { ?>
                 <a href="<?= $paymentMethod->getURL(); ?>" title="">
                     <?= $paymentMethod->getName(); ?>
                 </a>
+                <?php } else { ?>
+                    ---
+                <?php } ?>
             </td>
             <td>
                 <?= Money::fromCents(intval($item->amount), $item->currency)->formatByHtml(); ?>
