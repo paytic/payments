@@ -25,6 +25,6 @@ trait AbstractControllerTrait
     {
         parent::registerViewPaths($view);
 
-        ViewUtility::registerViewPaths($view, 'admin');
+        ViewUtility::registerViewPaths($view, 'frontend');
     }
 }
