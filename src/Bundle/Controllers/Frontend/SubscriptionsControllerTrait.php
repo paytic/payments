@@ -18,6 +18,8 @@ trait SubscriptionsControllerTrait
     {
         /** @var Subscription $item */
         $item = $this->getModelFromRequest();
+        $transactions = $item->getTransactions();
+        $lastTransaction = $item->getLastTransaction() ?? reset($this->transactions);
 
         $this->payload()->with([
             'item' => $item,
@@ -25,7 +27,8 @@ trait SubscriptionsControllerTrait
             'payment_method' => $item->getPaymentMethod(),
             'payment_token' => $item->getToken(),
             'customer' => $item->getCustomer(),
-            'transactions' => $item->getTransactions(),
+            'transactions' => $transactions,
+            'lastTransaction' => $lastTransaction
         ]);
     }
 

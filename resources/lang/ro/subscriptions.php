@@ -12,6 +12,9 @@ return [
     'payments-subscriptions.labels.interval.many' => 'O dată la #{number} #{period}',
     'payments-subscriptions.labels.status' => 'Status',
 
+    'payments-subscriptions.labels.btn.edit' => 'Editează recurenţa',
+    'payments-subscriptions.labels.btn.cancel' => 'Anulează recurenţa',
+
     'payments-subscriptions.labels.billing_period.' . BillingPeriod::DAILY . '.one' => 'Zilnic',
     'payments-subscriptions.labels.billing_period.' . BillingPeriod::DAILY . '.many' => 'zile',
     'payments-subscriptions.labels.billing_period.' . BillingPeriod::WEEKLY . '.one' => 'Săptămânal',

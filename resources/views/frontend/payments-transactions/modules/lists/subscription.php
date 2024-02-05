@@ -6,6 +6,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 
 /** @var Transaction[] $items */
 $items = $items ?? $this->transactions;
+$i = 1;
 ?>
 <table class="table table-striped">
     <thead>
@@ -31,24 +32,11 @@ $items = $items ?? $this->transactions;
         ?>
         <tr>
             <td>
-                <?php if ($subscription->isTransactionProcessed($item)) { ?>
-                    <span class="text-success" title="Processed">
-                        ✅
-                    </span>
-                <?php } else { ?>
-                    <span class="text-danger" title="Not Processed">
-                        ❌
-                    </span>
-                <?php } ?>
-                <a href="<?= $purchase->getURL(); ?>" title="" class="form-link">
-                    <?= $purchase->getName(); ?>
-                </a>
+                <?= $i++; ?>
             </td>
             <td>
                 <?php if ($paymentMethod) { ?>
-                    <a href="<?= $paymentMethod->getURL(); ?>" title="">
-                        <?= $paymentMethod->getName(); ?>
-                    </a>
+                    <?= $paymentMethod->getName(); ?>
                 <?php } else { ?>
                     ---
                 <?php } ?>

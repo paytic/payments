@@ -3,6 +3,7 @@
 return [
     'payments-transactions.labels.title' => 'Tranzacții',
     'payments-transactions.labels.title.singular' => 'Tranzacție',
+    'payments-transactions.labels.title.history' => 'Istoric tranzacții',
 
     'payments-transactions.labels.status' => 'Status',
 
