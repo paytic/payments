@@ -4,6 +4,7 @@ namespace Paytic\Payments\Models\Transactions;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use ByTIC\Models\SmartProperties\RecordsTraits\HasStatus\RecordTrait;
+use ByTIC\Money\Utility\Money;
 use Paytic\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
 use Paytic\Payments\Models\AbstractModels\HasMetadata\HasMetadataRecordTrait;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
@@ -78,5 +79,10 @@ trait TransactionTrait
     public function isStatusActive(): bool
     {
         return $this->isInStatus(TransactionActive::NAME);
+    }
+
+    public function getAmountMoney(): ?\ByTIC\Money\Money
+    {
+        return Money::fromCents(intval($this->amount), $this->currency);
     }
 }

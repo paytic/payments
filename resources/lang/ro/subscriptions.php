@@ -28,4 +28,6 @@ return [
     'payments-subscriptions.statuses.paused' => 'Pauză',
     'payments-subscriptions.statuses.pastdue' => 'Plată restantă',
     'payments-subscriptions.statuses.unpaid' => 'Neplătit',
+
+    'payments-subscriptions.messages.dunning.next_charge' => 'Următoarea tranzacţie de <strong>#{amount}</strong> se va efectua pe <strong>#{next}</strong>.',
 ];

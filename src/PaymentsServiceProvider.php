@@ -97,7 +97,7 @@ class PaymentsServiceProvider extends BaseBootableServiceProvider
         foreach ($languages as $language) {
             $path = $folder . $language;
             if (is_dir($path)) {
-                $translator->addResource('php', $path, $language);
+                $translator->prependResource('php', $path, $language);
             }
         }
     }

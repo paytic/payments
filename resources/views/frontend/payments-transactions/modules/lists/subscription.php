@@ -1,5 +1,6 @@
 <?php
 
+use ByTIC\Money\Utility\Money;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Utility\PaymentsModels;
 
@@ -45,15 +46,15 @@ $items = $items ?? $this->transactions;
             </td>
             <td>
                 <?php if ($paymentMethod) { ?>
-                <a href="<?= $paymentMethod->getURL(); ?>" title="">
-                    <?= $paymentMethod->getName(); ?>
-                </a>
+                    <a href="<?= $paymentMethod->getURL(); ?>" title="">
+                        <?= $paymentMethod->getName(); ?>
+                    </a>
                 <?php } else { ?>
                     ---
                 <?php } ?>
             </td>
             <td>
-                <?= $item->getAmountMoney()->formatByHtml(); ?>
+                <?= Money::fromCents(intval($item->amount), $item->currency)->formatByHtml(); ?>
             </td>
             <td>
                 <?= $item->getStatus()->getLabelHTML(); ?>
