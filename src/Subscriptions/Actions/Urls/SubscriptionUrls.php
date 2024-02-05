@@ -10,34 +10,53 @@ class SubscriptionUrls extends Action
 {
     use HasSubject;
 
+    protected $module = null;
     protected const DEFAULT_EXPIRATION = 60 * 60 * 24 * 365;
+
+    /**
+     * @param null $module
+     */
+    public function withModule($module): self
+    {
+        $this->module = $module;
+        return $this;
+    }
 
     public function manageUrl()
     {
-        $url = $this->getSubject()->compileUrl('manage');
-        return $this->sign($url);
+        return $this->signedUrl('manage');
     }
 
-    protected function sign($url)
-    {
-        return UrlSigner::sign($url, self::DEFAULT_EXPIRATION);
-    }
 
     public function editUrl()
     {
-        $url = $this->getSubject()->compileUrl('edit');
-        return $this->sign($url);
+        return $this->signedUrl('edit');
     }
 
     public function cancelUrl()
     {
-        $url = $this->getSubject()->compileUrl('cancel');
-        return $this->sign($url);
+        return $this->signedUrl('cancel');
     }
 
     public function reactivateUrl()
     {
-        $url = $this->getSubject()->compileUrl('reactivate');
+        return $this->signedUrl(' reactivate');
+    }
+
+    protected function signedUrl($action, $params = [], $module = null)
+    {
+        $url = $this->compileUrl($action, $params, $module);
         return $this->sign($url);
+    }
+
+    protected function sign($url): string
+    {
+        return UrlSigner::sign($url, self::DEFAULT_EXPIRATION);
+    }
+
+    protected function compileUrl($action, $params = [], $module = null)
+    {
+        $module = $module ?: $this->module;
+        return $this->getSubject()->compileUrl($action, $params, $module);
     }
 }
