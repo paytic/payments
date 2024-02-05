@@ -12,7 +12,7 @@ $i = 1;
     <thead>
     <tr>
         <th>
-            <?= translator()->trans('name'); ?>
+            #
         </th>
         <th>
             <?= PaymentsModels::methods()->getLabel('title.singular'); ?>

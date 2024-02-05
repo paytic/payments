@@ -42,7 +42,7 @@ $actionUrls = SubscriptionUrls::for($item);
               onsubmit="return confirm('<?= translator()->trans('general.messages.confirm'); ?>');"
               class="">
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-sm">
+                <button type="submit" class="btn btn-success btn-sm">
                     <?= PaymentsModels::subscriptions()->getLabel('btn.reactivate') ?>
                 </button>
             </div>

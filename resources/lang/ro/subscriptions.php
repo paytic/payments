@@ -14,6 +14,7 @@ return [
 
     'payments-subscriptions.labels.btn.edit' => 'Editează recurenţa',
     'payments-subscriptions.labels.btn.cancel' => 'Anulează recurenţa',
+    'payments-subscriptions.labels.btn.reactivate' => 'Reactivează recurenţa',
 
     'payments-subscriptions.labels.billing_period.' . BillingPeriod::DAILY . '.one' => 'Zilnic',
     'payments-subscriptions.labels.billing_period.' . BillingPeriod::DAILY . '.many' => 'zile',
@@ -33,6 +34,6 @@ return [
     'payments-subscriptions.statuses.unpaid' => 'Neplătit',
 
     'payments-subscriptions.messages.dunning.next_charge' => 'Următoarea tranzacţie de <strong>#{amount}</strong> se va efectua pe <strong>#{next}</strong>.',
-    'payments-subscriptions.messages.canceled' => 'Recurenţa a fost anulată cu succes.',
+    'payments-subscriptions.messages.cancelled' => 'Recurenţa a fost anulată cu succes.',
     'payments-subscriptions.messages.reactivate' => 'Recurenţa a fost reactivată cu succes.',
 ];

@@ -4,7 +4,7 @@
 
 <div class="p-5 bg-light">
     <?= $this->load('/payments-subscriptions/modules/item/title'); ?>
-    <hr class="bg-primary" style="">
+    <hr class="border-primary d-none d-md-block my-2 ms-3" style="">
     <div class="row">
         <div class="col-md-8 col-lg-9 col-xl-10">
             <?= $this->load('/payments-subscriptions/modules/item/details-text'); ?>

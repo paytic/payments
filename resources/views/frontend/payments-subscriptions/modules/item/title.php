@@ -6,6 +6,6 @@ use Paytic\Payments\Utility\PaymentsModels;
 /** @var Subscription $item */
 $item = $this->item;
 ?>
-<h3 class="mb-3">
+<h3 class="fw-semibold text-uppercase">
     <?= PaymentsModels::subscriptions()->getLabel('title.singular'); ?>
 </h3>
