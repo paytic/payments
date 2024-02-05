@@ -1,3 +1,5 @@
+<?= $this->Flash()->render($this->controller); ?>
+
 <div class="subscription-header">
     <?= $this->load('/payments-subscriptions/modules/panels/item-header'); ?>
 </div>

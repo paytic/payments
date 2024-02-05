@@ -31,7 +31,13 @@ class SubscriptionUrls extends Action
 
     public function cancelUrl()
     {
-        $url = $this->getSubject()->compileUrl('manage');
+        $url = $this->getSubject()->compileUrl('cancel');
+        return $this->sign($url);
+    }
+
+    public function reactivateUrl()
+    {
+        $url = $this->getSubject()->compileUrl('reactivate');
         return $this->sign($url);
     }
 }

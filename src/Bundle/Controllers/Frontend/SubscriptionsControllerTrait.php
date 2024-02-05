@@ -6,6 +6,7 @@ use ByTIC\Controllers\Behaviors\HasStatus;
 use Bytic\SignedUrl\Utility\UrlSigner;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Subscriptions\Actions\Lifecycle\CancelSubscription;
+use Paytic\Payments\Subscriptions\Actions\Lifecycle\ReactivateSubscription;
 use Paytic\Payments\Subscriptions\Actions\Urls\SubscriptionUrls;
 use Paytic\Payments\Utility\PaymentsModels;
 
@@ -33,7 +34,7 @@ trait SubscriptionsControllerTrait
         /** @var Subscription $item */
         $item = $this->getModelFromRequest();
         $transactions = $item->getTransactions();
-        $lastTransaction = $item->getLastTransaction() ?? reset($this->transactions);
+        $lastTransaction = $item->getLastTransaction() ?? reset($transactions);
 
         $this->payload()->with([
             'item' => $item,
@@ -51,10 +52,24 @@ trait SubscriptionsControllerTrait
         $subscription = $this->getModelFromRequest();
         CancelSubscription::for($subscription)->handle();
 
-        $url = SubscriptionUrls::for($subscription)->cancelUrl();
-        return $this->redirect($url);
+        $url = SubscriptionUrls::for($subscription)->manageUrl();
+        return $this->flashRedirect(
+            $this->getModelManager()->getMessage('cancelled'),
+            $url
+        );
     }
 
+    public function reactivate()
+    {
+        $subscription = $this->getModelFromRequest();
+        ReactivateSubscription::for($subscription)->handle();
+
+        $url = SubscriptionUrls::for($subscription)->manageUrl();
+        return $this->flashRedirect(
+            $this->getModelManager()->getMessage('reactivate'),
+            $url
+        );
+    }
     protected function generateModelName(): string
     {
         return get_class(PaymentsModels::subscriptions());
