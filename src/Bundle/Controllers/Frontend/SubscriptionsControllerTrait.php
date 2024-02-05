@@ -3,7 +3,10 @@
 namespace Paytic\Payments\Bundle\Controllers\Frontend;
 
 use ByTIC\Controllers\Behaviors\HasStatus;
+use Bytic\SignedUrl\Utility\UrlSigner;
 use Paytic\Payments\Models\Subscriptions\Subscription;
+use Paytic\Payments\Subscriptions\Actions\Lifecycle\CancelSubscription;
+use Paytic\Payments\Subscriptions\Actions\Urls\SubscriptionUrls;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -13,6 +16,17 @@ trait SubscriptionsControllerTrait
 {
     use AbstractControllerTrait;
     use HasStatus;
+
+    protected function parseRequest()
+    {
+        parent::parseRequest();
+
+        $url = $this->getRequest()->getUri();
+
+        if (UrlSigner::validate($url) == false) {
+            $this->dispatchNotFoundResponse();
+        }
+    }
 
     public function manage()
     {
@@ -30,6 +44,15 @@ trait SubscriptionsControllerTrait
             'transactions' => $transactions,
             'lastTransaction' => $lastTransaction
         ]);
+    }
+
+    public function cancel()
+    {
+        $subscription = $this->getModelFromRequest();
+        CancelSubscription::for($subscription)->handle();
+
+        $url = SubscriptionUrls::for($subscription)->cancelUrl();
+        return $this->redirect($url);
     }
 
     protected function generateModelName(): string

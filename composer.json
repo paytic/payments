@@ -21,6 +21,7 @@
     "bytic/medialibrary": "^0.8 || ^0.9",
     "bytic/models-smart-properties": "^1.0.30",
     "bytic/money": "^0.9 || ^1.0",
+    "bytic/signed-url": "dev-main || ^1.0",
     "bytic/orm-behaviors": "^0.9 || ^1.0",
     "bytic/orm-filters": "^0.9 || ^1.0",
     "bytic/package-base": "^1.0",
