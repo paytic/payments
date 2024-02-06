@@ -2,22 +2,17 @@
 
 namespace Paytic\Payments\Subscriptions\Actions\Lifecycle;
 
-use Bytic\Actions\Action;
-use Bytic\Actions\Behaviours\HasSubject\HasSubject;
 use Nip\Utility\Date;
 use Paytic\CommonObjects\Subscription\Status\SubscriptionStatusInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Subscriptions\Events\Lifecycle\SubscriptionCanceled;
-use Paytic\Payments\Utility\PaymentsEvents;
 
 /**
  * Class StartSubscription
  * @package Paytic\Payments\Subscriptions\Actions\Lifecycle
  */
-class CancelSubscription extends Action
+class CancelSubscription extends AbstractAction
 {
-    use HasSubject;
-
     /**
      * @param Subscription $subscription
      */
@@ -31,6 +26,6 @@ class CancelSubscription extends Action
         $subscription->setStatus(SubscriptionStatusInterface::CANCELED);
         $subscription->update();
 
-        PaymentsEvents::dispatch(SubscriptionCanceled::class, $subscription);
+        $this->triggerEvent(SubscriptionCanceled::class);
     }
 }

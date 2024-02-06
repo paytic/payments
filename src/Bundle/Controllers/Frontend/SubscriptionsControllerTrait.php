@@ -8,6 +8,7 @@ use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Subscriptions\Actions\Lifecycle\CancelSubscription;
 use Paytic\Payments\Subscriptions\Actions\Lifecycle\ReactivateSubscription;
 use Paytic\Payments\Subscriptions\Actions\Urls\SubscriptionUrls;
+use Paytic\Payments\Subscriptions\Dto\Lifecycle\Triggers;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -50,7 +51,9 @@ trait SubscriptionsControllerTrait
     public function cancel()
     {
         $subscription = $this->getModelFromRequest();
-        CancelSubscription::for($subscription)->handle();
+        CancelSubscription::for($subscription)
+            ->setTrigger(Triggers::USER)
+            ->handle();
 
         $url = SubscriptionUrls::for($subscription)->manageUrl();
         return $this->flashRedirect(
@@ -62,7 +65,9 @@ trait SubscriptionsControllerTrait
     public function reactivate()
     {
         $subscription = $this->getModelFromRequest();
-        ReactivateSubscription::for($subscription)->handle();
+        ReactivateSubscription::for($subscription)
+            ->setTrigger(Triggers::USER)
+            ->handle();
 
         $url = SubscriptionUrls::for($subscription)->manageUrl();
         return $this->flashRedirect(

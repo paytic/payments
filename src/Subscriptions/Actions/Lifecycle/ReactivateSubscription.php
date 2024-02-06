@@ -2,21 +2,17 @@
 
 namespace Paytic\Payments\Subscriptions\Actions\Lifecycle;
 
-use Bytic\Actions\Action;
-use Bytic\Actions\Behaviours\HasSubject\HasSubject;
 use Nip\Utility\Date;
 use Paytic\CommonObjects\Subscription\Status\SubscriptionStatusInterface;
 use Paytic\Payments\Subscriptions\Actions\Charges\CalculateNextCharge;
 use Paytic\Payments\Subscriptions\Events\Lifecycle\SubscriptionReactivated;
-use Paytic\Payments\Utility\PaymentsEvents;
 
 /**
  * Class StartSubscription
  * @package Paytic\Payments\Subscriptions\Actions\Lifecycle
  */
-class ReactivateSubscription extends Action
+class ReactivateSubscription extends AbstractAction
 {
-    use HasSubject;
 
     /**
      */
@@ -30,6 +26,6 @@ class ReactivateSubscription extends Action
         $subscription->setStatus(SubscriptionStatusInterface::ACTIVE);
         $subscription->update();
 
-        PaymentsEvents::dispatch(SubscriptionReactivated::class, $subscription);
+        $this->triggerEvent(SubscriptionReactivated::class);
     }
 }
