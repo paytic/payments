@@ -10,6 +10,7 @@ use Nip\Records\Collections\Collection;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
+use Paytic\Payments\Models\Subscriptions\Filters\FilterManager;
 use Paytic\Payments\Subscriptions\ChargeMethods\Internal;
 use Paytic\Payments\Subscriptions\Statuses\Pending;
 use Paytic\Payments\Utility\PaymentsModels;
@@ -162,5 +163,13 @@ trait SubscriptionsTrait
     protected function generateController()
     {
         return Subscriptions::CONTROLLER;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilterManagerClass()
+    {
+        return FilterManager::class;
     }
 }
