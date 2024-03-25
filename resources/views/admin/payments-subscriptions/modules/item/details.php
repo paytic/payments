@@ -33,7 +33,7 @@ $item = $item ?? $this->subscription;
             <?= $repository->getLabel('recurring'); ?>
         </td>
         <td>
-            <div class="row">
+            <div class="row row-cols-2">
                 <div class="col">
                     <span class="d-block text-muted">
                         <?= $repository->getLabel('interval'); ?>
@@ -50,6 +50,10 @@ $item = $item ?? $this->subscription;
                 <div class="col">
                     <span class="d-block text-muted">ATTEMPTS</span>
                     <strong><?= $item->charge_attempts; ?></strong>
+                </div>
+                <div class="col">
+                    <span class="d-block text-muted">CHARGES</span>
+                    <strong><?= $item->charge_count; ?></strong>
                 </div>
             </div>
         </td>
