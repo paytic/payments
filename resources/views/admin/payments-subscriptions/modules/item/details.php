@@ -34,7 +34,7 @@ $item = $item ?? $this->subscription;
         </td>
         <td>
             <div class="row row-cols-2">
-                <div class="col">
+                <div class="col mb-3">
                     <span class="d-block text-muted">
                         <?= $repository->getLabel('interval'); ?>
                     </span>
@@ -43,15 +43,15 @@ $item = $item ?? $this->subscription;
                         <?= $item->billing_period; ?>
                     </strong>
                 </div>
-                <div class="col">
+                <div class="col mb-3">
                     <span class="d-block text-muted">NEXT</span>
                     <strong><?= $item->charge_at; ?></strong>
                 </div>
-                <div class="col">
+                <div class="col mb-3">
                     <span class="d-block text-muted">ATTEMPTS</span>
                     <strong><?= $item->charge_attempts; ?></strong>
                 </div>
-                <div class="col">
+                <div class="col mb-3">
                     <span class="d-block text-muted">CHARGES</span>
                     <strong><?= $item->charge_count; ?></strong>
                 </div>

@@ -35,9 +35,11 @@ $items = $items ?? $this->transactions;
                         ✅
                     </span>
                 <?php } else { ?>
-                    <span class="text-danger" title="Not Processed">
-                        ❌
-                    </span>
+                    <a href="<?= $subscription->compileURL('process_transaction', ['id_transaction' => $item->id]); ?>">
+                        <span class="text-danger" title="Not Processed">
+                            ❌
+                        </span>
+                    </a>
                 <?php } ?>
                 <a href="<?= $purchase->getURL(); ?>" title="" class="form-link">
                     <?= $purchase->getName(); ?>
@@ -45,9 +47,9 @@ $items = $items ?? $this->transactions;
             </td>
             <td>
                 <?php if ($paymentMethod) { ?>
-                <a href="<?= $paymentMethod->getURL(); ?>" title="">
-                    <?= $paymentMethod->getName(); ?>
-                </a>
+                    <a href="<?= $paymentMethod->getURL(); ?>" title="">
+                        <?= $paymentMethod->getName(); ?>
+                    </a>
                 <?php } else { ?>
                     ---
                 <?php } ?>
