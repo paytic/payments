@@ -2,13 +2,14 @@
 
 namespace Paytic\Payments\Gateways\Providers\AbstractGateway\Traits;
 
+use Nip\Records\AbstractModels\Record;
+use Nip\Utility\Traits\NameWorksTrait;
+use Omnipay\Common\Message\RequestInterface;
+use Paytic\Omnipay\Common\Gateway\Traits\HasPsr18ClientTrait;
 use Paytic\Payments\Gateways\Manager;
 use Paytic\Payments\Models\Methods\Traits\RecordTrait as PaymentMethodRecord;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Paytic\Payments\Utility\GatewayImages;
-use Nip\Records\AbstractModels\Record;
-use Nip\Utility\Traits\NameWorksTrait;
-use Omnipay\Common\Message\RequestInterface;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
@@ -24,7 +25,7 @@ trait GatewayTrait
     use HasFormsTrait;
     use DetectFromHttpRequestTrait;
     use OverwriteCompletePurchaseTrait;
-
+    use HasPsr18ClientTrait;
 
     /**
      * @var null|string
