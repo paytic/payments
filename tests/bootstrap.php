@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
+use Nip\Cache\Stores\Repository;
 use Nip\Container\Utility\Container;
 use Nip\I18n\Loader\PhpFileLoader;
 use Nip\I18n\Translator;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -14,6 +16,9 @@ require dirname(__DIR__) . '/vendor/paytic/payments-tests/src/boostrap/bootstrap
 
 $container = Container::container();
 $container->set('translation.languages', []);
+
+$cacheStore = new Repository(new ArrayAdapter());
+$container->set('cache.store', $cacheStore);
 
 /** @var Translator $translator */
 $translator = $container->get('translator');

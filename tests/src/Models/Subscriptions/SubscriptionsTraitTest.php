@@ -25,7 +25,7 @@ class SubscriptionsTraitTest extends AbstractTest
     {
         $statuses = Subscriptions::instance()->getStatuses();
 
-        self::assertCount(5, $statuses);
+        self::assertCount(7, $statuses);
 
         self::assertInstanceOf(Active::class, $statuses[Active::NAME]);
         self::assertInstanceOf(Pending::class, $statuses[Pending::NAME]);

@@ -59,6 +59,9 @@ $items = $items ?? $this->transactions;
             </td>
             <td>
                 <?= $item->getStatus()->getLabelHTML(); ?>
+                <code class="d-block">
+                    <?= $item->getStatusMessage(); ?>
+                </code>
             </td>
             <td>
                 <div class="font-monospace bg-light">

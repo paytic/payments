@@ -85,4 +85,15 @@ trait TransactionTrait
     {
         return Money::fromCents(intval($this->amount), $this->currency);
     }
+
+    public function setStatusMessage(string $message): static
+    {
+        $this->setMedataValue('status_message', $message);
+        return $this;
+    }
+
+    public function getStatusMessage(): ?string
+    {
+        return $this->getMetadataValue('status_message');
+    }
 }

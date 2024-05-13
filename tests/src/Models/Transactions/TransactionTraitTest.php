@@ -44,4 +44,17 @@ class TransactionTraitTest extends AbstractTest
 
         self::assertSame('{}', $item->getPropertyRaw('metadata'));
     }
+
+    public function testGetStatusMessageGetterSetter()
+    {
+        $transaction = new Transaction();
+        self::assertNull($transaction->getStatusMessage());
+        self::assertNull($transaction->status_message);
+
+        $transaction->setStatusMessage('test');
+        self::assertSame('test', $transaction->getStatusMessage());
+
+        $transaction->status_message = 'test2';
+        self::assertSame('test2', $transaction->getStatusMessage());
+    }
 }

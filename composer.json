@@ -17,7 +17,7 @@
     "bytic/event-discovery": "^0.9 || ^1.0",
     "bytic/event-dispatcher": "^0.9 || ^1.0",
     "bytic/form": "^0.9 || ^1.0",
-    "bytic/actions": "dev-main",
+    "bytic/actions": "dev-main || ^1.0",
     "bytic/medialibrary": "^0.8 || ^0.9",
     "bytic/models-smart-properties": "^1.0.30",
     "bytic/money": "^0.9 || ^1.0",
@@ -26,7 +26,7 @@
     "bytic/orm-filters": "^0.9 || ^1.0",
     "bytic/package-base": "^1.0",
     "bytic/translation": "^0.9 || ^1.0",
-    "bytic/view": "^0.9 || ^1.0",
+    "bytic/view": "^0.9 || ^1.0 || ^2.0",
     "paytic/common-objects": "^1.0.8",
     "php-http/httplug": "^1.0 || ^2.0",
     "psr/http-client": "^1.0 || ^2.0",
@@ -38,7 +38,7 @@
     "bytic/controllers": "^1.0 || ^2.0",
     "bytic/controllers-extra": "^1.0 || ^2.0",
     "bytic/facebook-pixel": "^1.0",
-    "bytic/migrations": "^0.12",
+    "bytic/migrations": "~0.12",
     "bytic/phpqatools": "^1.0",
     "paytic/payments-gateways": "^1.0",
     "paytic/payments-tests": "^1.0",
@@ -46,7 +46,7 @@
   },
   "suggest": {
     "bytic/facebook-pixel": "^1.0",
-    "bytic/migrations": "^0.12"
+    "bytic/migrations": "~0.13"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

@@ -3,6 +3,7 @@
 namespace Paytic\Payments\Actions\GatewayNotifications;
 
 use Nip\Records\AbstractModels\Record;
+use Omnipay\Common\Message\AbstractResponse;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\TransactionTrait;
 
@@ -56,6 +57,7 @@ class CreateOrUpdateTransactionFromResponse
         $this->setPropertyFromResponse('getCode', 'code');
         $this->setPropertyFromResponse('getTransactionReference', 'reference');
         $this->setPropertyFromResponse('getCardMasked', 'card');
+        $this->setPropertyFromResponse('getMessage', 'status_message');
     }
 
     /**
@@ -64,6 +66,7 @@ class CreateOrUpdateTransactionFromResponse
      */
     protected function setPropertyFromResponse($method, $property): void
     {
+        /** @var AbstractResponse $response */
         $response = $this->notification->response;
         if (!method_exists($response, $method)) {
             return;
@@ -72,6 +75,7 @@ class CreateOrUpdateTransactionFromResponse
         if ($value === null || $value === '') {
             return;
         }
+
         $this->transaction->{$property} = $value;
     }
 }
