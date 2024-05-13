@@ -9,6 +9,7 @@ use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelPr
 use Paytic\Payments\Models\Methods\Traits\RecordTrait as MethodRecordTrait;
 use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
+use Paytic\Payments\Purchases\Events\PurchaseConfirmed;
 
 /**
  * Trait PurchaseIpnActionsTrait
@@ -69,6 +70,7 @@ trait PurchaseIpnActionsTrait
         /** @var IsPurchasableModelTrait $model */
         $model = $response->getModel();
 
+        PurchaseConfirmed::dispatch($model);
         UpdatePaymentModelsFromResponse::createFor($response, $model, 'IPN')->process();
 
         $this->ipnProcessResponseModel($response, $model);
