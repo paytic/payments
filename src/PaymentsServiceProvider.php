@@ -34,6 +34,16 @@ class PaymentsServiceProvider extends BaseBootableServiceProvider
         $this->registerResources();
     }
 
+    public function boot(): void
+    {
+        parent::boot();
+        PaymentsModels::purchases();
+        PaymentsModels::methods();
+        PaymentsModels::sessions();
+        PaymentsModels::transactions();
+        PaymentsModels::subscriptions();
+    }
+
     /**
      * @inheritdoc
      */
