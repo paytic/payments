@@ -2,8 +2,8 @@
 
 namespace Paytic\Payments\Subscriptions\Actions\Charges;
 
-use ByTIC\DataObjects\ValueCaster;
 use DateTime;
+use Nip\Utility\Date;
 use Paytic\CommonObjects\Subscription\SubscriptionInterface;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 
@@ -46,21 +46,22 @@ class CalculateNextAttempt
      */
     protected function nextAttempt($lastAttempt, $tries)
     {
-        $lastAttempt = ValueCaster::asDateTime($lastAttempt);
+//        $lastAttempt = ValueCaster::asDateTime($lastAttempt);
+        $referenceDate = Date::now();
         switch ($tries) {
             case 1:
-                return $lastAttempt->addHours(3);
+                return $referenceDate->addHours(12);
 
             case 2:
-                return $lastAttempt->addDays(1);
+                return $referenceDate->addDays(3);
 
             case 3:
-                return $lastAttempt->addDays(3);
+                return $referenceDate->addDays(5);
 
             case 4:
-                return $lastAttempt->addDays(5);
+                return $referenceDate->addDays(10);
         }
-        return $lastAttempt->addDays($tries - 2);
+        return $referenceDate->addDays($tries * 3);
     }
 
     protected function getTries(): int

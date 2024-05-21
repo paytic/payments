@@ -6,6 +6,7 @@ use DateInterval;
 use Nip\Utility\Date;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargeIsDue;
+use Paytic\Payments\Subscriptions\Statuses\Active;
 use PHPUnit\Framework\TestCase;
 
 class ChargeIsDueTest extends TestCase
@@ -16,8 +17,8 @@ class ChargeIsDueTest extends TestCase
     public function testFor($data, $result)
     {
         $subscription = new Subscription();
+        $subscription->status = Active::NAME;
         $subscription->fill($data);
-
 
         self::assertEquals($result, ChargeIsDue::for($subscription));
     }
