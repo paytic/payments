@@ -17,6 +17,7 @@ class PurchaseParameters
     public static function for($purchase): array
     {
         $parameters = [];
+        $parameters['purchase'] = $purchase;
         $parameters['amount'] = $purchase->getPurchaseAmount();
         $parameters['currency'] = $purchase->getPurchaseCurrency();
 
