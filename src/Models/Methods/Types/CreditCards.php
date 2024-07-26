@@ -49,6 +49,10 @@ class CreditCards extends AbstractType
     {
         $name = $this->getGatewayName();
         $methodOptions = $this->getItem()->getOption($name, []);
+        foreach ($methodOptions as $key => $value) {
+            $methodOptions[$key] = is_string($value) ? html_entity_decode($value) : $value;
+        }
+
         $options['PaymentMethod'] = $this->getItem();
         $options = $options + $methodOptions;
 
