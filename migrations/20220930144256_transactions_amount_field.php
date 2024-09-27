@@ -25,7 +25,11 @@ final class TransactionsAmountField extends AbstractMigration
     {
         $table_name = PaymentsModels::transactions()->getTable();
 
-        $this->table($table_name)
+        $table = $this->table($table_name);
+        if ($table->hasColumn('amount')) {
+            return;
+        }
+        $table
             ->addColumn('amount', 'integer', ['null' => true, 'after' => 'gateway'])
             ->save();
     }
