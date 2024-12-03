@@ -118,7 +118,7 @@ trait PurchaseSessionsTrait
      */
     protected function generateTable()
     {
-        return config('payments.tables.purchases_sessions', PurchaseSessions::TABLE);
+        return config('payments.tables.' . PaymentsModels::SESSIONS, PurchaseSessions::TABLE);
     }
 
     /**
