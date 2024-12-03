@@ -3,7 +3,11 @@
 namespace Paytic\Payments\PaymentMethods\Models\Traits;
 
 use ByTIC\Models\SmartProperties\RecordsTraits\HasTypes\RecordsTrait as HasTypesRecordsTrait;
+use Exception;
+use Nip\Config\Config;
+use Paytic\Payments\Models\Methods\PaymentMethods;
 use Paytic\Payments\PaymentsServiceProvider;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /**
  * Class RecordsTrait
@@ -15,6 +19,15 @@ trait RecordsTrait
 {
     use HasTypesRecordsTrait;
     use \Nip\Records\Traits\AbstractTrait\RecordsTrait;
+
+    /**
+     * @return mixed|Config
+     * @throws Exception
+     */
+    protected function generateTable()
+    {
+        return config('payments.tables.' . PaymentsModels::METHODS, PaymentMethods::TABLE);
+    }
 
     /**
      * @return string
