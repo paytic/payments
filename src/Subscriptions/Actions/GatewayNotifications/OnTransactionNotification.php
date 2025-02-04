@@ -10,8 +10,10 @@ use Paytic\Payments\Subscriptions\Actions\StartSubscription;
 use Paytic\Payments\Subscriptions\Statuses\Active as SubscriptionActive;
 use Paytic\Payments\Subscriptions\Statuses\Canceled;
 use Paytic\Payments\Subscriptions\Statuses\Deactivated;
+use Paytic\Payments\Subscriptions\Statuses\Pastdue;
 use Paytic\Payments\Subscriptions\Statuses\Paused;
 use Paytic\Payments\Subscriptions\Statuses\Pending;
+use Paytic\Payments\Subscriptions\Statuses\Unpaid;
 
 /**
  * Class UpdateFromTransactionToken
@@ -58,6 +60,16 @@ class OnTransactionNotification
             $this->handleActive();
             return;
         }
+
+        if ($this->subscription->isInStatus(Pastdue::NAME)) {
+            $this->handlePastdue();
+            return;
+        }
+
+        if ($this->subscription->isInStatus(Unpaid::NAME)) {
+            $this->handleUnpaid();
+            return;
+        }
     }
 
     /**
@@ -74,6 +86,20 @@ class OnTransactionNotification
     /**
      */
     protected function handleActive(): void
+    {
+        if ($this->transaction->isStatusActive()) {
+            ChargedSuccessfully::handle($this->subscription, $this->transaction);
+        }
+    }
+
+    protected function handlePastdue()
+    {
+        if ($this->transaction->isStatusActive()) {
+            ChargedSuccessfully::handle($this->subscription, $this->transaction);
+        }
+    }
+
+    protected function handleUnpaid()
     {
         if ($this->transaction->isStatusActive()) {
             ChargedSuccessfully::handle($this->subscription, $this->transaction);
