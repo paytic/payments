@@ -60,6 +60,11 @@ class PaymentsAssets
      */
     public static function loadView($path, $variables = [])
     {
-        return View::instance()->load($path, $variables, true);
+        static $view = null;
+        if ($view === null) {
+            $view = View::instance();
+            $view->getBasePath();
+        }
+        return $view->load($path, $variables, true);
     }
 }

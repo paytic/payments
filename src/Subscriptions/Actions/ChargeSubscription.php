@@ -49,7 +49,7 @@ class ChargeSubscription extends ObservableAction
         try {
             $this->subscription->guardIsChargeable();
         } catch (SubscriptionNotChargeable $exception) {
-            $this->error('SUBSCRIPTION NOT CHARGEABLE: ' . $exception->getMessage());
+            $this->error('----- SUBSCRIPTION NOT CHARGEABLE: ' . $exception->getMessage());
             return;
         }
 
