@@ -43,6 +43,7 @@ class ChargeSubscription extends ObservableAction
     public function execute()
     {
         $this->info('START ' . self::class);
+        $this->info('--ID:' . $this->subscription->id);
 
         PaymentsEvents::dispatch(SubscriptionChargeStartAttempt::class, $this->subscription);
 

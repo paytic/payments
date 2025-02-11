@@ -7,6 +7,7 @@ use Exception;
 use Nip\Config\Config;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\EventManager\Events\Event;
+use Paytic\Payments\Models\AbstractModels\HasDatabase\HasDatabaseConnectionTrait;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
@@ -25,6 +26,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 trait TransactionsTrait
 {
     use RecordsTrait;
+    use HasDatabaseConnectionTrait;
     use HasTokenRepository;
     use HasPaymentMethodRepository;
     use HasSourceRecordsTrait;

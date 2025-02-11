@@ -8,6 +8,7 @@ use Exception;
 use Nip\Config\Config;
 use Nip\Records\Collections\Collection;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
+use Paytic\Payments\Models\AbstractModels\HasDatabase\HasDatabaseConnectionTrait;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRepository;
 use Paytic\Payments\Models\Subscriptions\Filters\FilterManager;
@@ -24,6 +25,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 trait SubscriptionsTrait
 {
     use HasCustomerRepository;
+    use HasDatabaseConnectionTrait;
     use HasTokenRepository;
     use HasPaymentMethodRepository;
     use Behaviours\HasTransactions\HasTransactionsRepository;
