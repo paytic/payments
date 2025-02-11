@@ -44,7 +44,6 @@ class ChargeSubscriptionsDue extends ObservableAction
         $this->info('START ' . self::class);
         $this->repository->findChargeDue($count)
             ->each(function ($subscription) {
-                $this->info('TRY CHARGE FOR ID:' . $subscription->id);
                 $action = new ChargeSubscription($subscription);
                 $action->attachAll($this->getObservers());
                 $action->execute();

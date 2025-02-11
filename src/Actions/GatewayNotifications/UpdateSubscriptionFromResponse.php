@@ -19,7 +19,8 @@ class UpdateSubscriptionFromResponse
      */
     public static function handle(NotificationData $notification)
     {
-        if (!is_object($notification->transaction) || $notification->transaction->isSubscription() !== true) {
+        $transaction = $notification->getOrFindTransaction();
+        if (!is_object($transaction) || $transaction->isSubscription() !== true) {
             return null;
         }
         $notification->subscription = $notification->transaction->getSubscription();

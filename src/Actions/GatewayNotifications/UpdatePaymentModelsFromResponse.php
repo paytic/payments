@@ -45,6 +45,7 @@ class UpdatePaymentModelsFromResponse extends Action
 
     public function process(): void
     {
+        $this->notification->getOrFindTransaction();
         CreateSessionFromResponse::handle($this->notification);
         CreateOrUpdateTransactionFromResponse::handle($this->notification);
         CreateOrUpdateTokenFromResponse::handle($this->notification);
