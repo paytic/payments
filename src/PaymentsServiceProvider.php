@@ -31,7 +31,6 @@ class PaymentsServiceProvider extends BaseBootableServiceProvider
         $this->registerPurchases();
         $this->registerGatewaysManager();
         $this->registerPurchaseSessions();
-        $this->registerResources();
     }
 
     public function boot(): void
@@ -94,22 +93,8 @@ class PaymentsServiceProvider extends BaseBootableServiceProvider
         );
     }
 
-    protected function registerResources()
+    protected function translationsPath(): string
     {
-        if (false === $this->getContainer()->has('translator')) {
-            return;
-        }
-        $translator = $this->getContainer()->get('translator');
-        $folder = dirname(__DIR__) . '/resources/lang/';
-        $languages = $this->getContainer()->get('translation.languages');
-
-
-        foreach ($languages as $language) {
-            $path = $folder . $language;
-            if (is_dir($path)) {
-                $translator->prependResource('php', $path, $language);
-            }
-        }
+        return dirname(__DIR__) . '/resources/lang/';
     }
-
 }
