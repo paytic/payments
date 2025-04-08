@@ -7,6 +7,7 @@ namespace Paytic\Payments\Tests\Models\Transactions;
 use ArrayObject;
 use Mockery;
 use Nip\Database\Query\Insert;
+use Paytic\Payments\Models\Transactions\Statuses\Error;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\Transactions;
 use Paytic\Payments\Tests\AbstractTest;
@@ -56,5 +57,23 @@ class TransactionTraitTest extends AbstractTest
 
         $transaction->status_message = 'test2';
         self::assertSame('test2', $transaction->getStatusMessage());
+    }
+
+    public function test_isStatusActive()
+    {
+        $repository = Mockery::mock(Transactions::class)
+            ->makePartial();
+        $repository->shouldAllowMockingProtectedMethods();
+
+        $transaction = new Transaction();
+        $transaction->setManager($repository);
+        $transaction->status = 'active';
+        self::assertTrue($transaction->isStatusActive());
+
+        $transaction->status = Error::NAME;
+        self::assertFalse($transaction->isStatusActive());
+
+        $transaction->status = 'active';
+        self::assertTrue($transaction->isStatusActive());
     }
 }
