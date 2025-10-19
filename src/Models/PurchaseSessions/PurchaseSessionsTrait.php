@@ -7,6 +7,7 @@ use Nip\Config\Config;
 use Omnipay\Common\Message\ResponseInterface;
 use Paytic\Payments\Actions\GatewayNotifications\CreateSessionFromResponse;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
+use Paytic\Payments\Models\AbstractModels\HasDatabase\HasDatabaseConnectionTrait;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
 use Paytic\Payments\Models\PurchaseSessions\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
 use Paytic\Payments\Utility\PaymentsModels;
@@ -20,6 +21,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 trait PurchaseSessionsTrait
 {
     use CleanupRecordsTrait;
+    use HasDatabaseConnectionTrait;
 
     /**
      * @param string $type
