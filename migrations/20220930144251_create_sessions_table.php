@@ -31,7 +31,7 @@ final class CreateSessionsTable extends AbstractMigration
 
         $table = $this->table($table_name);
         $table->addColumn('id_purchase', 'biginteger');
-        $table->addColumn('gateway', 'string');
+        $table->addColumn('tenant_id', 'string');
         $table->addColumn('type', 'string');
         $table->addColumn('new_status', 'string');
         $table->addColumn('post', 'text');
