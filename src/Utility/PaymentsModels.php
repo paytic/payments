@@ -2,8 +2,8 @@
 
 namespace Paytic\Payments\Utility;
 
+use ByTIC\PackageBase\Utility\ModelFinder;
 use Nip\Records\AbstractModels\RecordManager;
-use Nip\Records\Locator\ModelLocator;
 use Paytic\Payments\MethodLinks\Models\PaymentMethodLinks;
 use Paytic\Payments\Models\Locations\Locations;
 use Paytic\Payments\Models\Methods\PaymentMethods;
@@ -12,17 +12,16 @@ use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
 use Paytic\Payments\Models\Subscriptions\Subscriptions;
 use Paytic\Payments\Models\Tokens\Tokens;
 use Paytic\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\PaymentsServiceProvider;
 
 /**
  * Class PaymentsModels
  * @package Paytic\Payments\Utility
  */
-class PaymentsModels
+class PaymentsModels extends ModelFinder
 {
     protected static $purchaseModel = 'purchases';
     protected static $purchaseSessionsModel = 'purchase-sessions';
-
-    protected static $models = [];
 
     public const PURCHASES = 'purchases';
     public const METHODS = 'methods';
@@ -99,41 +98,8 @@ class PaymentsModels
         return static::getModels(self::LOCATIONS, Locations::class);
     }
 
-    public static function reset()
+    protected static function packageName(): string
     {
-        static::$models = [];
-    }
-
-    /**
-     * @param string $type
-     * @param string $default
-     * @return mixed|RecordManager
-     */
-    protected static function getModels($type, $default)
-    {
-        if (!isset(static::$models[$type])) {
-            $modelManager = static::getConfigVar($type, $default);
-            return static::$models[$type] = ModelLocator::get($modelManager);
-        }
-
-        return static::$models[$type];
-    }
-
-    /**
-     * @param string $type
-     * @param null|string $default
-     * @return string
-     */
-    protected static function getConfigVar($type, $default = null)
-    {
-        if (!function_exists('config')) {
-            return $default;
-        }
-        $varName = 'payments.models.' . $type;
-        $config = config();
-        if ($config->has($varName)) {
-            return $config->get($varName);
-        }
-        return $default;
+        return PaymentsServiceProvider::NAME;
     }
 }
