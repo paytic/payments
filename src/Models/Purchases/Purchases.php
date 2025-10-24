@@ -3,7 +3,6 @@
 namespace Paytic\Payments\Models\Purchases;
 
 use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
-use Nip\Utility\Traits\SingletonTrait;
 
 /**
  * Class Purchases
@@ -11,6 +10,8 @@ use Nip\Utility\Traits\SingletonTrait;
  */
 class Purchases extends AbstractRecordManager
 {
-    use SingletonTrait;
+    public const TABLE = 'payments-purchases';
+    public const CONTROLLER = 'payments-purchases';
+
     use PurchasesTrait;
 }

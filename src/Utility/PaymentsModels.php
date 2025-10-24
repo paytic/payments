@@ -4,6 +4,7 @@ namespace Paytic\Payments\Utility;
 
 use Nip\Records\AbstractModels\RecordManager;
 use Nip\Records\Locator\ModelLocator;
+use Paytic\Payments\MethodLinks\Models\PaymentMethodLinks;
 use Paytic\Payments\Models\Locations\Locations;
 use Paytic\Payments\Models\Methods\PaymentMethods;
 use Paytic\Payments\Models\Purchases\Purchases;
@@ -25,6 +26,7 @@ class PaymentsModels
 
     public const PURCHASES = 'purchases';
     public const METHODS = 'methods';
+    public const METHOD_LINKS = 'method_links';
     public const SESSIONS = 'purchases_sessions';
     public const TRANSACTIONS = 'transactions';
     public const SUBSCRIPTIONS = 'subscriptions';
@@ -45,6 +47,11 @@ class PaymentsModels
     public static function methods(): RecordManager
     {
         return static::getModels(self::METHODS, PaymentMethods::class);
+    }
+
+    public static function methodLinks(): RecordManager
+    {
+        return static::getModels(self::METHOD_LINKS, PaymentMethodLinks::class);
     }
 
     /**
