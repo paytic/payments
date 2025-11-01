@@ -1,0 +1,1 @@
+<?= $this->load('/abstract/index');

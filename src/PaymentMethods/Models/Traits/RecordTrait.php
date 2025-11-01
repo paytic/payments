@@ -8,6 +8,7 @@ use ByTIC\Records\Behaviors\HasSerializedOptions\HasSerializedOptionsRecordTrait
 use Nip\Records\RecordManager;
 use Paytic\Payments\Gateways\Manager;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
+use Paytic\Payments\Models\AbstractModels\HasTenant\HasTenantRecord;
 use Paytic\Payments\Models\Methods\Types\AbstractType;
 use Paytic\Payments\Models\Methods\Types\CreditCards;
 
@@ -29,7 +30,7 @@ trait RecordTrait
         setType as setTypeTrait;
     }
     use HasSerializedOptionsRecordTrait;
-
+    use HasTenantRecord;
     use HasMediaTrait;
 
     /**
