@@ -6,6 +6,7 @@ use ByTIC\Models\SmartProperties\RecordsTraits\HasTypes\RecordsTrait as HasTypes
 use Exception;
 use Nip\Config\Config;
 use Paytic\Payments\Models\AbstractModels\HasDatabase\HasDatabaseConnectionTrait;
+use Paytic\Payments\Models\AbstractModels\HasTenant\HasTenantRepository;
 use Paytic\Payments\Models\Methods\PaymentMethods;
 use Paytic\Payments\PaymentsServiceProvider;
 use Paytic\Payments\Utility\PaymentsModels;
@@ -20,6 +21,7 @@ trait RecordsTrait
 {
     use HasTypesRecordsTrait;
     use HasDatabaseConnectionTrait;
+    use HasTenantRepository;
     use \Nip\Records\Traits\AbstractTrait\RecordsTrait;
 
     /**
@@ -48,5 +50,19 @@ trait RecordsTrait
     public function getTypeNamespace()
     {
         return '\Paytic\Payments\Models\Methods\Types\\';
+    }
+
+    /**
+     * @return mixed|Config
+     * @throws Exception
+     */
+    protected function generateController(): string
+    {
+        return PaymentMethods::CONTROLLER;
+    }
+
+    public function getTranslateRoot(): string
+    {
+        return 'payment-methods';
     }
 }
