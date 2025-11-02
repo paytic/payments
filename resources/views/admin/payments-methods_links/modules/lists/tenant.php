@@ -1,17 +1,38 @@
 <?php
 
 use ByTIC\Icons\Icons;
-use Paytic\Payments\Models\Methods\PaymentMethod;
+use Paytic\Payments\MethodLinks\Models\PaymentMethodLink;
 use Paytic\Payments\Utility\PaymentsModels;
 
-/** @var PaymentMethod[] $methods */
-$methods = $this->methodLinks;
+/** @var PaymentMethodLink[] $methodLinks */
+$methodLinks = $this->methodLinks;
 ?>
-<?php if (count($methods)) { ?>
+<?php if (count($methodLinks)) { ?>
     <form action="" method="post">
         <table class="table table-bordered">
             <tbody>
-            <?php foreach ($methods as $method) { ?>
+            <?php foreach ($methodLinks as $methodLink) { ?>
+                <?php
+                $method = $methodLink->getPaymentMethod();
+
+                $variations = [
+                        'visible' => [
+                                'name' => 'Vizibila',
+                                'class' => 'btn-success',
+                                'url' => $methodLink->compileURL('eventActivate',
+                                        ['id_event' => $this->_event->id]),
+                        ],
+                        'hidden' => [
+                                'name' => 'Ascunsa',
+                                'class' => 'btn-light',
+                                'url' => $methodLink->compileURL('eventDeactivate',
+                                        ['id_event' => $this->_event->id]),
+                        ],
+                ];
+                $selectedVisibility = $methodLink->isVisible() ? 'visible' : 'hidden';
+
+                $class = $variations[$selectedVisibility]['class'];
+                ?>
                 <tr>
                     <td>
                         <a href="<?= $method->getURL(); ?>" target="_blank">
@@ -22,31 +43,11 @@ $methods = $this->methodLinks;
                     </td>
                     <td>
                         <div style="margin-bottom: 10px;">
-                            <?php
-                            $variations = [
-                                    'visible' => [
-                                            'name' => 'Vizibila',
-                                            'class' => 'btn-success',
-                                            'url' => $method->compileURL('eventActivate',
-                                                    ['id_event' => $this->_event->id]),
-                                    ],
-                                    'hidden' => [
-                                            'name' => 'Ascunsa',
-                                            'class' => 'btn-light',
-                                            'url' => $method->compileURL('eventDeactivate',
-                                                    ['id_event' => $this->_event->id]),
-                                    ],
-                            ];
-                            $selectedVisibility = $method->isVisible() ? 'visible' : 'hidden';
-                            ?>
                             <!-- Single button -->
                             <div class="btn-group">
-                                <?php
-                                $class = $variations[$selectedVisibility]['class'];
-                                ?>
                                 <button type="button" class="btn btn-sm <?php echo $class; ?> dropdown-toggle"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?php echo $variations[$selectedVisibility]['name']; ?>
+                                    <?= $variations[$selectedVisibility]['name']; ?>
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -59,8 +60,8 @@ $methods = $this->methodLinks;
                                                     </strong>
                                                 </a>
                                             <?php } else { ?>
-                                                <a href="<?php echo $variation['url']; ?>">
-                                                    <?php echo $variation['name']; ?>
+                                                <a href="<?= $variation['url']; ?>">
+                                                    <?= $variation['name']; ?>
                                                 </a>
                                             <?php } ?>
                                         </li>
@@ -69,12 +70,12 @@ $methods = $this->methodLinks;
                             </div>
                         </div>
 
-                        <?php if ($method->isPrimary()) { ?>
+                        <?php if ($methodLink->isPrimary()) { ?>
                             <span class="badge bg-primary">
                                 <?= $this->modelManager->getLabel('primary'); ?>
                             </span>
                         <?php } else { ?>
-                            <a href="<?= $method->compileURL(
+                            <a href="<?= $methodLink->compileURL(
                                     'eventPrimary',
                                     ['id_event' => $this->_event->id]
                             ) ?>">
@@ -86,15 +87,12 @@ $methods = $this->methodLinks;
                     </td>
                     <td>
                         <label><?= translator()->trans('notes'); ?></label>
-                        <textarea name="method[<?= $method->id; ?>][notes]"
+                        <textarea name="method[<?= $methodLink->id; ?>][notes]"
                                   style="width: 100%"
-                        ><?= $method->__notes; ?></textarea>
+                        ><?= $methodLink->getNotes(); ?></textarea>
                     </td>
                     <td>
-                        <a href="<?= $this->_event->getPaymentMethodsURL([
-                                '_trigger' => 'delete',
-                                'id_payment_method' => $method->id,
-                        ]); ?>"
+                        <a href="<?= $methodLink->compileURL('delete'); ?>"
                            class="btn btn-xs btn-danger float-end">
                             <?= Icons::remove() ?>
                         </a>
