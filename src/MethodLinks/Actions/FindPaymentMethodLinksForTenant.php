@@ -45,7 +45,7 @@ class FindPaymentMethodLinksForTenant extends Action
         return [
             'where' => [
                 ['tenant_id = ?', $this->getSubject()->id],
-                ['tenant = ?', $this->getSubject()->getMorphName()],
+                ['tenant = ?', $this->getSubject()->getManager()->getMorphName()],
             ],
         ];
     }

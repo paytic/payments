@@ -2,6 +2,7 @@
 
 use ByTIC\Icons\Icons;
 use Paytic\Payments\Models\Methods\PaymentMethod;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /** @var PaymentMethod[] $methods */
 $methods = $this->methodLinks;
@@ -108,5 +109,5 @@ $methods = $this->methodLinks;
     </form>
 
 <?php } else { ?>
-    <?= $this->Messages()->error(Payment_Methods::instance()->getMessage('dnx.event')); ?>
+    <?= $this->Messages()->error(PaymentsModels::methodLinks()->getMessage('dnx.tenant')); ?>
 <?php } ?>
