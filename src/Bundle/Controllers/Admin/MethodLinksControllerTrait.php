@@ -40,6 +40,7 @@ trait MethodLinksControllerTrait
             ->fetch();
 
         $methodLinks = FindPaymentMethodLinksForTenant::for($tenant)->fetch();
+        $methodLinks = $methodLinks->keyBy('id_method');
 
         $this->payload()->with([
             'methodLinks' => $methodLinks,
