@@ -14,10 +14,12 @@ trait MethodsControllerTrait
 
     public function index(): void
     {
-        $existingMethods = FindPaymentMethodsForTenant::for($this->getPaymentTenant());
+        $existingMethods = FindPaymentMethodsForTenant
+            ::for($this->getPaymentTenant())
+            ->fetch();
 
         $this->payload()->with([
-            'existingMethods' => $existingMethods,
+            'items' => $existingMethods,
         ]);
     }
 

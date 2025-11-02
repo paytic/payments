@@ -10,6 +10,8 @@ use Paytic\Payments\Models\AbstractModels\HasTenant\HasTenantRecord;
  * Class PaymentMethodLink
  * @package Paytic\Payments\MethodLinks\Models
  *
+ * @property int $id
+ * @property int $id_method
  * @property string $visible
  * @property string $primary
  * @property string $notes

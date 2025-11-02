@@ -13,6 +13,8 @@ use Paytic\Payments\Utility\PaymentsModels;
 /**
  * Class PaymentMethodLinks
  * @package Paytic\Payments\MethodLinks\Models
+ *
+ * @method PaymentMethodLink getNew($data = [])
  */
 class PaymentMethodLinks extends AbstractRecordManager
 {
@@ -20,6 +22,8 @@ class PaymentMethodLinks extends AbstractRecordManager
     use HasPaymentMethodRepository, HasTenantRepository;
 
     public const TABLE = 'payments-methods-links';
+
+    public const CONTROLLER = 'payments-methods_links';
 
     public function initRelations(): void
     {
@@ -31,6 +35,15 @@ class PaymentMethodLinks extends AbstractRecordManager
     {
         $this->initRelationsPaymentMethod();
         $this->initRelationsPaymentsTenant();
+    }
+
+    /**
+     * @return mixed|Config
+     * @throws Exception
+     */
+    protected function generateController(): string
+    {
+        return PaymentMethodLinks::CONTROLLER;
     }
 
     /**
