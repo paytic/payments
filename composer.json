@@ -24,7 +24,7 @@
     "bytic/signed-url": "dev-main || ^1.0",
     "bytic/orm-behaviors": "^0.9 || ^1.0",
     "bytic/orm-filters": "^0.9 || ^1.0",
-    "bytic/package-base": "^1.0",
+    "bytic/package-base": "^1.0.13",
     "bytic/translation": "^0.9 || ^1.0",
     "bytic/view": "^0.9 || ^1.0 || ^2.0",
     "paytic/common-objects": "^1.0.8",
