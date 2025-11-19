@@ -4,6 +4,7 @@ namespace Paytic\Payments\PaymentMethods\Models\Traits;
 
 use ByTIC\MediaLibrary\HasMedia\HasMediaTrait;
 use ByTIC\Models\SmartProperties\RecordsTraits\HasTypes\RecordTrait as HasTypesRecordTrait;
+use ByTIC\Money\Models\Currencies\Traits\HasSerializedCurrenciesTrait;
 use ByTIC\Records\Behaviors\HasSerializedOptions\HasSerializedOptionsRecordTrait;
 use Nip\Records\RecordManager;
 use Paytic\Payments\Gateways\Manager;
@@ -30,6 +31,7 @@ trait RecordTrait
         setType as setTypeTrait;
     }
     use HasSerializedOptionsRecordTrait;
+    use HasSerializedCurrenciesTrait;
     use HasTenantRecord;
     use HasMediaTrait;
 

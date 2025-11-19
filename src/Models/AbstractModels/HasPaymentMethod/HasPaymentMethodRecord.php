@@ -24,4 +24,9 @@ trait HasPaymentMethodRecord
         }
         $this->id_method = $method;
     }
+
+    public function supportsCurrency($currency)
+    {
+        return $this->getPaymentMethod()->supportsCurrency($currency);
+    }
 }
