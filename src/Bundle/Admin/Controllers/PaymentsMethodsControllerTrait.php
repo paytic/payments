@@ -1,19 +1,45 @@
 <?php
 
-namespace Paytic\Payments\Controllers\Traits;
+namespace Paytic\Payments\Bundle\Admin\Controllers;
 
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\AbstractModels\RecordManager;
+use Paytic\Payments\Bundle\Controllers\Admin\AbstractControllerTrait;
+use Paytic\Payments\Models\Methods\PaymentMethod;
 use Paytic\Payments\Models\Methods\Traits\RecordsTrait;
 use Paytic\Payments\Models\Methods\Traits\RecordTrait;
+use Paytic\Payments\PaymentMethods\Actions\FindPaymentMethodsForTenant;
+use Paytic\Payments\Utility\PaymentsModels;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class AdminPaymentMethodsTrait
- * @package Paytic\Payments\Payments\Controllers\Traits
+ *
  */
-trait AdminPaymentMethodsTrait
+trait PaymentsMethodsControllerTrait
 {
+    use AbstractControllerTrait;
+
+    public function index(): void
+    {
+        $existingMethods = FindPaymentMethodsForTenant
+            ::for($this->getPaymentTenant())
+            ->fetch();
+
+        $this->payload()->with([
+            'items' => $existingMethods,
+        ]);
+    }
+
+    abstract protected function getPaymentTenant();
+
+    public function addNewModel()
+    {
+        /** @var PaymentMethod $item */
+        $item = parent::addNewModel();
+        $item->populateFromTenant($this->getPaymentTenant());
+        return $item;
+    }
+
     public function deleteFile()
     {
         $item = $this->getModelFromRequest();
@@ -52,15 +78,6 @@ trait AdminPaymentMethodsTrait
      */
     abstract protected function getModelManager();
 
-    /**
-     * @param $message
-     * @param $url
-     * @param string $type
-     * @param bool $name
-     * @return mixed
-     */
-    abstract protected function flashRedirect($message, $url, $type = 'success', $name = false);
-
     public function delete()
     {
         $item = $this->getModelFromRequest();
@@ -74,4 +91,10 @@ trait AdminPaymentMethodsTrait
 
         parent::delete();
     }
+
+    protected function generateModelName(): string
+    {
+        return get_class(PaymentsModels::methods());
+    }
+
 }
