@@ -48,9 +48,19 @@ class PaymentsModels extends ModelFinder
         return static::getModels(self::METHODS, PaymentMethods::class);
     }
 
+    public static function methodsClass(): string
+    {
+        return static::getModelsClass(self::METHODS, PaymentMethods::class);
+    }
+
     public static function methodLinks(): RecordManager
     {
         return static::getModels(self::METHOD_LINKS, PaymentMethodLinks::class);
+    }
+
+    public static function methodLinksClass(): string
+    {
+        return static::getModelsClass(self::METHOD_LINKS, PaymentMethodLinks::class);
     }
 
     /**
@@ -61,12 +71,22 @@ class PaymentsModels extends ModelFinder
         return static::getModels(self::SESSIONS, PurchaseSessions::class);
     }
 
+    public static function sessionsClass(): string
+    {
+        return static::getModelsClass(self::SESSIONS, PurchaseSessions::class);
+    }
+
     /**
      * @return Transactions
      */
     public static function transactions(): RecordManager
     {
         return static::getModels(self::TRANSACTIONS, Transactions::class);
+    }
+
+    public static function transactionsClass(): string
+    {
+        return static::getModelsClass(self::TRANSACTIONS, Transactions::class);
     }
 
     /**
@@ -87,7 +107,7 @@ class PaymentsModels extends ModelFinder
 
     public static function subscriptionsClass(): string
     {
-        return static::getConfigVar(self::SUBSCRIPTIONS, Subscriptions::class);
+        return static::getModelsClass(self::SUBSCRIPTIONS, Subscriptions::class);
     }
 
     /**
