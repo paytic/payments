@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Bundle\Admin\Controllers;
 
+use KM42\Register\Library\Records\Locator\ModelLocator;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\AbstractModels\RecordManager;
 use Paytic\Payments\Bundle\Controllers\Admin\AbstractControllerTrait;
@@ -10,7 +11,6 @@ use Paytic\Payments\Models\Methods\Traits\RecordsTrait;
 use Paytic\Payments\Models\Methods\Traits\RecordTrait;
 use Paytic\Payments\PaymentMethods\Actions\FindPaymentMethodsForTenant;
 use Paytic\Payments\Utility\PaymentsModels;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  *
@@ -30,7 +30,6 @@ trait PaymentsMethodsControllerTrait
         ]);
     }
 
-    abstract protected function getPaymentTenant();
 
     public function addNewModel()
     {
@@ -63,15 +62,29 @@ trait PaymentsMethodsControllerTrait
     }
 
     /**
+     * @param PaymentMethod $item
+     * @return bool
+     */
+    protected function checkItemAccess($item)
+    {
+        $methodTenant = $this->getPaymentTenant();
+        $baseTenant = $item->getTenant();
+        if ($methodTenant->getManager()->getController() != $baseTenant->getManager()->getController()) {
+            return false;
+        }
+        if ($methodTenant->id != $baseTenant->id) {
+            return false;
+        }
+        return true;
+    }
+
+    abstract protected function getPaymentTenant();
+
+    /**
      * @param bool $key
      * @return Record|RecordTrait
      */
     abstract protected function getModelFromRequest($key = false);
-
-    /**
-     * @return Request
-     */
-    abstract protected function getRequest();
 
     /**
      * @return RecordManager|RecordsTrait
