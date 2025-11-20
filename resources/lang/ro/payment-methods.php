@@ -22,6 +22,7 @@ return [
     'payment-methods.types.external.short' => 'EXT',
 
     'payment-methods.messages.add' => 'Metodă adaugată',
+    'payment-methods.messages.edit' => 'Metodă modificată',
     'payment-methods.messages.update' => 'Metodă modificată',
     'payment-methods.messages.delete' => 'Metodă stearsa',
 
