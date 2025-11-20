@@ -3,6 +3,7 @@
 namespace Paytic\Payments\PaymentMethods\Models\Traits;
 
 use ByTIC\Models\SmartProperties\RecordsTraits\HasTypes\RecordsTrait as HasTypesRecordsTrait;
+use ByTIC\Records\Behaviors\HasSerializedOptions\HasSerializedOptionsRecordsTrait;
 use Exception;
 use Nip\Config\Config;
 use Paytic\Payments\Models\AbstractModels\HasDatabase\HasDatabaseConnectionTrait;
@@ -20,6 +21,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 trait RecordsTrait
 {
     use HasTypesRecordsTrait;
+    use HasSerializedOptionsRecordsTrait;
     use HasDatabaseConnectionTrait;
     use HasTenantRepository;
     use \Nip\Records\Traits\AbstractTrait\RecordsTrait;
