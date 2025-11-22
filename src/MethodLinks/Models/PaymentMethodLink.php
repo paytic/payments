@@ -24,9 +24,19 @@ class PaymentMethodLink extends AbstractRecord
     use HasPaymentMethodRecord;
     use HasTenantRecord;
 
+    public function getId()
+    {
+        return $this->getPaymentMethod()->id;
+    }
+
     public function getName($type = false)
     {
         return $this->getPaymentMethod()->getName($type);
+    }
+
+    public function getInternalName()
+    {
+        return $this->getPaymentMethod()->getInternalName();
     }
 
     public function getDescription()

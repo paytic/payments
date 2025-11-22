@@ -61,6 +61,14 @@ trait RecordTrait
     }
 
     /**
+     * @return mixed
+     */
+    public function getInternalName()
+    {
+        return $this->getAttributeFromArray('internal_name');
+    }
+
+    /**
      * @return bool
      */
     public function checkConfirmRedirect()
