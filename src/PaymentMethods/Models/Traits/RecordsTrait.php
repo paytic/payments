@@ -67,4 +67,9 @@ trait RecordsTrait
     {
         return 'payment-methods';
     }
+
+    public function generatePrimaryFK()
+    {
+        return 'id_payment_method';
+    }
 }
