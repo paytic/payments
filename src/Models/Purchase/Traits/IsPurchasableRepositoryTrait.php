@@ -4,6 +4,7 @@ namespace Paytic\Payments\Models\Purchase\Traits;
 
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
 use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
+use Paytic\Payments\PaymentMethods\ModelsRelated\HasPaymentMethod\HasPaymentMethodRepositoryTrait;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -13,6 +14,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 trait IsPurchasableRepositoryTrait
 {
     use HasCustomerRepository;
+    use HasPaymentMethodRepositoryTrait;
 
     public function initRelations()
     {
@@ -20,7 +22,7 @@ trait IsPurchasableRepositoryTrait
         $this->initRelationsPayments();
     }
 
-    protected function initRelationsPayments()
+    protected function initRelationsPayments(): void
     {
         $this->initRelationsCustomer();
         $this->initRelationsPaymentMethod();
@@ -28,15 +30,7 @@ trait IsPurchasableRepositoryTrait
         $this->initRelationsSessions();
     }
 
-    protected function initRelationsPaymentMethod(): void
-    {
-        $this->belongsTo(
-            IsPurchasableRepository::RELATION_METHODS,
-            ['class' => get_class(PaymentsModels::methods()), 'fk' => 'id_payment_method']
-        );
-    }
-
-    public function initRelationsPaymentTransaction()
+    public function initRelationsPaymentTransaction(): void
     {
         $this->hasOne(
             IsPurchasableRepository::RELATION_TRANSACTION,
@@ -44,7 +38,7 @@ trait IsPurchasableRepositoryTrait
         );
     }
 
-    protected function initRelationsSessions()
+    protected function initRelationsSessions(): void
     {
         $this->hasMany('PurchasesSessions', ['class' => get_class(PaymentsModels::sessions()), 'fk' => 'id_purchase']);
     }

@@ -37,7 +37,7 @@ trait PurchaseIpnActionsTrait
         $idGateway = request()->get('paymentMethodId');
         if ($idGateway > 0) {
             $purchaseMethodsManager = $this->getModelManager()
-                ->getRelation(IsPurchasableRepository::RELATION_METHODS)
+                ->getRelation(IsPurchasableRepository::RELATION_PAYMENT_METHOD)
                 ->getWith();
 
             /** @var MethodRecordTrait $purchaseMethod */
