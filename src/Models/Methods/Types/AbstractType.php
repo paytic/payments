@@ -40,7 +40,7 @@ abstract class AbstractType extends Generic
     /**
      * @return bool
      */
-    public function checkConfirmRedirect()
+    public function checkConfirmRedirect(): bool
     {
         return false;
     }

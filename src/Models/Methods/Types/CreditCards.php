@@ -34,7 +34,7 @@ class CreditCards extends AbstractType
     /**
      * @return bool
      */
-    public function checkConfirmRedirect()
+    public function checkConfirmRedirect(): bool
     {
         if ($this->getGateway()) {
             return $this->getGateway()->isActive();
