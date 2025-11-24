@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\PaymentMethods\ModelsRelated\HasPaymentMethod;
 
+use Paytic\Payments\MethodLinks\Models\PaymentMethodLink;
 use Paytic\Payments\Models\Methods\PaymentMethod;
 use Paytic\Payments\PaymentMethods\Models\PaymentMethodInterface;
 
@@ -11,8 +12,11 @@ use Paytic\Payments\PaymentMethods\Models\PaymentMethodInterface;
  */
 trait HasPaymentMethodRecordTrait
 {
-    public function populateFromPaymentMethod(PaymentMethodInterface $paymentMethod): self
+    public function populateFromPaymentMethod(PaymentMethodInterface|PaymentMethodLink $paymentMethod): self
     {
+        $paymentMethod = $paymentMethod instanceof PaymentMethodLink
+            ? $paymentMethod->getPaymentMethod()
+            : $paymentMethod;
         $this->id_payment_method = $paymentMethod->id;
         $this
             ->getRelation(HasPaymentMethodRepositoryInterface::RELATION_PAYMENT_METHOD)
