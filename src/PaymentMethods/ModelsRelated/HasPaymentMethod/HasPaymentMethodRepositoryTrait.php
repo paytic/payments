@@ -24,7 +24,7 @@ trait HasPaymentMethodRepositoryTrait
     protected function initRelationsPaymentMethod(): void
     {
         $this->belongsTo(
-            'PaymentMethod',
+            HasPaymentMethodRepositoryInterface::RELATION_PAYMENT_METHOD,
             [
                 'class' => PaymentsModels::methodsClass(),
             ]
