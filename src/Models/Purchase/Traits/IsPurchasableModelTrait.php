@@ -8,11 +8,10 @@ use Nip\Records\Collections\Associated;
 use Omnipay\Common\Message\RequestInterface;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Traits\GatewayTrait;
 use Paytic\Payments\Models\BillingRecord\Traits\RecordTrait as BillingRecord;
-use Paytic\Payments\Models\Methods\PaymentMethod;
-use Paytic\Payments\Models\Purchase\IsPurchasableRepository;
 use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Transaction;
+use Paytic\Payments\PaymentMethods\ModelsRelated\HasPaymentMethod\HasPaymentMethodRecordTrait;
 use Paytic\Payments\Purchases\Actions\CreatePurchaseParametersCardAction;
 use Paytic\Payments\Subscriptions\SubscriptionBuilder;
 
@@ -39,6 +38,7 @@ use Paytic\Payments\Subscriptions\SubscriptionBuilder;
 trait IsPurchasableModelTrait
 {
     use IsPurchasableTrait;
+    use HasPaymentMethodRecordTrait;
 
     /**
      * @return RequestInterface
@@ -55,18 +55,6 @@ trait IsPurchasableModelTrait
     {
         return $this->getPaymentMethod()?->getGateway();
     }
-
-    /**
-     * @return null|PaymentMethod
-     */
-    public function getPaymentMethod()
-    {
-        /** @noinspection PhpIncompatibleReturnTypeInspection */
-        return $this->getRelation(
-            IsPurchasableRepository::RELATION_METHODS
-        )->getResults();
-    }
-
 
     /**
      * @param $note
