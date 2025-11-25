@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Legacy\Models\AbstractModels\HasPaymentMethod;
+namespace Paytic\Payments\Models\AbstractModels\HasPaymentMethod;
 
 use Paytic\Payments\PaymentMethods\ModelsRelated\HasPaymentMethod\HasPaymentMethodRecordTrait;
 
