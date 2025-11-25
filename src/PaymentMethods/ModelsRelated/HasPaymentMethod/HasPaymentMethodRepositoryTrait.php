@@ -27,7 +27,13 @@ trait HasPaymentMethodRepositoryTrait
             HasPaymentMethodRepositoryInterface::RELATION_PAYMENT_METHOD,
             [
                 'class' => PaymentsModels::methodsClass(),
+                'fk' => $this->getPaymentMethodField(),
             ]
         );
+    }
+
+    public function getPaymentMethodField(): string
+    {
+        return 'id_payment_method';
     }
 }

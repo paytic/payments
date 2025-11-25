@@ -6,8 +6,8 @@ use Exception;
 use Nip\Config\Config;
 use Nip\Records\AbstractModels\Record;
 use Paytic\Omnipay\Common\Models\TokenInterface;
+use Paytic\Payments\Legacy\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
-use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**

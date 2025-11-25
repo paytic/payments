@@ -17,10 +17,16 @@ trait HasPaymentMethodRecordTrait
         $paymentMethod = $paymentMethod instanceof PaymentMethodLink
             ? $paymentMethod->getPaymentMethod()
             : $paymentMethod;
+        $key = $this->getManager()->getPaymentMethodField();
         $this->id_payment_method = $paymentMethod->id;
         $this
             ->getRelation(HasPaymentMethodRepositoryInterface::RELATION_PAYMENT_METHOD)
             ->setResults($paymentMethod);
         return $this;
+    }
+
+    public function supportsCurrency($currency)
+    {
+        return $this->getPaymentMethod()->supportsCurrency($currency);
     }
 }
