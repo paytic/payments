@@ -3,11 +3,11 @@
 namespace Paytic\Payments\Models\Tokens;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
+use Paytic\Omnipay\Common\Models\TokenInterface;
+use Paytic\Payments\Legacy\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRecord;
 use Paytic\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;
-use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use Paytic\Payments\Models\AbstractModels\HasPurchaseParent;
-use Paytic\Omnipay\Common\Models\TokenInterface;
 
 /**
  * Trait TokenTrait

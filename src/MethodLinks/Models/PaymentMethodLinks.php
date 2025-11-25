@@ -4,9 +4,9 @@ namespace Paytic\Payments\MethodLinks\Models;
 
 use Exception;
 use Nip\Config\Config;
+use Paytic\Payments\Legacy\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
 use Paytic\Payments\Models\AbstractModels\HasDatabase\HasDatabaseConnectionTrait;
-use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Models\AbstractModels\HasTenant\HasTenantRepository;
 use Paytic\Payments\Utility\PaymentsModels;
 
