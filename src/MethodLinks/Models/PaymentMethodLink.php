@@ -2,8 +2,8 @@
 
 namespace Paytic\Payments\MethodLinks\Models;
 
-use Paytic\Payments\Legacy\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use Paytic\Payments\Models\AbstractModels\AbstractRecord;
+use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRecord;
 use Paytic\Payments\Models\AbstractModels\HasTenant\HasTenantRecord;
 use Paytic\Payments\Models\Methods\PaymentMethod;
 
