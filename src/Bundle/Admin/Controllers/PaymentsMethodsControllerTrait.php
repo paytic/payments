@@ -2,10 +2,8 @@
 
 namespace Paytic\Payments\Bundle\Admin\Controllers;
 
-use KM42\Register\Library\Records\Locator\ModelLocator;
 use Nip\Records\AbstractModels\Record;
 use Nip\Records\AbstractModels\RecordManager;
-use Paytic\Payments\Bundle\Controllers\Admin\AbstractControllerTrait;
 use Paytic\Payments\Models\Methods\PaymentMethod;
 use Paytic\Payments\Models\Methods\Traits\RecordsTrait;
 use Paytic\Payments\Models\Methods\Traits\RecordTrait;

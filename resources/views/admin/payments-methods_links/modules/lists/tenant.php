@@ -6,6 +6,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 
 /** @var PaymentMethodLink[] $methodLinks */
 $methodLinks = $this->methodLinks;
+$methodLinksRepository = PaymentsModels::methodLinks();
 ?>
 <?php if (count($methodLinks)) { ?>
     <form action="" method="post">
@@ -19,14 +20,12 @@ $methodLinks = $this->methodLinks;
                         'visible' => [
                                 'name' => 'Vizibila',
                                 'class' => 'btn-success',
-                                'url' => $methodLink->compileURL('eventActivate',
-                                        ['id_event' => $this->_event->id]),
+                                'url' => $methodLink->compileURL('activate'),
                         ],
                         'hidden' => [
                                 'name' => 'Ascunsa',
                                 'class' => 'btn-light',
-                                'url' => $methodLink->compileURL('eventDeactivate',
-                                        ['id_event' => $this->_event->id]),
+                                'url' => $methodLink->compileURL('deactivate'),
                         ],
                 ];
                 $selectedVisibility = $methodLink->isVisible() ? 'visible' : 'hidden';
@@ -75,10 +74,7 @@ $methodLinks = $this->methodLinks;
                                 <?= $this->modelManager->getLabel('primary'); ?>
                             </span>
                         <?php } else { ?>
-                            <a href="<?= $methodLink->compileURL(
-                                    'eventPrimary',
-                                    ['id_event' => $this->_event->id]
-                            ) ?>">
+                            <a href="<?= $methodLink->compileURL('primary') ?>">
                                 <small>
                                     <?= $this->modelManager->getLabel('primary.action'); ?>
                                 </small>
@@ -87,7 +83,7 @@ $methodLinks = $this->methodLinks;
                     </td>
                     <td>
                         <label><?= translator()->trans('notes'); ?></label>
-                        <textarea name="method[<?= $methodLink->id; ?>][notes]"
+                        <textarea name="methods[<?= $methodLink->id; ?>][notes]"
                                   style="width: 100%"
                         ><?= $methodLink->getNotes(); ?></textarea>
                     </td>

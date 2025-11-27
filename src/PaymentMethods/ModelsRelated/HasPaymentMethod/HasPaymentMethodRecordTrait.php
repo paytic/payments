@@ -18,7 +18,7 @@ trait HasPaymentMethodRecordTrait
             ? $paymentMethod->getPaymentMethod()
             : $paymentMethod;
         $key = $this->getManager()->getPaymentMethodField();
-        $this->id_payment_method = $paymentMethod->id;
+        $this->{$key} = $paymentMethod->id;
         $this
             ->getRelation(HasPaymentMethodRepositoryInterface::RELATION_PAYMENT_METHOD)
             ->setResults($paymentMethod);

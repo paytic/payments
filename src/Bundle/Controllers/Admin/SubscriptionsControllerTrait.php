@@ -3,6 +3,7 @@
 namespace Paytic\Payments\Bundle\Controllers\Admin;
 
 use ByTIC\Controllers\Behaviors\HasStatus;
+use Paytic\Payments\Bundle\Admin\Controllers\AbstractControllerTrait;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;

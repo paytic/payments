@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Bundle\Controllers\Admin;
+namespace Paytic\Payments\Bundle\Admin\Controllers;
 
 use Nip\Controllers\Response\ResponsePayload;
 use Nip\View\View;
