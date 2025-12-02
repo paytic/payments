@@ -23,10 +23,12 @@ trait HasPaymentMethodsRepositoryTrait
 
     protected function initRelationsPaymentMethod(): void
     {
-        $this->morphToMany(
+        $this->morphMany(
             'PaymentMethods',
             [
                 'class' => PaymentsModels::methodsClass(),
+                'morphPrefix' => 'tenant',
+                'morphTypeField' => 'tenant'
             ]
         );
     }
