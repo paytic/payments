@@ -22,6 +22,7 @@ use Paytic\Payments\Models\Methods\PaymentMethod;
 class PaymentMethodLink extends AbstractRecord
 {
     use HasPaymentMethodRecord;
+    use Traits\PaymentMethodDelegate\PaymentMethodDelegateRecordTrait;
     use HasTenantRecord;
 
 //    public function getId()
@@ -29,25 +30,6 @@ class PaymentMethodLink extends AbstractRecord
 //        return $this->getPaymentMethod()->id;
 //    }
 
-    public function getName($type = false)
-    {
-        return $this->getPaymentMethod()->getName($type);
-    }
-
-    public function getInternalName()
-    {
-        return $this->getPaymentMethod()->getInternalName();
-    }
-
-    public function getDescription()
-    {
-        return $this->getPaymentMethod()->getDescription();
-    }
-
-    public function getType()
-    {
-        return $this->getPaymentMethod()->getType();
-    }
 
     public function getVisible(): ?string
     {

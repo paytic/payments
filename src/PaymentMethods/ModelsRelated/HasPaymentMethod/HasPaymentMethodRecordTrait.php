@@ -29,4 +29,19 @@ trait HasPaymentMethodRecordTrait
     {
         return $this->getPaymentMethod()->supportsCurrency($currency);
     }
+
+    /**
+     */
+    public function getCurrenciesModels(): ?array
+    {
+        return $this->getPaymentMethod()->getCurrenciesModels();
+    }
+
+    /**
+     * @return null|array
+     */
+    public function getCurrenciesArray(): ?array
+    {
+        return $this->getPaymentMethod()->getCurrenciesArray();
+    }
 }
