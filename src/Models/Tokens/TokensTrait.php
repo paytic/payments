@@ -7,6 +7,7 @@ use Nip\Config\Config;
 use Nip\Records\AbstractModels\Record;
 use Paytic\Omnipay\Common\Models\TokenInterface;
 use Paytic\Payments\Models\AbstractModels\HasCustomer\HasCustomerRepository;
+use Paytic\Payments\Models\AbstractModels\HasDatabase\HasDatabaseConnectionTrait;
 use Paytic\Payments\Models\AbstractModels\HasPaymentMethod\HasPaymentMethodRepository;
 use Paytic\Payments\Utility\PaymentsModels;
 
@@ -19,6 +20,7 @@ use Paytic\Payments\Utility\PaymentsModels;
 trait TokensTrait
 {
     use HasCustomerRepository;
+    use HasDatabaseConnectionTrait;
     use HasPaymentMethodRepository;
 
     /**
