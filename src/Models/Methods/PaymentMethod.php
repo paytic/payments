@@ -17,4 +17,5 @@ class PaymentMethod extends AbstractRecord implements PaymentMethodInterface
     {
         // TODO: Implement getPurchasesCount() method.
     }
+
 }
