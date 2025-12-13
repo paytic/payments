@@ -31,6 +31,6 @@ return [
     'payment-methods.messages.types.cash' => 'Cash',
     'payment-methods.messages.types.bank_transfer' => 'Transfer bancar',
     'payment-methods.messages.types.credit_cards' =>
-        'După salvarea donației vei fi direcționat către procesatorul de plăți pentru introducerea detaliilor cardului bancar.',
+        'După acest pas vei fi direcționat către procesatorul de plăți pentru introducerea detaliilor cardului bancar.',
     'payment-methods.messages.types.waiver' => 'Discount 100%',
 ];

@@ -17,6 +17,7 @@ use Paytic\Payments\Models\Methods\Types\CreditCards;
  * Class MethodTrait
  * @package Paytic\Payments\Models\Methods\Traits
  *
+ * @property int|string $id
  * @property string $name
  * @property string $internal_name
  * @property string $description
@@ -58,6 +59,11 @@ trait RecordTrait
             return $this->getAttributeFromArray('internal_name');
         }
         return $this->getAttributeFromArray('name');
+    }
+
+    public function getPaymentMethodId(): int
+    {
+        return (int)$this->id;
     }
 
     /**
