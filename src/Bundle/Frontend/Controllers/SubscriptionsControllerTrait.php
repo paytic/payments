@@ -1,18 +1,21 @@
 <?php
 
-namespace Paytic\Payments\Bundle\Controllers\Frontend;
+namespace Paytic\Payments\Bundle\Frontend\Controllers;
 
 use ByTIC\Controllers\Behaviors\HasStatus;
 use Bytic\SignedUrl\Utility\UrlSigner;
+use Paytic\Payments\Bundle\Frontend\Forms\Subscriptions\CancellationReasonForm;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Subscriptions\Actions\Lifecycle\CancelSubscription;
 use Paytic\Payments\Subscriptions\Actions\Lifecycle\ReactivateSubscription;
 use Paytic\Payments\Subscriptions\Actions\Urls\SubscriptionUrls;
+use Paytic\Payments\Subscriptions\Dto\Cancellation\CancellationReasonEnum;
+use Paytic\Payments\Subscriptions\Dto\Cancellation\CancellationTriggerEnum;
 use Paytic\Payments\Subscriptions\Dto\Lifecycle\Triggers;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
- *
+ * @method Subscription getModelFromRequest
  */
 trait SubscriptionsControllerTrait
 {
@@ -51,11 +54,34 @@ trait SubscriptionsControllerTrait
     public function cancel(): void
     {
         $subscription = $this->getModelFromRequest();
+        $subscription->getMetadataObject()->setCancellationTrigger(CancellationTriggerEnum::ADMIN);
         CancelSubscription::for($subscription)
             ->setTrigger(Triggers::USER)
             ->handle();
 
+        $url = SubscriptionUrls::for($subscription)->canceledUrl();
+        $this->setAfterUrl('after-cancel', $url);
+
         $this->afterActionRedirect('cancel', $subscription);
+    }
+
+    public function cancelled()
+    {
+        /** @var Subscription $item */
+        $item = $this->getModelFromRequest();
+
+        $form = new CancellationReasonForm();
+        $form->setCancellationReasons($this->cancellationReasons());
+        $form->setModel($item);
+
+        if ($form->execute()) {
+            $this->afterActionRedirect('cancelled', $item);
+        }
+
+        $this->payload()->with([
+            'item' => $item,
+            'form' => $form,
+        ]);
     }
 
     public function reactivate(): void
@@ -66,6 +92,11 @@ trait SubscriptionsControllerTrait
             ->handle();
 
         $this->afterActionRedirect('reactivate', $subscription);
+    }
+
+    protected function cancellationReasons()
+    {
+        return CancellationReasonEnum::OTHER;
     }
 
     protected function afterActionUrlDefault($type, $item = null)
