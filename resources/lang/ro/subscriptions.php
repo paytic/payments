@@ -34,6 +34,6 @@ return [
     'payments-subscriptions.statuses.unpaid' => 'Neplătit',
 
     'payments-subscriptions.messages.dunning.next_charge' => 'Următoarea tranzacţie de <strong>#{amount}</strong> se va efectua pe <strong>#{next}</strong>.',
-    'payments-subscriptions.messages.cancelled' => 'Recurenţa a fost anulată cu succes.',
+    'payments-subscriptions.messages.cancel' => 'Recurenţa a fost anulată cu succes.',
     'payments-subscriptions.messages.reactivate' => 'Recurenţa a fost reactivată cu succes.',
 ];

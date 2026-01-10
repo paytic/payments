@@ -9,7 +9,13 @@ use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\Actions\Charges\ChargedSuccessfully;
 use Paytic\Payments\Subscriptions\Actions\ChargeSubscription;
+use Paytic\Payments\Subscriptions\Actions\Lifecycle\CancelSubscription;
+use Paytic\Payments\Subscriptions\Actions\Lifecycle\DeactivateSubscription;
+use Paytic\Payments\Subscriptions\Actions\Lifecycle\MarkUnpaidSubscription;
 use Paytic\Payments\Subscriptions\Actions\Stats\SubscriptionsStatsByStatus;
+use Paytic\Payments\Subscriptions\Statuses\Canceled;
+use Paytic\Payments\Subscriptions\Statuses\Deactivated;
+use Paytic\Payments\Subscriptions\Statuses\Unpaid;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**
@@ -18,7 +24,9 @@ use Paytic\Payments\Utility\PaymentsModels;
 trait SubscriptionsControllerTrait
 {
     use AbstractControllerTrait;
-    use HasStatus;
+    use HasStatus {
+        changeSmartPropertyValueUpdate as changeSmartPropertyValueUpdateTrait;
+    }
 
     /**
      * {@inheritDoc}
@@ -44,6 +52,7 @@ trait SubscriptionsControllerTrait
             'transactions' => $item->getTransactions(),
         ]);
     }
+
 
     public function processTransaction()
     {
@@ -94,6 +103,30 @@ trait SubscriptionsControllerTrait
             $item->compileURL('view'),
             'success'
         );
+    }
+
+    /**
+     * @param $definitionName
+     * @param $item
+     * @param $value
+     * @return void
+     */
+    protected function changeSmartPropertyValueUpdate($definitionName, $item, $value)
+    {
+        if ($definitionName === 'status') {
+            if ($value === Active::NAME) {
+            } elseif ($value === Canceled::NAME) {
+                CancelSubscription::for($item)->handle();
+                return;
+            } elseif ($value == Deactivated::NAME) {
+                DeactivateSubscription::for($item)->handle();
+                return;
+            } elseif ($value == Unpaid::NAME) {
+                MarkUnpaidSubscription::for($item)->handle();
+                return;
+            }
+        }
+        $item->changeSmartPropertyValueUpdateTrait($definitionName, $item, $value);
     }
 
     protected function generateModelName(): string

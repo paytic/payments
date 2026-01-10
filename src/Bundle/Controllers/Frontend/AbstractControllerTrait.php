@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Bundle\Controllers\Frontend;
 
+use ByTIC\Controllers\Behaviors\Models\HasAfterActions;
 use Nip\Controllers\Response\ResponsePayload;
 use Nip\View\View;
 use Paytic\Payments\Bundle\Library\View\ViewUtility;
@@ -12,6 +13,7 @@ use Paytic\Payments\Bundle\Library\View\ViewUtility;
 trait AbstractControllerTrait
 {
     use \Nip\Controllers\Traits\AbstractControllerTrait;
+    use HasAfterActions;
 
     public function getModelForm($model, $action = null)
     {
