@@ -54,7 +54,7 @@ trait SubscriptionsControllerTrait
     public function cancel(): void
     {
         $subscription = $this->getModelFromRequest();
-        $subscription->getMetadataObject()->setCancellationTrigger(CancellationTriggerEnum::ADMIN);
+        $subscription->getMetadataObject()->setCancellationTrigger(CancellationTriggerEnum::USER_SELF);
         CancelSubscription::for($subscription)
             ->setTrigger(Triggers::USER)
             ->handle();
