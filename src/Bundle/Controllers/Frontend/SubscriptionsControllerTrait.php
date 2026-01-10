@@ -48,33 +48,31 @@ trait SubscriptionsControllerTrait
         ]);
     }
 
-    public function cancel()
+    public function cancel(): void
     {
         $subscription = $this->getModelFromRequest();
         CancelSubscription::for($subscription)
             ->setTrigger(Triggers::USER)
             ->handle();
 
-        $url = SubscriptionUrls::for($subscription)->manageUrl();
-        return $this->flashRedirect(
-            $this->getModelManager()->getMessage('cancelled'),
-            $url
-        );
+        $this->afterActionRedirect('cancel', $subscription);
     }
 
-    public function reactivate()
+    public function reactivate(): void
     {
         $subscription = $this->getModelFromRequest();
         ReactivateSubscription::for($subscription)
             ->setTrigger(Triggers::USER)
             ->handle();
 
-        $url = SubscriptionUrls::for($subscription)->manageUrl();
-        return $this->flashRedirect(
-            $this->getModelManager()->getMessage('reactivate'),
-            $url
-        );
+        $this->afterActionRedirect('reactivate', $subscription);
     }
+
+    protected function afterActionUrlDefault($type, $item = null)
+    {
+        return SubscriptionUrls::for($item)->manageUrl();
+    }
+
     protected function generateModelName(): string
     {
         return get_class(PaymentsModels::subscriptions());

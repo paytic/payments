@@ -22,7 +22,7 @@ class ChargedFailed extends AbstractChargeWithTransaction
     {
         if ($this->subscription->isChargeAttemptsMaxed()) {
             PaymentsEvents::dispatch(SubscriptionChargeAttemptsMaxed::class, $this->subscription);
-            MarkUnpaidSubscription::handle($this->subscription);
+            MarkUnpaidSubscription::for($this->subscription)->handle();
             return;
         }
 

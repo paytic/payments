@@ -14,6 +14,7 @@ use Paytic\Payments\Models\AbstractModels\HasToken\HasTokenRecord;
 use Paytic\Payments\Models\Tokens\Token;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Subscriptions\ChargeMethods\AbstractMethod;
+use Paytic\Payments\Subscriptions\Dto\SubscriptionMetadata;
 use Paytic\Payments\Subscriptions\Statuses\Active;
 use Paytic\Payments\Subscriptions\Statuses\Pending;
 
@@ -107,6 +108,11 @@ trait SubscriptionTrait
     {
         $this->id_token = $token->id;
         $this->getRelation('Token')->setResults($token);
+    }
+
+    protected function getMetadataClass(): ?string
+    {
+        return SubscriptionMetadata::class;
     }
 
     public function hasPaymentIssue(): bool

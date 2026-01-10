@@ -12,7 +12,18 @@ trait HasMetadataRecordTrait
 {
     public function bootHasMetadataRecordTrait()
     {
-        $this->addCast('metadata', AsMetadataObject::class . ':json');
+        $class = $this->getMetadataClass();
+
+        $this->addCast(
+            'metadata',
+            AsMetadataObject::class . ':json'
+            . ($class ? ',' . $class : null)
+        );
+    }
+
+    protected function getMetadataClass(): ?string
+    {
+        return null;
     }
 
     /**
