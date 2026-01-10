@@ -30,7 +30,7 @@ class SubscriptionMetadata extends Metadata
         return $this->setCancellationItem(self::KEY_CANCELLATION_TRIGGER, $trigger);
     }
 
-    public function getCancellationTrigger(): string
+    public function getCancellationTrigger(): ?string
     {
         return $this->get(self::KEY_CANCELLATION . '.' . self::KEY_CANCELLATION_TRIGGER);
     }
