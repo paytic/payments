@@ -30,6 +30,11 @@ class SubscriptionMetadata extends Metadata
         return $this->setCancellationItem(self::KEY_CANCELLATION_TRIGGER, $trigger);
     }
 
+    public function getCancellationTrigger(): string
+    {
+        return $this->get(self::KEY_CANCELLATION . '.' . self::KEY_CANCELLATION_TRIGGER);
+    }
+
     /**
      * @param $key
      * @param $value
@@ -50,8 +55,20 @@ class SubscriptionMetadata extends Metadata
         if ($reason instanceof BackedEnum) {
             $reason = $reason->value;
         }
+        if (!is_array($reason)) {
+            $reason = (string)$reason;
+        }
         $reason = (string)$reason;
         return $this->setCancellationItem(self::KEY_CANCELLATION_REASON, $reason);
+    }
+
+    public function getCancellationReasonsArray(): array
+    {
+        $reasons = $this->get(self::KEY_CANCELLATION . '.' . self::KEY_CANCELLATION_REASON);
+        if (is_array($reasons)) {
+            return $reasons;
+        }
+        return explode(',', (string)$reasons);
     }
 
     /**
@@ -61,6 +78,14 @@ class SubscriptionMetadata extends Metadata
     public function setCancellationComment($comment): static
     {
         return $this->setCancellationItem(self::KEY_CANCELLATION_COMMENT, $comment);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCancellationComment(): ?string
+    {
+        return $this->get(self::KEY_CANCELLATION . '.' . self::KEY_CANCELLATION_COMMENT);
     }
 }
 
