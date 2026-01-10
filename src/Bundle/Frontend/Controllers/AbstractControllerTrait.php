@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Bundle\Controllers\Frontend;
+namespace Paytic\Payments\Bundle\Frontend\Controllers;
 
 use ByTIC\Controllers\Behaviors\Models\HasAfterActions;
 use Nip\Controllers\Response\ResponsePayload;

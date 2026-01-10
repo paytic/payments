@@ -2,6 +2,7 @@
 
 namespace Paytic\Payments\Subscriptions\Dto;
 
+use BackedEnum;
 use ByTIC\DataObjects\Casts\Metadata\Metadata;
 use Paytic\Payments\Subscriptions\Dto\Cancellation\CancellationTriggerEnum;
 
@@ -46,6 +47,10 @@ class SubscriptionMetadata extends Metadata
      */
     public function setCancellationReason($reason): static
     {
+        if ($reason instanceof BackedEnum) {
+            $reason = $reason->value;
+        }
+        $reason = (string)$reason;
         return $this->setCancellationItem(self::KEY_CANCELLATION_REASON, $reason);
     }
 

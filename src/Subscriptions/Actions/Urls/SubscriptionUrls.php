@@ -43,6 +43,11 @@ class SubscriptionUrls extends Action
         return $this->signedUrl(' reactivate');
     }
 
+    public function canceledUrl()
+    {
+        return $this->signedUrl('cancelled');
+    }
+
     protected function signedUrl($action, $params = [], $module = null)
     {
         $url = $this->compileUrl($action, $params, $module);

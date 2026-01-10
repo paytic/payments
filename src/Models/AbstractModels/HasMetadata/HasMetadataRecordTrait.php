@@ -4,6 +4,7 @@ namespace Paytic\Payments\Models\AbstractModels\HasMetadata;
 
 use ByTIC\DataObjects\Casts\Metadata\AsMetadataObject;
 use ByTIC\DataObjects\Casts\Metadata\Metadata;
+use Paytic\Payments\Subscriptions\Dto\SubscriptionMetadata;
 
 /**
  * @property string|Metadata $metadata
@@ -21,9 +22,9 @@ trait HasMetadataRecordTrait
         );
     }
 
-    protected function getMetadataClass(): ?string
+    public function getMetadataObject(): SubscriptionMetadata|Metadata
     {
-        return null;
+        return $this->metadata;
     }
 
     /**
@@ -44,4 +45,11 @@ trait HasMetadataRecordTrait
     {
         return $this->metadata->get($key, $default);
     }
+
+
+    protected function getMetadataClass(): ?string
+    {
+        return null;
+    }
+
 }
