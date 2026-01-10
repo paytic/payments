@@ -58,7 +58,6 @@ class SubscriptionMetadata extends Metadata
         if (!is_array($reason)) {
             $reason = (string)$reason;
         }
-        $reason = (string)$reason;
         return $this->setCancellationItem(self::KEY_CANCELLATION_REASON, $reason);
     }
 
