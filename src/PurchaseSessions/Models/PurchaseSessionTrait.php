@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Models\PurchaseSessions;
+namespace Paytic\Payments\PurchaseSessions\Models;
 
 use ByTIC\DataObjects\Behaviors\Timestampable\TimestampableTrait;
 use Paytic\Payments\Models\AbstractModels\HasGateway\HasGatewayRecordTrait;

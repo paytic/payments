@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Models\PurchaseSessions;
+namespace Paytic\Payments\PurchaseSessions\Models;
 
 use Paytic\Payments\Models\AbstractModels\AbstractRecordManager;
 

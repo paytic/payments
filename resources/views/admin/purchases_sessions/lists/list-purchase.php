@@ -1,7 +1,7 @@
 <?php
 /** @var PurchaseSessionTrait[] $sessions */
 
-use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use Paytic\Payments\PurchaseSessions\Models\PurchaseSessionTrait;
 use Paytic\Payments\Utility\PaymentsModels;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;

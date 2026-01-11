@@ -5,10 +5,10 @@ declare(strict_types=1);
 use Paytic\Payments\Models\Locations\Locations;
 use Paytic\Payments\Models\Methods\PaymentMethods;
 use Paytic\Payments\Models\Purchases\Purchases;
-use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
 use Paytic\Payments\Models\Subscriptions\Subscriptions;
 use Paytic\Payments\Models\Tokens\Tokens;
 use Paytic\Payments\Models\Transactions\Transactions;
+use Paytic\Payments\PurchaseSessions\Models\PurchaseSessions;
 use Paytic\Payments\Utility\PaymentsModels;
 
 return [
