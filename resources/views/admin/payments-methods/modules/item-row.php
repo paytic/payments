@@ -6,7 +6,7 @@ use Paytic\Payments\Models\Methods\PaymentMethod;
 ?>
 <tr>
     <td>
-        <a href="<?= $item->getURL(); ?>" title="">
+        <a href="<?= $item->getURL(); ?>" title="" class="payments-methods-link">
             <?= $item->getName('internal'); ?>
         </a>
     </td>
@@ -15,5 +15,7 @@ use Paytic\Payments\Models\Methods\PaymentMethod;
             <?= $item->getName(); ?>
         </a>
     </td>
-    <td><?= $item->getType()->getLabel(); ?></td>
+    <td>
+        <?= $item->getType()->getLabel(); ?>
+    </td>
 </tr>
