@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Models\PurchaseSessions\Traits\Cleanup;
+namespace Paytic\Payments\PurchaseSessions\Models\Traits\Cleanup;
 
 use Nip\Database\Query\Delete;
 use Nip\Database\Result;

@@ -5,11 +5,11 @@ namespace Paytic\Payments\Actions\GatewayNotifications;
 use Omnipay\Common\Message\AbstractResponse;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\HasModelProcessedResponse;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Tokens\Token;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Models\Transactions\TransactionTrait;
+use Paytic\Payments\PurchaseSessions\Models\PurchaseSessionTrait;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**

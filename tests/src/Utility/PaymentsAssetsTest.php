@@ -7,7 +7,7 @@ namespace Paytic\Payments\Tests\Utility;
 use Mockery;
 use Nip\Records\Locator\ModelLocator;
 use Paytic\Payments\Models\Purchases\Purchase;
-use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
+use Paytic\Payments\PurchaseSessions\Models\PurchaseSessions;
 use Paytic\Payments\Tests\AbstractTestCase;
 use Paytic\Payments\Utility\PaymentsAssets;
 use const DIRECTORY_SEPARATOR;

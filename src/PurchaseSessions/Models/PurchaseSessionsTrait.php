@@ -1,6 +1,6 @@
 <?php
 
-namespace Paytic\Payments\Models\PurchaseSessions;
+namespace Paytic\Payments\PurchaseSessions\Models;
 
 use Exception;
 use Nip\Config\Config;
@@ -9,7 +9,7 @@ use Paytic\Payments\Actions\GatewayNotifications\CreateSessionFromResponse;
 use Paytic\Payments\Gateways\Providers\AbstractGateway\Message\Traits\CompletePurchaseResponseTrait;
 use Paytic\Payments\Models\AbstractModels\HasDatabase\HasDatabaseConnectionTrait;
 use Paytic\Payments\Models\Purchase\Traits\IsPurchasableModelTrait;
-use Paytic\Payments\Models\PurchaseSessions\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
+use Paytic\Payments\PurchaseSessions\Models\Traits\Cleanup\RecordsTrait as CleanupRecordsTrait;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**

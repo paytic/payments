@@ -2,7 +2,7 @@
 
 namespace Paytic\Payments\Actions\GatewayNotifications;
 
-use Paytic\Payments\Models\PurchaseSessions\PurchaseSessionTrait;
+use Paytic\Payments\PurchaseSessions\Models\PurchaseSessionTrait;
 use Paytic\Payments\Utility\PaymentsModels;
 
 /**

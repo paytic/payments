@@ -8,11 +8,11 @@ use Paytic\Payments\MethodLinks\Models\PaymentMethodLinks;
 use Paytic\Payments\Models\Locations\Locations;
 use Paytic\Payments\Models\Methods\PaymentMethods;
 use Paytic\Payments\Models\Purchases\Purchases;
-use Paytic\Payments\Models\PurchaseSessions\PurchaseSessions;
 use Paytic\Payments\Models\Subscriptions\Subscriptions;
 use Paytic\Payments\Models\Tokens\Tokens;
 use Paytic\Payments\Models\Transactions\Transactions;
 use Paytic\Payments\PaymentsServiceProvider;
+use Paytic\Payments\PurchaseSessions\Models\PurchaseSessions;
 
 /**
  * Class PaymentsModels
