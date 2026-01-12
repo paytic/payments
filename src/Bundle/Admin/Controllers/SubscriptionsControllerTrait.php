@@ -112,7 +112,7 @@ trait SubscriptionsControllerTrait
      */
     protected function changeSmartPropertyValueUpdate($definitionName, $item, $value)
     {
-        if ($definitionName === 'status') {
+        if (strtolower($definitionName) === 'status') {
             if ($value === Active::NAME) {
             } elseif ($value === Canceled::NAME) {
                 CancelSubscription::for($item)->handle();
