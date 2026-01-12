@@ -1,10 +1,15 @@
 <?php declare(strict_types=1);
 
 use Paytic\Payments\Models\Tokens\Token;
+use Paytic\Payments\Utility\PaymentsModels;
 
 /** @var Token $item */
 $item ??= $this->item;
 ?>
+<?php if (!($item instanceof Token)) : ?>
+    <?= $this->Messages()->info(PaymentsModels::tokens()->getMessage('dnx')); ?>
+    <?php return; ?>
+<?php endif; ?>
 <table class="details table table-striped">
     <tbody>
     <tr>

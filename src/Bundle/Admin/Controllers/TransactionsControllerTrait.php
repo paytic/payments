@@ -1,9 +1,8 @@
 <?php
 
-namespace Paytic\Payments\Bundle\Controllers\Admin;
+namespace Paytic\Payments\Bundle\Admin\Controllers;
 
 use ByTIC\Controllers\Behaviors\HasStatus;
-use Paytic\Payments\Bundle\Admin\Controllers\AbstractControllerTrait;
 use Paytic\Payments\Models\Transactions\Transaction;
 use Paytic\Payments\Transactions\Actions\ChargeWithToken;
 use Paytic\Payments\Utility\PaymentsModels;
