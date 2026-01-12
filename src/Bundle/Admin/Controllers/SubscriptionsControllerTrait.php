@@ -1,9 +1,8 @@
 <?php
 
-namespace Paytic\Payments\Bundle\Controllers\Admin;
+namespace Paytic\Payments\Bundle\Admin\Controllers;
 
 use ByTIC\Controllers\Behaviors\HasStatus;
-use Paytic\Payments\Bundle\Admin\Controllers\AbstractControllerTrait;
 use Paytic\Payments\Models\Subscriptions\Subscription;
 use Paytic\Payments\Models\Transactions\Statuses\Active;
 use Paytic\Payments\Models\Transactions\Transaction;
@@ -107,7 +106,7 @@ trait SubscriptionsControllerTrait
 
     /**
      * @param $definitionName
-     * @param $item
+     * @param Subscription $item
      * @param $value
      * @return void
      */
@@ -126,12 +125,12 @@ trait SubscriptionsControllerTrait
                 return;
             }
         }
-        $item->changeSmartPropertyValueUpdateTrait($definitionName, $item, $value);
+        $this->changeSmartPropertyValueUpdateTrait($definitionName, $item, $value);
     }
 
     protected function generateModelName(): string
     {
-        return get_class(PaymentsModels::subscriptions());
+        return PaymentsModels::subscriptionsClass();
     }
 
     /**
